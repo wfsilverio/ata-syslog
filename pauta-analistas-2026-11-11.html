@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pauta 11/11/2026 · anotações</title>
+<style>
+  :root {
+    --papel: #f4f1ea;
+    --cartao: #fffdf8;
+    --tinta: #1c1917;
+    --suave: #57534e;
+    --linha: #e7e0d4;
+    --verde: #1f4d3a;
+    --verde-claro: #e7f2eb;
+    --ambar: #8a5a12;
+    --ambar-claro: #f8efd8;
+    --azul: #1d4e89;
+    --azul-claro: #e7f0f8;
+    --sombra: 0 1px 2px rgba(28, 25, 23, .06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font: 16px/1.45 "Segoe UI", system-ui, sans-serif;
+  }
+  header.topo {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #fffdf8;
+    border-bottom: 1px solid var(--linha);
+    padding: 14px 20px 12px;
+  }
+  header.topo h1 { margin: 0 0 4px; font-size: 20px; }
+  header.topo p { margin: 0; color: var(--suave); font-size: 14px; }
+  .acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
+  button, .arquivo {
+    font: inherit;
+    border: 1px solid var(--linha);
+    background: #fff;
+    color: var(--tinta);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  button.primario, button.filtro.ativo { background: var(--verde); color: #fff; border-color: var(--verde); }
+  button.perigo { color: #8f2d2d; }
+  .arquivo input { display: none; }
+  .status { margin-left: auto; font-size: 14px; color: var(--suave); }
+  nav.atalhos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  nav.atalhos a {
+    color: var(--verde);
+    text-decoration: none;
+    background: var(--verde-claro);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 20px 16px 64px; }
+  .meta, .hu, .pergunta {
+    background: var(--cartao);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+  }
+  .meta { padding: 16px; margin-bottom: 18px; display: grid; gap: 10px; }
+  label.campo { display: grid; gap: 4px; font-size: 14px; color: var(--suave); }
+  input[type="text"], textarea {
+    width: 100%;
+    font: inherit;
+    color: var(--tinta);
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: #fff;
+  }
+  textarea { min-height: 72px; resize: vertical; }
+  .hu { margin: 22px 0 10px; padding: 16px; }
+  .hu h2 { margin: 0 0 6px; font-size: 18px; }
+  .hu .intro { margin: 0; color: var(--suave); }
+  .grupo { margin: 12px 0; padding: 14px 16px; border-radius: 12px; background: var(--cartao); border: 1px solid var(--linha); }
+  .grupo-regra { border-left: 4px solid var(--verde); }
+  .grupo-tecnico { border-left: 4px solid var(--azul); }
+  .grupo h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; }
+  .grupo-regra h3 { color: var(--verde); }
+  .grupo-tecnico h3 { color: var(--azul); }
+  .grupo .texto { margin: 0 0 8px; color: var(--tinta); }
+  .grupo .texto p { margin: 0 0 8px; }
+  .selo.regra { background: var(--verde-claro); color: var(--verde); }
+  .selo.tecnico { background: var(--azul-claro); color: var(--azul); }
+  .pergunta { margin: 10px 0; padding: 14px 16px; }
+  .pergunta h3 { margin: 0 0 6px; font-size: 16px; }
+  .hoje { margin: 0 0 10px; color: var(--suave); font-size: 14px; }
+  .opcoes { display: grid; gap: 6px; }
+  .opcoes label {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .opcoes label:has(input:checked) { border-color: var(--verde); background: var(--verde-claro); }
+  .opcoes input { margin-top: 3px; }
+  .selo {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 1px 8px;
+    vertical-align: 1px;
+  }
+  .selo.aberto { background: var(--ambar-claro); color: var(--ambar); }
+  .selo.feito { background: var(--verde-claro); color: var(--verde); }
+  .aviso { margin: 10px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--ambar-claro); color: var(--ambar); font-size: 14px; }
+  .aviso[hidden], .copia[hidden] { display: none; }
+  .copia { margin-top: 10px; display: grid; gap: 6px; }
+  .copia p { margin: 0; }
+  .copia textarea { min-height: 120px; font: 13px/1.4 monospace; }
+  .copia button { justify-self: start; }
+  @media print {
+    header.topo { position: static; }
+    .acoes, nav.atalhos, .aviso, .copia { display: none !important; }
+    body { background: #fff; }
+    .pergunta, .hu, .meta { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="topo">
+  <h1>Pauta com os analistas · 11/11/2026</h1>
+  <p>Ordem das histórias: HU-012 a HU-016. Verde é regra. Azul é técnico. As anotações ficam neste navegador.</p>
+  <div class="acoes">
+    <button type="button" class="filtro ativo" data-filtro="tudo">Tudo</button>
+    <button type="button" class="filtro" data-filtro="regra">Só regra</button>
+    <button type="button" class="filtro" data-filtro="tecnico">Só técnico</button>
+    <button type="button" class="primario" id="baixar-md">Baixar anotações (.md)</button>
+    <button type="button" id="baixar-json">Baixar JSON</button>
+    <label class="arquivo">Abrir JSON<input type="file" id="abrir-json" accept="application/json,.json"></label>
+    <button type="button" id="imprimir">Imprimir</button>
+    <button type="button" class="perigo" id="limpar">Limpar anotações</button>
+    <span class="status" id="status">0 de 0 anotados</span>
+  </div>
+  <nav class="atalhos" id="atalhos"></nav>
+  <p class="aviso" id="aviso" hidden>Esta visualização bloqueia gravar, baixar ou imprimir. Abra o arquivo direto no Chrome ou Firefox (duplo clique no arquivo, ou arraste para o navegador). As anotações daqui não ficam salvas ao fechar.</p>
+  <div class="copia" id="copia" hidden>
+    <p>Se o download não começou, copie o conteúdo abaixo e salve num arquivo:</p>
+    <textarea readonly></textarea>
+    <button type="button" id="copiar">Copiar</button>
+    <button type="button" id="fechar-copia">Fechar</button>
+  </div>
+</header>
+<main id="conteudo"></main>
+<script>
+const CHAVE = "pauta-analistas-2026-11-11";
+const PAUTA = [
+  {
+    id: "hu012",
+    titulo: "HU-012 · Gestor e Fiscal",
+    pbi: "PBI #22006",
+    intro: "História da Brenda Ferreira Lima da Silva, task #22025. Análise v1 da Marcella Fontoura Silva Zupelli, task #22606. Tasks de consumir a API, #24209 e #24376, em impedimento.",
+    regra: [
+      "O painel é do Gestor ou do Fiscal e lista os contratos em que a pessoa da sessão está designada, não o órgão inteiro. A história pede situação, prazos, vigência e execução física e financeira.",
+      "Vigente, na prática deste painel, é o contrato cujo início não está no futuro e cujo fim está vazio ou é hoje ou depois. A história de outros painéis fala em status Publicado. O contrato 151299 voltou da API com status Em Execução.",
+      "O cartão de saldo crítico existe na tela. A história não diz qual conta, qual campo nem qual valor torna o saldo crítico. Mostrar zero seria lido como 'não há pendência'. Por isso o cartão fica com traço até a regra existir.",
+      "Assinatura pendente também está na tela com traço. Em 09/11/2026 ficou dito que a assinatura do documento é do SEI e que o SISLOG não valida assinatura."
+    ],
+    tecnico: [
+      "A lista sai de POST /api/Contrato/consultaContratos, uma vez com idGestor e outra com idFiscal. Em homologação o host é https://svcsisloghomolog.go.gov.br. Em produção, https://svcsislog.go.gov.br. O item é o DtoGestaoContratoItem.",
+      "Cada papel lê até 4 páginas de 50. Se a origem tiver mais, o painel avisa que os números são um recorte. Contrato repetido nos dois papéis entra uma vez.",
+      "A tela usa codigo (ou idContrato), fornecedor.nome, objeto e fimVigencia. As faixas de 30, 60, 90 e 120 dias são contadas a partir do fim. O cartão de atenção soma essas quatro faixas.",
+      "A API também manda contratacao, sequencial, processo, fornecedor.cpfCnpj, orgao, valor, status.codigo, status.descricao e publicadoPncp. O painel não mostra esses campos. Não há campo de assinatura nem de saldo nessa lista.",
+      "O código do saldo crítico já sabe chamar o SIOFI, GET {UrlServicoSiofi}api/empenho/listarPorProcesso?numeroProcesso=, um processo por vez, e somar os empenhos. A função do corte está vazia. Enquanto estiver vazia, o SIOFI não é chamado e o cartão permanece indisponível. Se o corte existir e o SIOFI falhar, o cartão também fica indisponível, para não mostrar uma contagem pela metade.",
+      "No processo 202300004081354, do contrato 151299, o SIOFI devolveu 5 empenhos. A soma de saldoEmpenho é R$ 7.529,51. valorEmpenho é R$ 27.150,23, maior que o valor do contrato (R$ 10.279,76). Essas contas não fecham por subtração simples."
+    ],
+    perguntas: [
+      { id: "hu012-corte", tipo: "regra", titulo: "Qual conta torna o saldo crítico?", hoje: "Sem a conta, o cartão continua com traço de propósito. Quando a regra existir, ela recebe o contrato do SISLOG e a soma dos empenhos do processo.", opcoes: ["A conta foi definida na reunião", "Ainda sem conta: o cartão continua com traço", "O cartão sai da história"] },
+      { id: "hu012-assinatura", tipo: "regra", titulo: "Assinatura pendente permanece neste painel?", hoje: "A consultaContratos não traz estado de assinatura. Em 09/11 ficou dito que a assinatura é do SEI e o SISLOG não valida.", opcoes: ["Sai da história", "Permanece com traço até haver fonte", "Há uma fonte e ela foi indicada na reunião"] },
+      { id: "hu012-vigente", tipo: "regra", titulo: "Vigente é pela data de fim ou pelo status?", hoje: "O painel usa início e fim de vigência. O contrato 151299 voltou com status Em Execução, não Publicado.", opcoes: ["Pela data, como está", "Só status Publicado", "Em Execução também conta como vigente"] },
+      { id: "hu012-fonte", tipo: "tecnico", titulo: "O saldo crítico, quando a conta existir, usa o SIOFI pelo processo?", hoje: "A chamada pronta é listarPorProcesso. Contrato sem processo não entra na conta. Falha do SIOFI deixa o cartão indisponível.", opcoes: ["Sim, SIOFI pelo processo", "Outra fonte, anotada abaixo"] },
+      { id: "hu012-campo", tipo: "tecnico", titulo: "Qual campo do empenho entra na conta do saldo crítico?", hoje: "O SIOFI manda saldoEmpenho, saldoLiquidado, saldoPago, valorEmpenho, valorLiquidado e valorPago. No processo de prova, saldoEmpenho é R$ 7.529,51 e valorEmpenho é R$ 27.150,23.", opcoes: ["saldoEmpenho", "valorEmpenho", "Outro campo, anotado abaixo"] },
+      { id: "hu012-recorte", tipo: "tecnico", titulo: "O teto de 4 páginas de 50 por papel serve?", hoje: "idGestor e idFiscal são consultados em separado. Acima de 200 contratos em um papel, o painel avisa que a consulta foi limitada.", opcoes: ["Serve", "Precisa ler a lista inteira"] }
+    ]
+  },
+  {
+    id: "hu013",
+    titulo: "HU-013 · Fornecedor",
+    pbi: "PBI #22346",
+    intro: "História da Brenda Silva, task #22348. Análise da Marcella Fontoura Silva Zupelli, task #22607. Corte de escopo, se houver, é da Wanessa Santos de Aquino.",
+    regra: [
+      "O painel é do fornecedor: contratos em execução em que a empresa é a contratada, em qualquer órgão. A história pede valor total, valor empenhado, total de notas fiscais, total liquidado, saldo disponível e consumo.",
+      "O glossário aponta valor empenhado para ORF_EMPENHO_SCO.VALOR_EMPENHO e total liquidado para ORF_EMPENHO_SCO.SALDO_LIQUIDADO. Nota fiscal, saldo disponível e consumo estão sem origem. A fórmula do consumo ficou em aberto na própria análise.",
+      "As faixas são de 30, 60, 90 e 120 dias a partir do fim da vigência atual, e a história manda considerar aditivo de prazo já assinado. A lista da empresa não traz o aditivo separado.",
+      "Em 09/11/2026 o Alexandre tirou empenho, liquidação, pagamento e saldos do SISLOG: a busca é na fonte financeira, pelo número do processo, e o cálculo já vem pronto. Valor do contrato e valor mensal continuam no SISLOG. Nota fiscal, ateste e data da nota não vêm da formalização nem do SIAFIC. O fiscal informa ao subir a nota no módulo. A Wanessa fechou que é manual. Ele não nomeou o saldo disponível nem a fórmula do percentual."
+    ],
+    tecnico: [
+      "A lista sai de POST /api/Contrato/consultarContratoPelaEmpresa?CpfCnpjEmpresa={documento}&SomenteVigente=true, corpo {}. Sem corpo o firewall responde 403. Empresa não encontrada (HTTP 400) vira painel vazio. O documento vem da sessão.",
+      "A tela usa contrato.numeroContrato com ano, nomeOrgao, nomeEmpresa, objetoAquisicao, valorAquisicao e dataFimVigencia. O processo para o SIOFI é numeroProcesso. valorMensalContrato não é o consumo.",
+      "Prova em 10/11/2026 com o documento 46572336000120: 9 linhas, 5 contratos, 3 com fim hoje ou depois. O primeiro vigente é o 151299, processo 202300004081354. SomenteVigente=true ainda devolveu 151506 (fim 15/04/2025) e 151792 (fim 09/11/2024). A soma das 9 linhas dá R$ 38.190,80 porque a linha repetida entra de novo. O vencido cai na faixa de 30 dias com a legenda Vencido. O código ainda não descarta duplicata nem vencido.",
+      "Os empenhos saem de GET {UrlServicoSiofi}api/empenho/listarPorProcesso?numeroProcesso=, sem token. Homologação: https://orcahomolog.intra.goias.gov.br/siofi-api/. Produção está com a URL vazia. Se o SIOFI falha, valor empenhado, valor liquidado e saldo de empenho ficam com traço e o resto carrega.",
+      "No processo 202300004081354, 5 empenhos (2023.1701.009.00371 a 2026.1701.055.00248): valorEmpenho R$ 27.150,23, valorLiquidado R$ 5.644,40, valorPago R$ 5.506,61, saldoEmpenho R$ 7.529,51, saldoLiquidado R$ 5.476,99, saldoPago R$ 5.271,19. O código soma valorLiquidado. O glossário cita SALDO_LIQUIDADO. As listas de liquidação e de ordem de pagamento vêm vazias nesse GET.",
+      "O host do SIOFI não resolve no DNS do sistema. Abre no navegador pelo ZTNA, porta 443. O Bruno no terminal para em ENOTFOUND. Empenhado (R$ 27.150,23) passa do valor do contrato (R$ 10.279,76). Não há saldo previsto nem percentual pronto."
+    ],
+    perguntas: [
+      { id: "hu013-liquidado", tipo: "regra", titulo: "O total liquidado é qual campo do glossário?", hoje: "O glossário cita SALDO_LIQUIDADO. No processo de prova, saldoLiquidado é R$ 5.476,99 e valorLiquidado é R$ 5.644,40. O código soma o segundo.", opcoes: ["saldoLiquidado, como o glossário", "valorLiquidado, como o código"] },
+      { id: "hu013-disponivel", tipo: "regra", titulo: "O que é o saldo disponível?", hoje: "A análise não indica a origem. A tela mostra saldo de empenho (R$ 7.529,51 no processo de prova), que é outro campo.", opcoes: ["É o saldo de empenho", "É outra conta, anotada abaixo", "Sai da tela"] },
+      { id: "hu013-consumo", tipo: "regra", titulo: "Qual é a fórmula do consumo?", hoje: "A fórmula ficou em aberto na análise. O SIOFI não manda percentual nem saldo previsto. valorMensalContrato não é essa conta.", opcoes: ["A fórmula foi definida na reunião", "Sai da tela", "Espera um campo da API"] },
+      { id: "hu013-nota", tipo: "regra", titulo: "A nota fiscal sai do dashboard?", hoje: "Em 09/11 a Wanessa fechou que a nota é manual, preenchida pelo fiscal no módulo. Não há campo na formalização nem no SIOFI.", opcoes: ["Sai do dashboard", "Permanece no dashboard"] },
+      { id: "hu013-vigencia", tipo: "regra", titulo: "A faixa usa só o fim que a lista manda?", hoje: "A história manda considerar aditivo de prazo já assinado. A lista da empresa traz uma dataFimVigencia e não separa o aditivo.", opcoes: ["dataFimVigencia já inclui o aditivo assinado", "Ainda falta compor o aditivo de prazo"] },
+      { id: "hu013-lista", tipo: "tecnico", titulo: "A lista vigente pode repetir contrato e trazer vencido?", hoje: "SomenteVigente=true devolveu 9 linhas, 5 contratos, e dois com fim em 2024 e 2025. A soma conta a linha repetida. O ajuste ainda não está no código: um registro por id e descartar fim anterior a hoje.", opcoes: ["Pode ajustar no código, sem API nova", "A API é que deve deixar de mandar duplicata e vencido"] },
+      { id: "hu013-producao", tipo: "tecnico", titulo: "Qual é a URL do SIOFI em produção?", hoje: "Homologação está preenchida. appsettings.Producao.json está com UrlServicoSiofi vazio. Sem essa URL o painel de produção não consulta empenho.", opcoes: ["A URL foi informada na reunião", "Continua em aberto"] }
+    ]
+  },
+  {
+    id: "hu014",
+    titulo: "HU-014 · Procurador Setorial",
+    pbi: "PBI #22350",
+    intro: "História da Brenda Ferreira Lima da Silva, task #22351. Análise v1 da Marcella Fontoura Silva Zupelli, task #22612. A spec de publicado foi aplicada no código em 10/11/2026.",
+    regra: [
+      "A análise v1 pede demandas pendentes de análise: encaminhadas à Procuradoria e ainda sem manifestação. O indicador se chamaria Demandas pendentes. O item entraria depois de Encaminhar para Procuradoria. O glossário inclui também o que foi destinado ao próprio usuário.",
+      "Em 09/11/2026 a Suellen fechou que aditivo e apostilamento contam quando estão publicados. O Alexandre tratou a pendência de análise como decisão de negócio, não como campo que ele vá criar. O SISLOG não tem status de pendência, data de encaminhamento, remetente, destinatário nem versão.",
+      "O risco: item publicado já passou pela análise. O painel mostra o que foi concluído, não o que espera o Procurador.",
+      "Dúvidas e comunicações estão na análise (RF009, RF012, RF015, RF022). Não há aviso no SISLOG. Manifestação, parecer, histórico e versões (RF024 a RF029) ficaram fora do recorte: o GCG não grava manifestação.",
+      "Sem o registro no Azure, o roteiro #24202 e o teste #24203 seguem a v1 e reprovam o que está na tela. Quem registra pode ser comentário na PBI, análise v2 ou corte de escopo da Wanessa.",
+      "Mensagens da análise: MSG001 'Não há demandas pendentes de sua atuação no momento.'; MSG002 'Não há demandas pendentes correspondentes ao indicador selecionado.'; MSG003 'Não foi possível carregar todas as informações do Dashboard. Tente novamente.'; MSG004 'Não foi possível acessar o item da demanda selecionada. Tente novamente.'"
+    ],
+    tecnico: [
+      "O painel lê os contratos do órgão na consultaContratos e, para cada um, lista aditivos e apostilamentos. Entra o item com publicadoPncp e link http ou https, a mesma regra do link nas abas.",
+      "Cartões: Aditivos e apostilamentos publicados, Aditivos publicados e Apostilamentos publicados. Sem itens, mostram zero. Clicar no cartão filtra a lista. Clicar de novo volta ao todo.",
+      "A ordem é do item mais antigo para o mais recente. A data do aditivo é a de publicação. A do apostilamento é a de assinatura. Não há data de encaminhamento. A linha sai sem remetente.",
+      "Abrir a linha leva à aba Aditivos ou Apostilamentos do contrato. A aba não seleciona o termo.",
+      "Dúvidas e comunicações ficam com traço e a legenda 'A API ainda não informa este indicador.'",
+      "A tela ainda diz 'demandas' no rodapé ('N demandas em N contratos') e no texto para leitor de tela ('Demandas pendentes'). Com o sentido de publicado, o texto coerente seria 'itens publicados'.",
+      "A spec citou busca por número ou fornecedor. A tela não tem o campo. Se houvesse, o termo iria ao SISLOG como número do contrato, e o nome do fornecedor não acharia nada.",
+      "O painel lê até 200 contratos por carga, porque são duas chamadas por contrato. Acima disso, o cartão do total avisa 'consulta limitada a 200 contratos'. Esse teto não está na análise nem na spec. Falha da consulta derruba o painel inteiro, sem números parciais."
+    ],
+    perguntas: [
+      { id: "hu014-publicado", tipo: "regra", titulo: "O painel fecha com o que está publicado no PNCP?", hoje: "A análise pede pendência de análise. O código lista publicado. Item publicado já passou pela atuação do Procurador.", opcoes: ["Sim, publicado no PNCP vale", "Não: a pendência de análise continua na história"] },
+      { id: "hu014-azure", tipo: "regra", titulo: "Quem registra essa mudança no Azure?", hoje: "Sem o registro, o roteiro #24202 e o teste #24203 testam a v1 e reprovam.", opcoes: ["Comentário na PBI", "Análise v2", "A Wanessa registra o corte de escopo"] },
+      { id: "hu014-duvidas", tipo: "regra", titulo: "Dúvidas e comunicações saem da história?", hoje: "O cartão está com traço. Não há aviso nem destinatário no SISLOG.", opcoes: ["Saem da história", "O cartão permanece indisponível"] },
+      { id: "hu014-msg", tipo: "regra", titulo: "Quais textos valem para MSG001 a MSG004?", hoje: "A tela fala em publicado. A MSG002 repete a MSG001. O rodapé ainda diz demandas.", opcoes: ["Valem os textos da tela", "Valem os textos da análise", "Os textos novos foram ditados na reunião"] },
+      { id: "hu014-destinatario", tipo: "regra", titulo: "O recorte é só o órgão da sessão?", hoje: "O glossário inclui demanda destinada ao próprio usuário. A API não tem destinatário. O painel usa o órgão da sessão.", opcoes: ["Só o órgão da sessão", "Também o destinado ao usuário, quando houver campo"] },
+      { id: "hu014-busca", tipo: "tecnico", titulo: "A busca entra na tela ou sai do aceite?", hoje: "Não há campo. Busca por fornecedor não funcionaria: o termo iria como número do contrato.", opcoes: ["Sai do aceite", "A tela ganha busca por número do contrato", "A tela ganha busca por número e fornecedor"] },
+      { id: "hu014-limite", tipo: "tecnico", titulo: "O limite de 200 contratos por carga serve?", hoje: "Duas chamadas por contrato. Acima de 200, a lista corta e o cartão avisa.", opcoes: ["Serve", "O limite muda"] },
+      { id: "hu014-abrir", tipo: "tecnico", titulo: "Abrir a linha na aba do contrato, sem selecionar o termo, serve?", hoje: "A análise pede abrir o aditivo ou o apostilamento direto. A tela abre a aba correspondente, sem posicionar no item.", opcoes: ["Serve abrir a aba", "Precisa abrir o termo"] }
+    ]
+  },
+  {
+    id: "hu015",
+    titulo: "HU-015 · Analista Financeiro",
+    pbi: "PBI #22541",
+    intro: "História da Brenda Ferreira Lima da Silva, task #23507. Análise v2 da Marcella Fontoura Silva Zupelli, task #23181, com saldo de anulação. A instrução de código foi aplicada em 10/11/2026.",
+    regra: [
+      "A análise pede os dados de empenho, anulação, liquidação e pagamento do SIAFIC, com data e hora da última atualização. O painel lê o SIOFI. O Alexandre, em 09/11, descreveu essa fonte pelo processo, sem usar o nome SIOFI.",
+      "Valor da contratação anual, reajuste, valor atualizado e a composição com aditivo e apostilamento de valor estão na análise. A tela soma um único campo valor do contrato.",
+      "Há um indicador 'Valor Pago/Liquidado'. A tela separou valor liquidado e valor pago, porque os números não são iguais.",
+      "Saldo a liquidar, no RF016, é saldo empenhado menos saldo liquidado. O código faz essa conta com saldoEmpenho e saldoLiquidado. O SIOFI também manda valorLiquidado, com outro valor. A conta pode ficar negativa.",
+      "Saldo disponível é o valor do contrato ainda não executado. A análise não escreve a fórmula. Sem ela, a régua de consumo (percentual liquidado e percentual empenhado sobre o valor total) também não fecha.",
+      "Saldo de anulação é valor da contratação menos o valor total do IPOF. O empenho do SIOFI não traz IPOF nem valor total do IPOF. Com o filtro de IPOF preenchido, o painel responde que não encontrou contrato.",
+      "Os empenhos deveriam ser os dos exercícios abrangidos pela vigência. A soma pega todos os empenhos do processo.",
+      "Falha do SIAFIC deveria mostrar a MSG004. A tela deixa os saldos com traço. Com filtro de natureza ou de empenho e o SIOFI fora, a carga inteira falha, porque o filtro não teria como ser aplicado."
+    ],
+    tecnico: [
+      "Do SISLOG, via consultaContratos: quantidade de vigentes, soma de valor e faixas até 60, 61 a 90 e 91 a 120 dias. A análise fala em 60, 90 e 120, com 90 como padrão. A tela não tem faixa padrão. Sem órgão na sessão, a consulta não recorta por órgão e lê só a primeira página. A tela avisa.",
+      "Do SIOFI, GET api/empenho/listarPorProcesso, um processo por vez, em sequência. Com 200 processos diferentes são 200 chamadas por carga e a cada filtro.",
+      "O que a soma preenche: saldo empenhado (soma de saldoEmpenho), saldo a liquidar (saldoEmpenho menos saldoLiquidado), valor liquidado (soma de valorLiquidado) e valor pago (soma de valorPago), em blocos separados.",
+      "Prova no processo 202300004081354, 5 empenhos, natureza 3.3.90.39.01 Água e Esgoto: saldo empenhado R$ 7.529,51, saldo liquidado R$ 5.476,99, saldo a liquidar calculado R$ 2.052,52, valor liquidado R$ 5.644,40, valor pago R$ 5.506,61, valor empenhado R$ 27.150,23 (não usado neste painel).",
+      "Filtros que funcionam: número do contrato, parte do nome ou CPF/CNPJ do fornecedor, parte da natureza (código ou texto, por exemplo 3.3.90.39 ou Água) e parte do número do empenho. Natureza e empenho reduzem a lista, o valor, as faixas e as somas.",
+      "SIOFI fora, sem esses filtros: valor e faixas aparecem, e os saldos ficam com traço e a legenda 'A API ainda não informa este indicador.'. Não aparece a MSG004. Com natureza ou número do empenho preenchido, o painel inteiro mostra erro.",
+      "Valor estimado mensal não tem campo. Evolução mensal e anual não saem desta lista: as liquidações aninhadas vêm vazias. Consultar em Gerir Contratos abre a listagem com o nome e a quantidade do indicador, sem filtrar os contratos da métrica nem os filtros do painel. Definir como página inicial continua só no toast, como nos outros painéis.",
+      "UrlServicoSiofi de produção está vazia. Homologação aponta para https://orcahomolog.intra.goias.gov.br/siofi-api/."
+    ],
+    perguntas: [
+      { id: "hu015-fonte", tipo: "regra", titulo: "O SIOFI substitui o SIAFIC como fonte?", hoje: "RF005 e RNF010 pedem SIAFIC. Os números vêm do SIOFI. A data e hora de atualização não existem nessa resposta (RF007).", opcoes: ["SIOFI é a fonte e a data de atualização sai da história", "SIOFI é a fonte e a data permanece, com outra origem", "Esperar o SIAFIC"] },
+      { id: "hu015-liquidado", tipo: "regra", titulo: "O saldo liquidado do RF016 é qual campo?", hoje: "O código usa saldoLiquidado (R$ 5.476,99). valorLiquidado no mesmo processo é R$ 5.644,40. A conta do saldo a liquidar muda conforme a escolha.", opcoes: ["saldoLiquidado", "valorLiquidado"] },
+      { id: "hu015-pago", tipo: "regra", titulo: "Valor Pago/Liquidado fica em dois blocos ou volta a ser um?", hoje: "A análise pede um indicador. A tela mostra liquidado R$ 5.644,40 e pago R$ 5.506,61.", opcoes: ["Dois blocos, como está", "Um bloco só com o liquidado", "Um bloco só com o pago"] },
+      { id: "hu015-anual", tipo: "regra", titulo: "A soma do valor do contrato atende ao valor da contratação anual?", hoje: "RF008 pede valor anual. O bloco soma o valor do SISLOG, que é o valor do contrato, sem separar reajuste nem aditivo.", opcoes: ["Sim, esse valor já é o anual", "Não: ainda falta anual, reajuste e aditivo"] },
+      { id: "hu015-vigencia", tipo: "regra", titulo: "Recortar os empenhos pela vigência?", hoje: "RF018 pede os exercícios da vigência. A soma pega todos os empenhos do processo, inclusive de exercício anterior.", opcoes: ["Não recorta: soma o processo", "Recorta pela vigência"] },
+      { id: "hu015-disponivel", tipo: "regra", titulo: "Qual é a conta do saldo disponível e a base do consumo?", hoje: "Saldo disponível está com traço. A régua não aparece. A análise não escreve a fórmula (RF017, RF020 a RF023).", opcoes: ["Fica fora até haver fórmula", "A fórmula foi definida na reunião"] },
+      { id: "hu015-ipof", tipo: "regra", titulo: "De onde vem o total do IPOF? O filtro sai da tela?", hoje: "Saldo de anulação é contratação menos o total do IPOF. O empenho não traz IPOF. Com o filtro preenchido, a mensagem é a de nenhum contrato (RF014, RF037).", opcoes: ["O filtro sai da tela enquanto não houver fonte", "O filtro fica e mostra aviso, em vez de nenhum contrato", "Há uma fonte para o total do IPOF"] },
+      { id: "hu015-falha", tipo: "tecnico", titulo: "SIOFI fora e filtro de empenho preenchido: o que a tela faz?", hoje: "Sem o filtro, os saldos ficam com traço, sem a MSG004. Com natureza ou empenho, a carga inteira falha (RF049).", opcoes: ["Erro, como está", "Aviso de que o filtro não foi aplicado", "Saldos com traço e a MSG004"] },
+      { id: "hu015-chamadas", tipo: "tecnico", titulo: "Uma chamada ao SIOFI por processo, em sequência, serve?", hoje: "200 processos diferentes são 200 chamadas por carga, e de novo a cada filtro. Não há consulta em lote nesse swagger.", opcoes: ["Serve", "Precisa de outro desenho de carga"] }
+    ]
+  },
+  {
+    id: "hu016",
+    titulo: "HU-016 · Coordenador de Contratos",
+    pbi: "PBI #22542",
+    intro: "História da Brenda Ferreira Lima da Silva, task #23508. Análise da Marcella Fontoura Silva Zupelli, task #22622. Consumo, equipe e ocorrências foram ligados no código em 10/11/2026.",
+    regra: [
+      "O painel é do órgão, independentemente de o usuário ser gestor ou fiscal do contrato. A história pede vigentes com status Publicado, valor total com aditivo e apostilamento de valor, faixas até 30, 60, 90 e 120 dias pelo fim da vigência atual, maior contrato, vencimentos dos 12 meses seguintes, valor por unidade gestora, quantidade e valor por categoria, ranking dos 10 fornecedores e a listagem.",
+      "Consumo, no RF032, é valor liquidado dividido pelo valor total atualizado, na vigência atual. O glossário também fala em percentual liquidado e percentual empenhado. O RF033 manda obter a liquidação do SIAFIC.",
+      "Equipe: gestor, fiscal e os suplentes, com destaque para contrato sem suplente do gestor. Ocorrências dos últimos 15 dias, da mais recente para a mais antiga, com número, contratada, tipo, data e responsável. Avisos da aba Avisos, no mesmo período. Sem ocorrências, MSG001. Sem avisos, MSG002.",
+      "Filtros: situação (padrão todos), unidade gestora (padrão todas), categoria (padrão todas) e busca por número, contratada, gestor, objeto ou processo, inclusive por parte do termo.",
+      "A coluna de valor da tela se chama Valor, não Valor atualizado, porque a lista não separa o valor inicial do aditivo."
+    ],
+    tecnico: [
+      "A lista é a mesma consultaContratos da HU-012. Vigentes vão com fimVigenciaDe igual a hoje. Encerrados, com fimVigenciaAte igual a ontem. Com órgão na sessão, até 4 páginas de 50. Sem órgão, só a primeira. A busca por CPF de 11 dígitos ou CNPJ de 14 vai em cpfCnpjFornecedor. O resto filtra os contratos já lidos, agora também por gestor e fiscal.",
+      "Já aparecem: quantidade de vigentes, soma de valor, maior contrato, faixas, próximos 12 meses, ranking de fornecedores e a lista com número, contratada, objeto, processo, fim e valor.",
+      "Consumo, desde 10/11: para cada processo distinto, soma de valorLiquidado do SIOFI dividida pelo valor do SISLOG. No processo 202300004081354 dá cerca de 55% (R$ 5.644,40 sobre R$ 10.279,76). Sem valor, o percentual fica em zero. Se o SIOFI falha, a coluna some e o cartão volta ao traço. Valor e faixas continuam. O empenhado desse processo (R$ 27.150,23) passa do valor do contrato, então um percentual empenhado passaria de 100%.",
+      "Equipe: GET /api/Contrato/{id}/equipe, a mesma chamada da aba Equipe. A aba do painel mostra gestor e fiscal. O cartão Sem suplente do gestor conta o contrato cuja equipe foi lida e não tem a função Suplente. A API normaliza a função para Fiscal, Gestor, Interveniente ou Suplente. Não diz se o suplente é do gestor ou do fiscal. Também não traz CPF: a segunda linha fica vazia. Falha de um contrato não derruba o painel. Se nenhuma equipe for lida, cartão e aba ficam no traço.",
+      "Ocorrências: GET /api/Contrato/{id}/ocorrencias, da mais recente para a mais antiga, com data de hoje até 15 dias atrás. O título junta tipo e usuário. Lista vazia mostra que não houve ocorrência no período. Se toda a consulta falhar, a seção volta ao texto de que a API não informa. A aba Avisos continua com esse texto: não há endpoint de aviso.",
+      "Unidade gestora e categoria não vêm em DtoGestaoContratoItem. orgao é o órgão, não a unidade. Filtro de unidade ou de categoria devolve o painel vazio. A API manda status e publicadoPncp, e o vigente do painel não usa o status.",
+      "São, no pior caso, uma chamada de equipe e uma de ocorrências por contrato, mais uma do SIOFI por processo, em cima de até 200 contratos. Produção segue com UrlServicoSiofi vazio."
+    ],
+    perguntas: [
+      { id: "hu016-valor", tipo: "regra", titulo: "O valor da lista já vale como valor total atualizado?", hoje: "Consumo, maior contrato e soma usam o valor do SISLOG. A coluna se chama Valor. A lista não separa aditivo nem apostilamento de valor (RF008, RF017).", opcoes: ["Sim, esse valor já inclui aditivo e apostilamento", "Não: ainda falta compor aditivo e apostilamento", "Pode continuar se chamando Valor"] },
+      { id: "hu016-consumo", tipo: "regra", titulo: "O consumo é só liquidado sobre o valor, ou também o percentual empenhado?", hoje: "O RF032 pede liquidado sobre o valor total atualizado. O glossário também cita percentual empenhado. No processo de prova o liquidado dá cerca de 55% e o empenhado passa de 100%.", opcoes: ["Só liquidado sobre o valor", "Também o percentual empenhado", "Pode mostrar acima de 100%"] },
+      { id: "hu016-suplente", tipo: "regra", titulo: "A função Suplente conta como suplente do gestor?", hoje: "A história pede destacar contrato sem suplente do gestor. A equipe devolve Suplente, sem dizer se é do gestor ou do fiscal. O cartão conta essa função.", opcoes: ["Sim, Suplente conta", "Só quando o texto disser que é do gestor", "O cartão sai da história"] },
+      { id: "hu016-vigente", tipo: "regra", titulo: "Vigente é pela data de fim ou pelo status Publicado?", hoje: "O RF006 pede status Publicado. O painel usa a data de fim. O contrato 151299 voltou Em Execução.", opcoes: ["Pela data de fim, como está", "Só status Publicado", "Em Execução também conta como vigente"] },
+      { id: "hu016-ausentes", tipo: "regra", titulo: "Unidade, categoria e avisos saem do dashboard?", hoje: "A lista não traz unidade nem categoria. Aviso não existe nessa API. Os três ficam com traço. Filtro de unidade ou categoria esvazia o painel.", opcoes: ["Saem enquanto não houver campo", "Ficam com traço"] },
+      { id: "hu016-cpf", tipo: "regra", titulo: "O CPF do gestor e do fiscal sai da história?", hoje: "A equipe devolve nome e função. Não há CPF. A segunda linha da aba fica vazia.", opcoes: ["Sai da história", "Fica vazio até a API mandar o CPF"] },
+      { id: "hu016-carga", tipo: "tecnico", titulo: "Uma chamada de equipe e uma de ocorrências por contrato servem?", hoje: "Até 200 contratos, mais uma chamada do SIOFI por processo. A lista de ocorrências percorre todas as páginas de cada contrato.", opcoes: ["Serve", "Precisa de outro desenho de carga"] }
+    ]
+  },
+  {
+    id: "comum",
+    titulo: "Comum aos cinco painéis",
+    pbi: "Página inicial e SIOFI",
+    intro: "O mesmo ponto aparece na análise de cada história. Está aqui para decidir uma vez.",
+    regra: [
+      "Cada análise pede Definir como página inicial, com uma opção só, gravada para o usuário, e o dashboard do perfil como padrão quando não houver preferência. A casinha da tela só mostra o aviso de que a ação ainda não está disponível. O diálogo e a gravação não foram portados."
+    ],
+    tecnico: [
+      "UrlServicoSiofi em localhost, desenvolvimento, homologação e treinamento: https://orcahomolog.intra.goias.gov.br/siofi-api/. Em produção o valor está vazio. Sem ele, consumo, saldos e empenho não consultam nada.",
+      "O host orcahomolog.intra.goias.gov.br não resolve no DNS da máquina. O navegador alcança pela regra ZTNA, porta 443. Chamada feita pelo terminal, inclusive o Bruno, para em ENOTFOUND.",
+      "A lista listarPorProcesso não traz IPOF, valor total do IPOF, saldo previsto, percentual, nota fiscal nem data de atualização. Liquidações e ordens de pagamento vêm vazias nesse GET. O detalhe, se for usado, é /api/liquidacao/listar e /api/ordempagamento/listar, pelo numeroEmpenho."
+    ],
+    perguntas: [
+      { id: "comum-home", tipo: "regra", titulo: "Definir como página inicial entra neste ciclo?", hoje: "Está na análise dos cinco painéis. A tela só avisa que a ação não está disponível.", opcoes: ["Entra neste ciclo", "Fica para depois, igual nos cinco"] },
+      { id: "comum-producao", tipo: "tecnico", titulo: "A URL de produção do SIOFI foi informada?", hoje: "Homologação está preenchida. Produção está vazia. Os painéis 012, 013, 015 e 016 dependem dela para número financeiro.", opcoes: ["A URL foi informada na reunião", "Continua em aberto"] }
+    ]
+  }
+];
+
+function vazio() {
+  return { presentes: "", livre: "", itens: {} };
+}
+
+let armazenamentoOk = true;
+try {
+  localStorage.setItem(CHAVE + "-teste", "1");
+  localStorage.removeItem(CHAVE + "-teste");
+} catch (erro) {
+  armazenamentoOk = false;
+}
+
+function carregar() {
+  if (!armazenamentoOk) return vazio();
+  try {
+    const bruto = localStorage.getItem(CHAVE);
+    if (!bruto) return vazio();
+    const dado = JSON.parse(bruto);
+    dado.itens = dado.itens || {};
+    return dado;
+  } catch (erro) {
+    return vazio();
+  }
+}
+
+let estado = carregar();
+
+function salvar() {
+  if (armazenamentoOk) {
+    try {
+      localStorage.setItem(CHAVE, JSON.stringify(estado));
+    } catch (erro) {
+      armazenamentoOk = false;
+      mostrarAviso();
+    }
+  }
+  atualizarStatus();
+}
+
+function item(id) {
+  if (!estado.itens[id]) estado.itens[id] = { opcao: "", nota: "" };
+  return estado.itens[id];
+}
+
+function escapar(texto) {
+  return String(texto || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function anotado(id) {
+  const atual = item(id);
+  return atual.opcao.length > 0 || atual.nota.trim().length > 0;
+}
+
+function totalPerguntas() {
+  return PAUTA.reduce(function (soma, hu) { return soma + hu.perguntas.length; }, 0);
+}
+
+function atualizarStatus() {
+  let feitos = 0;
+  PAUTA.forEach(function (hu) {
+    hu.perguntas.forEach(function (pergunta) { if (anotado(pergunta.id)) feitos += 1; });
+  });
+  document.getElementById("status").textContent = feitos + " de " + totalPerguntas() + " anotados";
+  document.querySelectorAll("[data-selo]").forEach(function (selo) {
+    const ok = anotado(selo.getAttribute("data-selo"));
+    selo.className = "selo " + (ok ? "feito" : "aberto");
+    selo.textContent = ok ? "anotado" : "em aberto";
+  });
+}
+
+let filtro = "tudo";
+
+function card(pergunta) {
+  const atual = item(pergunta.id);
+  const opcoes = pergunta.opcoes.map(function (opcao) {
+    const marcado = atual.opcao === opcao ? " checked" : "";
+    return '<label><input type="radio" name="' + pergunta.id + '" value="' + escapar(opcao) + '"' + marcado + "> <span>" + escapar(opcao) + "</span></label>";
+  }).join("");
+  const ok = anotado(pergunta.id);
+  const tipo = pergunta.tipo === "tecnico" ? "técnico" : "regra";
+  return '<article class="pergunta" id="' + pergunta.id + '">' +
+    "<h3>" + escapar(pergunta.titulo) +
+    ' <span class="selo ' + pergunta.tipo + '">' + tipo + "</span>" +
+    ' <span class="selo ' + (ok ? "feito" : "aberto") + '" data-selo="' + pergunta.id + '">' + (ok ? "anotado" : "em aberto") + "</span></h3>" +
+    '<p class="hoje">' + escapar(pergunta.hoje) + "</p>" +
+    '<div class="opcoes">' + opcoes + "</div>" +
+    '<label class="campo" style="margin-top:10px">Anotação<textarea data-nota="' + pergunta.id + '" placeholder="Quem decidiu, a fórmula, a data, o texto">' + escapar(atual.nota) + "</textarea></label>" +
+    "</article>";
+}
+
+function grupo(hu, tipo, titulo) {
+  const paragrafos = (tipo === "regra" ? hu.regra : hu.tecnico).map(function (texto) {
+    return "<p>" + escapar(texto) + "</p>";
+  }).join("");
+  const perguntas = hu.perguntas.filter(function (pergunta) { return pergunta.tipo === tipo; }).map(card).join("");
+  return '<section class="grupo grupo-' + tipo + '" data-grupo="' + tipo + '"><h3>' + titulo + "</h3><div class=\"texto\">" + paragrafos + "</div>" + perguntas + "</section>";
+}
+
+function aplicarFiltro() {
+  document.querySelectorAll("[data-grupo]").forEach(function (bloco) {
+    bloco.hidden = filtro !== "tudo" && bloco.getAttribute("data-grupo") !== filtro;
+  });
+  document.querySelectorAll("button.filtro").forEach(function (botao) {
+    botao.classList.toggle("ativo", botao.getAttribute("data-filtro") === filtro);
+  });
+}
+
+function desenhar() {
+  const atalhos = PAUTA.map(function (hu) {
+    return '<a href="#' + hu.id + '">' + escapar(hu.titulo.split("·")[0].trim()) + "</a>";
+  }).join("");
+  document.getElementById("atalhos").innerHTML = atalhos;
+
+  const meta = '<section class="meta">' +
+    '<label class="campo">Presentes<input type="text" id="presentes" value="' + escapar(estado.presentes) + '" placeholder="Nomes de quem está na reunião"></label>' +
+    '<label class="campo">Anotação geral<textarea id="livre" placeholder="O que ficou combinado fora das perguntas">' + escapar(estado.livre) + "</textarea></label>" +
+    "</section>";
+
+  const blocos = PAUTA.map(function (hu) {
+    return '<section class="hu" id="' + hu.id + '"><h2>' + escapar(hu.titulo) + "</h2><p class=\"intro\">" + escapar(hu.pbi) + ". " + escapar(hu.intro) + "</p></section>" +
+      grupo(hu, "regra", "Regra") +
+      grupo(hu, "tecnico", "Técnico");
+  }).join("");
+
+  document.getElementById("conteudo").innerHTML = meta + blocos;
+  ligar();
+  atualizarStatus();
+  aplicarFiltro();
+}
+
+function ligar() {
+  document.getElementById("presentes").addEventListener("input", function (evento) {
+    estado.presentes = evento.target.value;
+    salvar();
+  });
+  document.getElementById("livre").addEventListener("input", function (evento) {
+    estado.livre = evento.target.value;
+    salvar();
+  });
+  document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      item(radio.name).opcao = radio.value;
+      salvar();
+    });
+  });
+  document.querySelectorAll("textarea[data-nota]").forEach(function (campo) {
+    campo.addEventListener("input", function () {
+      item(campo.getAttribute("data-nota")).nota = campo.value;
+      salvar();
+    });
+  });
+}
+
+function markdown() {
+  const linhas = ["# Anotações da reunião de 11/11/2026", ""];
+  linhas.push("Presentes: " + (estado.presentes.trim() || "(não informado)"));
+  linhas.push("");
+  if (estado.livre.trim()) {
+    linhas.push("## Anotação geral");
+    linhas.push("");
+    linhas.push(estado.livre.trim());
+    linhas.push("");
+  }
+  PAUTA.forEach(function (hu) {
+    linhas.push("## " + hu.titulo + " (" + hu.pbi + ")");
+    linhas.push("");
+    ["regra", "tecnico"].forEach(function (tipo) {
+      linhas.push(tipo === "regra" ? "### Regra" : "### Técnico");
+      linhas.push("");
+      hu.perguntas.filter(function (pergunta) { return pergunta.tipo === tipo; }).forEach(function (pergunta) {
+        const atual = item(pergunta.id);
+        linhas.push("#### " + pergunta.titulo);
+        linhas.push("");
+        linhas.push("Decisão: " + (atual.opcao || "(em aberto)"));
+        if (atual.nota.trim()) {
+          linhas.push("");
+          linhas.push(atual.nota.trim());
+        }
+        linhas.push("");
+      });
+    });
+  });
+  return linhas.join("\n");
+}
+
+function mostrarAviso() {
+  const aviso = document.getElementById("aviso");
+  aviso.hidden = false;
+}
+
+function baixar(nome, conteudo, tipo) {
+  try {
+    const url = URL.createObjectURL(new Blob([conteudo], { type: tipo + ";charset=utf-8" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = nome;
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    // Revogar na hora cancela o download em alguns navegadores.
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  } catch (erro) {
+    mostrarAviso();
+  }
+  mostrarCopia(conteudo);
+}
+
+function mostrarCopia(conteudo) {
+  // Se a visualização bloquear o download, o conteúdo fica aqui para copiar.
+  if (armazenamentoOk && window.self === window.top) return;
+  const caixa = document.getElementById("copia");
+  caixa.hidden = false;
+  caixa.querySelector("textarea").value = conteudo;
+  caixa.querySelector("textarea").select();
+}
+
+document.querySelectorAll("button.filtro").forEach(function (botao) {
+  botao.addEventListener("click", function () {
+    filtro = botao.getAttribute("data-filtro");
+    aplicarFiltro();
+  });
+});
+document.getElementById("baixar-md").addEventListener("click", function () {
+  baixar("anotacoes-analistas-2026-11-11.md", markdown(), "text/markdown");
+});
+document.getElementById("baixar-json").addEventListener("click", function () {
+  baixar("anotacoes-analistas-2026-11-11.json", JSON.stringify(estado, null, 2), "application/json");
+});
+document.getElementById("abrir-json").addEventListener("change", function (evento) {
+  const arquivo = evento.target.files && evento.target.files[0];
+  if (!arquivo) return;
+  const leitor = new FileReader();
+  leitor.onload = function () {
+    try {
+      const dado = JSON.parse(leitor.result);
+      estado = { presentes: dado.presentes || "", livre: dado.livre || "", itens: dado.itens || {} };
+      salvar();
+      desenhar();
+    } catch (erro) {
+      window.alert("Esse arquivo não é um JSON de anotações desta pauta.");
+    }
+  };
+  leitor.readAsText(arquivo);
+  evento.target.value = "";
+});
+document.getElementById("imprimir").addEventListener("click", function () {
+  try {
+    window.print();
+  } catch (erro) {
+    mostrarAviso();
+  }
+});
+document.getElementById("copiar").addEventListener("click", function () {
+  const campo = document.querySelector("#copia textarea");
+  campo.select();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(campo.value).catch(function () { document.execCommand("copy"); });
+  } else {
+    document.execCommand("copy");
+  }
+});
+document.getElementById("fechar-copia").addEventListener("click", function () {
+  document.getElementById("copia").hidden = true;
+});
+document.getElementById("limpar").addEventListener("click", function () {
+  let ok = true;
+  try { ok = window.confirm("Apagar as anotações deste navegador?"); } catch (erro) { ok = true; }
+  if (!ok) return;
+  estado = vazio();
+  salvar();
+  desenhar();
+});
+
+if (!armazenamentoOk || window.self !== window.top) mostrarAviso();
+desenhar();
+</script>
+</body>
+</html>
