@@ -6,259 +6,326 @@
 <title>Pauta 11/11/2026 · anotações</title>
 <link rel="icon" href="data:,">
 <style>
+/* Pauta com os analistas: layout com barra lateral, cartões que recolhem e contexto sob demanda. */
 :root {
-  --papel: #f4f1ea;
-  --cartao: #fffdf8;
-  --tinta: #1c1917;
-  --suave: #57534e;
-  --linha: #e7e0d4;
-  --verde: #1f4d3a;
-  --verde-claro: #e7f2eb;
-  --ambar: #8a5a12;
-  --ambar-claro: #f8efd8;
-  --azul: #1d4e89;
-  --azul-claro: #e7f0f8;
-  --sombra: 0 1px 2px rgba(28, 25, 23, .06);
+  --fundo: #f5f4f1;
+  --cartao: #ffffff;
+  --tinta: #1b1a18;
+  --suave: #5f5b55;
+  --fraco: #8a857d;
+  --linha: #e6e2da;
+  --linha-forte: #d6d0c4;
+
+  --verde: #1f6b4a;
+  --verde-claro: #e6f3ec;
+  --azul: #2458a6;
+  --azul-claro: #e8eff9;
+  --ambar: #9a6410;
+  --ambar-claro: #fbf1dc;
+  --vermelho: #9b2f2f;
+  --vermelho-claro: #fbe7e5;
+
+  --regra: #1f6b4a;
+  --tecnico: #2458a6;
+
+  --raio: 10px;
+  --sombra: 0 1px 2px rgba(27, 26, 24, .05), 0 1px 1px rgba(27, 26, 24, .03);
 }
+
 * { box-sizing: border-box; }
+html { scroll-padding-top: 16px; }
 body {
   margin: 0;
-  background: var(--papel);
+  background: var(--fundo);
   color: var(--tinta);
-  font: 16px/1.45 "Segoe UI", system-ui, sans-serif;
+  font: 15px/1.5 "Segoe UI", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-header.topo {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: #fffdf8;
-  border-bottom: 1px solid var(--linha);
-  padding: 14px 20px 12px;
-}
-header.topo h1 { margin: 0 0 4px; font-size: 20px; }
-header.topo p { margin: 0; color: var(--suave); font-size: 14px; }
-.linha-titulo { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
-.progresso { display: grid; gap: 4px; justify-items: end; min-width: 220px; }
-.barra { width: 220px; height: 8px; background: var(--linha); border-radius: 999px; overflow: hidden; }
-.barra-cheia { height: 100%; width: 0; background: var(--verde); border-radius: 999px; transition: width .3s; }
-.acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; align-items: center; }
-.segmento { display: inline-flex; border: 1px solid var(--linha); border-radius: 9px; overflow: hidden; background: #fff; }
-.segmento button { border: 0; border-radius: 0; border-right: 1px solid var(--linha); padding: 7px 12px; }
-.segmento button:last-child { border-right: 0; }
-.segmento button.ativo { background: var(--tinta); color: #fff; }
-.ponto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
-.ponto.regra { background: var(--verde); }
-.ponto.tecnico { background: var(--azul); }
-.ferramentas { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
-.ferramentas button, .ferramentas .arquivo { padding: 7px 11px; font-size: 14px; }
-button, .arquivo {
-  font: inherit;
-  border: 1px solid var(--linha);
-  background: #fff;
-  color: var(--tinta);
-  border-radius: 8px;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-button.primario { background: var(--verde); color: #fff; border-color: var(--verde); }
-button:focus-visible, .arquivo:focus-within, a:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
-button.perigo { color: #8f2d2d; }
-.arquivo input { display: none; }
-.status { font-size: 14px; color: var(--tinta); font-weight: 600; }
-nav.atalhos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-nav.atalhos a {
-  color: var(--verde);
-  text-decoration: none;
-  background: var(--verde-claro);
-  border-radius: 999px;
-  padding: 4px 6px 4px 10px;
-  font-size: 13px;
-  display: inline-flex;
-  gap: 6px;
-  align-items: center;
-}
-.conta { font-size: 12px; font-weight: 600; border-radius: 999px; padding: 0 7px; background: #fff; color: var(--suave); border: 1px solid var(--linha); }
-.conta.zero { color: var(--ambar); border-color: #ecd9ae; background: var(--ambar-claro); }
-.conta.completo { color: #fff; background: var(--verde); border-color: var(--verde); }
-.hu h2 .conta { font-size: 13px; vertical-align: 2px; margin-left: 6px; }
-main { max-width: 880px; margin: 0 auto; padding: 20px 16px 64px; }
-.meta, .hu, .pergunta {
-  background: var(--cartao);
-  border: 1px solid var(--linha);
-  border-radius: 12px;
-  box-shadow: var(--sombra);
-}
-.meta { padding: 16px; margin-bottom: 18px; display: grid; gap: 10px; }
-label.campo { display: grid; gap: 4px; font-size: 14px; color: var(--suave); }
-input[type="text"], textarea {
-  width: 100%;
-  font: inherit;
-  color: var(--tinta);
-  border: 1px solid var(--linha);
-  border-radius: 8px;
-  padding: 8px 10px;
-  background: #fff;
-}
-textarea { min-height: 72px; resize: vertical; }
-.hu { margin: 22px 0 10px; padding: 16px; }
-.hu h2 { margin: 0 0 6px; font-size: 18px; }
-.hu .intro { margin: 0; color: var(--suave); }
-.grupo { margin: 12px 0; padding: 14px 16px; border-radius: 12px; background: var(--cartao); border: 1px solid var(--linha); }
-.grupo-regra { border-left: 4px solid var(--verde); }
-.grupo-tecnico { border-left: 4px solid var(--azul); }
-.grupo h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; }
-.grupo-regra h3 { color: var(--verde); }
-.grupo-tecnico h3 { color: var(--azul); }
-.grupo .texto { margin: 0 0 8px; color: var(--tinta); }
-.grupo .texto p { margin: 0 0 8px; }
-.selo.regra { background: var(--verde-claro); color: var(--verde); }
-.selo.tecnico { background: var(--azul-claro); color: var(--azul); }
-.pergunta { margin: 10px 0; padding: 14px 16px; }
-.pergunta h3 { margin: 0 0 6px; font-size: 16px; }
-.hoje { margin: 0 0 10px; color: var(--suave); font-size: 14px; }
-.opcoes { display: grid; gap: 6px; }
-.opcoes label {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  border: 1px solid var(--linha);
-  border-radius: 8px;
-  padding: 8px 10px;
-  cursor: pointer;
-}
-.opcoes label:has(input:checked) { border-color: var(--verde); background: var(--verde-claro); }
-.opcoes input { margin-top: 3px; }
-.selo {
-  display: inline-block;
-  margin-left: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 999px;
-  padding: 1px 8px;
-  vertical-align: 1px;
-}
-.selo.aberto { background: var(--ambar-claro); color: var(--ambar); }
-.selo.feito { background: var(--verde-claro); color: var(--verde); }
-.disco { font-size: 13px; color: var(--verde); background: var(--verde-claro); border-radius: 999px; padding: 2px 10px; }
-.disco.erro { color: #8f2d2d; background: #f8e3e3; }
-.aviso { margin: 10px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--ambar-claro); color: var(--ambar); font-size: 14px; }
-.aviso[hidden], .copia[hidden] { display: none; }
-.copia { margin-top: 10px; display: grid; gap: 6px; }
-.copia p { margin: 0; }
-.copia textarea { min-height: 120px; font: 13px/1.4 monospace; }
-.copia button { justify-self: start; }
-@media print {
-  header.topo { position: static; }
-  .acoes, nav.atalhos, .aviso, .copia { display: none !important; }
-  body { background: #fff; }
-  .pergunta, .hu, .meta { break-inside: avoid; }
-}
-
-/* Resumo do que já foi respondido */
-.resumo { background: var(--cartao); border: 1px solid var(--linha); border-left: 4px solid var(--verde); border-radius: 12px; box-shadow: var(--sombra); margin-bottom: 18px; }
-.resumo summary { cursor: pointer; padding: 14px 16px; font-size: 16px; list-style-position: inside; }
-.resumo-total { color: var(--suave); font-size: 14px; font-weight: 400; margin-left: 6px; }
-.resumo-corpo { padding: 0 16px 12px; display: grid; gap: 4px; }
-.resumo-bloco h3 { margin: 10px 0 4px; font-size: 13px; text-transform: uppercase; letter-spacing: .03em; color: var(--suave); display: flex; gap: 8px; align-items: center; }
-.resumo-bloco ul { list-style: none; margin: 0; padding: 0; }
-.resumo-bloco li { padding: 8px 0; border-top: 1px solid var(--linha); font-size: 14px; }
-.resumo-bloco li a { color: var(--tinta); text-decoration: none; display: block; }
-.resumo-bloco li a:hover { text-decoration: underline; }
-.resumo-bloco .decisao { color: var(--verde); font-weight: 600; margin-right: 8px; }
-.resumo-bloco .marca { margin-right: 4px; vertical-align: 1px; }
-.marca { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-.resumo-bloco li .marca + .marca { grid-row: auto; }
-.marca { font-size: 11px; font-weight: 600; border-radius: 999px; padding: 1px 8px; white-space: nowrap; justify-self: end; }
-.marca.cortada { background: #fbe4e1; color: #8f2d2d; }
-.marca.discutir { background: var(--ambar-claro); color: var(--ambar); }
-.marca.nota { background: var(--azul-claro); color: var(--azul); }
-.resumo-vazio { color: var(--suave); margin: 0; }
-
-/* Cartões de pergunta */
-.pergunta h3 { display: flex; gap: 10px; justify-content: space-between; align-items: flex-start; }
-.pergunta .selos { display: inline-flex; gap: 4px; flex-shrink: 0; }
-.pergunta .selo { margin-left: 0; }
-.pergunta { border-left: 4px solid #ecd9ae; transition: border-color .2s, background .2s; }
-.pergunta.respondida { border-left-color: var(--verde); background: #fbfdfb; }
-.pergunta .campo { margin-top: 10px; }
-.hoje.discutir { background: var(--ambar-claro); color: var(--ambar); border-radius: 8px; padding: 8px 10px; }
-.aviso-nota { margin: 6px 0 0; font-size: 13px; color: #8f2d2d; background: #fbe4e1; border-radius: 8px; padding: 6px 10px; }
-.aviso-nota[hidden] { display: none; }
-details.texto > summary { cursor: pointer; color: var(--suave); font-size: 13px; margin-bottom: 6px; }
-details.texto[open] > summary { margin-bottom: 8px; }
+button, input, textarea { font: inherit; color: inherit; }
 [hidden] { display: none !important; }
 
-@media print {
-  .resumo { break-inside: avoid; }
-  .resumo-corpo { display: block; }
-  details.texto > summary { display: none; }
-  .progresso .barra, .disco { display: none; }
+/* ---------- Estrutura ---------- */
+.app { display: grid; grid-template-columns: 290px minmax(0, 1fr); min-height: 100vh; }
+.lateral {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto; overflow-x: hidden;
+  background: var(--cartao); border-right: 1px solid var(--linha);
+  padding: 22px 18px 28px; display: flex; flex-direction: column; gap: 22px;
+}
+.principal { padding: 28px 36px 80px; max-width: 980px; width: 100%; }
+main { display: grid; gap: 18px; }
+
+/* ---------- Barra lateral ---------- */
+.marca h1 { margin: 0; font-size: 18px; line-height: 1.25; letter-spacing: -.01em; }
+.marca .data { margin: 4px 0 0; color: var(--suave); font-size: 13px; }
+
+.progresso { display: grid; gap: 8px; }
+.barra { display: flex; height: 8px; background: var(--linha); border-radius: 99px; overflow: hidden; }
+.barra-cheia { background: var(--verde); transition: width .3s; }
+.barra-confirmar { background: repeating-linear-gradient(45deg, #6f95cf, #6f95cf 4px, #9db8e0 4px, #9db8e0 8px); transition: width .3s; }
+.status { margin: 0; font-size: 13px; color: var(--suave); }
+.status strong { color: var(--tinta); font-size: 15px; }
+.legenda { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--suave); }
+.ponto-sit { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.ponto-sit.respondida { background: var(--verde); }
+.ponto-sit.confirmar { background: #6f95cf; }
+.ponto-sit.aberto { background: #e3b45c; }
+.disco { justify-self: start; font-size: 12px; color: var(--verde); background: var(--verde-claro); border-radius: 99px; padding: 2px 10px; }
+.disco.erro { color: var(--vermelho); background: var(--vermelho-claro); }
+
+.rotulo { margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--fraco); }
+
+.blocos { display: grid; gap: 2px; }
+.bloco-link {
+  display: grid; gap: 4px; padding: 8px 10px; border-radius: 8px;
+  color: var(--tinta); text-decoration: none;
+}
+.bloco-link:hover { background: var(--fundo); }
+.bl-nome { font-weight: 600; font-size: 14px; }
+.bl-sub { font-weight: 400; color: var(--suave); }
+.conta { display: grid; gap: 3px; }
+.mini-barra { display: flex; height: 4px; background: var(--linha); border-radius: 99px; overflow: hidden; }
+.mb-resp { background: var(--verde); }
+.mb-conf { background: #9db8e0; }
+.conta-texto { font-size: 12px; color: var(--suave); }
+
+.filtros { display: grid; gap: 8px; }
+.segmento {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 1px;
+  background: var(--linha); border: 1px solid var(--linha); border-radius: 8px; overflow: hidden;
+}
+.filtros .segmento[aria-label="Situação"] { grid-template-columns: 1fr 1fr; }
+.segmento button {
+  border: 0; background: var(--fundo); padding: 6px 8px; font-size: 13px;
+  cursor: pointer; color: var(--suave); white-space: nowrap;
+}
+.segmento button.ativo { background: var(--tinta); color: #fff; }
+.ponto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
+.ponto.regra { background: var(--regra); }
+.ponto.tecnico { background: var(--tecnico); }
+button.link { justify-self: start; border: 0; background: none; padding: 2px 0; color: var(--azul); font-size: 13px; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+
+.ferramentas { margin-top: auto; border-top: 1px solid var(--linha); padding-top: 14px; }
+.ferramentas summary { cursor: pointer; font-size: 13px; color: var(--suave); }
+.ferramentas-corpo { display: grid; gap: 6px; margin-top: 10px; }
+.ferramentas-corpo button, .ferramentas-corpo .arquivo {
+  border: 1px solid var(--linha); background: #fff; border-radius: 8px; padding: 7px 10px;
+  font-size: 13px; text-align: left; cursor: pointer;
+}
+.ferramentas-corpo button.primario { background: var(--verde); border-color: var(--verde); color: #fff; }
+.ferramentas-corpo button.perigo { color: var(--vermelho); }
+.arquivo input { display: none; }
+
+button:focus-visible, a:focus-visible, summary:focus-visible, .arquivo:focus-within, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--azul); outline-offset: 2px;
 }
 
-/* Tela estreita: o topo deixa de ficar fixo para não ocupar meia tela. */
-@media (max-width: 1100px) {
-  header.topo { position: static; }
-  .progresso { justify-items: start; }
-  .ferramentas { margin-left: 0; }
+/* ---------- Topo do conteúdo ---------- */
+.cartao { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); box-shadow: var(--sombra); }
+.meta { padding: 14px 16px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 12px; }
+label.campo { display: grid; gap: 4px; font-size: 12px; font-weight: 600; color: var(--suave); }
+input[type="text"], textarea {
+  width: 100%; border: 1px solid var(--linha-forte); border-radius: 8px; padding: 8px 10px;
+  background: #fff; font-size: 14px; font-weight: 400; color: var(--tinta);
 }
+textarea { min-height: 64px; resize: vertical; }
+.meta textarea { min-height: 42px; }
 
-/* Respostas pré-preenchidas a partir do material: a confirmar */
-.barra { display: flex; }
-.barra-confirmar { height: 100%; width: 0; background: repeating-linear-gradient(45deg, #7fa3cf, #7fa3cf 4px, #a9c2e0 4px, #a9c2e0 8px); transition: width .3s; }
-.selo.confirmar { background: var(--azul-claro); color: var(--azul); }
-.pergunta.confirmar { border-left: 4px dashed #7fa3cf; background: #fafcff; }
-.pergunta.confirmar .opcoes label:has(input:checked) { border-color: #7fa3cf; background: var(--azul-claro); border-style: dashed; }
-.marca.origem { background: #efece6; color: var(--suave); }
-.resumo-parte h4 { margin: 12px 0 2px; font-size: 14px; }
-.resumo-parte.material h4 { color: var(--azul); }
-.resumo-nota { margin: 2px 0 6px; font-size: 13px; color: var(--suave); }
+.resumo > summary { cursor: pointer; padding: 12px 16px; font-weight: 600; }
+.resumo-corpo { padding: 0 16px 14px; display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+.resumo-parte h3 { margin: 4px 0 6px; font-size: 14px; }
+.resumo-parte.material h3 { color: var(--azul); }
+.resumo-nota { margin: 0 0 6px; font-size: 12px; color: var(--suave); }
+.resumo-bloco h4 { margin: 10px 0 2px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--fraco); }
+.resumo-bloco ul { list-style: none; margin: 0; padding: 0; }
+.resumo-bloco li { padding: 6px 0; border-top: 1px solid var(--linha); font-size: 13px; }
+.resumo-bloco li a { color: var(--tinta); text-decoration: none; display: block; }
+.resumo-bloco li a:hover { text-decoration: underline; }
+.resumo-bloco .decisao { color: var(--verde); font-weight: 600; margin-right: 6px; }
 .resumo-parte.material .decisao { color: var(--azul); }
+.marca { font-size: 11px; font-weight: 600; border-radius: 99px; padding: 0 7px; margin-right: 4px; white-space: nowrap; }
+.marca.cortada { background: var(--vermelho-claro); color: var(--vermelho); }
+.marca.discutir { background: var(--ambar-claro); color: var(--ambar); }
+.marca.origem { background: #efece6; color: var(--suave); }
+.resumo-vazio { color: var(--suave); margin: 0; font-size: 13px; }
+
+.aviso { margin: 0 0 16px; padding: 10px 14px; border-radius: var(--raio); background: var(--ambar-claro); color: var(--ambar); font-size: 14px; }
+.copia { margin-bottom: 16px; display: grid; gap: 8px; background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); padding: 12px 14px; }
+.copia p { margin: 0; font-size: 14px; }
+.copia textarea { min-height: 140px; font: 12px/1.4 ui-monospace, monospace; }
+.copia-acoes { display: flex; gap: 8px; }
+.copia-acoes button { border: 1px solid var(--linha); background: #fff; border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+
+/* ---------- Blocos ---------- */
+.bloco { display: grid; gap: 10px; padding-top: 10px; }
+.bloco + .bloco { border-top: 1px solid var(--linha-forte); padding-top: 26px; margin-top: 8px; }
+.bloco-cabeca { display: flex; gap: 16px; justify-content: space-between; align-items: flex-end; }
+.bloco-cabeca h2 { margin: 0; font-size: 22px; letter-spacing: -.01em; }
+.bloco-cabeca h2 .sub { font-weight: 400; color: var(--suave); }
+.bloco-cabeca .pbi { margin: 2px 0 0; font-size: 13px; color: var(--fraco); }
+.bloco-cabeca .conta { min-width: 200px; text-align: right; }
+.bloco-cabeca .conta-texto { text-align: right; }
+.intro { margin: 0; color: var(--suave); font-size: 14px; max-width: 75ch; }
+
+.contexto { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); }
+.contexto > summary { cursor: pointer; padding: 10px 14px; font-size: 14px; font-weight: 600; color: var(--suave); }
+.contexto[open] > summary { border-bottom: 1px solid var(--linha); }
+.ctx-n { font-weight: 400; color: var(--fraco); margin-left: 4px; }
+.ctx-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.ctx-coluna { padding: 12px 16px; font-size: 13.5px; }
+.ctx-coluna + .ctx-coluna { border-left: 1px solid var(--linha); }
+.ctx-coluna h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+.ctx-regra h4 { color: var(--regra); }
+.ctx-tecnico h4 { color: var(--tecnico); }
+.ctx-coluna p { margin: 0 0 8px; }
+.ctx-coluna p:last-child { margin-bottom: 0; }
+
+.grupo { display: grid; gap: 8px; }
+.grupo-titulo { margin: 8px 0 0; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--fraco); }
+.vazio-filtro { margin: 0; color: var(--fraco); font-size: 13px; font-style: italic; }
+.bloco.sem-itens .contexto { display: none; }
+
+/* ---------- Cartões de pergunta ---------- */
+.pergunta {
+  background: var(--cartao); border: 1px solid var(--linha); border-left: 4px solid #e3b45c;
+  border-radius: var(--raio); box-shadow: var(--sombra); transition: border-color .2s;
+}
+.pergunta.respondida { border-left-color: var(--verde); }
+.pergunta.confirmar { border-left-color: #6f95cf; }
+.pergunta .cabeca {
+  width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 10px;
+  padding: 11px 14px; border: 0; background: none; text-align: left; cursor: pointer; border-radius: var(--raio);
+}
+.pergunta .cabeca:hover { background: #faf9f6; }
+.titulo-pergunta { font-weight: 600; font-size: 15px; line-height: 1.35; }
+.pill { font-size: 11px; font-weight: 700; border-radius: 99px; padding: 2px 8px; white-space: nowrap; }
+.pill.aberto { background: var(--ambar-claro); color: var(--ambar); }
+.pill.confirmar { background: var(--azul-claro); color: var(--azul); }
+.pill.respondida { background: var(--verde-claro); color: var(--verde); }
+.tipo { font-size: 12px; color: var(--fraco); white-space: nowrap; }
+.seta { width: 8px; height: 8px; border-right: 2px solid var(--fraco); border-bottom: 2px solid var(--fraco); transform: rotate(45deg); margin: 0 4px 3px; transition: transform .2s; }
+.pergunta.expandido .seta { transform: rotate(-135deg); margin-bottom: -3px; }
+
+.linha-resposta { margin: -4px 0 0; padding: 0 14px 11px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: 14px; }
+.pergunta.aberto .linha-resposta { display: none; }
+.pergunta.expandido .linha-resposta { display: none; }
+.resposta { font-weight: 600; color: var(--verde); }
+.pergunta.confirmar .resposta { color: var(--azul); }
+.origem { font-size: 12px; color: var(--fraco); }
+
+.pergunta .corpo { display: none; padding: 0 14px 14px; }
+.pergunta.expandido .corpo { display: grid; gap: 10px; }
+.hoje { margin: 0; color: var(--suave); font-size: 14px; max-width: 80ch; }
+.hoje.discutir { background: var(--ambar-claro); color: var(--ambar); border-radius: 8px; padding: 8px 10px; }
+.opcoes { display: grid; gap: 6px; }
+.opcao {
+  display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; font-size: 14px;
+  border: 1px solid var(--linha); border-radius: 8px; cursor: pointer; background: #fff;
+}
+.opcao:hover { border-color: var(--linha-forte); }
+.opcao input { margin-top: 3px; accent-color: var(--verde); }
+.opcao:has(input:checked) { border-color: var(--verde); background: var(--verde-claro); }
+.pergunta.confirmar .opcao:has(input:checked) { border-color: #6f95cf; background: var(--azul-claro); border-style: dashed; }
+.aviso-nota { margin: 0; font-size: 13px; color: var(--vermelho); background: var(--vermelho-claro); border-radius: 8px; padding: 6px 10px; }
+.acoes-cartao { display: flex; justify-content: flex-end; }
+.acoes-cartao:not(:has(button:not([hidden]))) { display: none; }
+button.confirmar { border: 1px solid var(--azul); background: var(--azul); color: #fff; border-radius: 8px; padding: 7px 14px; font-size: 14px; font-weight: 600; cursor: pointer; }
+button.confirmar:hover { filter: brightness(1.08); }
+
+/* ---------- Telas menores ---------- */
+@media (max-width: 1000px) {
+  .app { grid-template-columns: 1fr; }
+  .lateral { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--linha); }
+  .blocos { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+  .ferramentas { margin-top: 0; }
+  .principal { padding: 20px 16px 60px; }
+}
+@media (max-width: 700px) {
+  .meta, .resumo-corpo, .ctx-grade { grid-template-columns: 1fr; }
+  .ctx-coluna + .ctx-coluna { border-left: 0; border-top: 1px solid var(--linha); }
+  .bloco-cabeca { flex-direction: column; align-items: stretch; }
+  .bloco-cabeca .conta, .bloco-cabeca .conta-texto { text-align: left; }
+  .pergunta .cabeca { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .pergunta .tipo { display: none; }
+}
+
+/* ---------- Impressão: tudo aberto, sem controles ---------- */
+@media print {
+  .app { display: block; }
+  .lateral, .aviso, .copia, .acoes-cartao, .seta { display: none !important; }
+  body { background: #fff; }
+  .principal { padding: 0; max-width: none; }
+  .pergunta .corpo { display: grid !important; }
+  .pergunta .linha-resposta { display: none !important; }
+  .contexto > .ctx-grade { display: grid !important; }
+  .pergunta, .cartao { box-shadow: none; break-inside: avoid; }
+}
 
 </style>
 </head>
 <body>
-<header class="topo">
-  <div class="linha-titulo">
-    <div>
-      <h1>Pauta com os analistas · 11/11/2026</h1>
-      <p>Primeiro o que é comum aos painéis (o financeiro vem do SIAFIC), depois o menu por perfil (Carlos) e as HU-012 a HU-016.</p>
+<div class="app">
+  <aside class="lateral" aria-label="Navegação da pauta">
+    <div class="marca">
+      <h1>Pauta com os analistas</h1>
+      <p class="data">11/11/2026 · SISLOG Gestão de Contratos</p>
     </div>
-    <div class="progresso" aria-live="polite">
-      <span class="status" id="status">0 de 0 respondidas</span>
-      <div class="barra"><div class="barra-cheia" id="barra"></div><div class="barra-confirmar" id="barra-confirmar"></div></div>
-      <span class="disco" id="disco">versão publicada em 11/11/2026 16:26</span>
+
+    <section class="progresso" aria-live="polite">
+      <div class="barra" role="img" aria-label="Progresso da pauta">
+        <div class="barra-cheia" id="barra"></div><div class="barra-confirmar" id="barra-confirmar"></div>
+      </div>
+      <p class="status" id="status">0 de 0 respondidas</p>
+      <ul class="legenda">
+        <li><i class="ponto-sit respondida"></i>respondida</li>
+        <li><i class="ponto-sit confirmar"></i>a confirmar</li>
+        <li><i class="ponto-sit aberto"></i>em aberto</li>
+      </ul>
+      <span class="disco" id="disco">versão publicada em 11/11/2026 17:07</span>
+    </section>
+
+    <nav class="blocos" id="atalhos" aria-label="Blocos da pauta"></nav>
+
+    <section class="filtros" aria-label="Filtros">
+      <p class="rotulo">Mostrar</p>
+      <div class="segmento" role="group" aria-label="Situação">
+        <button type="button" class="situacao ativo" data-situacao="todas">Todas</button>
+        <button type="button" class="situacao" data-situacao="aberto">Em aberto</button>
+        <button type="button" class="situacao" data-situacao="confirmar">A confirmar</button>
+        <button type="button" class="situacao" data-situacao="respondida">Respondidas</button>
+      </div>
+      <div class="segmento" role="group" aria-label="Tipo">
+        <button type="button" class="filtro ativo" data-filtro="tudo">Regra e técnico</button>
+        <button type="button" class="filtro" data-filtro="regra"><i class="ponto regra"></i>Regra</button>
+        <button type="button" class="filtro" data-filtro="tecnico"><i class="ponto tecnico"></i>Técnico</button>
+      </div>
+      <button type="button" class="link" id="expandir">Abrir todas as perguntas</button>
+    </section>
+
+    <details class="ferramentas">
+      <summary>Exportar e arquivo</summary>
+      <div class="ferramentas-corpo">
+        <button type="button" class="primario" id="baixar-md">Baixar anotações (.md)</button>
+        <button type="button" id="baixar-json">Baixar JSON</button>
+        <label class="arquivo">Abrir JSON<input type="file" id="abrir-json" accept="application/json,.json"></label>
+        <button type="button" id="imprimir">Imprimir</button>
+        <button type="button" class="perigo" id="limpar">Limpar todas as anotações</button>
+      </div>
+    </details>
+  </aside>
+
+  <div class="principal">
+    <p class="aviso" id="aviso">Versão para leitura, gerada em 11/11/2026 17:07. O que você marcar ou anotar aqui fica só no seu navegador e não chega a mais ninguém. Baixar e Imprimir não funcionam nesta página; use a caixa Copiar que aparece.
+    <div class="copia" id="copia" hidden>
+      <p>Se o download não começou, copie o conteúdo abaixo e salve num arquivo:</p>
+      <textarea readonly></textarea>
+      <div class="copia-acoes">
+        <button type="button" id="copiar">Copiar</button>
+        <button type="button" id="fechar-copia">Fechar</button>
+      </div>
     </div>
+    <main id="conteudo"></main>
   </div>
-  <div class="acoes">
-    <div class="segmento" role="group" aria-label="Tipo">
-      <button type="button" class="filtro ativo" data-filtro="tudo">Tudo</button>
-      <button type="button" class="filtro" data-filtro="regra"><i class="ponto regra"></i>Regra</button>
-      <button type="button" class="filtro" data-filtro="tecnico"><i class="ponto tecnico"></i>Técnico</button>
-    </div>
-    <div class="segmento" role="group" aria-label="Situação">
-      <button type="button" class="situacao ativo" data-situacao="todas">Todas</button>
-      <button type="button" class="situacao" data-situacao="aberto">Em aberto</button>
-      <button type="button" class="situacao" data-situacao="respondida">Respondidas</button>
-      <button type="button" class="situacao" data-situacao="confirmar">A confirmar</button>
-    </div>
-    <div class="ferramentas">
-      <button type="button" class="primario" id="baixar-md">Baixar anotações (.md)</button>
-      <button type="button" id="baixar-json">Baixar JSON</button>
-      <label class="arquivo">Abrir JSON<input type="file" id="abrir-json" accept="application/json,.json"></label>
-      <button type="button" id="imprimir">Imprimir</button>
-      <button type="button" class="perigo" id="limpar" title="Apaga todas as anotações">Limpar</button>
-    </div>
-  </div>
-  <nav class="atalhos" id="atalhos"></nav>
-  <p class="aviso" id="aviso">Versão para leitura, gerada em 11/11/2026 16:26. O que você marcar ou anotar aqui fica só no seu navegador e não chega a mais ninguém. Baixar e Imprimir não funcionam nesta página; use a caixa Copiar que aparece.
-  <div class="copia" id="copia" hidden>
-    <p>Se o download não começou, copie o conteúdo abaixo e salve num arquivo:</p>
-    <textarea readonly></textarea>
-    <button type="button" id="copiar">Copiar</button>
-    <button type="button" id="fechar-copia">Fechar</button>
-  </div>
-</header>
-<main id="conteudo"></main>
+</div>
 <script>
 // Conteúdo da pauta: histórias, textos de regra e técnico, e perguntas.
 // Para mudar o que aparece na tela, edite só este arquivo.
@@ -1366,12 +1433,19 @@ function totalPerguntas() {
 }
 
 // Origem de cada resposta: "pdf-marcella" (transcrita do PDF), "material" (pré-preenchida a partir
-// do material do projeto, ainda a confirmar) ou "reuniao" (marcada ou editada nesta página).
+// do material do projeto, ainda a confirmar), "reuniao" (marcada ou editada nesta página) ou
+// "codigo" (decidida por commit no repositório).
 const ORIGENS = {
   "pdf-marcella": "Marcella (PDF)",
   "reuniao": "na reunião",
   "codigo": "no código (commit)",
   "material": "do material · confirmar"
+};
+
+const SITUACOES = {
+  respondida: "Respondida",
+  confirmar: "A confirmar",
+  aberto: "Em aberto"
 };
 
 function situacaoDe(id) {
@@ -1380,17 +1454,14 @@ function situacaoDe(id) {
 }
 
 function contagem(hu) {
-  const c = { feitos: 0, confirmar: 0, total: hu.perguntas.length };
+  const c = { feitos: 0, confirmar: 0, aberto: 0, total: hu.perguntas.length };
   hu.perguntas.forEach(function (pergunta) {
     const sit = situacaoDe(pergunta.id);
     if (sit === "respondida") c.feitos += 1;
-    if (sit === "confirmar") c.confirmar += 1;
+    else if (sit === "confirmar") c.confirmar += 1;
+    else c.aberto += 1;
   });
   return c;
-}
-
-function textoConta(c) {
-  return c.feitos + "/" + c.total + (c.confirmar ? " +" + c.confirmar : "");
 }
 
 // Marcas que a transcrição do PDF deixou no texto das anotações.
@@ -1402,93 +1473,157 @@ function paraDiscutir(pergunta) {
   return /^Para discutir:/i.test(pergunta.hoje || "");
 }
 
+function nomeCurto(hu) {
+  return hu.titulo.split("·")[0].trim();
+}
+
+function subtitulo(hu) {
+  const partes = hu.titulo.split("·");
+  return partes.length > 1 ? partes.slice(1).join("·").trim() : "";
+}
+
+let filtro = "tudo";
+let situacao = "todas";
+// Cartões que a pessoa abriu à mão continuam abertos ao redesenhar.
+const abertos = new Set();
+
+function barraBloco(c) {
+  const pct = function (n) { return c.total ? (n * 100 / c.total) : 0; };
+  return '<span class="mini-barra"><span class="mb-resp" style="width:' + pct(c.feitos) + '%"></span>' +
+    '<span class="mb-conf" style="width:' + pct(c.confirmar) + '%"></span></span>';
+}
+
+function textoContagem(c) {
+  const partes = [c.feitos + " de " + c.total + " respondidas"];
+  if (c.confirmar) partes.push(c.confirmar + " a confirmar");
+  if (c.aberto) partes.push(c.aberto + " em aberto");
+  return partes.join(" · ");
+}
+
 function atualizarStatus() {
   let feitos = 0;
   let confirmar = 0;
   PAUTA.forEach(function (hu) { const c = contagem(hu); feitos += c.feitos; confirmar += c.confirmar; });
   const total = totalPerguntas();
-  document.getElementById("status").textContent = feitos + " de " + total + " respondidas" + (confirmar ? " · " + confirmar + " a confirmar" : "");
-  document.getElementById("barra").style.width = (total ? Math.round(feitos * 100 / total) : 0) + "%";
-  document.getElementById("barra-confirmar").style.width = (total ? Math.round(confirmar * 100 / total) : 0) + "%";
+  const aberto = total - feitos - confirmar;
+  document.getElementById("status").innerHTML = "<strong>" + feitos + "</strong> de " + total + " respondidas" +
+    (confirmar ? " · " + confirmar + " a confirmar" : "") + (aberto ? " · " + aberto + " em aberto" : "");
+  document.getElementById("barra").style.width = (total ? feitos * 100 / total : 0) + "%";
+  document.getElementById("barra-confirmar").style.width = (total ? confirmar * 100 / total : 0) + "%";
 
   document.querySelectorAll("article.pergunta").forEach(function (cartao) {
-    const sit = situacaoDe(cartao.id);
-    cartao.classList.toggle("respondida", sit === "respondida");
-    cartao.classList.toggle("confirmar", sit === "confirmar");
+    const id = cartao.id;
+    const sit = situacaoDe(id);
+    const atual = item(id);
+    cartao.classList.remove("respondida", "confirmar", "aberto");
+    cartao.classList.add(sit);
     const selo = cartao.querySelector("[data-selo]");
-    selo.className = "selo " + (sit === "respondida" ? "feito" : sit === "confirmar" ? "confirmar" : "aberto");
-    const origem = ORIGENS[item(cartao.id).origem];
-    selo.textContent = sit === "aberto" ? "em aberto" : sit === "confirmar" ? ORIGENS.material : "respondida" + (origem ? " · " + origem : "");
-    const aviso = cartao.querySelector(".aviso-nota");
-    aviso.hidden = !notaCortada(item(cartao.id).nota);
+    selo.className = "pill " + sit;
+    selo.textContent = SITUACOES[sit];
+    const origem = cartao.querySelector("[data-origem]");
+    origem.textContent = sit === "respondida" && ORIGENS[atual.origem] ? ORIGENS[atual.origem] : "";
+    const resposta = cartao.querySelector("[data-resposta]");
+    resposta.textContent = atual.opcao || (atual.nota.trim() ? "Sem opção marcada: ver anotação" : "");
+    cartao.querySelector("[data-confirmar]").hidden = sit !== "confirmar";
+    cartao.querySelector(".aviso-nota").hidden = !notaCortada(atual.nota);
   });
 
   PAUTA.forEach(function (hu) {
     const c = contagem(hu);
     document.querySelectorAll('[data-conta="' + hu.id + '"]').forEach(function (alvo) {
-      alvo.textContent = textoConta(c);
-      alvo.title = c.feitos + " respondidas, " + c.confirmar + " a confirmar, de " + c.total;
-      alvo.classList.toggle("completo", c.feitos === c.total);
-      alvo.classList.toggle("zero", c.feitos === 0 && c.confirmar === 0);
+      alvo.innerHTML = barraBloco(c) + '<span class="conta-texto">' + textoContagem(c) + "</span>";
     });
   });
 
   desenharResumo();
-  // O filtro não roda aqui: com "Em aberto", o cartão sumiria enquanto a pessoa digita.
 }
 
-let filtro = "tudo";
-let situacao = "todas";
+function cartaoAberto(id) {
+  return abertos.has(id) || situacaoDe(id) === "aberto";
+}
 
 function card(pergunta) {
   const atual = item(pergunta.id);
   const opcoes = pergunta.opcoes.map(function (opcao) {
     const marcado = atual.opcao === opcao ? " checked" : "";
-    return '<label><input type="radio" name="' + pergunta.id + '" value="' + escapar(opcao) + '"' + marcado + "> <span>" + escapar(opcao) + "</span></label>";
+    return '<label class="opcao"><input type="radio" name="' + pergunta.id + '" value="' + escapar(opcao) + '"' + marcado + "> <span>" + escapar(opcao) + "</span></label>";
   }).join("");
-  const tipo = pergunta.tipo === "tecnico" ? "técnico" : "regra";
+  const tipo = pergunta.tipo === "tecnico" ? "Técnico" : "Regra";
   const discutir = paraDiscutir(pergunta);
   const hoje = discutir
     ? '<p class="hoje discutir"><strong>Para discutir:</strong> ' + escapar(pergunta.hoje.replace(/^Para discutir:\s*/i, "")) + "</p>"
     : '<p class="hoje">' + escapar(pergunta.hoje) + "</p>";
-  return '<article class="pergunta" id="' + pergunta.id + '">' +
-    '<h3><span class="titulo-pergunta">' + escapar(pergunta.titulo) + "</span>" +
-    '<span class="selos"><span class="selo ' + pergunta.tipo + '">' + tipo + "</span>" +
-    '<span class="selo aberto" data-selo="' + pergunta.id + '">em aberto</span></span></h3>' +
-    hoje +
-    '<div class="opcoes">' + opcoes + "</div>" +
-    '<label class="campo">Anotação<textarea data-nota="' + pergunta.id + '" placeholder="Quem decidiu, a fórmula, a data, o texto">' + escapar(atual.nota) + "</textarea></label>" +
-    '<p class="aviso-nota" hidden>Anotação incompleta: o PDF só mostrava a parte visível da caixa. Confirmar o texto inteiro com quem respondeu.</p>' +
+  const aberto = cartaoAberto(pergunta.id);
+  return '<article class="pergunta' + (aberto ? " expandido" : "") + '" id="' + pergunta.id + '" data-tipo="' + pergunta.tipo + '">' +
+    '<button type="button" class="cabeca" aria-expanded="' + aberto + '" data-alternar="' + pergunta.id + '">' +
+      '<span class="pill aberto" data-selo="' + pergunta.id + '">Em aberto</span>' +
+      '<span class="titulo-pergunta">' + escapar(pergunta.titulo) + "</span>" +
+      '<span class="tipo ' + pergunta.tipo + '"><i class="ponto ' + pergunta.tipo + '"></i>' + tipo + "</span>" +
+      '<span class="seta" aria-hidden="true"></span>' +
+    "</button>" +
+    '<p class="linha-resposta"><span class="resposta" data-resposta></span><span class="origem" data-origem></span></p>' +
+    '<div class="corpo">' +
+      hoje +
+      '<div class="opcoes">' + opcoes + "</div>" +
+      '<label class="campo">Anotação<textarea data-nota="' + pergunta.id + '" placeholder="Quem decidiu, a fórmula, a data, o texto">' + escapar(atual.nota) + "</textarea></label>" +
+      '<p class="aviso-nota" hidden>Anotação incompleta: o PDF só mostrava a parte visível da caixa. Confirmar o texto inteiro com quem respondeu.</p>' +
+      '<div class="acoes-cartao"><button type="button" class="confirmar" data-confirmar="' + pergunta.id + '" hidden>Confirmar esta resposta</button></div>' +
+    "</div>" +
     "</article>";
 }
 
-function grupo(hu, tipo, titulo) {
-  const paragrafos = (tipo === "regra" ? hu.regra : hu.tecnico).map(function (texto) {
-    return "<p>" + escapar(texto) + "</p>";
+function contexto(hu) {
+  const coluna = function (tipo, titulo, textos) {
+    if (!textos.length) return "";
+    return '<div class="ctx-coluna ctx-' + tipo + '" data-ctx="' + tipo + '"><h4><i class="ponto ' + tipo + '"></i>' + titulo + "</h4>" +
+      textos.map(function (t) { return "<p>" + escapar(t) + "</p>"; }).join("") + "</div>";
+  };
+  const n = hu.regra.length + hu.tecnico.length;
+  return '<details class="contexto"><summary>Contexto do bloco <span class="ctx-n">' + n + " notas</span></summary>" +
+    '<div class="ctx-grade">' + coluna("regra", "Regra", hu.regra) + coluna("tecnico", "Técnico", hu.tecnico) + "</div></details>";
+}
+
+function bloco(hu) {
+  const perguntas = ["regra", "tecnico"].map(function (tipo) {
+    const lista = hu.perguntas.filter(function (p) { return p.tipo === tipo; });
+    if (!lista.length) return "";
+    return '<div class="grupo" data-grupo="' + tipo + '" data-hu="' + hu.id + '"><h3 class="grupo-titulo"><i class="ponto ' + tipo + '"></i>' +
+      (tipo === "regra" ? "Perguntas de regra" : "Perguntas técnicas") + "</h3>" + lista.map(card).join("") + "</div>";
   }).join("");
-  const perguntas = hu.perguntas.filter(function (pergunta) { return pergunta.tipo === tipo; }).map(card).join("");
-  return '<section class="grupo grupo-' + tipo + '" data-grupo="' + tipo + '" data-hu="' + hu.id + '"><h3>' + titulo + "</h3>" +
-    '<details class="texto" open><summary>Contexto</summary>' + paragrafos + "</details>" + perguntas + "</section>";
+  const sub = subtitulo(hu);
+  return '<section class="bloco" id="' + hu.id + '">' +
+    '<header class="bloco-cabeca">' +
+      '<div><h2>' + escapar(nomeCurto(hu)) + (sub ? ' <span class="sub">' + escapar(sub) + "</span>" : "") + "</h2>" +
+      '<p class="pbi">' + escapar(hu.pbi) + "</p></div>" +
+      '<div class="conta" data-conta="' + hu.id + '"></div>' +
+    "</header>" +
+    '<p class="intro">' + escapar(hu.intro) + "</p>" +
+    contexto(hu) +
+    perguntas +
+    '<p class="vazio-filtro" hidden>Nenhuma pergunta deste bloco no filtro escolhido.</p>' +
+    "</section>";
 }
 
 function visivel(cartao) {
-  if (situacao === "todas") return true;
-  return situacaoDe(cartao.id) === situacao;
+  const doTipo = filtro === "tudo" || cartao.getAttribute("data-tipo") === filtro;
+  const daSituacao = situacao === "todas" || situacaoDe(cartao.id) === situacao;
+  return doTipo && daSituacao;
 }
 
 function aplicarFiltro() {
   document.querySelectorAll("article.pergunta").forEach(function (cartao) {
     cartao.hidden = !visivel(cartao);
   });
-  document.querySelectorAll("[data-grupo]").forEach(function (bloco) {
-    const doTipo = filtro === "tudo" || bloco.getAttribute("data-grupo") === filtro;
-    const temCartao = bloco.querySelector("article.pergunta:not([hidden])") !== null;
-    bloco.hidden = !doTipo || (situacao !== "todas" && !temCartao);
-    bloco.querySelector("details.texto").open = situacao === "todas";
+  document.querySelectorAll(".grupo").forEach(function (g) {
+    g.hidden = g.querySelector("article.pergunta:not([hidden])") === null;
   });
-  document.querySelectorAll("section.hu").forEach(function (cabeca) {
-    const grupos = document.querySelectorAll('[data-hu="' + cabeca.id + '"]');
-    cabeca.hidden = Array.prototype.every.call(grupos, function (g) { return g.hidden; });
+  document.querySelectorAll("section.bloco").forEach(function (b) {
+    const algum = b.querySelector("article.pergunta:not([hidden])") !== null;
+    b.querySelector(".vazio-filtro").hidden = algum;
+    b.classList.toggle("sem-itens", !algum);
+    b.querySelectorAll("[data-ctx]").forEach(function (col) {
+      col.hidden = filtro !== "tudo" && col.getAttribute("data-ctx") !== filtro;
+    });
   });
   document.querySelectorAll("button.filtro").forEach(function (botao) {
     botao.classList.toggle("ativo", botao.getAttribute("data-filtro") === filtro);
@@ -1503,10 +1638,8 @@ function linhaResumo(pergunta) {
   const marcas = [];
   if (notaCortada(atual.nota)) marcas.push('<span class="marca cortada">anotação cortada</span>');
   if (paraDiscutir(pergunta)) marcas.push('<span class="marca discutir">para discutir</span>');
-  if (atual.origem === "pdf-marcella") marcas.push('<span class="marca origem">Marcella (PDF)</span>');
-  if (atual.origem === "reuniao") marcas.push('<span class="marca origem">na reunião</span>');
-  if (atual.origem === "codigo") marcas.push('<span class="marca origem">no código (commit)</span>');
-  return '<li><a href="#' + pergunta.id + '">' + escapar(pergunta.titulo) + "</a>" +
+  if (ORIGENS[atual.origem] && atual.origem !== "material") marcas.push('<span class="marca origem">' + ORIGENS[atual.origem] + "</span>");
+  return '<li><a href="#' + pergunta.id + '" data-ir="' + pergunta.id + '">' + escapar(pergunta.titulo) + "</a>" +
     '<span class="decisao">' + escapar(atual.opcao || "sem opção marcada: ver anotação") + "</span>" + marcas.join("") + "</li>";
 }
 
@@ -1514,64 +1647,60 @@ function listaResumo(sit) {
   return PAUTA.map(function (hu) {
     const linhas = hu.perguntas.filter(function (pergunta) { return situacaoDe(pergunta.id) === sit; }).map(linhaResumo).join("");
     if (!linhas) return "";
-    return '<div class="resumo-bloco"><h3>' + escapar(hu.titulo.split("·")[0].trim()) +
-      ' <span class="conta" data-conta="' + hu.id + '"></span></h3><ul>' + linhas + "</ul></div>";
+    return '<div class="resumo-bloco"><h4>' + escapar(nomeCurto(hu)) + "</h4><ul>" + linhas + "</ul></div>";
   }).join("");
 }
 
 function desenharResumo() {
-  const alvo = document.getElementById("resumo");
+  const alvo = document.getElementById("resumo-corpo");
   if (!alvo) return;
-  let feitos = 0;
-  let confirmar = 0;
-  let cortadas = 0;
-  PAUTA.forEach(function (hu) {
-    const c = contagem(hu); feitos += c.feitos; confirmar += c.confirmar;
-    hu.perguntas.forEach(function (pergunta) { if (notaCortada(item(pergunta.id).nota)) cortadas += 1; });
-  });
   const respondidas = listaResumo("respondida");
   const doMaterial = listaResumo("confirmar");
-  alvo.innerHTML = '<summary><strong>Resumo</strong> <span class="resumo-total">' + feitos + " respondidas · " + confirmar + " a confirmar · " +
-    (totalPerguntas() - feitos - confirmar) + " em aberto" + (cortadas ? " · " + cortadas + " com anotação cortada" : "") + "</span></summary>" +
-    '<div class="resumo-corpo">' +
-    '<section class="resumo-parte"><h4>Já respondido</h4>' + (respondidas || '<p class="resumo-vazio">Nenhuma ainda.</p>') + "</section>" +
-    '<section class="resumo-parte material"><h4>Pré-preenchido a partir do material: confirmar na reunião</h4>' +
-    '<p class="resumo-nota">Achados nos documentos do projeto (histórias, análises, atas, estudos e swaggers). A fonte está na anotação de cada pergunta. Ao marcar ou editar, a resposta passa a contar como respondida.</p>' +
-    (doMaterial || '<p class="resumo-vazio">Nada pré-preenchido.</p>') + "</section>" +
-    "</div>";
-  PAUTA.forEach(function (hu) {
-    const c = contagem(hu);
-    alvo.querySelectorAll('[data-conta="' + hu.id + '"]').forEach(function (conta) {
-      conta.textContent = textoConta(c);
-      conta.classList.toggle("completo", c.feitos === c.total);
-    });
-  });
+  alvo.innerHTML =
+    '<section class="resumo-parte"><h3>Já respondido</h3>' + (respondidas || '<p class="resumo-vazio">Nenhuma ainda.</p>') + "</section>" +
+    '<section class="resumo-parte material"><h3>A confirmar na reunião</h3>' +
+    '<p class="resumo-nota">Pré-preenchido a partir do material do projeto (histórias, atas, estudos, código). A fonte está na anotação de cada pergunta.</p>' +
+    (doMaterial || '<p class="resumo-vazio">Nada pré-preenchido.</p>') + "</section>";
 }
 
 function desenhar() {
-  const atalhos = PAUTA.map(function (hu) {
-    return '<a href="#' + hu.id + '">' + escapar(hu.titulo.split("·")[0].trim()) + ' <span class="conta" data-conta="' + hu.id + '"></span></a>';
+  document.getElementById("atalhos").innerHTML = '<p class="rotulo">Blocos</p>' + PAUTA.map(function (hu) {
+    return '<a href="#' + hu.id + '" class="bloco-link" data-ir="' + hu.id + '"><span class="bl-nome">' + escapar(nomeCurto(hu)) +
+      (subtitulo(hu) ? ' <span class="bl-sub">' + escapar(subtitulo(hu)) + "</span>" : "") +
+      '</span><span class="conta" data-conta="' + hu.id + '"></span></a>';
   }).join("");
-  document.getElementById("atalhos").innerHTML = atalhos;
 
-  const resumoAberto = document.getElementById("resumo") ? document.getElementById("resumo").open : true;
-  const meta = '<section class="meta">' +
+  const resumoAberto = document.getElementById("resumo") ? document.getElementById("resumo").open : false;
+  const topo = '<section class="cartao meta">' +
     '<label class="campo">Presentes<input type="text" id="presentes" value="' + escapar(estado.presentes) + '" placeholder="Nomes de quem está na reunião"></label>' +
     '<label class="campo">Anotação geral<textarea id="livre" placeholder="O que ficou combinado fora das perguntas">' + escapar(estado.livre) + "</textarea></label>" +
     "</section>" +
-    '<details class="resumo" id="resumo"' + (resumoAberto ? " open" : "") + "></details>";
+    '<details class="cartao resumo" id="resumo"' + (resumoAberto ? " open" : "") + '><summary>Resumo das respostas</summary><div class="resumo-corpo" id="resumo-corpo"></div></details>';
 
-  const blocos = PAUTA.map(function (hu) {
-    return '<section class="hu" id="' + hu.id + '"><h2>' + escapar(hu.titulo) +
-      ' <span class="conta" data-conta="' + hu.id + '"></span></h2><p class="intro">' + escapar(hu.pbi) + ". " + escapar(hu.intro) + "</p></section>" +
-      grupo(hu, "regra", "Regra") +
-      grupo(hu, "tecnico", "Técnico");
-  }).join("");
-
-  document.getElementById("conteudo").innerHTML = meta + blocos;
+  document.getElementById("conteudo").innerHTML = topo + PAUTA.map(bloco).join("");
   ligar();
   atualizarStatus();
   aplicarFiltro();
+}
+
+function alternar(id, abrir) {
+  const cartao = document.getElementById(id);
+  if (!cartao) return;
+  const vaiAbrir = typeof abrir === "boolean" ? abrir : !cartao.classList.contains("expandido");
+  cartao.classList.toggle("expandido", vaiAbrir);
+  cartao.querySelector(".cabeca").setAttribute("aria-expanded", String(vaiAbrir));
+  if (vaiAbrir) abertos.add(id); else abertos.delete(id);
+}
+
+function irPara(id) {
+  const alvo = document.getElementById(id);
+  if (!alvo) return;
+  if (alvo.classList.contains("pergunta")) {
+    if (alvo.hidden) { situacao = "todas"; filtro = "tudo"; aplicarFiltro(); }
+    alternar(id, true);
+  }
+  window.scrollTo(0, alvo.getBoundingClientRect().top + window.scrollY - 12);
+  if (history.replaceState) history.replaceState(null, "", "#" + id);
 }
 
 function ligar() {
@@ -1587,6 +1716,7 @@ function ligar() {
     radio.addEventListener("change", function () {
       item(radio.name).opcao = radio.value;
       item(radio.name).origem = "reuniao";
+      abertos.add(radio.name);
       salvar();
     });
   });
@@ -1594,10 +1724,30 @@ function ligar() {
     campo.addEventListener("input", function () {
       item(campo.getAttribute("data-nota")).nota = campo.value;
       item(campo.getAttribute("data-nota")).origem = "reuniao";
+      abertos.add(campo.getAttribute("data-nota"));
       salvar();
     });
   });
+  document.querySelectorAll("[data-alternar]").forEach(function (botao) {
+    botao.addEventListener("click", function () { alternar(botao.getAttribute("data-alternar")); });
+  });
+  document.querySelectorAll("[data-confirmar]").forEach(function (botao) {
+    botao.addEventListener("click", function () {
+      const id = botao.getAttribute("data-confirmar");
+      item(id).origem = "reuniao";
+      salvar();
+      alternar(id, false);
+    });
+  });
 }
+
+// Links de navegação (blocos e resumo) rolam até o alvo e abrem a pergunta.
+document.addEventListener("click", function (evento) {
+  const link = evento.target.closest("[data-ir]");
+  if (!link) return;
+  evento.preventDefault();
+  irPara(link.getAttribute("data-ir"));
+});
 
 function markdown() {
   const linhas = ["# Anotações da reunião de 11/11/2026", ""];
@@ -1676,6 +1826,15 @@ document.querySelectorAll("button.situacao").forEach(function (botao) {
     situacao = botao.getAttribute("data-situacao");
     aplicarFiltro();
   });
+});
+document.getElementById("expandir").addEventListener("click", function (evento) {
+  const botao = evento.currentTarget;
+  const abrir = botao.getAttribute("data-estado") !== "aberto";
+  document.querySelectorAll("article.pergunta").forEach(function (c) {
+    alternar(c.id, abrir || situacaoDe(c.id) === "aberto");
+  });
+  botao.setAttribute("data-estado", abrir ? "aberto" : "fechado");
+  botao.textContent = abrir ? "Recolher as respondidas" : "Abrir todas as perguntas";
 });
 document.getElementById("baixar-md").addEventListener("click", function () {
   baixar("anotacoes-analistas-2026-11-11.md", markdown(), "text/markdown");
