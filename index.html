@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pauta 11/11/2026 · anotações</title>
+<link rel="icon" href="data:,">
+<style>
+:root {
+  --papel: #f4f1ea;
+  --cartao: #fffdf8;
+  --tinta: #1c1917;
+  --suave: #57534e;
+  --linha: #e7e0d4;
+  --verde: #1f4d3a;
+  --verde-claro: #e7f2eb;
+  --ambar: #8a5a12;
+  --ambar-claro: #f8efd8;
+  --azul: #1d4e89;
+  --azul-claro: #e7f0f8;
+  --sombra: 0 1px 2px rgba(28, 25, 23, .06);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 16px/1.45 "Segoe UI", system-ui, sans-serif;
+}
+header.topo {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fffdf8;
+  border-bottom: 1px solid var(--linha);
+  padding: 14px 20px 12px;
+}
+header.topo h1 { margin: 0 0 4px; font-size: 20px; }
+header.topo p { margin: 0; color: var(--suave); font-size: 14px; }
+.linha-titulo { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.progresso { display: grid; gap: 4px; justify-items: end; min-width: 220px; }
+.barra { width: 220px; height: 8px; background: var(--linha); border-radius: 999px; overflow: hidden; }
+.barra-cheia { height: 100%; width: 0; background: var(--verde); border-radius: 999px; transition: width .3s; }
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; align-items: center; }
+.segmento { display: inline-flex; border: 1px solid var(--linha); border-radius: 9px; overflow: hidden; background: #fff; }
+.segmento button { border: 0; border-radius: 0; border-right: 1px solid var(--linha); padding: 7px 12px; }
+.segmento button:last-child { border-right: 0; }
+.segmento button.ativo { background: var(--tinta); color: #fff; }
+.ponto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.ponto.regra { background: var(--verde); }
+.ponto.tecnico { background: var(--azul); }
+.ferramentas { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.ferramentas button, .ferramentas .arquivo { padding: 7px 11px; font-size: 14px; }
+button, .arquivo {
+  font: inherit;
+  border: 1px solid var(--linha);
+  background: #fff;
+  color: var(--tinta);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button.primario { background: var(--verde); color: #fff; border-color: var(--verde); }
+button:focus-visible, .arquivo:focus-within, a:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+button.perigo { color: #8f2d2d; }
+.arquivo input { display: none; }
+.status { font-size: 14px; color: var(--tinta); font-weight: 600; }
+nav.atalhos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+nav.atalhos a {
+  color: var(--verde);
+  text-decoration: none;
+  background: var(--verde-claro);
+  border-radius: 999px;
+  padding: 4px 6px 4px 10px;
+  font-size: 13px;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.conta { font-size: 12px; font-weight: 600; border-radius: 999px; padding: 0 7px; background: #fff; color: var(--suave); border: 1px solid var(--linha); }
+.conta.zero { color: var(--ambar); border-color: #ecd9ae; background: var(--ambar-claro); }
+.conta.completo { color: #fff; background: var(--verde); border-color: var(--verde); }
+.hu h2 .conta { font-size: 13px; vertical-align: 2px; margin-left: 6px; }
+main { max-width: 880px; margin: 0 auto; padding: 20px 16px 64px; }
+.meta, .hu, .pergunta {
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+}
+.meta { padding: 16px; margin-bottom: 18px; display: grid; gap: 10px; }
+label.campo { display: grid; gap: 4px; font-size: 14px; color: var(--suave); }
+input[type="text"], textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--tinta);
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+}
+textarea { min-height: 72px; resize: vertical; }
+.hu { margin: 22px 0 10px; padding: 16px; }
+.hu h2 { margin: 0 0 6px; font-size: 18px; }
+.hu .intro { margin: 0; color: var(--suave); }
+.grupo { margin: 12px 0; padding: 14px 16px; border-radius: 12px; background: var(--cartao); border: 1px solid var(--linha); }
+.grupo-regra { border-left: 4px solid var(--verde); }
+.grupo-tecnico { border-left: 4px solid var(--azul); }
+.grupo h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; }
+.grupo-regra h3 { color: var(--verde); }
+.grupo-tecnico h3 { color: var(--azul); }
+.grupo .texto { margin: 0 0 8px; color: var(--tinta); }
+.grupo .texto p { margin: 0 0 8px; }
+.selo.regra { background: var(--verde-claro); color: var(--verde); }
+.selo.tecnico { background: var(--azul-claro); color: var(--azul); }
+.pergunta { margin: 10px 0; padding: 14px 16px; }
+.pergunta h3 { margin: 0 0 6px; font-size: 16px; }
+.hoje { margin: 0 0 10px; color: var(--suave); font-size: 14px; }
+.opcoes { display: grid; gap: 6px; }
+.opcoes label {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.opcoes label:has(input:checked) { border-color: var(--verde); background: var(--verde-claro); }
+.opcoes input { margin-top: 3px; }
+.selo {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 1px 8px;
+  vertical-align: 1px;
+}
+.selo.aberto { background: var(--ambar-claro); color: var(--ambar); }
+.selo.feito { background: var(--verde-claro); color: var(--verde); }
+.disco { font-size: 13px; color: var(--verde); background: var(--verde-claro); border-radius: 999px; padding: 2px 10px; }
+.disco.erro { color: #8f2d2d; background: #f8e3e3; }
+.aviso { margin: 10px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--ambar-claro); color: var(--ambar); font-size: 14px; }
+.aviso[hidden], .copia[hidden] { display: none; }
+.copia { margin-top: 10px; display: grid; gap: 6px; }
+.copia p { margin: 0; }
+.copia textarea { min-height: 120px; font: 13px/1.4 monospace; }
+.copia button { justify-self: start; }
+@media print {
+  header.topo { position: static; }
+  .acoes, nav.atalhos, .aviso, .copia { display: none !important; }
+  body { background: #fff; }
+  .pergunta, .hu, .meta { break-inside: avoid; }
+}
+
+/* Resumo do que já foi respondido */
+.resumo { background: var(--cartao); border: 1px solid var(--linha); border-left: 4px solid var(--verde); border-radius: 12px; box-shadow: var(--sombra); margin-bottom: 18px; }
+.resumo summary { cursor: pointer; padding: 14px 16px; font-size: 16px; list-style-position: inside; }
+.resumo-total { color: var(--suave); font-size: 14px; font-weight: 400; margin-left: 6px; }
+.resumo-corpo { padding: 0 16px 12px; display: grid; gap: 4px; }
+.resumo-bloco h3 { margin: 10px 0 4px; font-size: 13px; text-transform: uppercase; letter-spacing: .03em; color: var(--suave); display: flex; gap: 8px; align-items: center; }
+.resumo-bloco ul { list-style: none; margin: 0; padding: 0; }
+.resumo-bloco li { padding: 8px 0; border-top: 1px solid var(--linha); font-size: 14px; }
+.resumo-bloco li a { color: var(--tinta); text-decoration: none; display: block; }
+.resumo-bloco li a:hover { text-decoration: underline; }
+.resumo-bloco .decisao { color: var(--verde); font-weight: 600; margin-right: 8px; }
+.resumo-bloco .marca { margin-right: 4px; vertical-align: 1px; }
+.marca { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+.resumo-bloco li .marca + .marca { grid-row: auto; }
+.marca { font-size: 11px; font-weight: 600; border-radius: 999px; padding: 1px 8px; white-space: nowrap; justify-self: end; }
+.marca.cortada { background: #fbe4e1; color: #8f2d2d; }
+.marca.discutir { background: var(--ambar-claro); color: var(--ambar); }
+.marca.nota { background: var(--azul-claro); color: var(--azul); }
+.resumo-vazio { color: var(--suave); margin: 0; }
+
+/* Cartões de pergunta */
+.pergunta h3 { display: flex; gap: 10px; justify-content: space-between; align-items: flex-start; }
+.pergunta .selos { display: inline-flex; gap: 4px; flex-shrink: 0; }
+.pergunta .selo { margin-left: 0; }
+.pergunta { border-left: 4px solid #ecd9ae; transition: border-color .2s, background .2s; }
+.pergunta.respondida { border-left-color: var(--verde); background: #fbfdfb; }
+.pergunta .campo { margin-top: 10px; }
+.hoje.discutir { background: var(--ambar-claro); color: var(--ambar); border-radius: 8px; padding: 8px 10px; }
+.aviso-nota { margin: 6px 0 0; font-size: 13px; color: #8f2d2d; background: #fbe4e1; border-radius: 8px; padding: 6px 10px; }
+.aviso-nota[hidden] { display: none; }
+details.texto > summary { cursor: pointer; color: var(--suave); font-size: 13px; margin-bottom: 6px; }
+details.texto[open] > summary { margin-bottom: 8px; }
+[hidden] { display: none !important; }
+
+@media print {
+  .resumo { break-inside: avoid; }
+  .resumo-corpo { display: block; }
+  details.texto > summary { display: none; }
+  .progresso .barra, .disco { display: none; }
+}
+
+/* Tela estreita: o topo deixa de ficar fixo para não ocupar meia tela. */
+@media (max-width: 1100px) {
+  header.topo { position: static; }
+  .progresso { justify-items: start; }
+  .ferramentas { margin-left: 0; }
+}
+
+/* Respostas pré-preenchidas a partir do material: a confirmar */
+.barra { display: flex; }
+.barra-confirmar { height: 100%; width: 0; background: repeating-linear-gradient(45deg, #7fa3cf, #7fa3cf 4px, #a9c2e0 4px, #a9c2e0 8px); transition: width .3s; }
+.selo.confirmar { background: var(--azul-claro); color: var(--azul); }
+.pergunta.confirmar { border-left: 4px dashed #7fa3cf; background: #fafcff; }
+.pergunta.confirmar .opcoes label:has(input:checked) { border-color: #7fa3cf; background: var(--azul-claro); border-style: dashed; }
+.marca.origem { background: #efece6; color: var(--suave); }
+.resumo-parte h4 { margin: 12px 0 2px; font-size: 14px; }
+.resumo-parte.material h4 { color: var(--azul); }
+.resumo-nota { margin: 2px 0 6px; font-size: 13px; color: var(--suave); }
+.resumo-parte.material .decisao { color: var(--azul); }
+
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="linha-titulo">
+    <div>
+      <h1>Pauta com os analistas · 11/11/2026</h1>
+      <p>Primeiro o que é comum aos painéis (o financeiro vem do SIAFIC), depois o menu por perfil (Carlos) e as HU-012 a HU-016.</p>
+    </div>
+    <div class="progresso" aria-live="polite">
+      <span class="status" id="status">0 de 0 respondidas</span>
+      <div class="barra"><div class="barra-cheia" id="barra"></div><div class="barra-confirmar" id="barra-confirmar"></div></div>
+      <span class="disco" id="disco">versão publicada em 11/11/2026 15:56</span>
+    </div>
+  </div>
+  <div class="acoes">
+    <div class="segmento" role="group" aria-label="Tipo">
+      <button type="button" class="filtro ativo" data-filtro="tudo">Tudo</button>
+      <button type="button" class="filtro" data-filtro="regra"><i class="ponto regra"></i>Regra</button>
+      <button type="button" class="filtro" data-filtro="tecnico"><i class="ponto tecnico"></i>Técnico</button>
+    </div>
+    <div class="segmento" role="group" aria-label="Situação">
+      <button type="button" class="situacao ativo" data-situacao="todas">Todas</button>
+      <button type="button" class="situacao" data-situacao="aberto">Em aberto</button>
+      <button type="button" class="situacao" data-situacao="respondida">Respondidas</button>
+      <button type="button" class="situacao" data-situacao="confirmar">A confirmar</button>
+    </div>
+    <div class="ferramentas">
+      <button type="button" class="primario" id="baixar-md">Baixar anotações (.md)</button>
+      <button type="button" id="baixar-json">Baixar JSON</button>
+      <label class="arquivo">Abrir JSON<input type="file" id="abrir-json" accept="application/json,.json"></label>
+      <button type="button" id="imprimir">Imprimir</button>
+      <button type="button" class="perigo" id="limpar" title="Apaga todas as anotações">Limpar</button>
+    </div>
+  </div>
+  <nav class="atalhos" id="atalhos"></nav>
+  <p class="aviso" id="aviso">Versão para leitura, gerada em 11/11/2026 15:56. O que você marcar ou anotar aqui fica só no seu navegador e não chega a mais ninguém. Baixar e Imprimir não funcionam nesta página; use a caixa Copiar que aparece.
+  <div class="copia" id="copia" hidden>
+    <p>Se o download não começou, copie o conteúdo abaixo e salve num arquivo:</p>
+    <textarea readonly></textarea>
+    <button type="button" id="copiar">Copiar</button>
+    <button type="button" id="fechar-copia">Fechar</button>
+  </div>
+</header>
+<main id="conteudo"></main>
+<script>
+// Conteúdo da pauta: histórias, textos de regra e técnico, e perguntas.
+// Para mudar o que aparece na tela, edite só este arquivo.
+// Cada pergunta tem um id fixo: não troque o id de uma pergunta já respondida,
+// senão a resposta gravada em dados/anotacoes.json deixa de aparecer.
+
+const CHAVE = "pauta-analistas-2026-11-11-publicada";
+const PAUTA = [
+  {
+    "id": "comum",
+    "titulo": "Comum aos cinco painéis",
+    "pbi": "Fonte do financeiro, página inicial e SIOFI",
+    "intro": "Vem antes das histórias porque vale para todas. O mesmo ponto aparece na análise de cada uma: está aqui para decidir uma vez.",
+    "regra": [
+      "Premissa: tudo o que é financeiro vem do SIAFIC. Empenho, anulação, liquidação, pagamento e saldos. O SISLOG fica com o contrato: valor, vigência, fornecedor, processo, aditivos e apostilamentos. Nota fiscal é manual, pelo fiscal, no módulo (Wanessa, 09/11).",
+      "É o que as análises já pedem: RF005 e RNF010 da HU-015 falam em SIAFIC, e o glossário aponta as tabelas ORF_EMPENHO_SCO. Em 09/11 o Alexandre descreveu a fonte financeira pelo número do processo, com o cálculo pronto, sem dizer o nome do sistema.",
+      "Hoje o código chega aos números pela API do SIOFI (listarPorProcesso). Não está registrado se o SIOFI lê o SIAFIC ou se é outra base. Se for outra base, os valores dos painéis 012, 013, 015 e 016 podem não bater com o SIAFIC.",
+      "Cada análise pede Definir como página inicial, com uma opção só, gravada para o usuário, e o dashboard do perfil como padrão quando não houver preferência. A casinha da tela só mostra o aviso de que a ação ainda não está disponível. O diálogo e a gravação não foram portados.",
+      "Escopo do MVP (ata de 06/10/2026): o módulo de Gestão de Contratos só consulta e espelha o que já está publicado no SISLOG. Equipe, aditivos e apostilamentos continuam sendo alterados na Formalização."
+    ],
+    "tecnico": [
+      "UrlServicoSiofi em localhost, desenvolvimento, homologação e treinamento: https://orcahomolog.intra.goias.gov.br/siofi-api/. Em produção o valor está vazio. Sem ele, consumo, saldos e empenho não consultam nada.",
+      "O host orcahomolog.intra.goias.gov.br não resolve no DNS da máquina. O navegador alcança pela regra ZTNA, porta 443. Chamada feita pelo terminal, inclusive o Bruno, para em ENOTFOUND.",
+      "A lista listarPorProcesso não traz IPOF, valor total do IPOF, saldo previsto, percentual, nota fiscal nem data de atualização. Liquidações e ordens de pagamento vêm vazias nesse GET. O detalhe, se for usado, é /api/liquidacao/listar e /api/ordempagamento/listar, pelo numeroEmpenho.",
+      "Achado no material (PBI #20681, estudo #24391): além do SIOFI, existe no gateway a API Financeiro Dotações Orçamentárias v1.0 (financeiro/dotacoes-orcamentarias), estudada como parte de 'Integrar SIAFIC' (#20680). O GCG já a usa na aba Saldos. /empenhos/listar pede exercício, código do órgão e CPF/CNPJ do fornecedor, e não filtra por contrato.",
+      "O empenho dessa API traz o que o SIOFI não traz: natureza (código e nome), número e id do IPOF, processo, data do empenho, saldoALiquidar e saldoAPagar, e liquidações com data, data de atesto e valor. A ordem de pagamento traz valor de anulação e o IPOF com valor, número e ano do contrato. O SIOFI não tem swagger no repositório."
+    ],
+    "perguntas": [
+      {
+        "id": "comum-siafic",
+        "tipo": "regra",
+        "titulo": "O SIOFI entrega o dado do SIAFIC?",
+        "hoje": "O financeiro vem do SIAFIC. O código consulta o SIOFI pelo processo. Se o SIOFI for só a porta para o SIAFIC, o que está pronto vale. Se não for, a fonte financeira dos quatro painéis muda.",
+        "opcoes": [
+          "Sim: o SIOFI lê o SIAFIC e pode ser a porta de entrada",
+          "Usar a API de Dotações do gateway como porta do SIAFIC",
+          "Não: precisa de uma API do próprio SIAFIC",
+          "Não se sabe: perguntar ao responsável pelo SIOFI"
+        ]
+      },
+      {
+        "id": "comum-home",
+        "tipo": "regra",
+        "titulo": "Definir como página inicial entra neste ciclo?",
+        "hoje": "Está na análise dos cinco painéis. A tela só avisa que a ação não está disponível.",
+        "opcoes": [
+          "Entra neste ciclo",
+          "Fica para depois, igual nos cinco"
+        ]
+      },
+      {
+        "id": "comum-producao",
+        "tipo": "tecnico",
+        "titulo": "A URL de produção do SIOFI foi informada?",
+        "hoje": "Homologação está preenchida. Produção está vazia. Os painéis 012, 013, 015 e 016 dependem dela para número financeiro.",
+        "opcoes": [
+          "A URL foi informada na reunião",
+          "Continua em aberto"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "menu",
+    "titulo": "Menu por perfil · Portal, sigla GCG",
+    "pbi": "Responsável: Carlos",
+    "intro": "O menu fica completo quando deixa de ser a lista fixa de CarregarMenuContratos e passa a mostrar só o que o perfil do usuário tem cadastrado no Portal, na sigla GCG. Atualizado em 11/11/2026: o código da entrada GCG/sislog e do menu por perfil está pronto no repositório local, ainda sem commit. Falta o que não é código, na ordem dos passos abaixo.",
+    "regra": [
+      "Hoje todo mundo vê os mesmos seis itens: os cinco painéis no grupo Dashboard e a Listagem de contratos no grupo Gerir contratos, todos com acesso AEIC. O perfil da sessão só escolhe a página inicial.",
+      "A troca de perfil também não existe de verdade: a lista de perfis disponíveis tem só o perfil corrente. Os códigos de perfil são de teste (1 a 6). O código também reconhece o perfil pelo nome: Gestor de Contrato, Fiscal de Contrato, Analista Financeiro, Coordenador de Contratos, Fornecedor e Procurador Setorial. Gestor e Fiscal abrem a mesma tela.",
+      "Para chegar a 100% faltam duas coisas: o cadastro no Portal (ainda não existe) e o código que lê esse cadastro.",
+      "O que o Portal precisa ter: a sigla GCG com os perfis de mesmo nome dos do SISLOG; a árvore de menus (grupos, ordem e ícone); as unidades de acesso de cada perfil (nome, controller e permissão no formato AEIC); e um usuário de teste ligado a esses perfis.",
+      "O menu abre cada item com Url.Action(\"Inicio\", Controladora). Por isso a url cadastrada no Portal tem de ser o nome do controller: Contratos, PainelGestorFiscal, PainelFinanceiro, PainelCoordenador, PainelFornecedor e PainelProcurador.",
+      "A história Controle de Acessos e Permissões por Perfil (Brenda, 25/10/2026, PBI #23548) define sete perfis: Gestor; Fiscal; Fornecedor (Contratada/Preposto); Procurador Setorial; Analista Financeiro; Controle Interno e Externo (CGE/TCE); e Coordenador de Contratos/Apoio. O menu e as telas mostram só o que o perfil pode usar, e a permissão é conferida no servidor, inclusive no acesso direto pela URL (RN03 e RN04). Sem permissão: 'Você não possui permissão para acessar esta funcionalidade.'",
+      "A regra separa consulta de edição. Gestor e Fiscal editam só onde estão designados; o Fiscal também onde o contrato foi tramitado para ele com edição. O Fornecedor vê só os contratos vigentes ou ativos da empresa dele. Procurador, Analista Financeiro, CGE/TCE e Coordenador consultam todos os órgãos e editam só no órgão de alocação (ata de 06/10). Os alertas também mudam por perfil: vencimento para o Gestor, saldo para o Fiscal, nenhum alerta operacional para CGE/TCE."
+    ],
+    "tecnico": [
+      "Pronto no código (local, sem commit): a entrada GCG/sislog recebe o parâmetro d cifrado e monta o menu a partir de três APIs do gateway: acessos-usuarios (/acessos), menus-sistemas e unidades-acessos (/por-usuario-e-perfil). A configuração fica na seção IntegracaoEntradaSislog dos seis appsettings, com SiglaSistema = GCG. A chave antiga (SiglaSistema = PCG) continua só para o legado.",
+      "No Localhost, UsarMock está ligado e um catálogo simulado da sigla GCG faz o papel do Portal, com perfis 'Gestor de Contrato', 'Fiscal de Contrato' e 'Coordenador de Contratos'. Para ver: reiniciar o processo de http://localhost:5000 (ele subiu com --no-build antes da compilação) e abrir http://localhost:5000/Login/SimularEntradaSislog. O login pelo formulário continua no menu provisório. Nos outros cinco ambientes, UsarMock já está desligado.",
+      "Passo 1, liberar no gateway: a aplicação precisa ser liberada em acessos de usuário, menus de sistema e unidades de acesso. A de usuários já está liberada.",
+      "Passo 2, cadastrar a sigla GCG no Portal: perfis com o mesmo nome usado no SISLOG, grupos de menu e unidades de acesso. A url da unidade é o nome do controller, e a permissão vai em infoPermissao. O usuário de teste precisa estar ligado a esses perfis. Sem esse cadastro, a chamada real volta vazia.",
+      "Passo 3, conferir a primeira resposta real com o que o código assume: a raiz é menuPai nulo, zero ou um pai que não veio; a unidade liga ao grupo por menuSistema igual a menuCodigo (se não bater, por siglaModulo ou menuModuloSigla); o último trecho da url é o controller; infoPermissao vazio vira AEIC. Se o Portal responder diferente, o ajuste volta a ser código.",
+      "Passo 4, o SISLOG abrir GCG/sislog com o d cifrado: login, CPF, id da pessoa, nome do perfil, órgão e urlRetorno. A urlRetorno está em avaliação com o time do SISLOG. Se vier vazia ou fora do host do SISLOG, a volta usa o UrlPortal do ambiente (no Localhost, https://sisloghomolog.go.gov.br).",
+      "Passo 5, desligar UsarMock no ambiente que falar com o Portal de verdade. No Localhost ele continua ligado.",
+      "Não reativar o HelperMenu que está logo abaixo do return. Esse caminho lê o portal-rs legado (UrlMenu) com a sigla PCG, e a definição do GCG é usar as APIs do gateway. ListaPessoaPorPerfil, no LoginController, também lê o portal-rs (está com um TODO).",
+      "Sonda de 22/10 no gateway de desenvolvimento: perfis da sigla GCG = 0 (PCG tem 40); menus da sigla GCG = 0 (PCG tem 30); unidades-acessos respondeu 403, porque o client não tem permissão. Precisa sondar de novo depois do cadastro.",
+      "Bug #25226 (homologação, aberto em 11/11/2026): ao entrar com Fornecedor, Procurador Setorial, Analista Financeiro ou Coordenador/Apoio, o dashboard falha ao carregar. O Tiago orientou abrir o dashboard pelo perfil restaurado no login, seguindo o fluxo de login do Júlio, que guarda o perfil na sessão, com um helper na pasta Helpers do projeto .Web. As dúvidas devem ser alinhadas com a Fabiana.",
+      "Bug #25225 (homologação): no canto superior direito aparecem o nome e o perfil, mas não o órgão ligado ao perfil logado.",
+      "Teste na simulação do Localhost (11/11/2026, cenário 'Gestor, com troca para Coordenador'): a entrada funcionou. O Gestor viu só 'Painel do Gestor e do Fiscal' e 'Listagem de contratos', e a troca para Coordenador mudou o menu e o painel. Porém o d mandou o órgão 16 'Secretaria da Administração', e o painel do Coordenador carregou contratos da 'SSP - Secretaria de Estado da Segurança Pública': o código do órgão do d vai direto como idOrgao na consulta do SISLOG. O painel do Coordenador levou cerca de 26 segundos (200 de 1340 contratos).",
+      "Release na branch (commits 25264 e 25265, Tiago, 11/11/2026, ainda não enviados): os controllers passaram de AjaxAuthorize para AjaxAuthorizeCustom. A controladora só abre se estiver na lista ControladorasAutorizadas do appsettings ou se estiver no menu gravado na sessão. A lista, igual nos seis ambientes, tem AssinaGO e os cinco painéis. Principal e Contratos ficaram de fora. A tela 'em construção' segue no atributo antigo.",
+      "Ajuste da release (commit cc654a9, Tiago, 11/11/2026, tarefa 25265; incorporado em f0fcf58, ainda não enviado): Login e Principal entraram em ControladorasAutorizadas nos cinco appsettings de ambiente. Com isso, Principal/InicioIntranet abre logo depois da entrada GCG/sislog, mesmo sem menu na sessão, e o formulário de login também passa. O appsettings.json de base ficou sem os dois, mas a lista de cada ambiente, por ser maior, prevalece na junção do .NET. Login na lista não muda nada hoje: o LoginController não usa o filtro novo. Testado na simulação depois de recompilar: entrada, painel do Gestor, Principal e Listagem responderam 200.",
+      "Efeitos que continuam depois do ajuste: a Listagem (Contratos) só abre se o menu da sessão tiver essa controladora, então ela precisa estar cadastrada como unidade de acesso de cada perfil no Portal. E os cinco painéis, por estarem na lista, abrem pela URL para qualquer usuário autenticado: no teste, logado como Gestor, PainelFornecedor/Obter respondeu 200. A tela em construção segue no atributo antigo."
+    ],
+    "perguntas": [
+      {
+        "id": "menu-cadastro",
+        "tipo": "regra",
+        "titulo": "Quem cadastra a sigla GCG, os perfis e os menus no Portal, e quando?",
+        "hoje": "Na sonda de 22/10, a sigla GCG não tinha nenhum perfil nem menu. Sem o cadastro, o código não tem o que ler.",
+        "opcoes": [
+          "O Carlos cadastra em desenvolvimento",
+          "O Carlos abre a demanda com a equipe do Portal",
+          "A data foi combinada na reunião"
+        ]
+      },
+      {
+        "id": "menu-perfis",
+        "tipo": "regra",
+        "titulo": "Os perfis do GCG terão os mesmos nomes dos do SISLOG?",
+        "hoje": "O catálogo reconhece pelo nome: Gestor de Contrato, Fiscal de Contrato, Analista Financeiro, Coordenador de Contratos, Fornecedor e Procurador Setorial. Nome diferente cai no painel do Gestor.",
+        "opcoes": [
+          "Sim, os seis nomes como estão",
+          "Os nomes mudam: anotados abaixo"
+        ]
+      },
+      {
+        "id": "menu-arvore",
+        "tipo": "regra",
+        "titulo": "A árvore de menus segue a de hoje?",
+        "hoje": "Dois grupos: Dashboard (cinco painéis) e Gerir contratos (Listagem de contratos). Cada perfil passaria a ver só os itens dele.",
+        "opcoes": [
+          "Sim: cada perfil vê o seu painel e a Listagem",
+          "Cada perfil vê todos os painéis",
+          "Outra árvore, anotada abaixo"
+        ]
+      },
+      {
+        "id": "menu-permissao",
+        "tipo": "regra",
+        "titulo": "A permissão é AEIC para todos os itens?",
+        "hoje": "No menu provisório, todos os itens estão com AEIC. No Portal, a permissão vai na infoPermissao de cada unidade de acesso.",
+        "opcoes": [
+          "AEIC em todos",
+          "Varia por perfil: anotado abaixo"
+        ]
+      },
+      {
+        "id": "menu-api",
+        "tipo": "tecnico",
+        "titulo": "Qual API do gateway o código vai consumir?",
+        "hoje": "O código novo já consome acessos-usuarios /acessos, menus-sistemas (árvore) e unidades-acessos /por-usuario-e-perfil (itens, url, posição e infoPermissao). Falta a liberação no gateway e a primeira resposta real.",
+        "opcoes": [
+          "unidades-acessos por usuário e perfil, mais menus-sistemas para a árvore",
+          "acessos-usuarios /perfis/{codigo}/actions",
+          "Outra, anotada abaixo"
+        ]
+      },
+      {
+        "id": "menu-liberacao",
+        "tipo": "tecnico",
+        "titulo": "Quem libera a aplicação no gateway nas três APIs novas?",
+        "hoje": "Faltam acessos de usuário, menus de sistema e unidades de acesso (em 22/10, unidades-acessos respondia 403). A de usuários já está liberada.",
+        "opcoes": [
+          "O Carlos pede a liberação",
+          "Já foi liberado"
+        ]
+      },
+      {
+        "id": "menu-sigla",
+        "tipo": "tecnico",
+        "titulo": "A sigla antiga (PCG) continua só para o legado?",
+        "hoje": "O código novo lê IntegracaoEntradaSislog.SiglaSistema = GCG nos seis appsettings. A chave antiga continua PCG e ainda é usada pelo portal-rs (HelperMenu e busca da pessoa).",
+        "opcoes": [
+          "Sim, PCG fica só para o legado",
+          "Trocar também a antiga para GCG"
+        ]
+      },
+      {
+        "id": "menu-teste",
+        "tipo": "tecnico",
+        "titulo": "Qual usuário de teste fica ligado aos perfis do GCG?",
+        "hoje": "Sem um usuário com perfil na sigla GCG, não dá para provar que cada perfil vê só o seu menu.",
+        "opcoes": [
+          "O usuário foi informado na reunião",
+          "O Carlos cria e avisa"
+        ]
+      },
+      {
+        "id": "menu-principal",
+        "tipo": "tecnico",
+        "titulo": "Como a primeira tela passa pelo filtro novo da release?",
+        "hoje": "Com o AjaxAuthorizeCustom, Principal/InicioIntranet respondia 403 logo depois da entrada GCG/sislog. Resolvido no commit cc654a9 (Tiago): Login e Principal entraram na lista dos cinco ambientes.",
+        "opcoes": [
+          "Incluir Principal na lista ControladorasAutorizadas",
+          "Gravar o menu na sessão antes de redirecionar",
+          "Outra solução, anotada abaixo"
+        ]
+      },
+      {
+        "id": "menu-painel-url",
+        "tipo": "regra",
+        "titulo": "Os painéis podem abrir pela URL para qualquer perfil?",
+        "hoje": "Os cinco painéis estão na lista liberada e abrem para qualquer usuário autenticado, mesmo sem o item no menu. No teste de 11/11, logado como Gestor, PainelFornecedor/Obter respondeu 200. A história de acesso (RN04) pede conferir a permissão no servidor, inclusive no acesso direto pela URL.",
+        "opcoes": [
+          "Serve por enquanto, até o Portal ter o cadastro",
+          "Tirar os painéis da lista quando o menu do Portal existir",
+          "Conferir também o perfil dentro de cada painel"
+        ]
+      },
+      {
+        "id": "menu-contratos",
+        "tipo": "tecnico",
+        "titulo": "A Listagem (Contratos) vai estar no menu de todos os perfis no Portal?",
+        "hoje": "Contratos ficou fora da lista liberada. Só abre se o menu da sessão trouxer essa controladora. Se o cadastro do Portal esquecer a unidade de acesso Contratos num perfil, a Listagem responde 403 para ele.",
+        "opcoes": [
+          "Sim, Contratos entra como unidade de acesso de todos os perfis",
+          "Incluir Contratos na lista liberada",
+          "Só alguns perfis: anotado abaixo"
+        ]
+      },
+      {
+        "id": "menu-resposta",
+        "tipo": "tecnico",
+        "titulo": "A primeira resposta real do Portal bate com o que o código assume?",
+        "hoje": "O código assume: raiz com menuPai nulo, zero ou pai ausente; ligação da unidade ao grupo por menuSistema = menuCodigo (senão siglaModulo ou menuModuloSigla); controller no último trecho da url; infoPermissao vazio = AEIC.",
+        "opcoes": [
+          "Conferido: bate",
+          "Diferente: o ajuste está anotado abaixo",
+          "Ainda sem resposta real"
+        ]
+      },
+      {
+        "id": "menu-entrada",
+        "tipo": "tecnico",
+        "titulo": "Quem no SISLOG faz a chamada para GCG/sislog com o d cifrado, e quando?",
+        "hoje": "O d leva login, CPF, id da pessoa, nome do perfil, órgão e urlRetorno. Até isso existir, só dá para entrar pela simulação do Localhost.",
+        "opcoes": [
+          "O time do SISLOG, com data combinada na reunião",
+          "Ainda sem responsável"
+        ]
+      },
+      {
+        "id": "menu-urlretorno",
+        "tipo": "tecnico",
+        "titulo": "O SISLOG manda a urlRetorno no d?",
+        "hoje": "Está em avaliação com o time do SISLOG. Se vier vazia ou fora do host do SISLOG, a volta usa o UrlPortal do ambiente.",
+        "opcoes": [
+          "Sim, o SISLOG manda",
+          "Não: sempre volta ao UrlPortal do ambiente"
+        ]
+      },
+      {
+        "id": "menu-gestor-escopo",
+        "tipo": "regra",
+        "titulo": "Gestor e Fiscal consultam contratos de outros órgãos?",
+        "hoje": "A história de acesso (Brenda, 25/10) diz que o Gestor consulta 'os demais contratos', inclusive de outros órgãos. A análise do perfil Gestor (Marcella, 22/10) restringe a consulta aos contratos do órgão.",
+        "opcoes": [
+          "Sim, consulta em todos (história de 25/10)",
+          "Não, só os do órgão (análise de 22/10)"
+        ]
+      },
+      {
+        "id": "menu-cgetce",
+        "tipo": "regra",
+        "titulo": "O perfil Controle Interno e Externo (CGE/TCE) entra no GCG agora?",
+        "hoje": "Está na história de acesso. O catálogo do código tem seis perfis e não tem este. Na ata de 06/10, a separação entre CGE e TCE ainda dependia de análise da Suelen.",
+        "opcoes": [
+          "Entra como um perfil só",
+          "Entra separado em CGE e TCE",
+          "Fica para depois"
+        ]
+      },
+      {
+        "id": "menu-perfil-sessao",
+        "tipo": "tecnico",
+        "titulo": "O perfil da sessão vem do login do Júlio (bug #25226)?",
+        "hoje": "Os dashboards de quatro perfis falham em homologação. O Tiago sugeriu restaurar o perfil gravado na sessão pelo fluxo de login do Júlio. Na entrada nova GCG/sislog, o nome do perfil chega no d cifrado.",
+        "opcoes": [
+          "Segue a sugestão do Tiago",
+          "Outro caminho, anotado abaixo"
+        ]
+      },
+      {
+        "id": "menu-orgao",
+        "tipo": "tecnico",
+        "titulo": "De onde vem o órgão mostrado no topo (bug #25225)?",
+        "hoje": "Hoje aparecem só o nome e o perfil. Na entrada nova GCG/sislog, o órgão chega no d cifrado junto com o perfil. A história de acesso pede o órgão de alocação (Cenário 01, RN01).",
+        "opcoes": [
+          "Do órgão ligado ao perfil no Portal",
+          "Da lotação no RH (rh/vinculos)",
+          "Outra origem, anotada abaixo"
+        ]
+      },
+      {
+        "id": "menu-orgao-id",
+        "tipo": "tecnico",
+        "titulo": "Qual identificador do órgão o SISLOG manda no d?",
+        "hoje": "Na simulação, o órgão 16 'Secretaria da Administração' virou idOrgao 16 no SISLOG, que é a SSP. Ou o d precisa trazer o idOrgao do próprio SISLOG, ou o GCG precisa converter o código.",
+        "opcoes": [
+          "O idOrgao do SISLOG",
+          "Outro código, e o GCG converte",
+          "Foi só o valor padrão da simulação que está errado"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hu012",
+    "titulo": "HU-012 · Gestor e Fiscal",
+    "pbi": "PBI #22006",
+    "intro": "História da Brenda Ferreira Lima da Silva, task #22025. Análise v1 da Marcella Fontoura Silva Zupelli, task #22606. Tasks de consumir a API, #24209 e #24376, em impedimento.",
+    "regra": [
+      "O painel é do Gestor ou do Fiscal e lista os contratos em que a pessoa da sessão está designada, não o órgão inteiro. A história pede situação, prazos, vigência e execução física e financeira.",
+      "Vigente, na prática deste painel, é o contrato cujo início não está no futuro e cujo fim está vazio ou é hoje ou depois. A história de outros painéis fala em status Publicado. O contrato 151299 voltou da API com status Em Execução.",
+      "O cartão de saldo crítico existe na tela. A história não diz qual conta, qual campo nem qual valor torna o saldo crítico. Mostrar zero seria lido como 'não há pendência'. Por isso o cartão fica com traço até a regra existir.",
+      "Assinatura pendente também está na tela com traço. Em 09/11/2026 ficou dito que a assinatura do documento é do SEI e que o SISLOG não valida assinatura.",
+      "Quem abre este painel não está fechado. A história diz 'Dado que o usuário está designado como Gestor ou Fiscal em ao menos um contrato' (Cenário 01). A análise v1 fala em 'perfil de Gestor ou Fiscal' (RF001 a RF003), mas o glossário dela aponta a origem desse perfil para PCG.PCG_EQUIPE_GESTAO_CONTRATO, que é a designação no contrato, e não o perfil de acesso do Portal.",
+      "Na ata de 08/10/2026 (Templates e Perfis), o documento de visão define sete perfis. Coordenação e equipe de apoio a contratos viraram um perfil só, Coordenação de Contratos. Um 'perfil de apoio ao gestor e ao fiscal', visto em um órgão, ficou como necessidade distinta, a validar antes de ser criado.",
+      "A análise pede o painel como primeira tela de quem tem perfil Gestor ou Fiscal (RF002), o mesmo painel para os dois (RF003) e, dentro do contrato, as permissões do papel da pessoa (RF027; Cenário 08 da história). A lista do painel não diz em qual papel a pessoa está em cada contrato (RF017).",
+      "A RF033 manda mostrar a MSG006 quando nenhum contrato demanda atenção, mas a tabela de mensagens da análise vai só até a MSG005. A história traz o texto: 'Não há contratos que demandam atenção no momento.'"
+    ],
+    "tecnico": [
+      "Já no código (status de 11/11/2026): a tela consulta POST /api/Contrato/consultaContratos duas vezes, com o id da pessoa logada como gestor e como fiscal, junta pelo contrato e fica só nos vigentes. Cada papel lê no máximo quatro páginas de 50; se sobrar, a legenda avisa.",
+      "Os cartões de vencimento (até 30, 31–60, 61–90 e 91–120 dias) saem de fimVigencia. 'Contratos que demandam atenção' conta cada contrato uma vez. A lista abre nesses contratos, e os que estão em dia ficam recolhidos embaixo. Número do contrato e nome do fornecedor filtram a lista. Clicar num cartão troca o recorte; tirar o recorte volta aos que demandam atenção. Abrir um contrato leva ao detalhe pelo idContrato.",
+      "Mensagens da história já aplicadas: sem contrato, busca sem resultado, faixa sem contrato e falha ao abrir o contrato. A busca 'ERRO' simula a falha de carga. Datas em dd/MM/yyyy. Assinatura pendente e saldo crítico aparecem com traço de propósito: zero nesses cartões pareceria 'não há pendência'.",
+      "O que falta, pelo status: (1) a origem da assinatura pendente, porque nenhuma API ligada ao cartão traz documento sem assinatura; (2) a regra do saldo crítico, com saldo contratual, saldo de empenho e o corte (CorteSaldoCritico vazio, e o SIOFI não é chamado enquanto isso); (3) confirmar se fimVigencia já é o fim atual com o aditivo de prazo; (4) contratos além de 200 por papel ficam fora da pesquisa.",
+      "A API também manda contratacao, sequencial, processo, fornecedor.cpfCnpj, orgao, valor, status.codigo, status.descricao e publicadoPncp. O painel não mostra esses campos. Não há campo de assinatura nem de saldo nessa lista.",
+      "O código do saldo crítico já sabe chamar o SIOFI, GET {UrlServicoSiofi}api/empenho/listarPorProcesso?numeroProcesso=, um processo por vez, e somar os empenhos. A função do corte está vazia. Enquanto estiver vazia, o SIOFI não é chamado e o cartão permanece indisponível. Se o corte existir e o SIOFI falhar, o cartão também fica indisponível, para não mostrar uma contagem pela metade.",
+      "No processo 202300004081354, do contrato 151299, o SIOFI devolveu 5 empenhos. A soma de saldoEmpenho é R$ 7.529,51. valorEmpenho é R$ 27.150,23, maior que o valor do contrato (R$ 10.279,76). Essas contas não fecham por subtração simples.",
+      "Hoje, no código, qualquer pessoa abre o painel pelo menu, porque o menu é fixo e igual para todos (ver o bloco do Carlos). Como página inicial, ele abre para os perfis Gestor de Contrato (código 1) e Fiscal de Contrato (código 4). Perfil desconhecido também cai no painel do gestor.",
+      "O painel não olha o perfil para escolher os contratos: consulta o SISLOG com o idPessoa da sessão como idGestor e depois como idFiscal. Quem não é designado em nenhum contrato vê o painel vazio. Suplente e interveniente, que existem na equipe do contrato, não entram nessa consulta.",
+      "O idPessoa vem do portal-rs legado (api/usuario/{login ou CPF}), porque o gateway de usuários estava com a assinatura inativa no Localhost. Isso vai contra a definição de usar as APIs do gateway, a mesma do menu."
+    ],
+    "perguntas": [
+      {
+        "id": "hu012-quem",
+        "tipo": "regra",
+        "titulo": "Quem abre o painel: o perfil do Portal ou a designação no contrato?",
+        "hoje": "A história fala em designado no contrato. A análise fala em perfil, mas o glossário aponta para a equipe do contrato. O código mostra os contratos de quem está designado, qualquer que seja o perfil.",
+        "opcoes": [
+          "Quem tem o perfil Gestor de Contrato ou Fiscal de Contrato no Portal",
+          "Qualquer pessoa designada como gestor ou fiscal em ao menos um contrato",
+          "Os dois: precisa do perfil e da designação"
+        ]
+      },
+      {
+        "id": "hu012-corte",
+        "tipo": "regra",
+        "titulo": "Qual conta torna o saldo crítico?",
+        "hoje": "Sem a conta, o cartão continua com traço de propósito. Quando a regra existir, ela recebe o contrato do SISLOG e a soma dos empenhos do processo.",
+        "opcoes": [
+          "A conta foi definida na reunião",
+          "Ainda sem conta: o cartão continua com traço",
+          "O cartão sai da história"
+        ]
+      },
+      {
+        "id": "hu012-assinatura",
+        "tipo": "regra",
+        "titulo": "Assinatura pendente permanece neste painel?",
+        "hoje": "A consultaContratos não traz estado de assinatura. Em 09/11 ficou dito que a assinatura é do SEI e o SISLOG não valida.",
+        "opcoes": [
+          "Sai da história",
+          "Permanece com traço até haver fonte",
+          "Há uma fonte e ela foi indicada na reunião"
+        ]
+      },
+      {
+        "id": "hu012-vigente",
+        "tipo": "regra",
+        "titulo": "Vigente é pela data de fim ou pelo status?",
+        "hoje": "Ata de 06/10 (Larissa): vigente é o contrato publicado no SISLOG e não finalizado. O painel usa início e fim de vigência. O contrato 151299 voltou com status Em Execução, não Publicado.",
+        "opcoes": [
+          "Pela data, como está",
+          "Só status Publicado",
+          "Em Execução também conta como vigente"
+        ]
+      },
+      {
+        "id": "hu012-aditivo",
+        "tipo": "tecnico",
+        "titulo": "O fimVigencia da consultaContratos já é o fim atual, com aditivo de prazo?",
+        "hoje": "A história manda contar as faixas pelo fim da vigência atual, considerando os aditivos de prazo assinados (RN02 do Cenário 03). O código usa o fimVigencia que a consulta devolve e não recalcula pela lista de aditivos. Se o campo já for o fim atual, a regra está coberta.",
+        "opcoes": [
+          "Sim: fimVigencia já é o fim atual",
+          "Não: o código precisa ler os aditivos de prazo",
+          "Não se sabe: perguntar ao time do SISLOG"
+        ]
+      },
+      {
+        "id": "hu012-fonte",
+        "tipo": "tecnico",
+        "titulo": "O saldo crítico, quando a conta existir, usa o SIOFI pelo processo?",
+        "hoje": "A chamada pronta é listarPorProcesso. Contrato sem processo não entra na conta. Falha do SIOFI deixa o cartão indisponível.",
+        "opcoes": [
+          "Sim, SIOFI pelo processo",
+          "Outra fonte, anotada abaixo"
+        ]
+      },
+      {
+        "id": "hu012-campo",
+        "tipo": "tecnico",
+        "titulo": "Qual campo do empenho entra na conta do saldo crítico?",
+        "hoje": "O SIOFI manda saldoEmpenho, saldoLiquidado, saldoPago, valorEmpenho, valorLiquidado e valorPago. No processo de prova, saldoEmpenho é R$ 7.529,51 e valorEmpenho é R$ 27.150,23.",
+        "opcoes": [
+          "saldoEmpenho",
+          "valorEmpenho",
+          "Outro campo, anotado abaixo"
+        ]
+      },
+      {
+        "id": "hu012-recorte",
+        "tipo": "tecnico",
+        "titulo": "O teto de 4 páginas de 50 por papel serve?",
+        "hoje": "idGestor e idFiscal são consultados em separado, até 4 páginas de 50 cada. Acima de 200 contratos num papel, a legenda avisa, e a busca por número ou fornecedor não enxerga o que ficou fora dessas páginas.",
+        "opcoes": [
+          "Serve",
+          "Precisa ler a lista inteira"
+        ]
+      },
+      {
+        "id": "hu012-outroperfil",
+        "tipo": "regra",
+        "titulo": "Outro perfil que também é gestor ou fiscal em algum contrato vê este painel?",
+        "hoje": "Ex.: um Coordenador de Contratos designado gestor de um contrato. Hoje ele vê pelo menu fixo. Com o menu do Portal, só vê se o perfil dele tiver o item.",
+        "opcoes": [
+          "Sim, pelo menu",
+          "Não: vê só o painel do perfil dele",
+          "Sim, e pode escolher como página inicial"
+        ]
+      },
+      {
+        "id": "hu012-suplente",
+        "tipo": "regra",
+        "titulo": "Suplente e interveniente entram no painel?",
+        "hoje": "A equipe do contrato devolve Gestor, Fiscal, Suplente e Interveniente. O painel consulta só como gestor e como fiscal.",
+        "opcoes": [
+          "Não: só gestor e fiscal titulares",
+          "O suplente entra",
+          "Suplente e interveniente entram"
+        ]
+      },
+      {
+        "id": "hu012-apoio",
+        "tipo": "regra",
+        "titulo": "O perfil de apoio ao gestor e ao fiscal entra neste ciclo?",
+        "hoje": "A ata de 08/10 diz que é uma necessidade distinta, de um órgão, a validar antes de criar o perfil.",
+        "opcoes": [
+          "Não entra neste ciclo",
+          "Entra e vê o painel dos contratos que apoia",
+          "Ainda em validação"
+        ]
+      },
+      {
+        "id": "hu012-varios",
+        "tipo": "regra",
+        "titulo": "Quem tem mais de um perfil abre qual tela primeiro?",
+        "hoje": "Ex.: Gestor de Contrato e Coordenador de Contratos. Hoje vale o perfil escolhido ao entrar. A troca de perfil não funciona (ver o bloco do Carlos).",
+        "opcoes": [
+          "A do perfil escolhido ao entrar",
+          "A página inicial que ele definir",
+          "Sempre este painel, se for gestor ou fiscal"
+        ]
+      },
+      {
+        "id": "hu012-papel",
+        "tipo": "regra",
+        "titulo": "A lista mostra se a pessoa é gestor ou fiscal em cada contrato?",
+        "hoje": "O mesmo painel junta os contratos dos dois papéis. A RF017 não pede a coluna do papel, mas a RF027 aplica permissões diferentes dentro do contrato.",
+        "opcoes": [
+          "Não precisa",
+          "Mostrar o papel em cada contrato"
+        ]
+      },
+      {
+        "id": "hu012-msg006",
+        "tipo": "regra",
+        "titulo": "Qual é o texto da MSG006?",
+        "hoje": "A RF033 cita a MSG006, mas a tabela de mensagens da análise vai só até a MSG005. A história diz 'Não há contratos que demandam atenção no momento.'",
+        "opcoes": [
+          "Vale o texto da história",
+          "Outro texto, anotado abaixo"
+        ]
+      },
+      {
+        "id": "hu012-pessoa",
+        "tipo": "tecnico",
+        "titulo": "A pessoa logada continua sendo achada pelo portal-rs?",
+        "hoje": "O idPessoa (que vira idGestor e idFiscal) vem do portal-rs legado, porque o gateway de usuários estava com a assinatura inativa. A definição é usar o gateway.",
+        "opcoes": [
+          "Passa para o gateway (portal/usuarios) quando a assinatura voltar",
+          "Fica no portal-rs por ora"
+        ]
+      },
+      {
+        "id": "hu012-padrao",
+        "tipo": "tecnico",
+        "titulo": "Perfil sem painel próprio deve cair no painel do gestor?",
+        "hoje": "No CatalogoPainelPorPerfil, perfil desconhecido ou vazio abre o painel do gestor e do fiscal.",
+        "opcoes": [
+          "Serve",
+          "Deve abrir a Listagem de contratos",
+          "Deve mostrar acesso negado"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hu013",
+    "titulo": "HU-013 · Fornecedor",
+    "pbi": "PBI #22346",
+    "intro": "História da Brenda Silva, task #22348. Análise da Marcella Fontoura Silva Zupelli, task #22607. Corte de escopo, se houver, é da Wanessa Santos de Aquino.",
+    "regra": [
+      "O painel é do fornecedor: contratos em execução em que a empresa é a contratada, em qualquer órgão. A história pede valor total, valor empenhado, total de notas fiscais, total liquidado, saldo disponível e consumo.",
+      "O glossário aponta valor empenhado para ORF_EMPENHO_SCO.VALOR_EMPENHO e total liquidado para ORF_EMPENHO_SCO.SALDO_LIQUIDADO. Nota fiscal, saldo disponível e consumo estão sem origem. A fórmula do consumo ficou em aberto na própria análise.",
+      "As faixas são de 30, 60, 90 e 120 dias a partir do fim da vigência atual, e a história manda considerar aditivo de prazo já assinado. A lista da empresa não traz o aditivo separado.",
+      "Em 09/11/2026 o Alexandre tirou empenho, liquidação, pagamento e saldos do SISLOG: a busca é na fonte financeira, pelo número do processo, e o cálculo já vem pronto. Valor do contrato e valor mensal continuam no SISLOG. Nota fiscal, ateste e data da nota não vêm da formalização nem do SIAFIC. O fiscal informa ao subir a nota no módulo. A Wanessa fechou que é manual. Ele não nomeou o saldo disponível nem a fórmula do percentual."
+    ],
+    "tecnico": [
+      "A lista sai de POST /api/Contrato/consultarContratoPelaEmpresa?CpfCnpjEmpresa={documento}&SomenteVigente=true, corpo {}. Sem corpo o firewall responde 403. Empresa não encontrada (HTTP 400) vira painel vazio. O documento vem da sessão.",
+      "Já no código (status de 11/11/2026): o perfil Fornecedor abre PainelFornecedor/Inicio como primeira tela. A consulta é consultarContratoPelaEmpresa com SomenteVigente=true e o CPF ou CNPJ da sessão; sem documento na sessão, o painel lê o CPF no portal do menu (portal-rs). Empresa não encontrada vira lista vazia, não falha de carga. Entram só contratos dessa empresa, de qualquer órgão.",
+      "A tela mostra o valor total (soma de valorAquisicao), as faixas de 30, 60, 90 e 120 dias a partir de dataFimVigencia e a fila com órgão, objeto, número e fim da vigência. Órgão e número filtram juntos e recalculam o valor total e os empenhos. Clicar numa faixa restringe a lista. Abrir um contrato leva ao detalhe pelo id. A busca 'ERRO' simula a falha de carga. Valores em real e datas em dd/MM/yyyy.",
+      "Valor empenhado, valor liquidado e saldo de empenho somam os empenhos do SIOFI pelo processo dos contratos já filtrados. Se o SIOFI falhar, esses três ficam com traço e o resto do painel carrega.",
+      "O que falta, pelo status: (1) notas fiscais emitidas, saldo disponível e consumo: a API da empresa não traz esses números, os campos existem no modelo e não são preenchidos, e a tela esconde os três cartões; (2) Definir como página inicial: o botão responde que a ação ainda não está disponível, e a preferência não é gravada (sem preferência, o fornecedor já cai no painel); (3) vigência com aditivo: as faixas usam dataFimVigencia, sem recalcular pelos aditivos de prazo assinados; (4) mensagens: com a faixa vazia, o título é o da busca sem resultado, e sem nenhum contrato o título também não é o da história.",
+      "Prova em 10/11/2026 com o documento 46572336000120: 9 linhas, 5 contratos, 3 com fim hoje ou depois. O primeiro vigente é o 151299, processo 202300004081354. SomenteVigente=true ainda devolveu 151506 (fim 15/04/2025) e 151792 (fim 09/11/2024). A soma das 9 linhas dá R$ 38.190,80 porque a linha repetida entra de novo. O vencido cai na faixa de 30 dias com a legenda Vencido. O código ainda não descarta duplicata nem vencido.",
+      "Os empenhos saem de GET {UrlServicoSiofi}api/empenho/listarPorProcesso?numeroProcesso=, sem token. Homologação: https://orcahomolog.intra.goias.gov.br/siofi-api/. Produção está com a URL vazia. Se o SIOFI falha, valor empenhado, valor liquidado e saldo de empenho ficam com traço e o resto carrega.",
+      "No processo 202300004081354, 5 empenhos (2023.1701.009.00371 a 2026.1701.055.00248): valorEmpenho R$ 27.150,23, valorLiquidado R$ 5.644,40, valorPago R$ 5.506,61, saldoEmpenho R$ 7.529,51, saldoLiquidado R$ 5.476,99, saldoPago R$ 5.271,19. O código soma valorLiquidado. O glossário cita SALDO_LIQUIDADO. As listas de liquidação e de ordem de pagamento vêm vazias nesse GET.",
+      "O host do SIOFI não resolve no DNS do sistema. Abre no navegador pelo ZTNA, porta 443. O Bruno no terminal para em ENOTFOUND. Empenhado (R$ 27.150,23) passa do valor do contrato (R$ 10.279,76). Não há saldo previsto nem percentual pronto."
+    ],
+    "perguntas": [
+      {
+        "id": "hu013-liquidado",
+        "tipo": "regra",
+        "titulo": "O total liquidado é qual campo do glossário?",
+        "hoje": "O glossário cita SALDO_LIQUIDADO. No processo de prova, saldoLiquidado é R$ 5.476,99 e valorLiquidado é R$ 5.644,40. O código soma o segundo.",
+        "opcoes": [
+          "saldoLiquidado, como o glossário",
+          "valorLiquidado, como o código"
+        ]
+      },
+      {
+        "id": "hu013-disponivel",
+        "tipo": "regra",
+        "titulo": "O que é o saldo disponível?",
+        "hoje": "A análise não indica a origem. A tela mostra saldo de empenho (R$ 7.529,51 no processo de prova), que é outro campo.",
+        "opcoes": [
+          "É o saldo de empenho",
+          "É outra conta, anotada abaixo",
+          "Sai da tela"
+        ]
+      },
+      {
+        "id": "hu013-consumo",
+        "tipo": "regra",
+        "titulo": "Qual é a fórmula do consumo?",
+        "hoje": "A fórmula ficou em aberto na análise. O SIOFI não manda percentual nem saldo previsto. valorMensalContrato não é essa conta.",
+        "opcoes": [
+          "A fórmula foi definida na reunião",
+          "Sai da tela",
+          "Espera um campo da API"
+        ]
+      },
+      {
+        "id": "hu013-nota",
+        "tipo": "regra",
+        "titulo": "A nota fiscal sai do dashboard?",
+        "hoje": "Em 09/11 a Wanessa fechou que a nota é manual, preenchida pelo fiscal no módulo. Não há campo na formalização nem no SIOFI.",
+        "opcoes": [
+          "Sai do dashboard",
+          "Permanece no dashboard"
+        ]
+      },
+      {
+        "id": "hu013-vigencia",
+        "tipo": "regra",
+        "titulo": "A faixa usa só o fim que a lista manda?",
+        "hoje": "A história manda considerar aditivo de prazo já assinado. O código usa a dataFimVigencia da lista da empresa e não recalcula pelos aditivos. É a mesma dúvida da HU-012: se o campo já é o fim atual, a regra está coberta.",
+        "opcoes": [
+          "dataFimVigencia já inclui o aditivo assinado",
+          "Ainda falta compor o aditivo de prazo"
+        ]
+      },
+      {
+        "id": "hu013-lista",
+        "tipo": "tecnico",
+        "titulo": "A lista vigente pode repetir contrato e trazer vencido?",
+        "hoje": "SomenteVigente=true devolveu 9 linhas, 5 contratos, e dois com fim em 2024 e 2025. A soma conta a linha repetida. O ajuste ainda não está no código: um registro por id e descartar fim anterior a hoje.",
+        "opcoes": [
+          "Pode ajustar no código, sem API nova",
+          "A API é que deve deixar de mandar duplicata e vencido"
+        ]
+      },
+      {
+        "id": "hu013-producao",
+        "tipo": "tecnico",
+        "titulo": "Qual é a URL do SIOFI em produção?",
+        "hoje": "Homologação está preenchida. appsettings.Producao.json está com UrlServicoSiofi vazio. Sem essa URL o painel de produção não consulta empenho.",
+        "opcoes": [
+          "A URL foi informada na reunião",
+          "Continua em aberto"
+        ]
+      },
+      {
+        "id": "hu013-cartoes",
+        "tipo": "regra",
+        "titulo": "Notas fiscais, saldo disponível e consumo: esconder ou mostrar com traço?",
+        "hoje": "Sem origem, a tela do Fornecedor esconde os três cartões. Nos outros painéis, o que falta aparece com traço e a legenda 'A API ainda não informa este indicador.'",
+        "opcoes": [
+          "Esconder, como está",
+          "Mostrar com traço, como nos outros painéis"
+        ]
+      },
+      {
+        "id": "hu013-msg",
+        "tipo": "regra",
+        "titulo": "Os títulos das mensagens seguem o texto da história?",
+        "hoje": "Faixa vazia: a história pede 'Não há contratos correspondentes ao indicador ou à faixa de vencimento selecionada.', e a tela usa o título da busca sem resultado. Sem nenhum contrato: a história pede 'Não há contratos em execução vinculados ao seu cadastro.', e esse texto fica só no complemento.",
+        "opcoes": [
+          "Ajustar os títulos para o texto da história",
+          "Os textos da tela servem"
+        ]
+      },
+      {
+        "id": "hu013-empresa",
+        "tipo": "tecnico",
+        "titulo": "De onde vem o CNPJ da empresa do fornecedor?",
+        "hoje": "A consulta pede o CPF ou CNPJ da empresa. Sem documento na sessão, o painel lê o CPF no portal-rs legado. Quem entra é o preposto, uma pessoa, e não a empresa. Na entrada nova GCG/sislog, o d traz o CPF do usuário, sem campo de empresa.",
+        "opcoes": [
+          "O SISLOG manda o CNPJ da empresa no d",
+          "O GCG acha a empresa pelo CPF do preposto",
+          "Ainda não definido"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hu014",
+    "titulo": "HU-014 · Procurador Setorial",
+    "pbi": "PBI #22350",
+    "intro": "História da Brenda Ferreira Lima da Silva, task #22351. Análise v1 da Marcella Fontoura Silva Zupelli, task #22612. A spec de publicado foi aplicada no código em 10/11/2026.",
+    "regra": [
+      "A análise v1 pede demandas pendentes de análise: encaminhadas à Procuradoria e ainda sem manifestação. O indicador se chamaria Demandas pendentes. O item entraria depois de Encaminhar para Procuradoria. O glossário inclui também o que foi destinado ao próprio usuário.",
+      "Em 09/11/2026 a Suellen fechou que aditivo e apostilamento contam quando estão publicados. O Alexandre tratou a pendência de análise como decisão de negócio, não como campo que ele vá criar. O SISLOG não tem status de pendência, data de encaminhamento, remetente, destinatário nem versão.",
+      "O risco: item publicado já passou pela análise. O painel mostra o que foi concluído, não o que espera o Procurador.",
+      "Dúvidas e comunicações estão na análise (RF009, RF012, RF015, RF022). Não há aviso no SISLOG. Manifestação, parecer, histórico e versões (RF024 a RF029) ficaram fora do recorte: o GCG não grava manifestação.",
+      "Sem o registro no Azure, o roteiro #24202 e o teste #24203 seguem a v1 e reprovam o que está na tela. Quem registra pode ser comentário na PBI, análise v2 ou corte de escopo da Wanessa.",
+      "Mensagens da análise: MSG001 'Não há demandas pendentes de sua atuação no momento.'; MSG002 'Não há demandas pendentes correspondentes ao indicador selecionado.'; MSG003 'Não foi possível carregar todas as informações do Dashboard. Tente novamente.'; MSG004 'Não foi possível acessar o item da demanda selecionada. Tente novamente.'"
+    ],
+    "tecnico": [
+      "Já no código (status de 11/11/2026), seguindo o combinado em 09/11 de listar o publicado: consulta consultaContratos com aditivo ou apostilamento, no órgão da sessão quando ele existe, até quatro páginas de 50. Em cada contrato lê aditivos e apostilamentos. Entra só o item com publicadoPncp e linkPncp absoluto.",
+      "Cartões 'Aditivos e apostilamentos publicados', 'Aditivos publicados' e 'Apostilamentos publicados', do mais antigo para o mais recente (publicação no aditivo, assinatura no apostilamento). Clicar no cartão filtra a lista. Abrir o item leva ao detalhe do contrato, e não ao aditivo ou apostilamento. Falha em qualquer leitura derruba o painel inteiro. 'Dúvidas e comunicações' fica com traço.",
+      "Falta, e a API não entrega: demanda pendente, remetente, parecer, tirar a pendência depois da resposta, histórico da manifestação e nova demanda quando o item é reencaminhado. A página inicial continua sem preferência gravada.",
+      "A tela ainda diz 'demandas' no rodapé ('N demandas em N contratos') e no texto para leitor de tela ('Demandas pendentes'). Com o sentido de publicado, o texto coerente seria 'itens publicados'.",
+      "A spec citou busca por número ou fornecedor. A tela não tem o campo. Se houvesse, o termo iria ao SISLOG como número do contrato, e o nome do fornecedor não acharia nada.",
+      "O painel lê até 200 contratos por carga, porque são duas chamadas por contrato. Acima disso, o cartão do total avisa 'consulta limitada a 200 contratos'. Esse teto não está na análise nem na spec. Falha da consulta derruba o painel inteiro, sem números parciais."
+    ],
+    "perguntas": [
+      {
+        "id": "hu014-publicado",
+        "tipo": "regra",
+        "titulo": "O painel fecha com o que está publicado no PNCP?",
+        "hoje": "A análise pede pendência de análise. O código lista publicado. Item publicado já passou pela atuação do Procurador.",
+        "opcoes": [
+          "Sim, publicado no PNCP vale",
+          "Não: a pendência de análise continua na história"
+        ]
+      },
+      {
+        "id": "hu014-azure",
+        "tipo": "regra",
+        "titulo": "Quem registra essa mudança no Azure?",
+        "hoje": "Sem o registro, o roteiro #24202 e o teste #24203 testam a v1 e reprovam.",
+        "opcoes": [
+          "Comentário na PBI",
+          "Análise v2",
+          "A Wanessa registra o corte de escopo"
+        ]
+      },
+      {
+        "id": "hu014-duvidas",
+        "tipo": "regra",
+        "titulo": "Dúvidas e comunicações saem da história?",
+        "hoje": "O cartão está com traço. Não há aviso nem destinatário no SISLOG.",
+        "opcoes": [
+          "Saem da história",
+          "O cartão permanece indisponível"
+        ]
+      },
+      {
+        "id": "hu014-msg",
+        "tipo": "regra",
+        "titulo": "Quais textos valem para MSG001 a MSG004?",
+        "hoje": "A tela fala em publicado. A MSG002 repete a MSG001. O rodapé ainda diz demandas.",
+        "opcoes": [
+          "Valem os textos da tela",
+          "Valem os textos da análise",
+          "Os textos novos foram ditados na reunião"
+        ]
+      },
+      {
+        "id": "hu014-destinatario",
+        "tipo": "regra",
+        "titulo": "O recorte é só o órgão da sessão?",
+        "hoje": "O glossário inclui demanda destinada ao próprio usuário. A API não tem destinatário. O painel usa o órgão da sessão.",
+        "opcoes": [
+          "Só o órgão da sessão",
+          "Também o destinado ao usuário, quando houver campo"
+        ]
+      },
+      {
+        "id": "hu014-busca",
+        "tipo": "tecnico",
+        "titulo": "A busca entra na tela ou sai do aceite?",
+        "hoje": "Não há campo. Busca por fornecedor não funcionaria: o termo iria como número do contrato.",
+        "opcoes": [
+          "Sai do aceite",
+          "A tela ganha busca por número do contrato",
+          "A tela ganha busca por número e fornecedor"
+        ]
+      },
+      {
+        "id": "hu014-limite",
+        "tipo": "tecnico",
+        "titulo": "O limite de 200 contratos por carga serve?",
+        "hoje": "Duas chamadas por contrato. Acima de 200, a lista corta e o cartão avisa.",
+        "opcoes": [
+          "Serve",
+          "O limite muda"
+        ]
+      },
+      {
+        "id": "hu014-abrir",
+        "tipo": "tecnico",
+        "titulo": "Abrir a linha na aba do contrato, sem selecionar o termo, serve?",
+        "hoje": "A análise pede abrir o aditivo ou o apostilamento direto. A tela abre a aba correspondente, sem posicionar no item.",
+        "opcoes": [
+          "Serve abrir a aba",
+          "Precisa abrir o termo"
+        ]
+      },
+      {
+        "id": "hu014-falha",
+        "tipo": "tecnico",
+        "titulo": "Falha em um contrato deve derrubar o painel inteiro?",
+        "hoje": "No Procurador, qualquer leitura de aditivo ou apostilamento que falhe derruba o painel. No Coordenador (HU-016), falha de equipe ou de ocorrência vira ressalva e o resto aparece. A análise da HU-014 pede a MSG003 ('Não foi possível carregar todas as informações...').",
+        "opcoes": [
+          "Derrubar, como está: sem números parciais",
+          "Mostrar o que carregou, com ressalva, como na HU-016"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hu015",
+    "titulo": "HU-015 · Analista Financeiro",
+    "pbi": "PBI #22541",
+    "intro": "História da Brenda Ferreira Lima da Silva, task #23507. Análise v2 da Marcella Fontoura Silva Zupelli, task #23181, com saldo de anulação. A instrução de código foi aplicada em 10/11/2026.",
+    "regra": [
+      "A análise pede os dados de empenho, anulação, liquidação e pagamento do SIAFIC, com data e hora da última atualização. O painel lê o SIOFI. O Alexandre, em 09/11, descreveu essa fonte pelo processo, sem usar o nome SIOFI.",
+      "Valor da contratação anual, reajuste, valor atualizado e a composição com aditivo e apostilamento de valor estão na análise. A tela soma um único campo valor do contrato.",
+      "Há um indicador 'Valor Pago/Liquidado'. A tela separou valor liquidado e valor pago, porque os números não são iguais.",
+      "Saldo a liquidar, no RF016, é saldo empenhado menos saldo liquidado. O código faz essa conta com saldoEmpenho e saldoLiquidado. O SIOFI também manda valorLiquidado, com outro valor. A conta pode ficar negativa.",
+      "Saldo disponível é o valor do contrato ainda não executado. A análise não escreve a fórmula. Sem ela, a régua de consumo (percentual liquidado e percentual empenhado sobre o valor total) também não fecha.",
+      "Saldo de anulação é valor da contratação menos o valor total do IPOF. O empenho do SIOFI não traz IPOF nem valor total do IPOF. Com o filtro de IPOF preenchido, o painel responde que não encontrou contrato.",
+      "Os empenhos deveriam ser os dos exercícios abrangidos pela vigência. A soma pega todos os empenhos do processo.",
+      "Falha do SIAFIC deveria mostrar a MSG004. A tela deixa os saldos com traço. Com filtro de natureza ou de empenho e o SIOFI fora, a carga inteira falha, porque o filtro não teria como ser aplicado."
+    ],
+    "tecnico": [
+      "Já no código (status de 11/11/2026): contratos vigentes do órgão, com fimVigenciaDe igual a hoje, até quatro páginas de 50. Sem órgão na sessão, fica na primeira página e a tela avisa. Mostra a quantidade, a soma de valor e as faixas até 60, 61–90 e 91–120 dias (número, fornecedor e fim). A faixa inicial é 'até 60 dias'; a história pede 90 como padrão. Número do contrato e nome do fornecedor filtram; CPF ou CNPJ vai em cpfCnpjFornecedor.",
+      "O SIOFI, pelo processo, preenche saldo empenhado, saldo a liquidar (saldo empenhado menos saldo liquidado, mesmo negativo), valor liquidado e valor pago, em blocos separados. Natureza da despesa e número do empenho restringem a soma ao empenho que contém o texto. Falha do SIOFI sem esses filtros deixa os saldos com traço; valor e vigência continuam. Com filtro de empenho, a falha vira falha de carga. Abrir um contrato da faixa leva ao detalhe pelo idContrato.",
+      "Falta: SIAFIC (a data no topo diz que a API não informa), IPOF, saldo de anulação (contratação menos IPOF), saldo disponível, valor anual, reajuste, valor atualizado com aditivo e apostilamento, valor estimado mensal, percentuais de consumo, de empenho e de liquidação, e a evolução mensal e anual. O filtro de IPOF não tem campo no empenho do SIOFI, então o painel não devolve resultado.",
+      "Prova no processo 202300004081354, 5 empenhos, natureza 3.3.90.39.01 Água e Esgoto: saldo empenhado R$ 7.529,51, saldo liquidado R$ 5.476,99, saldo a liquidar calculado R$ 2.052,52, valor liquidado R$ 5.644,40, valor pago R$ 5.506,61, valor empenhado R$ 27.150,23 (não usado neste painel).",
+      "Valor estimado mensal não tem campo. Evolução mensal e anual não saem desta lista: as liquidações aninhadas vêm vazias. Consultar em Gerir Contratos abre a listagem com o nome e a quantidade do indicador, sem filtrar os contratos da métrica nem os filtros do painel. Definir como página inicial continua só no toast, como nos outros painéis.",
+      "UrlServicoSiofi de produção está vazia. Homologação aponta para https://orcahomolog.intra.goias.gov.br/siofi-api/."
+    ],
+    "perguntas": [
+      {
+        "id": "hu015-fonte",
+        "tipo": "regra",
+        "titulo": "O SIOFI substitui o SIAFIC como fonte?",
+        "hoje": "Para discutir: esta resposta só se sustenta se, no bloco Comum, o SIOFI for a porta para o SIAFIC (o financeiro vem do SIAFIC). RF005 e RNF010 pedem SIAFIC. Os números vêm do SIOFI. A data e hora de atualização não existem nessa resposta (RF007).",
+        "opcoes": [
+          "SIOFI é a fonte e a data de atualização sai da história",
+          "SIOFI é a fonte e a data permanece, com outra origem",
+          "Esperar o SIAFIC"
+        ]
+      },
+      {
+        "id": "hu015-liquidado",
+        "tipo": "regra",
+        "titulo": "O saldo liquidado do RF016 é qual campo?",
+        "hoje": "O código usa saldoLiquidado (R$ 5.476,99). valorLiquidado no mesmo processo é R$ 5.644,40. A conta do saldo a liquidar muda conforme a escolha.",
+        "opcoes": [
+          "saldoLiquidado",
+          "valorLiquidado"
+        ]
+      },
+      {
+        "id": "hu015-pago",
+        "tipo": "regra",
+        "titulo": "Valor Pago/Liquidado fica em dois blocos ou volta a ser um?",
+        "hoje": "A análise pede um indicador. A tela mostra liquidado R$ 5.644,40 e pago R$ 5.506,61.",
+        "opcoes": [
+          "Dois blocos, como está",
+          "Um bloco só com o liquidado",
+          "Um bloco só com o pago"
+        ]
+      },
+      {
+        "id": "hu015-anual",
+        "tipo": "regra",
+        "titulo": "A soma do valor do contrato atende ao valor da contratação anual?",
+        "hoje": "RF008 pede valor anual. O bloco soma o valor do SISLOG, que é o valor do contrato, sem separar reajuste nem aditivo.",
+        "opcoes": [
+          "Sim, esse valor já é o anual",
+          "Não: ainda falta anual, reajuste e aditivo"
+        ]
+      },
+      {
+        "id": "hu015-vigencia",
+        "tipo": "regra",
+        "titulo": "Recortar os empenhos pela vigência?",
+        "hoje": "RF018 pede os exercícios da vigência. A soma pega todos os empenhos do processo, inclusive de exercício anterior.",
+        "opcoes": [
+          "Não recorta: soma o processo",
+          "Recorta pela vigência"
+        ]
+      },
+      {
+        "id": "hu015-disponivel",
+        "tipo": "regra",
+        "titulo": "Qual é a conta do saldo disponível e a base do consumo?",
+        "hoje": "Saldo disponível está com traço. A régua não aparece. A análise não escreve a fórmula (RF017, RF020 a RF023).",
+        "opcoes": [
+          "Fica fora até haver fórmula",
+          "A fórmula foi definida na reunião"
+        ]
+      },
+      {
+        "id": "hu015-ipof",
+        "tipo": "regra",
+        "titulo": "De onde vem o total do IPOF? O filtro sai da tela?",
+        "hoje": "Saldo de anulação é contratação menos o total do IPOF. O empenho não traz IPOF. Com o filtro preenchido, a mensagem é a de nenhum contrato (RF014, RF037).",
+        "opcoes": [
+          "O filtro sai da tela enquanto não houver fonte",
+          "O filtro fica e mostra aviso, em vez de nenhum contrato",
+          "Há uma fonte para o total do IPOF"
+        ]
+      },
+      {
+        "id": "hu015-falha",
+        "tipo": "tecnico",
+        "titulo": "SIOFI fora e filtro de empenho preenchido: o que a tela faz?",
+        "hoje": "Sem o filtro, os saldos ficam com traço, sem a MSG004. Com natureza ou empenho, a carga inteira falha (RF049).",
+        "opcoes": [
+          "Erro, como está",
+          "Aviso de que o filtro não foi aplicado",
+          "Saldos com traço e a MSG004"
+        ]
+      },
+      {
+        "id": "hu015-chamadas",
+        "tipo": "tecnico",
+        "titulo": "Uma chamada ao SIOFI por processo, em sequência, serve?",
+        "hoje": "200 processos diferentes são 200 chamadas por carga, e de novo a cada filtro. Não há consulta em lote nesse swagger.",
+        "opcoes": [
+          "Serve",
+          "Precisa de outro desenho de carga"
+        ]
+      },
+      {
+        "id": "hu015-escopo",
+        "tipo": "regra",
+        "titulo": "O painel do Analista Financeiro mostra só o órgão dele?",
+        "hoje": "A história de acesso deixa o Analista Financeiro consultar contratos de todos os órgãos. A ata de 06/10 diz que 'limpar filtros' volta para a visão consolidada do órgão. O painel usa o órgão da sessão.",
+        "opcoes": [
+          "Só o órgão de alocação",
+          "Todos os órgãos, com filtro de órgão"
+        ]
+      },
+      {
+        "id": "hu015-faixa",
+        "tipo": "regra",
+        "titulo": "A faixa de vencimento abre em 60 ou em 90 dias?",
+        "hoje": "A tela abre em 'até 60 dias'. A história pede 90 como padrão, com as faixas de 60, 90 e 120.",
+        "opcoes": [
+          "Abrir em 90 dias, como a história",
+          "Até 60 dias, como está"
+        ]
+      },
+      {
+        "id": "hu015-evolucao",
+        "tipo": "tecnico",
+        "titulo": "De onde sai a evolução mensal e anual do consumo?",
+        "hoje": "A lista do SIOFI por processo vem com as liquidações vazias, então não há liquidado por mês. A análise pede a evolução mensal e anual (RF027 a RF031).",
+        "opcoes": [
+          "Fica fora até haver fonte",
+          "Usar as liquidações com data de outra API",
+          "Sai da história"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hu016",
+    "titulo": "HU-016 · Coordenador de Contratos",
+    "pbi": "PBI #22542",
+    "intro": "História da Brenda Ferreira Lima da Silva, task #23508. Análise da Marcella Fontoura Silva Zupelli, task #22622. Consumo, equipe e ocorrências foram ligados no código em 10/11/2026.",
+    "regra": [
+      "O painel é do órgão, independentemente de o usuário ser gestor ou fiscal do contrato. A história pede vigentes com status Publicado, valor total com aditivo e apostilamento de valor, faixas até 30, 60, 90 e 120 dias pelo fim da vigência atual, maior contrato, vencimentos dos 12 meses seguintes, valor por unidade gestora, quantidade e valor por categoria, ranking dos 10 fornecedores e a listagem.",
+      "Consumo, no RF032, é valor liquidado dividido pelo valor total atualizado, na vigência atual. O glossário também fala em percentual liquidado e percentual empenhado. O RF033 manda obter a liquidação do SIAFIC.",
+      "Equipe: gestor, fiscal e os suplentes, com destaque para contrato sem suplente do gestor. Ocorrências dos últimos 15 dias, da mais recente para a mais antiga, com número, contratada, tipo, data e responsável. Avisos da aba Avisos, no mesmo período. Sem ocorrências, MSG001. Sem avisos, MSG002.",
+      "Filtros: situação (padrão todos), unidade gestora (padrão todas), categoria (padrão todas) e busca por número, contratada, gestor, objeto ou processo, inclusive por parte do termo.",
+      "A coluna de valor da tela se chama Valor, não Valor atualizado, porque a lista não separa o valor inicial do aditivo."
+    ],
+    "tecnico": [
+      "Já no código (status de 11/11/2026): contratos do órgão, sem exigir que a pessoa seja gestor ou fiscal. Vigentes usam fimVigenciaDe; encerrados, fimVigenciaAte. Com órgão, até quatro páginas de 50; sem órgão, só a primeira. A tela mostra a contagem, a soma de valor, o maior contrato (número, contratada e valor, com abertura), as faixas de 30, 60, 90 e 120 dias, os próximos 12 meses, o ranking dos 10 fornecedores e a lista (número, contratada, objeto, processo, fim e valor). A busca cobre número, processo, fornecedor, gestor, fiscal e objeto, inclusive trecho. 'ERRO' na busca simula a falha de carga.",
+      "Ocorrências dos últimos 15 dias vêm do endpoint da aba do contrato; se não houver, a tela diz isso. Falha do SIOFI tira só o consumo. Falha de equipe ou de ocorrência fica numa ressalva da consulta, sem derrubar o painel.",
+      "Falta: vigente pelo status Publicado (hoje a conta é pela data de fim), valor com aditivo e apostilamento, objeto no cartão do maior contrato, unidade gestora, categoria e tipo, avisos dos últimos 15 dias e a evolução do consumo dentro do contrato. Unidade e categoria no filtro não têm campo na consulta, então o painel não devolve resultado.",
+      "Consumo, desde 10/11: para cada processo distinto, soma de valorLiquidado do SIOFI dividida pelo valor do SISLOG. No processo 202300004081354 dá cerca de 55% (R$ 5.644,40 sobre R$ 10.279,76). Sem valor, o percentual fica em zero. Se o SIOFI falha, a coluna some e o cartão volta ao traço. Valor e faixas continuam. O empenhado desse processo (R$ 27.150,23) passa do valor do contrato, então um percentual empenhado passaria de 100%.",
+      "Equipe: GET /api/Contrato/{id}/equipe, a mesma chamada da aba Equipe. A aba do painel mostra gestor e fiscal. O cartão Sem suplente do gestor conta o contrato cuja equipe foi lida e não tem a função Suplente. A API normaliza a função para Fiscal, Gestor, Interveniente ou Suplente. Não diz se o suplente é do gestor ou do fiscal. Também não traz CPF: a segunda linha fica vazia. Falha de um contrato não derruba o painel. Se nenhuma equipe for lida, cartão e aba ficam no traço.",
+      "Unidade gestora e categoria não vêm em DtoGestaoContratoItem. orgao é o órgão, não a unidade. Filtro de unidade ou de categoria devolve o painel vazio. A API manda status e publicadoPncp, e o vigente do painel não usa o status.",
+      "São, no pior caso, uma chamada de equipe e uma de ocorrências por contrato, mais uma do SIOFI por processo, em cima de até 200 contratos. Produção segue com UrlServicoSiofi vazio."
+    ],
+    "perguntas": [
+      {
+        "id": "hu016-valor",
+        "tipo": "regra",
+        "titulo": "O valor da lista já vale como valor total atualizado?",
+        "hoje": "Consumo, maior contrato e soma usam o valor do SISLOG. A coluna se chama Valor. A lista não separa aditivo nem apostilamento de valor (RF008, RF017).",
+        "opcoes": [
+          "Sim, esse valor já inclui aditivo e apostilamento",
+          "Não: ainda falta compor aditivo e apostilamento",
+          "Pode continuar se chamando Valor"
+        ]
+      },
+      {
+        "id": "hu016-consumo",
+        "tipo": "regra",
+        "titulo": "O consumo é só liquidado sobre o valor, ou também o percentual empenhado?",
+        "hoje": "O RF032 pede liquidado sobre o valor total atualizado. O glossário também cita percentual empenhado. No processo de prova o liquidado dá cerca de 55% e o empenhado passa de 100%.",
+        "opcoes": [
+          "Só liquidado sobre o valor",
+          "Também o percentual empenhado",
+          "Pode mostrar acima de 100%"
+        ]
+      },
+      {
+        "id": "hu016-suplente",
+        "tipo": "regra",
+        "titulo": "A função Suplente conta como suplente do gestor?",
+        "hoje": "A história pede destacar contrato sem suplente do gestor. A equipe devolve Suplente, sem dizer se é do gestor ou do fiscal. O cartão conta essa função.",
+        "opcoes": [
+          "Sim, Suplente conta",
+          "Só quando o texto disser que é do gestor",
+          "O cartão sai da história"
+        ]
+      },
+      {
+        "id": "hu016-vigente",
+        "tipo": "regra",
+        "titulo": "Vigente é pela data de fim ou pelo status Publicado?",
+        "hoje": "O RF006 pede status Publicado. O painel usa a data de fim. O contrato 151299 voltou Em Execução.",
+        "opcoes": [
+          "Pela data de fim, como está",
+          "Só status Publicado",
+          "Em Execução também conta como vigente"
+        ]
+      },
+      {
+        "id": "hu016-ausentes",
+        "tipo": "regra",
+        "titulo": "Unidade, categoria e avisos saem do dashboard?",
+        "hoje": "A lista não traz unidade nem categoria. Aviso não existe nessa API. Os três ficam com traço. Filtro de unidade ou categoria esvazia o painel.",
+        "opcoes": [
+          "Saem enquanto não houver campo",
+          "Ficam com traço"
+        ]
+      },
+      {
+        "id": "hu016-cpf",
+        "tipo": "regra",
+        "titulo": "O CPF do gestor e do fiscal sai da história?",
+        "hoje": "A equipe devolve nome e função. Não há CPF. A segunda linha da aba fica vazia.",
+        "opcoes": [
+          "Sai da história",
+          "Fica vazio até a API mandar o CPF"
+        ]
+      },
+      {
+        "id": "hu016-carga",
+        "tipo": "tecnico",
+        "titulo": "Uma chamada de equipe e uma de ocorrências por contrato servem?",
+        "hoje": "Até 200 contratos, mais uma chamada do SIOFI por processo. A lista de ocorrências percorre todas as páginas de cada contrato.",
+        "opcoes": [
+          "Serve",
+          "Precisa de outro desenho de carga"
+        ]
+      },
+      {
+        "id": "hu016-evolucao",
+        "tipo": "regra",
+        "titulo": "A evolução do consumo dentro do contrato entra neste ciclo?",
+        "hoje": "O painel mostra o consumo atual (valorLiquidado ÷ valor do contrato). A evolução ao longo da vigência não tem fonte por mês no SIOFI por processo.",
+        "opcoes": [
+          "Entra, se houver fonte com data",
+          "Fica para depois"
+        ]
+      }
+    ]
+  }
+];
+
+</script>
+<script>
+// Comportamento da página: desenhar, anotar, gravar no disco, baixar e imprimir.
+// Depende de js/pauta.js, carregado antes.
+
+function vazio() {
+  return { presentes: "", livre: "", itens: {} };
+}
+
+let armazenamentoOk = true;
+try {
+  localStorage.setItem(CHAVE + "-teste", "1");
+  localStorage.removeItem(CHAVE + "-teste");
+} catch (erro) {
+  armazenamentoOk = false;
+}
+
+function carregar() {
+  if (!armazenamentoOk) return vazio();
+  try {
+    const bruto = localStorage.getItem(CHAVE);
+    if (!bruto) return vazio();
+    const dado = JSON.parse(bruto);
+    dado.itens = dado.itens || {};
+    return dado;
+  } catch (erro) {
+    return vazio();
+  }
+}
+
+const ESTADO_PUBLICADO = {"presentes": "Marcella Fontoura Zupelli, Brenda Silva e Fabiana da Silva e Wellington", "livre": "Respostas transcritas de repostas.pdf (impressão de 11/11/2026, 11:53). O PDF chegou cortado: só vieram as páginas 1 a 16 de 23. Faltam HU-015 (falha do SIOFI e chamadas), toda a HU-016 e o bloco Comum. Nas anotações, o PDF só mostra a parte visível de cada caixa de texto.", "itens": {"hu012-corte": {"opcao": "Ainda sem conta: o cartão continua com traço", "nota": "Do status do código (11/11), a confirmar. A regra do saldo crítico não existe: CorteSaldoCritico está vazio, e o SIOFI não é chamado enquanto isso. O cartão aparece com traço de propósito.", "origem": "material"}, "hu012-assinatura": {"opcao": "Permanece com traço até haver fonte", "nota": "Do material, a confirmar. A assinatura está sendo integrada ao AssinaGO (#20658, back-end em andamento). A análise da assinatura deixa pendente 'como o documento assinado e sua situação serão apresentados no SISLOG'. Até isso existir, não há fonte para o estado da assinatura. Revisar o que foi dito em 09/11 (assinatura no SEI).", "origem": "material"}, "hu012-vigente": {"opcao": "Pela data, como está", "nota": "", "origem": "pdf-marcella"}, "hu012-fonte": {"opcao": "Sim, SIOFI pelo processo", "nota": "Do material, a confirmar. Alternativa no gateway: API de Dotações /empenhos/listar (exercício + órgão + CPF/CNPJ). Ela não filtra por processo nem por contrato; somaria todos os empenhos do fornecedor no órgão.\n\nDo status do código (11/11), a confirmar. O código já soma os empenhos do SIOFI pelo processo, mas só vai chamar quando a regra do corte existir.", "origem": "material"}, "hu012-campo": {"opcao": "", "nota": "Do material, a confirmar. Ata de 06/10 (Maires): chamar de 'saldo empenhado', porque o valor já desconta as anulações do empenho. Na API de Dotações, o campo é saldoEmpenho; há também saldoALiquidar e saldoAPagar.", "origem": "material"}, "hu012-recorte": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Cada papel lê no máximo quatro páginas de 50; se sobrar, a legenda avisa. A pesquisa por número ou fornecedor não enxerga os contratos que ficaram fora dessas páginas.", "origem": "material"}, "hu013-liquidado": {"opcao": "", "nota": "Do material, a confirmar. No estudo da API de Dotações (#24391), 'saldo liquidado' é a soma de saldoLiquidado, e o percentual de consumo usa esse valor. O glossário cita SALDO_LIQUIDADO.", "origem": "material"}, "hu013-disponivel": {"opcao": "É outra conta, anotada abaixo", "nota": "Do material, a confirmar. Estudo #24391 (aba Saldos): saldo disponível = soma de saldoAPagar da API de Dotações. Ata de 06/10 (painel do Analista): 'saldo disponível do contrato (valor ainda não executado)'. As duas definições não são iguais: confirmar qual vale para o fornecedor.", "origem": "material"}, "hu013-consumo": {"opcao": "", "nota": "Do material, a confirmar. Estudo #24391: percentual = saldo liquidado ÷ saldo previsto (valor do contrato), de 0 a 100, com duas casas; previsto zero dá zero. Ata de 06/10: consumo é o percentual já executado na vigência. HU-016 RF032: liquidado ÷ valor total atualizado.", "origem": "material"}, "hu013-nota": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. A API da empresa não traz notas fiscais emitidas. O campo existe no modelo e não é preenchido, e a tela esconde o cartão.", "origem": "material"}, "hu013-vigencia": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. As faixas usam a dataFimVigencia da consulta, sem recalcular pelos aditivos de prazo já assinados. Mesma dúvida da HU-012 (confirmar na API).", "origem": "material"}, "hu013-lista": {"opcao": "Pode ajustar no código, sem API nova", "nota": "Do material, a confirmar. História de acesso, Cenário 05 RN02: o Fornecedor vê 'somente os contratos vigentes ou ativos' da empresa. Descartar vencido e duplicata no código atende a regra.", "origem": "material"}, "hu013-producao": {"opcao": "Continua em aberto", "nota": "[início cortado no PDF] ...vazio no arquivo appsettings.Producao.json, impedindo a consulta de empenhos em produção.\n\nPróximo passo: solicitar à equipe responsável pelo SIOFI a URL oficial de produção e validar [fim cortado no PDF]", "origem": "pdf-marcella"}, "hu014-publicado": {"opcao": "Não: a pendência de análise continua na história", "nota": "O código atual lista contratos publicados, mas não contempla a pendência de análise exigida pela história. [pode haver continuação cortada no PDF]", "origem": "pdf-marcella"}, "hu014-azure": {"opcao": "A Wanessa registra o corte de escopo", "nota": "[início cortado no PDF] ...atualizando os critérios de aceite impactados.\n\nPróximo passo: após o registro, revisar o roteiro #24202 e o teste #24203 para que validem a versão aprovada, evitando reprovações baseadas na v1.", "origem": "pdf-marcella"}, "hu014-duvidas": {"opcao": "O cartão permanece indisponível", "nota": "[início cortado no PDF] ...definidos o fluxo, os destinatários e as regras de negócio.\n\nPróximo passo: confirmar com a PO se a implementação pertence a uma história futura ou se será formalmente retirada do escopo do painel.", "origem": "pdf-marcella"}, "hu014-msg": {"opcao": "Valem os textos da análise", "nota": "", "origem": "pdf-marcella"}, "hu014-destinatario": {"opcao": "", "nota": "Do material, a confirmar. História de acesso, Cenário 06, e ata de 06/10: o Procurador consulta todos os contratos, de qualquer órgão, e edita só os do órgão de alocação. O material não fala em demanda destinada ao usuário.\n\nDo status do código (11/11), a confirmar. A consulta usa o órgão da sessão quando ele existe.", "origem": "material"}, "hu014-busca": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. O status do Procurador não cita campo de busca. Na tela, o cartão filtra a lista.", "origem": "material"}, "hu014-limite": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Até quatro páginas de 50 contratos, e em cada contrato a leitura de aditivos e apostilamentos.", "origem": "material"}, "hu014-abrir": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Abrir o item leva ao detalhe do contrato. 'O clique não abre o aditivo ou o apostilamento em si, só o contrato.'", "origem": "material"}, "hu015-fonte": {"opcao": "SIOFI é a fonte e a data permanece, com outra origem", "nota": "[início cortado no PDF] ...atualização na resposta não justifica retirar o RF007.\n\nFormalizar com a PO a utilização do SIOFI como fonte dos valores financeiros, ajustando RF005 e RNF010. Manter o RF007, identificando uma fonte confiável para a data e [fim cortado no PDF]", "origem": "pdf-marcella"}, "hu015-liquidado": {"opcao": "saldoLiquidado", "nota": "Do material, a confirmar. Estudo #24391: saldo liquidado = soma de saldoLiquidado. Ata de 06/10: saldo a liquidar = saldo empenhado − saldo liquidado.", "origem": "material"}, "hu015-pago": {"opcao": "Dois blocos, como está", "nota": "", "origem": "pdf-marcella"}, "hu015-anual": {"opcao": "Não: ainda falta anual, reajuste e aditivo", "nota": "", "origem": "pdf-marcella"}, "hu015-vigencia": {"opcao": "Recorta pela vigência", "nota": "", "origem": "pdf-marcella"}, "hu015-disponivel": {"opcao": "A fórmula foi definida na reunião", "nota": "[início cortado no PDF] ...anual, os reajustes, os aditivos e o valor atualizado do contrato.\n\nNossa decisão até aqui: não considerar o RF008 atendido apenas pela soma do campo Valor, enquanto não houver comprovação de que esse campo representa o valor anual. [pode haver continuação cortada no PDF]\n\n(Obs. do Wellington: o texto fala do RF008, que é da pergunta do valor anual; a fórmula do saldo disponível não aparece na parte visível.)", "origem": "pdf-marcella"}, "hu015-ipof": {"opcao": "Há uma fonte para o total do IPOF", "nota": "Do material, a confirmar. Swagger da API de Dotações: o empenho traz numeroIpof e idIpof; a ordem de pagamento traz o IPOF com valorIpof, numeroContrato e anoContrato. Ata de 06/10: o 'saldo de anulação' foi questionado, porque a anulação é do empenho e não do contrato; a Brenda ia esclarecer com a Agnella, que o sugeriu.", "origem": "material"}, "hu015-falha": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Hoje: sem filtro de empenho, a falha do SIOFI deixa os saldos com traço e o resto carrega; com filtro de natureza ou empenho, vira falha de carga.", "origem": "material"}, "hu015-chamadas": {"opcao": "", "nota": "Do material, a confirmar. Com a API de Dotações, a carga seria uma chamada por fornecedor, órgão e exercício (/empenhos/listar), e não uma por processo. Mas a soma deixa de ser por contrato.", "origem": "material"}, "hu016-valor": {"opcao": "Não: ainda falta compor aditivo e apostilamento", "nota": "Do material, a confirmar. Ata de 06/10 (Larissa): o valor atualizado depende de cada aditivo e apostilamento (acréscimos, supressões, repactuações e reajustes), preenchidos à mão no SISLOG. A proposta é usar o último registro. A equipe técnica ia avaliar um campo 'valor atualizado' nas abas 5 e 6. Enquanto isso, a métrica pode usar o valor total inicial.", "origem": "material"}, "hu016-consumo": {"opcao": "", "nota": "Do material, a confirmar. Ata de 06/10 (painel do Analista): consumo é o percentual executado na vigência. Estudo #24391: liquidado ÷ previsto. Nada no material sobre percentual empenhado.\n\nDo teste na simulação do Localhost (11/11), a confirmar. Consumo = valorLiquidado do SIOFI ÷ valor do contrato. Na simulação, o cartão de consumo veio com traço: o SIOFI não respondeu (o host não resolve no DNS da máquina), e a falha tirou só o consumo.", "origem": "material"}, "hu016-suplente": {"opcao": "", "nota": "Do teste na simulação do Localhost (11/11), a confirmar. A equipe vem do mesmo endpoint da aba do contrato e dá para filtrar quem está sem suplente. Na simulação, o cartão 'Sem suplente do gestor' deu 200 em 200 contratos da SSP. Ou nenhuma equipe tem a função Suplente, ou a função vem com outro texto: vale olhar a resposta real da equipe antes de decidir.", "origem": "material"}, "hu016-vigente": {"opcao": "Só status Publicado", "nota": "Do material, a confirmar. Ata de 06/10 (Larissa): 'vigentes' no lugar de 'em execução'; são os contratos publicados no SISLOG e não finalizados. Cuidado: na HU-012, a Marcella marcou 'pela data'.", "origem": "material"}, "hu016-ausentes": {"opcao": "Ficam com traço", "nota": "Do material, a confirmar. Ata de 06/10: unidade gestora, categoria e tipo de contratação foram validados com a Larissa e a Maires como métricas e filtros. O negócio quer os três. Falta campo na API.\n\nDo status do código (11/11), a confirmar. Unidade e categoria no filtro não têm campo na consulta, então o painel não devolve resultado.", "origem": "material"}, "hu016-cpf": {"opcao": "Sai da história", "nota": "Do material, a confirmar. Ata de 06/10: nesta primeira versão do MVP, não haverá relatório de gestores com CPF e nome, nem vinculação com o RH Net; isso fica para a segunda etapa de integrações.", "origem": "material"}, "hu016-carga": {"opcao": "", "nota": "Do teste na simulação do Localhost (11/11), a confirmar. Na simulação, o painel do Coordenador levou cerca de 26 segundos para 200 contratos (equipe e ocorrências por contrato, mais o SIOFI). Isso pesa a favor de outro desenho de carga.", "origem": "material"}, "comum-home": {"opcao": "", "nota": "Do material, a confirmar. A página inicial está no escopo: ata de 06/10 ('o usuário poderá definir a página inicial após o login, entre o Painel e a listagem Gerir Contratos') e HU-012 Cenário 10. Se não houver preferência, abre o painel do perfil (HU-012, RN06). O material não diz em qual ciclo entra.\n\nDo status do código (11/11), a confirmar. Nos painéis do Fornecedor e do Procurador, o botão responde que a ação ainda não está disponível, e a preferência entre o painel e Gerir Contratos não é gravada. Sem preferência, cada perfil já cai no seu painel.", "origem": "material"}, "comum-producao": {"opcao": "", "nota": "Do material, a confirmar. Nada no material sobre a URL de produção do SIOFI. Se a fonte for a API de Dotações, a produção segue o gateway: UrlServicoPortal de produção = https://api.go.gov.br/ (appsettings.Producao.json do GCG).", "origem": "material"}, "comum-siafic": {"opcao": "Sim: o SIOFI lê o SIAFIC e pode ser a porta de entrada", "nota": "Do material, a confirmar. Existe no gateway a API Financeiro Dotações Orçamentárias v1.0 (financeiro/dotacoes-orcamentarias), estudada no #24391 dentro de 'Integrar SIAFIC' (#20680/#20681). O GCG já a usa na aba Saldos (ServicoIntegracaoSaldos). Ela traz natureza, IPOF, processo, liquidações com data e anulação. Limite: /empenhos/listar é por exercício + órgão + CPF/CNPJ do fornecedor, sem filtro por contrato. Nenhum documento diz que o SIOFI lê o SIAFIC. Ata de 06/10: dados de empenho, anulação, liquidação e pagamento vêm do SIAFIC, 'tendo o IPOF como origem da despesa'.\nFontes: done/22541 (ata de 06/10), em-construcao/20681/24391, docs/integracoes/INTEGRACOES.md do GCG.", "origem": "reuniao"}, "menu-cadastro": {"opcao": "", "nota": "Do material, a confirmar. No material aparecem dois Carlos: Carlos Wallace Santos Pereira (atendeu o chamado do container no Oracle Designer em 03/11, modelagem #23549) e Carlos Alberto Moraes Junior (Gestor de Contratos, em ata). Confirmar qual é o responsável pelo Portal. Nenhum documento registra o cadastro da sigla GCG.", "origem": "material"}, "menu-perfis": {"opcao": "Os nomes mudam: anotados abaixo", "nota": "Do material, a confirmar. História de acesso (Brenda, 25/10, #23670), RN02: Gestor; Fiscal; Fornecedor (Contratada/Preposto); Procurador Setorial; Analista Financeiro; Controle Interno e Externo (CGE/TCE); Coordenador de Contratos/Apoio. Ata de 06/10: o nome passou a ser só 'Coordenador de Contratos' (sugestão da Maires), igual ao da Formalização. O código usa 'Gestor de Contrato' e 'Fiscal de Contrato' e não tem CGE/TCE. Como o catálogo reconhece o perfil pelo nome, os nomes do Portal precisam bater com o código, ou o código muda.", "origem": "material"}, "menu-arvore": {"opcao": "Sim: cada perfil vê o seu painel e a Listagem", "nota": "Do material, a confirmar. História de acesso, RN03: 'Disponibilizar no menu e nas telas somente as funcionalidades autorizadas para o perfil'. Todos os perfis consultam contratos (Listagem). O painel é por perfil (HU-012 a HU-016).", "origem": "material"}, "menu-permissao": {"opcao": "Varia por perfil: anotado abaixo", "nota": "Do material, a confirmar. A história de acesso não usa uma permissão fixa por item: a edição depende do vínculo com o contrato (Gestor e Fiscal designados) ou do órgão de alocação (Procurador, Analista, CGE/TCE, Coordenador). O AEIC do menu só libera a tela. A checagem de edição tem de ser feita contrato a contrato, no servidor (RN04).", "origem": "material"}, "hu012-quem": {"opcao": "Os dois: precisa do perfil e da designação", "nota": "Do material, a confirmar. História de acesso (25/10), Cenários 03 e 04, e ata de 06/10: o perfil Gestor ou Fiscal vem do Portal, e a designação no contrato define onde a pessoa edita. A HU-012 lista os contratos 'sob sua responsabilidade', ou seja, onde está designada. O perfil abre o painel e a designação filtra os contratos.", "origem": "material"}, "hu012-apoio": {"opcao": "Não entra neste ciclo", "nota": "Do material, a confirmar. Ata de 06/10: o antigo 'Apoio' virou 'Unidade requisitante' (apoio ao gestor e ao fiscal); a Brenda levaria ao time a sugestão de dar a essa unidade o mesmo painel; decisão na reunião interna de 08/10. Ata de 08/10: 'necessidade distinta, que deve ser validada antes de ser criado'. A história de acesso de 25/10 lista sete perfis, sem Unidade requisitante.", "origem": "material"}, "hu012-varios": {"opcao": "A do perfil escolhido ao entrar", "nota": "Do material, a confirmar. Bug #25226 (11/11): o Tiago orientou abrir o dashboard 'conforme o perfil que foi restaurado na hora do login'. HU-012 RN06: sem preferência, vale a página padrão do perfil.\n\nDo teste na simulação do Localhost (11/11), a confirmar. A entrada abriu no perfil enviado no d (Gestor), e a troca de perfil mudou o painel inicial.", "origem": "material"}, "hu012-suplente": {"opcao": "", "nota": "Do material, a confirmar. HU-005 Consultar Equipe (#20633): as funções são Fiscal, Gestor, Interveniente e Suplente. A história de acesso só dá edição a quem está 'cadastrado como Gestor' ou 'como Fiscal', e ao Fiscal quando o contrato foi tramitado para ele com edição. Nenhum documento põe o suplente no painel.", "origem": "material"}, "hu012-padrao": {"opcao": "Deve mostrar acesso negado", "nota": "Do material, a confirmar. História de acesso, RN05: impedir o acesso quando o usuário não tiver a permissão, com a mensagem 'Você não possui permissão para acessar esta funcionalidade.'\n\nAtualização (11/11, release): o filtro novo responde 403 com {\"error\":\"Usuário não autorizado\"} quando a controladora não está na lista nem no menu da sessão; não mostra a mensagem da história de acesso.", "origem": "material"}, "hu012-pessoa": {"opcao": "", "nota": "Do material, a confirmar. História de acesso, RN01: identificar o usuário pelo CPF. O gateway tem portal/usuarios/v1.0/pessoasfisica/{cpf}, que já está no appsettings (EndpointUsuarioPorCpf).", "origem": "material"}, "hu015-escopo": {"opcao": "Só o órgão de alocação", "nota": "Do material, a confirmar. Ata de 06/10: 'limpar filtros' retorna à visão consolidada do órgão. A consulta a todos os órgãos (história de acesso, Cenário 07) fica para a Listagem, não para o painel.", "origem": "material"}, "menu-api": {"opcao": "unidades-acessos por usuário e perfil, mais menus-sistemas para a árvore", "nota": "Do material, a confirmar. O código novo já usa unidades-acessos /por-usuario-e-perfil e menus-sistemas, e também acessos-usuarios /acessos para os perfis do usuário (seção IntegracaoEntradaSislog). Fonte: código local do gestaodecontratos-web (sem commit) e status de 11/11/2026.", "origem": "material"}, "menu-sigla": {"opcao": "Sim, PCG fica só para o legado", "nota": "Do material, a confirmar. A seção nova IntegracaoEntradaSislog tem SiglaSistema = GCG nos seis appsettings. A chave antiga continua PCG e só o caminho legado do portal-rs a lê. Fonte: código local do gestaodecontratos-web (sem commit) e status de 11/11/2026.", "origem": "material"}, "menu-resposta": {"opcao": "Ainda sem resposta real", "nota": "Do material, a confirmar. A sigla GCG ainda não está cadastrada no Portal (na sonda de 22/10 havia 0 perfis e 0 menus), então a chamada real volta vazia. Só o catálogo simulado do Localhost foi testado. Fonte: código local do gestaodecontratos-web (sem commit) e status de 11/11/2026.", "origem": "material"}, "menu-urlretorno": {"opcao": "", "nota": "Do material, a confirmar. Em avaliação com o time do SISLOG. Hoje, vazia ou fora do host do SISLOG, a volta usa o UrlPortal do ambiente (no Localhost, https://sisloghomolog.go.gov.br). Fonte: código local do gestaodecontratos-web (sem commit) e status de 11/11/2026.", "origem": "material"}, "menu-perfil-sessao": {"opcao": "Outro caminho, anotado abaixo", "nota": "Do material, a confirmar. Pela entrada nova GCG/sislog, o nome do perfil chega no d cifrado enviado pelo SISLOG, e não depende do formulário de login. Confirmar com o Tiago se isso cobre o bug #25226 ou se o login do Júlio continua sendo o caminho. Fonte: código local do gestaodecontratos-web (sem commit) e status de 11/11/2026.\n\nDo teste na simulação do Localhost (11/11), a confirmar. O código não seguiu o login do Júlio: o perfil chega no d da entrada GCG/sislog. Na simulação, a entrada como Gestor abriu o painel do Gestor, e a troca para Coordenador carregou o painel do Coordenador com dados reais (200 de 1340 contratos). Nesse caminho, o sintoma do bug #25226 não apareceu para o Coordenador.\n\nAtualização (11/11, depois da release 25264/25265): com o AjaxAuthorizeCustom, a entrada GCG/sislog para em 403 em Principal/InicioIntranet. O teste anterior, que funcionou, foi feito antes da release.\n\nAtualização (11/11, depois da correção): com Principal na lista, a entrada GCG/sislog voltou a funcionar.\n\nAtualização (11/11, commit cc654a9): com Login e Principal na lista, a entrada GCG/sislog funciona na versão oficial da branch.", "origem": "material"}, "menu-orgao": {"opcao": "", "nota": "Do material, a confirmar. Pela entrada nova GCG/sislog, o órgão chega no d cifrado junto com o perfil. O bug #25225 deve se resolver quando o SISLOG passar a abrir por essa entrada. Fonte: código local do gestaodecontratos-web (sem commit) e status de 11/11/2026.\n\nDo teste na simulação do Localhost (11/11), a confirmar. Na simulação, o topo mostrou 'Servidor de Homologação (Gestor de Contrato)', ainda sem o órgão, mesmo com o órgão no d. O bug #25225 continua na entrada nova.", "origem": "material"}, "menu-gestor-escopo": {"opcao": "", "nota": ""}, "menu-cgetce": {"opcao": "", "nota": ""}, "menu-liberacao": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Ainda não foi feito: faltam acessos de usuário, menus de sistema e unidades de acesso. A de usuários já está liberada. O status não diz quem pede.", "origem": "material"}, "menu-teste": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Não há usuário real ligado aos perfis da sigla GCG. No Localhost, o catálogo simulado usa o login um CPF de teste ('Servidor de Homologação'), com os perfis Gestor de Contrato e Coordenador de Contratos.", "origem": "material"}, "menu-entrada": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Passo 4: o SISLOG passar a abrir GCG/sislog com o d cifrado (login, CPF, id da pessoa, nome do perfil, órgão e urlRetorno). A urlRetorno está em avaliação com o time do SISLOG. Não há data.", "origem": "material"}, "menu-orgao-id": {"opcao": "", "nota": "Do teste na simulação do Localhost (11/11), a confirmar. O d mandou CodigoOrgao 16 com o nome 'Secretaria da Administração'. O painel do Coordenador usou 16 como idOrgao e carregou a SSP. Esse 16 é o padrão da tela de simulação (LoginController). Falta saber qual numeração o SISLOG vai mandar.", "origem": "material"}, "hu012-outroperfil": {"opcao": "Não: vê só o painel do perfil dele", "nota": "Do teste na simulação do Localhost (11/11), a confirmar. Com o menu por perfil, o Gestor viu só 'Painel do Gestor e do Fiscal' e a Listagem; ao trocar para Coordenador, o menu mostrou só 'Painel do Coordenador de Contratos'. Vale para o catálogo simulado; no Portal real depende do cadastro.\n\nAtualização (11/11, depois da release): os cinco painéis entraram na lista ControladorasAutorizadas e abrem pela URL para qualquer usuário autenticado. O menu esconde o item, mas o acesso direto passa.", "origem": "material"}, "hu012-papel": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. A tela junta os contratos dos dois papéis pelo contrato e mostra número, fornecedor, objeto e fim. O status não cita coluna de papel.", "origem": "material"}, "hu012-msg006": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Sem contrato, sem resultado de busca, sem contrato na faixa e falha ao abrir: a tela mostra a mensagem da história. Os contratos em dia ficam recolhidos embaixo da lista. O status não cita a MSG006.", "origem": "material"}, "hu012-aditivo": {"opcao": "Não se sabe: perguntar ao time do SISLOG", "nota": "Do status do código (11/11), a confirmar. As faixas usam o fimVigencia da consulta, e o código não recalcula pelos aditivos de prazo. 'Se esse campo já for o fim atual, a regra está coberta; isso precisa ser confirmado na API.'", "origem": "material"}, "hu013-empresa": {"opcao": "", "origem": "material", "nota": "Do material, a confirmar. História de acesso (25/10), Cenário 05 RN01: 'Identificar a empresa fornecedora representada pelo usuário e verificar sua autorização para atuar em nome dela'. A mensagem 'Você não possui autorização para atuar em nome da contratada selecionada' sugere que um preposto pode representar mais de uma empresa e escolher qual. O PayloadEntradaSislog do código tem login, CPF, id da pessoa, perfil, órgão e urlRetorno, sem empresa.\n\nDo status do código (11/11), a confirmar. Sem documento na sessão, o painel lê o CPF no portal do menu (portal-rs). Empresa não encontrada vira lista vazia."}, "hu015-faixa": {"opcao": "Abrir em 90 dias, como a história", "nota": "Do material, a confirmar. A análise da HU-015 fala em faixas de 60, 90 e 120 dias, com 90 como padrão. A ata de 06/10 lista para o Analista as faixas de 30, 60, 90 e 120 dias.", "origem": "material"}, "hu015-evolucao": {"opcao": "Usar as liquidações com data de outra API", "nota": "Do material, a confirmar. A API Financeiro Dotações Orçamentárias (gateway, estudo #24391) traz, em cada empenho, as liquidações com dataLiquidacao, dataReferencia, dataAtesto e valorLiquidacao. Isso daria o liquidado por mês. O limite é que /empenhos/listar é por exercício + órgão + CPF/CNPJ do fornecedor, e não por contrato; o IPOF da ordem de pagamento traz número e ano do contrato e pode servir para amarrar.", "origem": "material"}, "hu016-evolucao": {"opcao": "", "nota": "Do material, a confirmar. Mesma fonte possível da HU-015: as liquidações com data da API de Dotações. A ata de 06/10 pede, para o Coordenador, o percentual executado em relação ao valor; a evolução por mês aparece no painel do Analista.", "origem": "material"}, "hu014-falha": {"opcao": "", "nota": "Do material, a confirmar. Nada específico para o Procurador. A análise da HU-012 (RNF009) e a história de acesso (Cenário 08, RN04, perfil CGE/TCE) pedem não apresentar como válido o que não foi recuperado, mas mantendo acessíveis as demais informações recuperadas. Isso aponta para a ressalva, como na HU-016.\n\nDo status do código (11/11), a confirmar. Hoje, falha em qualquer leitura derruba o painel inteiro.", "origem": "material"}, "hu013-cartoes": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Hoje a tela esconde os três cartões, porque os campos existem no modelo mas não são preenchidos.", "origem": "material"}, "hu013-msg": {"opcao": "", "nota": "Do status do código (11/11), a confirmar. Faixa vazia: o título é o da busca sem resultado. Sem nenhum contrato: o título não é o da história, e 'Não há contratos em execução vinculados ao seu cadastro.' fica só no complemento.", "origem": "material"}, "menu-principal": {"opcao": "Incluir Principal na lista ControladorasAutorizadas", "origem": "codigo", "nota": "Resolvido no commit cc654a9 (Tiago Teixeira, 11/11/2026, tarefa 25265), incorporado em f0fcf58: Login e Principal entraram em ControladorasAutorizadas nos cinco appsettings de ambiente. A correção local que eu tinha feito antes saiu no merge. Testado na simulação depois de recompilar: entrada, painel, Principal e Listagem com 200."}}};
+let estado = (function () {
+  const local = carregar();
+  const temLocal = local && (local.presentes || local.livre || Object.keys(local.itens || {}).some(function (k) {
+    return local.itens[k] && (local.itens[k].opcao || (local.itens[k].nota || '').trim());
+  }));
+  return temLocal ? local : JSON.parse(JSON.stringify(ESTADO_PUBLICADO));
+})();
+
+let noDisco = false;
+let espera = null;
+
+function marcarDisco(texto, erro) {
+  const selo = document.getElementById("disco");
+  selo.textContent = texto;
+  selo.classList.toggle("erro", Boolean(erro));
+}
+
+function gravarNoDisco() {
+  if (!noDisco) return;
+  clearTimeout(espera);
+  marcarDisco("salvando…");
+  espera = setTimeout(function () {
+    fetch("/api/anotacoes", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(estado)
+    }).then(function (resposta) {
+      if (!resposta.ok) throw new Error("HTTP " + resposta.status);
+      return resposta.json();
+    }).then(function (corpo) {
+      marcarDisco("salvo no disco às " + corpo.salvoEm);
+    }).catch(function () {
+      marcarDisco("não salvou no disco: o iniciar.sh está rodando?", true);
+    });
+  }, 400);
+}
+
+function salvar() {
+  gravarNoDisco();
+  if (armazenamentoOk) {
+    try {
+      localStorage.setItem(CHAVE, JSON.stringify(estado));
+    } catch (erro) {
+      armazenamentoOk = false;
+      mostrarAviso();
+    }
+  }
+  atualizarStatus();
+}
+
+function item(id) {
+  if (!estado.itens[id]) estado.itens[id] = { opcao: "", nota: "" };
+  return estado.itens[id];
+}
+
+function escapar(texto) {
+  return String(texto || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function anotado(id) {
+  const atual = item(id);
+  return atual.opcao.length > 0 || atual.nota.trim().length > 0;
+}
+
+function totalPerguntas() {
+  return PAUTA.reduce(function (soma, hu) { return soma + hu.perguntas.length; }, 0);
+}
+
+// Origem de cada resposta: "pdf-marcella" (transcrita do PDF), "material" (pré-preenchida a partir
+// do material do projeto, ainda a confirmar) ou "reuniao" (marcada ou editada nesta página).
+const ORIGENS = {
+  "pdf-marcella": "Marcella (PDF)",
+  "reuniao": "na reunião",
+  "codigo": "no código (commit)",
+  "material": "do material · confirmar"
+};
+
+function situacaoDe(id) {
+  if (!anotado(id)) return "aberto";
+  return item(id).origem === "material" ? "confirmar" : "respondida";
+}
+
+function contagem(hu) {
+  const c = { feitos: 0, confirmar: 0, total: hu.perguntas.length };
+  hu.perguntas.forEach(function (pergunta) {
+    const sit = situacaoDe(pergunta.id);
+    if (sit === "respondida") c.feitos += 1;
+    if (sit === "confirmar") c.confirmar += 1;
+  });
+  return c;
+}
+
+function textoConta(c) {
+  return c.feitos + "/" + c.total + (c.confirmar ? " +" + c.confirmar : "");
+}
+
+// Marcas que a transcrição do PDF deixou no texto das anotações.
+function notaCortada(nota) {
+  return /cortad[oa] no PDF/i.test(nota || "");
+}
+
+function paraDiscutir(pergunta) {
+  return /^Para discutir:/i.test(pergunta.hoje || "");
+}
+
+function atualizarStatus() {
+  let feitos = 0;
+  let confirmar = 0;
+  PAUTA.forEach(function (hu) { const c = contagem(hu); feitos += c.feitos; confirmar += c.confirmar; });
+  const total = totalPerguntas();
+  document.getElementById("status").textContent = feitos + " de " + total + " respondidas" + (confirmar ? " · " + confirmar + " a confirmar" : "");
+  document.getElementById("barra").style.width = (total ? Math.round(feitos * 100 / total) : 0) + "%";
+  document.getElementById("barra-confirmar").style.width = (total ? Math.round(confirmar * 100 / total) : 0) + "%";
+
+  document.querySelectorAll("article.pergunta").forEach(function (cartao) {
+    const sit = situacaoDe(cartao.id);
+    cartao.classList.toggle("respondida", sit === "respondida");
+    cartao.classList.toggle("confirmar", sit === "confirmar");
+    const selo = cartao.querySelector("[data-selo]");
+    selo.className = "selo " + (sit === "respondida" ? "feito" : sit === "confirmar" ? "confirmar" : "aberto");
+    const origem = ORIGENS[item(cartao.id).origem];
+    selo.textContent = sit === "aberto" ? "em aberto" : sit === "confirmar" ? ORIGENS.material : "respondida" + (origem ? " · " + origem : "");
+    const aviso = cartao.querySelector(".aviso-nota");
+    aviso.hidden = !notaCortada(item(cartao.id).nota);
+  });
+
+  PAUTA.forEach(function (hu) {
+    const c = contagem(hu);
+    document.querySelectorAll('[data-conta="' + hu.id + '"]').forEach(function (alvo) {
+      alvo.textContent = textoConta(c);
+      alvo.title = c.feitos + " respondidas, " + c.confirmar + " a confirmar, de " + c.total;
+      alvo.classList.toggle("completo", c.feitos === c.total);
+      alvo.classList.toggle("zero", c.feitos === 0 && c.confirmar === 0);
+    });
+  });
+
+  desenharResumo();
+  // O filtro não roda aqui: com "Em aberto", o cartão sumiria enquanto a pessoa digita.
+}
+
+let filtro = "tudo";
+let situacao = "todas";
+
+function card(pergunta) {
+  const atual = item(pergunta.id);
+  const opcoes = pergunta.opcoes.map(function (opcao) {
+    const marcado = atual.opcao === opcao ? " checked" : "";
+    return '<label><input type="radio" name="' + pergunta.id + '" value="' + escapar(opcao) + '"' + marcado + "> <span>" + escapar(opcao) + "</span></label>";
+  }).join("");
+  const tipo = pergunta.tipo === "tecnico" ? "técnico" : "regra";
+  const discutir = paraDiscutir(pergunta);
+  const hoje = discutir
+    ? '<p class="hoje discutir"><strong>Para discutir:</strong> ' + escapar(pergunta.hoje.replace(/^Para discutir:\s*/i, "")) + "</p>"
+    : '<p class="hoje">' + escapar(pergunta.hoje) + "</p>";
+  return '<article class="pergunta" id="' + pergunta.id + '">' +
+    '<h3><span class="titulo-pergunta">' + escapar(pergunta.titulo) + "</span>" +
+    '<span class="selos"><span class="selo ' + pergunta.tipo + '">' + tipo + "</span>" +
+    '<span class="selo aberto" data-selo="' + pergunta.id + '">em aberto</span></span></h3>' +
+    hoje +
+    '<div class="opcoes">' + opcoes + "</div>" +
+    '<label class="campo">Anotação<textarea data-nota="' + pergunta.id + '" placeholder="Quem decidiu, a fórmula, a data, o texto">' + escapar(atual.nota) + "</textarea></label>" +
+    '<p class="aviso-nota" hidden>Anotação incompleta: o PDF só mostrava a parte visível da caixa. Confirmar o texto inteiro com quem respondeu.</p>' +
+    "</article>";
+}
+
+function grupo(hu, tipo, titulo) {
+  const paragrafos = (tipo === "regra" ? hu.regra : hu.tecnico).map(function (texto) {
+    return "<p>" + escapar(texto) + "</p>";
+  }).join("");
+  const perguntas = hu.perguntas.filter(function (pergunta) { return pergunta.tipo === tipo; }).map(card).join("");
+  return '<section class="grupo grupo-' + tipo + '" data-grupo="' + tipo + '" data-hu="' + hu.id + '"><h3>' + titulo + "</h3>" +
+    '<details class="texto" open><summary>Contexto</summary>' + paragrafos + "</details>" + perguntas + "</section>";
+}
+
+function visivel(cartao) {
+  if (situacao === "todas") return true;
+  return situacaoDe(cartao.id) === situacao;
+}
+
+function aplicarFiltro() {
+  document.querySelectorAll("article.pergunta").forEach(function (cartao) {
+    cartao.hidden = !visivel(cartao);
+  });
+  document.querySelectorAll("[data-grupo]").forEach(function (bloco) {
+    const doTipo = filtro === "tudo" || bloco.getAttribute("data-grupo") === filtro;
+    const temCartao = bloco.querySelector("article.pergunta:not([hidden])") !== null;
+    bloco.hidden = !doTipo || (situacao !== "todas" && !temCartao);
+    bloco.querySelector("details.texto").open = situacao === "todas";
+  });
+  document.querySelectorAll("section.hu").forEach(function (cabeca) {
+    const grupos = document.querySelectorAll('[data-hu="' + cabeca.id + '"]');
+    cabeca.hidden = Array.prototype.every.call(grupos, function (g) { return g.hidden; });
+  });
+  document.querySelectorAll("button.filtro").forEach(function (botao) {
+    botao.classList.toggle("ativo", botao.getAttribute("data-filtro") === filtro);
+  });
+  document.querySelectorAll("button.situacao").forEach(function (botao) {
+    botao.classList.toggle("ativo", botao.getAttribute("data-situacao") === situacao);
+  });
+}
+
+function linhaResumo(pergunta) {
+  const atual = item(pergunta.id);
+  const marcas = [];
+  if (notaCortada(atual.nota)) marcas.push('<span class="marca cortada">anotação cortada</span>');
+  if (paraDiscutir(pergunta)) marcas.push('<span class="marca discutir">para discutir</span>');
+  if (atual.origem === "pdf-marcella") marcas.push('<span class="marca origem">Marcella (PDF)</span>');
+  if (atual.origem === "reuniao") marcas.push('<span class="marca origem">na reunião</span>');
+  if (atual.origem === "codigo") marcas.push('<span class="marca origem">no código (commit)</span>');
+  return '<li><a href="#' + pergunta.id + '">' + escapar(pergunta.titulo) + "</a>" +
+    '<span class="decisao">' + escapar(atual.opcao || "sem opção marcada: ver anotação") + "</span>" + marcas.join("") + "</li>";
+}
+
+function listaResumo(sit) {
+  return PAUTA.map(function (hu) {
+    const linhas = hu.perguntas.filter(function (pergunta) { return situacaoDe(pergunta.id) === sit; }).map(linhaResumo).join("");
+    if (!linhas) return "";
+    return '<div class="resumo-bloco"><h3>' + escapar(hu.titulo.split("·")[0].trim()) +
+      ' <span class="conta" data-conta="' + hu.id + '"></span></h3><ul>' + linhas + "</ul></div>";
+  }).join("");
+}
+
+function desenharResumo() {
+  const alvo = document.getElementById("resumo");
+  if (!alvo) return;
+  let feitos = 0;
+  let confirmar = 0;
+  let cortadas = 0;
+  PAUTA.forEach(function (hu) {
+    const c = contagem(hu); feitos += c.feitos; confirmar += c.confirmar;
+    hu.perguntas.forEach(function (pergunta) { if (notaCortada(item(pergunta.id).nota)) cortadas += 1; });
+  });
+  const respondidas = listaResumo("respondida");
+  const doMaterial = listaResumo("confirmar");
+  alvo.innerHTML = '<summary><strong>Resumo</strong> <span class="resumo-total">' + feitos + " respondidas · " + confirmar + " a confirmar · " +
+    (totalPerguntas() - feitos - confirmar) + " em aberto" + (cortadas ? " · " + cortadas + " com anotação cortada" : "") + "</span></summary>" +
+    '<div class="resumo-corpo">' +
+    '<section class="resumo-parte"><h4>Já respondido</h4>' + (respondidas || '<p class="resumo-vazio">Nenhuma ainda.</p>') + "</section>" +
+    '<section class="resumo-parte material"><h4>Pré-preenchido a partir do material: confirmar na reunião</h4>' +
+    '<p class="resumo-nota">Achados nos documentos do projeto (histórias, análises, atas, estudos e swaggers). A fonte está na anotação de cada pergunta. Ao marcar ou editar, a resposta passa a contar como respondida.</p>' +
+    (doMaterial || '<p class="resumo-vazio">Nada pré-preenchido.</p>') + "</section>" +
+    "</div>";
+  PAUTA.forEach(function (hu) {
+    const c = contagem(hu);
+    alvo.querySelectorAll('[data-conta="' + hu.id + '"]').forEach(function (conta) {
+      conta.textContent = textoConta(c);
+      conta.classList.toggle("completo", c.feitos === c.total);
+    });
+  });
+}
+
+function desenhar() {
+  const atalhos = PAUTA.map(function (hu) {
+    return '<a href="#' + hu.id + '">' + escapar(hu.titulo.split("·")[0].trim()) + ' <span class="conta" data-conta="' + hu.id + '"></span></a>';
+  }).join("");
+  document.getElementById("atalhos").innerHTML = atalhos;
+
+  const resumoAberto = document.getElementById("resumo") ? document.getElementById("resumo").open : true;
+  const meta = '<section class="meta">' +
+    '<label class="campo">Presentes<input type="text" id="presentes" value="' + escapar(estado.presentes) + '" placeholder="Nomes de quem está na reunião"></label>' +
+    '<label class="campo">Anotação geral<textarea id="livre" placeholder="O que ficou combinado fora das perguntas">' + escapar(estado.livre) + "</textarea></label>" +
+    "</section>" +
+    '<details class="resumo" id="resumo"' + (resumoAberto ? " open" : "") + "></details>";
+
+  const blocos = PAUTA.map(function (hu) {
+    return '<section class="hu" id="' + hu.id + '"><h2>' + escapar(hu.titulo) +
+      ' <span class="conta" data-conta="' + hu.id + '"></span></h2><p class="intro">' + escapar(hu.pbi) + ". " + escapar(hu.intro) + "</p></section>" +
+      grupo(hu, "regra", "Regra") +
+      grupo(hu, "tecnico", "Técnico");
+  }).join("");
+
+  document.getElementById("conteudo").innerHTML = meta + blocos;
+  ligar();
+  atualizarStatus();
+  aplicarFiltro();
+}
+
+function ligar() {
+  document.getElementById("presentes").addEventListener("input", function (evento) {
+    estado.presentes = evento.target.value;
+    salvar();
+  });
+  document.getElementById("livre").addEventListener("input", function (evento) {
+    estado.livre = evento.target.value;
+    salvar();
+  });
+  document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      item(radio.name).opcao = radio.value;
+      item(radio.name).origem = "reuniao";
+      salvar();
+    });
+  });
+  document.querySelectorAll("textarea[data-nota]").forEach(function (campo) {
+    campo.addEventListener("input", function () {
+      item(campo.getAttribute("data-nota")).nota = campo.value;
+      item(campo.getAttribute("data-nota")).origem = "reuniao";
+      salvar();
+    });
+  });
+}
+
+function markdown() {
+  const linhas = ["# Anotações da reunião de 11/11/2026", ""];
+  linhas.push("Presentes: " + (estado.presentes.trim() || "(não informado)"));
+  linhas.push("");
+  if (estado.livre.trim()) {
+    linhas.push("## Anotação geral");
+    linhas.push("");
+    linhas.push(estado.livre.trim());
+    linhas.push("");
+  }
+  PAUTA.forEach(function (hu) {
+    linhas.push("## " + hu.titulo + " (" + hu.pbi + ")");
+    linhas.push("");
+    ["regra", "tecnico"].forEach(function (tipo) {
+      linhas.push(tipo === "regra" ? "### Regra" : "### Técnico");
+      linhas.push("");
+      hu.perguntas.filter(function (pergunta) { return pergunta.tipo === tipo; }).forEach(function (pergunta) {
+        const atual = item(pergunta.id);
+        linhas.push("#### " + pergunta.titulo);
+        linhas.push("");
+        const sit = situacaoDe(pergunta.id);
+        const rotulo = sit === "confirmar" ? " (do material, a confirmar)" : ORIGENS[atual.origem] ? " (" + ORIGENS[atual.origem] + ")" : "";
+        linhas.push("Decisão: " + (atual.opcao || "(em aberto)") + rotulo);
+        if (atual.nota.trim()) {
+          linhas.push("");
+          linhas.push(atual.nota.trim());
+        }
+        linhas.push("");
+      });
+    });
+  });
+  return linhas.join("\n");
+}
+
+function mostrarAviso() {
+  const aviso = document.getElementById("aviso");
+  aviso.hidden = false;
+}
+
+function baixar(nome, conteudo, tipo) {
+  try {
+    const url = URL.createObjectURL(new Blob([conteudo], { type: tipo + ";charset=utf-8" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = nome;
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    // Revogar na hora cancela o download em alguns navegadores.
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  } catch (erro) {
+    mostrarAviso();
+  }
+  mostrarCopia(conteudo);
+}
+
+function mostrarCopia(conteudo) {
+  // Se a visualização bloquear o download, o conteúdo fica aqui para copiar.
+  if (noDisco || (armazenamentoOk && window.self === window.top)) return;
+  const caixa = document.getElementById("copia");
+  caixa.hidden = false;
+  caixa.querySelector("textarea").value = conteudo;
+  caixa.querySelector("textarea").select();
+}
+
+document.querySelectorAll("button.filtro").forEach(function (botao) {
+  botao.addEventListener("click", function () {
+    filtro = botao.getAttribute("data-filtro");
+    aplicarFiltro();
+  });
+});
+document.querySelectorAll("button.situacao").forEach(function (botao) {
+  botao.addEventListener("click", function () {
+    situacao = botao.getAttribute("data-situacao");
+    aplicarFiltro();
+  });
+});
+document.getElementById("baixar-md").addEventListener("click", function () {
+  baixar("anotacoes-analistas-2026-11-11.md", markdown(), "text/markdown");
+});
+document.getElementById("baixar-json").addEventListener("click", function () {
+  baixar("anotacoes-analistas-2026-11-11.json", JSON.stringify(estado, null, 2), "application/json");
+});
+document.getElementById("abrir-json").addEventListener("change", function (evento) {
+  const arquivo = evento.target.files && evento.target.files[0];
+  if (!arquivo) return;
+  const leitor = new FileReader();
+  leitor.onload = function () {
+    try {
+      const dado = JSON.parse(leitor.result);
+      estado = { presentes: dado.presentes || "", livre: dado.livre || "", itens: dado.itens || {} };
+      salvar();
+      desenhar();
+    } catch (erro) {
+      window.alert("Esse arquivo não é um JSON de anotações desta pauta.");
+    }
+  };
+  leitor.readAsText(arquivo);
+  evento.target.value = "";
+});
+document.getElementById("imprimir").addEventListener("click", function () {
+  try {
+    window.print();
+  } catch (erro) {
+    mostrarAviso();
+  }
+});
+document.getElementById("copiar").addEventListener("click", function () {
+  const campo = document.querySelector("#copia textarea");
+  campo.select();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(campo.value).catch(function () { document.execCommand("copy"); });
+  } else {
+    document.execCommand("copy");
+  }
+});
+document.getElementById("fechar-copia").addEventListener("click", function () {
+  document.getElementById("copia").hidden = true;
+});
+document.getElementById("limpar").addEventListener("click", function () {
+  let ok = true;
+  try { ok = window.confirm("Apagar todas as anotações? Fica uma cópia da última hora em dados/copias."); } catch (erro) { ok = true; }
+  if (!ok) return;
+  estado = vazio();
+  salvar();
+  desenhar();
+});
+
+desenhar();
+Promise.reject(new Error('publicado')).then(function (resposta) {
+  if (!resposta.ok) throw new Error("HTTP " + resposta.status);
+  return resposta.json();
+}).then(function (dado) {
+  noDisco = true;
+  const temAlgo = dado && (dado.presentes || dado.livre || Object.keys(dado.itens || {}).length);
+  if (temAlgo) {
+    estado = { presentes: dado.presentes || "", livre: dado.livre || "", itens: dado.itens || {} };
+    desenhar();
+  } else {
+    gravarNoDisco();
+  }
+  marcarDisco("salvo no disco: dados/anotacoes.json");
+}).catch(function () {
+  noDisco = false;
+  if (!armazenamentoOk || window.self !== window.top) mostrarAviso();
+});
+
+</script>
+</body>
+</html>
