@@ -85,12 +85,28 @@ figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
 figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
 .voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
 .rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+.app.com-usuarios { grid-template-columns:290px minmax(0,1fr) 330px; grid-template-areas:"lat princ usu"; }
+.app.com-usuarios .lateral { grid-area:lat; } .app.com-usuarios .principal { grid-area:princ; }
+.usuarios { grid-area:usu; position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-left:1px solid var(--linha); padding:22px 18px 28px; }
+.u-lista { display:grid; gap:10px; }
+.usuario { border:1px solid var(--linha); border-radius:8px; padding:10px 12px; background:var(--cartao); }
+.u-topo { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin-bottom:6px; font-size:14px; }
+.u-origem { font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.u-origem.mock { color:var(--ambar); background:var(--ambar-claro); } .u-origem.real { color:var(--verde); background:var(--verde-claro); } .u-origem.misto { color:var(--azul); background:var(--azul-claro); }
+.usuario dl { display:grid; grid-template-columns:auto 1fr; gap:2px 8px; margin:0; font-size:12.5px; }
+.usuario dt { color:var(--fraco); font-weight:600; } .usuario dd { margin:0; word-break:break-word; }
+.u-nota { margin-top:10px; font-size:12.5px; color:var(--suave); } .u-nota p { margin:0 0 6px; } .u-nota ul { margin:0; padding-left:18px; }
+@media (max-width:1500px) { .app.com-usuarios { grid-template-columns:290px minmax(0,1fr); grid-template-areas:"lat usu" "lat princ"; grid-template-rows:auto 1fr; }
+  .app.com-usuarios .lateral { grid-row:1 / span 2; }
+  .usuarios { position:static; height:auto; border-left:0; background:transparent; padding:28px 36px 0; max-width:1040px; }
+  .u-lista { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); } }
+@media (max-width:900px) { .app.com-usuarios { grid-template-columns:1fr; grid-template-areas:"lat" "usu" "princ"; grid-template-rows:auto; } .usuarios { padding:20px 16px 0; } }
 @media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
 @media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app com-usuarios">
 <aside class="lateral" aria-label="Navegação do relatório">
   <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Teste SEAD_HU001<br>Listar Contratos</h1><p>12/11/2026 · Gestor de Contrato · SEAD</p></div>
   <div>
@@ -105,7 +121,7 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
   </div>
   <div>
     <p class="rotulo">Seções</p>
-    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#evidencias">Evidências</a><a class="nav-top" href="#condicoes">Condições do teste</a>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#evidencias">Evidências</a><a class="nav-top" href="#condicoes">Condições do teste</a><a class="nav-top" href="#usuarios">Usuários do teste</a>
   </div>
   <div><p class="rotulo">Casos</p><nav><a class="nav-ct" href="#CT01"><span class="ponto parcial"></span><span>CT01</span><span class="nav-sub">Cenário 01 · Primeiro acesso</span></a><a class="nav-ct" href="#CT02"><span class="ponto parcial"></span><span>CT02</span><span class="nav-sub">Cenário 08 · Filtros disponíveis</span></a><a class="nav-ct" href="#CT03"><span class="ponto falha"></span><span>CT03</span><span class="nav-sub">Listas dos combos</span></a><a class="nav-ct" href="#CT04"><span class="ponto ok"></span><span>CT04</span><span class="nav-sub">Cenários 02 e 03 · Publicado e PNCP</span></a><a class="nav-ct" href="#CT05"><span class="ponto falha"></span><span>CT05</span><span class="nav-sub">Cenário 04 · Rescindido</span></a><a class="nav-ct" href="#CT06"><span class="ponto falha"></span><span>CT06</span><span class="nav-sub">Cenários 05 a 07 · Excluído, destratado, cancelado</span></a><a class="nav-ct" href="#CT07"><span class="ponto falha"></span><span>CT07</span><span class="nav-sub">Pesquisa de pessoas, órgão e datas</span></a><a class="nav-ct" href="#CT08"><span class="ponto ok"></span><span>CT08</span><span class="nav-sub">FE03 · Início posterior ao fim</span></a><a class="nav-ct" href="#CT09"><span class="ponto parcial"></span><span>CT09</span><span class="nav-sub">FE01 · Nenhum contrato</span></a><a class="nav-ct" href="#CT10"><span class="ponto ok"></span><span>CT10</span><span class="nav-sub">Salvar, usar e excluir filtro</span></a><a class="nav-ct" href="#CT11"><span class="ponto falha"></span><span>CT11</span><span class="nav-sub">Filtro automático</span></a><a class="nav-ct" href="#CT12"><span class="ponto falha"></span><span>CT12</span><span class="nav-sub">Abrir o contrato</span></a><a class="nav-ct" href="#CT13"><span class="ponto falha"></span><span>CT13</span><span class="nav-sub">Erro ao consultar</span></a><a class="nav-ct" href="#CT14"><span class="ponto falha"></span><span>CT14</span><span class="nav-sub">Ordenar, tirar critério, paginar</span></a><a class="nav-ct" href="#CT15"><span class="ponto falha"></span><span>CT15</span><span class="nav-sub">Agrupar por coluna</span></a><a class="nav-ct" href="#CT16"><span class="ponto ok"></span><span>CT16</span><span class="nav-sub">Vence em</span></a><a class="nav-ct" href="#CT17"><span class="ponto ok"></span><span>CT17</span><span class="nav-sub">Cenário 09 · Exportar</span></a><a class="nav-ct" href="#CT18"><span class="ponto falha"></span><span>CT18</span><span class="nav-sub">Limpar e regressão</span></a></nav></div>
 </aside>
@@ -174,6 +190,7 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
   <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
 </main>
 </div>
+<aside class="usuarios" id="usuarios" aria-label="Usuários do teste"><p class="rotulo">Usuários do teste</p><div class="u-lista"><div class="usuario"><div class="u-topo"><strong>Servidor de Homologação</strong><span class="u-origem mock">Simulado (mock)</span></div><dl><dt>Cenário</dt><dd><code>gestor</code></dd><dt>Login</dt><dd>04934988181</dd><dt>CPF/CNPJ</dt><dd>04934988181</dd><dt>IdPessoa</dt><dd>1001 (fictício)</dd><dt>Perfil</dt><dd>Gestor de Contrato (101)</dd><dt>Órgão</dt><dd>16 (SEAD no SISLOG; a API leu como SSP)</dd><dt>Uso no teste</dt><dd>Todos os casos</dd></dl></div></div><div class="u-nota"><p>Todos entram pela página &quot;Simular entrada do SISLOG&quot; (Localhost). Os CPFs e os <code>IdPessoa</code> do mock são fictícios.</p></div></aside>
 </div>
 <script>
 document.querySelectorAll('figure img').forEach(function (img) {

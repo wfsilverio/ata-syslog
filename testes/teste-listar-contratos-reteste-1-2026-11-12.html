@@ -96,12 +96,28 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
 .tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
 .voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
 .rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+.app.com-usuarios { grid-template-columns:290px minmax(0,1fr) 330px; grid-template-areas:"lat princ usu"; }
+.app.com-usuarios .lateral { grid-area:lat; } .app.com-usuarios .principal { grid-area:princ; }
+.usuarios { grid-area:usu; position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-left:1px solid var(--linha); padding:22px 18px 28px; }
+.u-lista { display:grid; gap:10px; }
+.usuario { border:1px solid var(--linha); border-radius:8px; padding:10px 12px; background:var(--cartao); }
+.u-topo { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin-bottom:6px; font-size:14px; }
+.u-origem { font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.u-origem.mock { color:var(--ambar); background:var(--ambar-claro); } .u-origem.real { color:var(--verde); background:var(--verde-claro); } .u-origem.misto { color:var(--azul); background:var(--azul-claro); }
+.usuario dl { display:grid; grid-template-columns:auto 1fr; gap:2px 8px; margin:0; font-size:12.5px; }
+.usuario dt { color:var(--fraco); font-weight:600; } .usuario dd { margin:0; word-break:break-word; }
+.u-nota { margin-top:10px; font-size:12.5px; color:var(--suave); } .u-nota p { margin:0 0 6px; } .u-nota ul { margin:0; padding-left:18px; }
+@media (max-width:1500px) { .app.com-usuarios { grid-template-columns:290px minmax(0,1fr); grid-template-areas:"lat usu" "lat princ"; grid-template-rows:auto 1fr; }
+  .app.com-usuarios .lateral { grid-row:1 / span 2; }
+  .usuarios { position:static; height:auto; border-left:0; background:transparent; padding:28px 36px 0; max-width:1040px; }
+  .u-lista { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); } }
+@media (max-width:900px) { .app.com-usuarios { grid-template-columns:1fr; grid-template-areas:"lat" "usu" "princ"; grid-template-rows:auto; } .usuarios { padding:20px 16px 0; } }
 @media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
 @media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app com-usuarios">
 <aside class="lateral" aria-label="Navegação do relatório">
   <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Roteiro Listar Contratos</h1><p>12/11/2026 · Reteste 1 · PBI 20629 · HU 21273 · 20 cenários</p></div>
   <div>
@@ -116,7 +132,7 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
   </div>
   <div>
     <p class="rotulo">Seções</p>
-    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#comparacao">Comparação com a anterior</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#comparacao">Comparação com a anterior</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a><a class="nav-top" href="#usuarios">Usuários do teste</a>
   </div>
   <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Elegibilidade"><span class="ponto falha"></span><span>Elegibilidade</span><span class="nav-sub">CT001 a CT004 · contratos elegíveis</span></a><a class="nav-ct" href="#g-Rescindido"><span class="ponto nexec"></span><span>Rescindido</span><span class="nav-sub">CT005 a CT007 · contrato rescindido</span></a><a class="nav-ct" href="#g-Status-impeditivos"><span class="ponto falha"></span><span>Status impeditivos</span><span class="nav-sub">CT008 a CT010 · Excluído, Destratado, Cancelado</span></a><a class="nav-ct" href="#g-Filtros"><span class="ponto falha"></span><span>Filtros</span><span class="nav-sub">CT011 a CT014 · filtros e consulta vazia</span></a><a class="nav-ct" href="#g-Exporta-o"><span class="ponto ok"></span><span>Exportação</span><span class="nav-sub">CT015 a CT020 · Excel, PDF, XML, CSV, HTML, JSON</span></a></nav></div>
 </aside>
@@ -160,6 +176,7 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
   <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
 </main>
 </div>
+<aside class="usuarios" id="usuarios" aria-label="Usuários do teste"><p class="rotulo">Usuários do teste</p><div class="u-lista"><div class="usuario"><div class="u-topo"><strong>Servidor de Homologação</strong><span class="u-origem mock">Simulado (mock)</span></div><dl><dt>Cenário</dt><dd><code>gestor</code></dd><dt>Login</dt><dd>04934988181</dd><dt>CPF/CNPJ</dt><dd>04934988181</dd><dt>IdPessoa</dt><dd>1001 (fictício)</dd><dt>Perfil</dt><dd>Gestor de Contrato (101)</dd><dt>Órgão</dt><dd>5 · SEAD</dd><dt>Uso no teste</dt><dd>Todos os casos</dd></dl></div></div><div class="u-nota"><p>Todos entram pela página &quot;Simular entrada do SISLOG&quot; (Localhost). Os CPFs e os <code>IdPessoa</code> do mock são fictícios.</p></div></aside>
 </div>
 <script>
 document.querySelectorAll('figure img').forEach(function (img) {
