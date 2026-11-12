@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro de Testes · Dashboard Analista Financeiro — 12/11/2026 · PBI 22541 · HU015 · 24 cenários</title>
+<style>
+:root { --fundo:#f5f4f1; --cartao:#fff; --tinta:#1b1a18; --suave:#5f5b55; --fraco:#8a857d; --linha:#e6e2da;
+  --verde:#1f6b4a; --verde-claro:#e6f3ec; --azul:#2458a6; --azul-claro:#e8eff9; --ambar:#9a6410; --ambar-claro:#fbf1dc;
+  --vermelho:#9b2f2f; --vermelho-claro:#fbe7e5; --cinza-claro:#eeece7; --raio:10px; --sombra:0 1px 2px rgba(27,26,24,.05),0 1px 1px rgba(27,26,24,.03); }
+* { box-sizing:border-box; }
+html { scroll-padding-top:16px; }
+body { margin:0; background:var(--fundo); color:var(--tinta); font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+code { font:12.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; background:var(--cinza-claro); padding:1px 5px; border-radius:4px; word-break:break-word; }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
+.lateral { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-right:1px solid var(--linha); padding:22px 18px 28px; display:flex; flex-direction:column; gap:20px; }
+.principal { padding:28px 36px 80px; max-width:1040px; width:100%; }
+main { display:grid; gap:18px; }
+.marca h1 { margin:0; font-size:18px; line-height:1.25; }
+.marca p { margin:4px 0 0; color:var(--suave); font-size:13px; }
+.rotulo { margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.barra { display:flex; height:8px; background:var(--linha); border-radius:99px; overflow:hidden; }
+.barra span { display:block; }
+.b-ok { background:var(--verde); } .b-falha { background:var(--vermelho); } .b-parcial { background:#e3b45c; } .b-nexec { background:#b9b3a8; }
+.legenda { list-style:none; margin:8px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12.5px; color:var(--suave); }
+.legenda strong { color:var(--tinta); }
+.ponto { display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px; flex:none; }
+.ponto.ok { background:var(--verde); } .ponto.falha { background:var(--vermelho); } .ponto.parcial { background:#e3b45c; } .ponto.nexec { background:#b9b3a8; }
+nav { display:grid; gap:1px; }
+.nav-ct { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:2px 6px; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; }
+.nav-ct:hover { background:var(--fundo); }
+.nav-ct span:nth-child(2) { font-weight:600; white-space:nowrap; }
+.nav-sub { color:var(--suave); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-top { display:block; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; font-weight:600; }
+.nav-top:hover { background:var(--fundo); }
+.topo { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 24px; }
+.topo h2 { margin:0 0 4px; font-size:22px; letter-spacing:-.01em; }
+.topo .sub { margin:0 0 14px; color:var(--suave); }
+.meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 18px; margin:0; }
+.meta dt { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.meta dd { margin:2px 0 0; font-size:14px; }
+.veredito { display:inline-block; margin-top:14px; font-weight:700; padding:4px 12px; border-radius:99px; }
+.veredito.falha { color:var(--vermelho); background:var(--vermelho-claro); } .veredito.ok { color:var(--verde); background:var(--verde-claro); } .veredito.parcial { color:var(--ambar); background:var(--ambar-claro); }
+.numeros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.num { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra); }
+.num b { display:block; font-size:26px; line-height:1.1; }
+.num span { font-size:12.5px; color:var(--suave); }
+.num.ok b { color:var(--verde); } .num.falha b { color:var(--vermelho); } .num.parcial b { color:var(--ambar); } .num.nexec b { color:var(--fraco); }
+.bloco { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px; }
+.bloco > h2 { margin:0 0 10px; font-size:17px; }
+.bloco p { margin:0 0 10px; }
+.bloco ul { margin:0; padding-left:20px; } .bloco li { margin:3px 0; }
+.cartao { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); overflow:hidden; }
+.cartao summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 18px; }
+.cartao summary::-webkit-details-marker { display:none; }
+.cartao summary::after { content:"▸"; margin-left:auto; color:var(--fraco); transition:transform .15s; }
+.cartao[open] summary::after { transform:rotate(90deg); }
+.cartao summary h3 { margin:0; font-size:15px; }
+.qtd { font-size:12.5px; color:var(--fraco); }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.selo.ok { color:var(--verde); background:var(--verde-claro); } .selo.falha { color:var(--vermelho); background:var(--vermelho-claro); }
+.selo.parcial { color:var(--ambar); background:var(--ambar-claro); } .selo.nexec { color:var(--suave); background:var(--cinza-claro); }
+table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--linha); }
+.passos td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--linha); font-size:14px; }
+.passos tr:last-child td { border-bottom:0; }
+.evid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.evid a { display:grid; gap:2px; width:168px; text-decoration:none; color:var(--suave); font-size:11.5px; }
+.evid img { width:168px; height:110px; object-fit:cover; object-position:top left; border:1px solid var(--linha); border-radius:6px; background:var(--fundo); }
+.evid a:hover img { border-color:var(--verde); }
+.passos td.n { width:52px; color:var(--fraco); font-weight:700; text-align:right; }
+.passos td.st { width:150px; text-align:right; }
+.esp, .obt { margin-top:6px; color:var(--suave); }
+.esp span, .obt span { display:inline-block; min-width:68px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--fraco); }
+.obt { color:var(--tinta); }
+.falhas { display:grid; gap:12px; }
+.achado { border:1px solid var(--linha); border-left:4px solid var(--fraco); border-radius:8px; padding:12px 16px; }
+.achado header { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.achado h3 { margin:0; font-size:15px; }
+.achado ul { margin:0; padding-left:18px; } .achado li { margin:2px 0; font-size:14px; }
+.achado p { margin:4px 0; font-size:14px; }
+.sev { font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.sev-crítica { border-left-color:#6d1313; } .sev-crítica .sev { color:#fff; background:#7d1a1a; }
+.sev-alta { border-left-color:var(--vermelho); } .sev-alta .sev { color:var(--vermelho); background:var(--vermelho-claro); }
+.sev-média { border-left-color:#e3b45c; } .sev-média .sev { color:var(--ambar); background:var(--ambar-claro); }
+.sev-baixa { border-left-color:var(--azul); } .sev-baixa .sev { color:var(--azul); background:var(--azul-claro); }
+table.msgs { width:100%; border-collapse:collapse; margin:6px 0 4px; font-size:13.5px; }
+table.msgs th, table.msgs td { text-align:left; vertical-align:top; padding:6px 8px; border:1px solid var(--linha); }
+table.msgs th { background:var(--fundo); font-size:12px; }
+.galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
+figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.antes { display:block; font-size:11.5px; color:var(--fraco); margin-bottom:3px; }
+.mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
+.tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
+.rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+@media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
+@media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="lateral" aria-label="Navegação do relatório">
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Dashboard Analista Financeiro</h1><p>12/11/2026 · PBI 22541 · HU015 · 24 cenários</p></div>
+  <div>
+    <p class="rotulo">Resultado dos 24 casos</p>
+    <div class="barra" role="img" aria-label="1 passaram, 15 falharam, 5 parciais, 3 não executados">
+      <span class="b-ok" style="width:4.17%"></span><span class="b-falha" style="width:62.50%"></span><span class="b-parcial" style="width:20.83%"></span><span class="b-nexec" style="width:12.50%"></span>
+    </div>
+    <ul class="legenda">
+      <li><span class="ponto ok"></span><strong>1</strong> passaram</li><li><span class="ponto falha"></span><strong>15</strong> falharam</li>
+      <li><span class="ponto parcial"></span><strong>5</strong> parciais</li><li><span class="ponto nexec"></span><strong>3</strong> não executados</li>
+    </ul>
+  </div>
+  <div>
+    <p class="rotulo">Seções</p>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a>
+  </div>
+  <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Acesso-e-recorte"><span class="ponto falha"></span><span>Acesso e recorte</span><span class="nav-sub">CT001 e CT002</span></a><a class="nav-ct" href="#g-SIAFIC"><span class="ponto falha"></span><span>SIAFIC</span><span class="nav-sub">CT003</span></a><a class="nav-ct" href="#g-Valores"><span class="ponto falha"></span><span>Valores</span><span class="nav-sub">CT004 a CT007</span></a><a class="nav-ct" href="#g-Execu-o"><span class="ponto parcial"></span><span>Execução</span><span class="nav-sub">CT008</span></a><a class="nav-ct" href="#g-Saldos"><span class="ponto falha"></span><span>Saldos</span><span class="nav-sub">CT009 a CT012</span></a><a class="nav-ct" href="#g-Consumo"><span class="ponto falha"></span><span>Consumo</span><span class="nav-sub">CT013 e CT014</span></a><a class="nav-ct" href="#g-Vig-ncia"><span class="ponto falha"></span><span>Vigência</span><span class="nav-sub">CT015 e CT016</span></a><a class="nav-ct" href="#g-Evolu-o"><span class="ponto falha"></span><span>Evolução</span><span class="nav-sub">CT017</span></a><a class="nav-ct" href="#g-Filtros"><span class="ponto falha"></span><span>Filtros</span><span class="nav-sub">CT018 a CT020</span></a><a class="nav-ct" href="#g-Navega-o"><span class="ponto nexec"></span><span>Navegação</span><span class="nav-sub">CT021</span></a><a class="nav-ct" href="#g-Mensagens"><span class="ponto falha"></span><span>Mensagens</span><span class="nav-sub">CT022 e CT023</span></a><a class="nav-ct" href="#g-P-gina-inicial"><span class="ponto falha"></span><span>Página inicial</span><span class="nav-sub">CT024</span></a></nav></div>
+</aside>
+<div class="principal">
+<main>
+  <section class="topo" id="resumo">
+    <span class="tipo">Execução</span>
+    <h2>Roteiro de Testes · Dashboard Analista Financeiro</h2>
+    <p class="sub">Indicadores financeiros do órgão, saldos, consumo, vigência, filtros e mensagens do painel do Analista Financeiro.</p>
+    <dl class="meta">
+      <div><dt>Data e hora</dt><dd>12/11/2026, das 14h20 às 15h00 (horário de Brasília)</dd></div>
+      <div><dt>Perfil</dt><dd>login 04934988181, órgão 16 · Secretaria da Administração (cenário <code>gestor</code>). O mock da entrada não tem perfil Analista Financeiro; o painel foi aberto pelo acesso direto (<code>/PainelFinanceiro</code>)</dd></div>
+      <div><dt>Ambiente</dt><dd>GCG em <code>http://localhost:5000</code> (Localhost), branch <code>local/execucao-localhost</code>, commit <code>f0fcf58</code>, dados do SISLOG de homologação e do SIOFI</dd></div>
+      <div><dt>Executado por</dt><dd>Skill testar-roteiro-gcg, criada por Wellington Silvério</dd></div>
+    </dl>
+    <span class="veredito falha">❌ Reprovado</span>
+  </section>
+  <section class="numeros" aria-label="Contagem">
+    <div class="num"><b>24</b><span>casos</span></div><div class="num ok"><b>1</b><span>passaram</span></div>
+    <div class="num falha"><b>15</b><span>falharam</span></div><div class="num parcial"><b>5</b><span>parciais</span></div>
+    <div class="num nexec"><b>3</b><span>não executados</span></div>
+  </section>
+  
+  <section class="bloco"><h2>Principal achado</h2><p><strong>O painel mostra os contratos de outro órgão e só parte dos indicadores.</strong> Ele tem o mesmo defeito de código de órgão do painel do Coordenador:</p><ul><li>Com o órgão 16 (SEAD), aparecem os 37 contratos vigentes da SSP, com os mesmos valores do painel do Coordenador.</li><li>Com o código 5 forçado na simulação, aparecem 50 contratos vigentes e outros valores.</li></ul><p>Funcionam:</p><ul><li>valor dos contratos;</li><li>valor liquidado e valor pago (em cartões separados);</li><li>saldo empenhado e saldo a liquidar;</li><li>filtro por parte do nome do fornecedor;</li><li>mensagem de filtro sem resultado.</li></ul><p>O que reprova:</p><ul><li>órgão errado;</li><li>sem data do SIAFIC;</li><li>ausentes: Contratação Anual, Reajuste, Valor Atualizado, Estimado Mensal, Saldo de Anulação, Saldo Disponível, consumo e evolução;</li><li>a faixa padrão de vencimento é 60 dias, e não 90;</li><li>faltam os filtros de natureza, empenho e IPOF, e o filtro por número não acha um contrato que está na lista;</li><li>mensagens fora da história e página inicial indisponível.</li></ul></section>
+  <section class="bloco" id="falhas"><h2>Falhas encontradas</h2><div class="falhas"><article class="achado sev-crítica"><header><span class="sev">Crítica</span><h3>1. O painel recorta pelo órgão errado</h3></header><ul><li><strong>Passo:</strong> CT001, CT002 (e afeta todos os valores)</li><li><strong>Esperado:</strong> contratos do órgão do usuário</li><li><strong>Obtido:</strong> o código do órgão do SISLOG (16) vai como <code>IdOrgao</code> para a consulta de contratos, que o lê como SSP. Com o código 5, o painel muda para 50 vigentes. É a mesma causa do painel do Coordenador.</li><li><strong>Evidência:</strong> CT001-01</li></ul></article><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>2. Indicadores da história ausentes</h3></header><ul><li><strong>Passo:</strong> CT003 a CT006, CT009, CT012 a CT014, CT017</li><li><strong>Obtido:</strong><ul><li>Não existem: Contratação Anual, Reajuste, Valor Atualizado, Estimado Mensal e Saldo de Anulação.</li><li>Aparecem como &quot;A API ainda não informa&quot;: data do SIAFIC, Saldo Disponível, Cobertura do empenho e Evolução do Consumo.</li></ul></li><li><strong>Evidência:</strong> CT001-01, CT015-01</li></ul></article><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>3. Filtros ausentes e filtro por número quebrado</h3></header><ul><li><strong>Passo:</strong> CT018</li><li><strong>Obtido:</strong><ul><li>Faltam na tela Natureza de despesa, Número de empenho e IPOF.</li><li>O filtro por número não encontra o 043/2024, que aparece na vigência do próprio painel.</li><li>O servidor ignora <code>ipof</code> e devolve sempre &quot;nenhum contrato&quot;.</li></ul></li><li><strong>Evidência:</strong> CT018-01</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>4. Faixa padrão de vencimento</h3></header><ul><li><strong>Passo:</strong> CT015</li><li><strong>Esperado:</strong> 90 dias por padrão (RN01 do Cenário 05)</li><li><strong>Obtido:</strong> &quot;Até 60 dias&quot; por padrão; faixas exclusivas (61 a 90, 91 a 120).</li><li><strong>Evidência:</strong> CT015-01</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>5. Mensagens e página inicial</h3></header><ul><li><strong>Passo:</strong> CT023, CT024</li><li><strong>Obtido:</strong><ul><li>Na falha: &quot;Não foi possível carregar os indicadores agora. Tente novamente em instantes.&quot;, no lugar da MSG004.</li><li>&quot;Definir como tela inicial&quot; mostra &quot;Esta ação ainda não está disponível.&quot;.</li></ul></li></ul></article><article class="achado sev-baixa"><header><span class="sev">Baixa</span><h3>6. Valor cortado e saudação com o perfil errado (fora do roteiro)</h3></header><ul><li><strong>Obtido:</strong><ul><li>&quot;Saldo empenhado R$ 532.314.466,78&quot; não cabe no cartão.</li><li>A saudação do painel financeiro diz &quot;Você está no perfil Coordenador de Contratos.&quot;.</li></ul></li><li><strong>Evidência:</strong> CT001-01</li></ul></article></div></section>
+  <h2 style="margin:10px 0 0;font-size:17px">Casos e evidências</h2>
+  <details class="cartao" id="g-Acesso-e-recorte" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Acesso e recorte — CT001 e CT002</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">001</td><td><strong>Acessar o painel</strong><div class="esp"><span>Esperado</span> Indicadores financeiros consolidados do órgão do usuário</div><div class="obt"><span>Obtido</span> Sem perfil Analista no mock. Pela URL, o painel abre com &quot;Mostrando 37 contratos vigentes&quot;, que são da SSP. A saudação diz &quot;Você está no perfil Coordenador de Contratos.&quot;</div><div class="evid"><a href="teste-dashboard-analista-financeiro-2026-11-12/CT001-01.jpg" target="_blank" title="CT001-01"><img src="teste-dashboard-analista-financeiro-2026-11-12/CT001-01.jpg" alt="Evidência CT001-01" loading="lazy"><span>CT001-01</span></a></div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">002</td><td><strong>Só contratos do órgão</strong><div class="esp"><span>Esperado</span> Só contratos do órgão do usuário</div><div class="obt"><span>Obtido</span> Contratos da SSP (043/2024, 099/2024, 139/2022, 149/2024 na vigência), os mesmos do painel do Coordenador. Com <code>CodigoOrgao=5</code>: 50 vigentes e R$ 103.017.243,56</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-SIAFIC" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>SIAFIC — CT003</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">003</td><td><strong>Data e hora da última atualização</strong><div class="esp"><span>Esperado</span> DD/MM/AAAA HH:MM</div><div class="obt"><span>Obtido</span> &quot;A API ainda não informa os dados do SIAFIC.&quot; (<code>DataSiafic: null</code>)</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Valores" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Valores — CT004 a CT007</h3><span class="qtd">4 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">004</td><td><strong>Contratação Anual e Reajuste</strong><div class="esp"><span>Esperado</span> Dois indicadores em R$</div><div class="obt"><span>Obtido</span> Não existem na tela</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">005</td><td><strong>Valor Atualizado com aditivos e apostilamentos</strong><div class="esp"><span>Esperado</span> Último valor do contrato na vigência</div><div class="obt"><span>Obtido</span> Não existe. &quot;Valor dos contratos&quot; soma o valor do contrato; <code>ValorInicial</code> e <code>Aditivos</code> vêm nulos</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">006</td><td><strong>Valor Estimado Mensal</strong><div class="esp"><span>Esperado</span> Valor mensal em R$</div><div class="obt"><span>Obtido</span> Não existe (<code>EstimadoMensal: null</code> nos itens da vigência)</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">007</td><td><strong>Soma conforme os filtros</strong><div class="esp"><span>Esperado</span> Com filtro, soma só os contratos filtrados; ao limpar, volta ao consolidado</div><div class="obt"><span>Obtido</span> Fornecedor &quot;TARUNA&quot;: 3 contratos, valor R$ 4.403.956,00 ✔. O filtro por número não funciona (CT018)</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details><details class="cartao" id="g-Execu-o" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Execução — CT008</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">008</td><td><strong>Valor Pago/Liquidado</strong><div class="esp"><span>Esperado</span> Despesa liquidada e paga, conforme o SIAFIC, em R$</div><div class="obt"><span>Obtido</span> &quot;Valor liquidado R$ 489.202.573,91&quot; e &quot;Valor pago R$ 481.309.518,99&quot;, em cartões separados. Sem planilha do SIAFIC para conferir</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details><details class="cartao" id="g-Saldos" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Saldos — CT009 a CT012</h3><span class="qtd">4 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">009</td><td><strong>Saldo de Anulação</strong><div class="esp"><span>Esperado</span> Valor da contratação − valor do IPOF</div><div class="obt"><span>Obtido</span> O indicador não existe</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">010</td><td><strong>Saldo Empenhado em todos os exercícios</strong><div class="esp"><span>Esperado</span> Empenhos de todos os exercícios, menos as anulações</div><div class="obt"><span>Obtido</span> &quot;Saldo empenhado R$ 532.314.466,78&quot;. Sem massa para conferir os exercícios. O valor não cabe no cartão e aparece cortado</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">011</td><td><strong>Saldo a Liquidar</strong><div class="esp"><span>Esperado</span> Saldo Empenhado − Saldo Liquidado</div><div class="obt"><span>Obtido</span> &quot;Saldo a liquidar R$ 73.938.288,84&quot;, calculado no código como <code>SaldoEmpenho − SaldoLiquidado</code>. Sem SIAFIC para conferir</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">012</td><td><strong>Saldo Disponível</strong><div class="esp"><span>Esperado</span> Valor ainda não executado</div><div class="obt"><span>Obtido</span> &quot;Saldo disponível — A API ainda não informa este indicador.&quot;</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Consumo" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Consumo — CT013 e CT014</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">013</td><td><strong>Percentuais liquidado e empenhado</strong><div class="esp"><span>Esperado</span> Percentuais com &quot;%&quot; e barra</div><div class="obt"><span>Obtido</span> &quot;Cobertura do empenho — A API ainda não informa este indicador.&quot;</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">014</td><td><strong>Vigência que atravessa o exercício</strong><div class="esp"><span>Esperado</span> Consumo sobre toda a vigência</div><div class="obt"><span>Obtido</span> O consumo não é exibido (CT013)</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Vig-ncia" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Vigência — CT015 e CT016</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">015</td><td><strong>Faixas de vencimento</strong><div class="esp"><span>Esperado</span> Lista suspensa com 60, 90 e 120 dias; 90 por padrão</div><div class="obt"><span>Obtido</span> A lista tem &quot;Até 60 dias&quot;, &quot;61 a 90 dias&quot; e &quot;91 a 120 dias&quot;, mas vem em &quot;Até 60 dias&quot; (4 contratos). As faixas são exclusivas: &quot;61 a 90&quot;, e não &quot;até 90&quot;</div><div class="evid"><a href="teste-dashboard-analista-financeiro-2026-11-12/CT015-01.jpg" target="_blank" title="CT015-01"><img src="teste-dashboard-analista-financeiro-2026-11-12/CT015-01.jpg" alt="Evidência CT015-01" loading="lazy"><span>CT015-01</span></a></div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">016</td><td><strong>Vencimento com prorrogação</strong><div class="esp"><span>Esperado</span> Usa a vigência já prorrogada</div><div class="obt"><span>Obtido</span> Sem contrato com prorrogação identificado</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Evolu-o" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Evolução — CT017</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">017</td><td><strong>Consumo mensal e anual</strong><div class="esp"><span>Esperado</span> Liquidado por mês com o estimado; liquidado por exercício</div><div class="obt"><span>Obtido</span> &quot;Evolução do Consumo dos Contratos — A API ainda não informa este indicador.&quot;</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Filtros" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Filtros — CT018 a CT020</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">018</td><td><strong>Cada filtro do painel</strong><div class="esp"><span>Esperado</span> Natureza, empenho, contrato, fornecedor e IPOF restringem tudo</div><div class="obt"><span>Obtido</span> A tela só tem Número do Contrato e Nome do Fornecedor. Número &quot;043/2024&quot;, que está na vigência do próprio painel: &quot;Nenhum contrato vigente&quot;. Por API, <code>ipof</code> sempre vazio (o código diz &quot;o empenho do SIOFI não tem IPOF&quot;)</div><div class="evid"><a href="teste-dashboard-analista-financeiro-2026-11-12/CT018-01.jpg" target="_blank" title="CT018-01"><img src="teste-dashboard-analista-financeiro-2026-11-12/CT018-01.jpg" alt="Evidência CT018-01" loading="lazy"><span>CT018-01</span></a></div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">019</td><td><strong>Combinação e parte do nome</strong><div class="esp"><span>Esperado</span> Parte do nome sem mínimo; interseção; Limpar filtros</div><div class="obt"><span>Obtido</span> Parte do nome &quot;TARUNA&quot; ✔ (3 contratos). A combinação com natureza não existe na tela</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">020</td><td><strong>Sem resultado</strong><div class="esp"><span>Esperado</span> MSG002: &quot;Nenhum contrato encontrado para os filtros informados.&quot;</div><div class="obt"><span>Obtido</span> &quot;Nenhum contrato encontrado para os filtros informados.&quot; com o botão &quot;Limpar filtros&quot; ✔</div></td><td class="st"><span class="selo ok">✅ Passou</span></td></tr></tbody></table></details><details class="cartao" id="g-Navega-o" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Navegação — CT021</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">021</td><td><strong>Indicador para Gerir Contratos</strong><div class="esp"><span>Esperado</span> Listagem filtrada pelo indicador e pelos filtros</div><div class="obt"><span>Obtido</span> Não acionado neste painel. No do Coordenador, o mesmo atalho abre Gerir Contratos sem filtro</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Mensagens" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Mensagens — CT022 e CT023</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">022</td><td><strong>Indicador ou faixa sem contratos</strong><div class="esp"><span>Esperado</span> MSG003</div><div class="obt"><span>Obtido</span> Não conferido: nenhuma faixa vazia foi selecionada</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">023</td><td><strong>Órgão sem contratos e falhas</strong><div class="esp"><span>Esperado</span> (a) MSG001; (b) MSG004; (c) MSG005</div><div class="obt"><span>Obtido</span> (a) Sem órgão sem contratos. (b) SIAFIC: &quot;A API ainda não informa os dados do SIAFIC.&quot;. Falha simulada: &quot;Não foi possível carregar os indicadores agora. Tente novamente em instantes.&quot;, diferente da MSG004</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-P-gina-inicial" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Página inicial — CT024</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">024</td><td><strong>Definir a página inicial</strong><div class="esp"><span>Esperado</span> Ação no painel e em Gerir Contratos; a última escolha vale</div><div class="obt"><span>Obtido</span> O botão só mostra &quot;Esta ação ainda não está disponível.&quot;</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details>
+  <section class="bloco"><h2>Erros de console e rede</h2><ul><li><code>GET /PainelFinanceiro/Obter</code> → 200 em 8 s a 13 s.</li><li>Com <code>numeroContrato=ERRO</code>: 200 com <code>Sucesso: false</code>.</li></ul></section>
+  <section class="bloco"><h2>Observações e sugestões</h2><ul><li><strong>Perfil no mock:</strong> inclua um usuário Analista Financeiro no mock da entrada para testar o acesso pelo perfil real.</li><li><strong>Valores de referência:</strong> uma planilha do SIAFIC dos contratos do órgão permite conferir CT008, CT010 e CT011.</li><li><strong>Pontos em aberto:</strong> as Observações do roteiro já trazem as dúvidas da ata de 06/10/2026 (Saldo de Anulação, Contratação Anual e Reajuste). A tela não implementa nenhum desses três.</li></ul></section>
+  <section class="bloco" id="condicoes"><h2>Condições do teste</h2><ul><li>Entrada pela simulação do SISLOG (cenário <code>gestor</code>) e abertura por <code>principal.selecionarItemMenu(…, &#x27;/PainelFinanceiro&#x27;)</code>.</li><li>Segunda entrada com <code>CodigoOrgao=5</code> para provar a causa do órgão errado.</li><li><code>PainelFinanceiro/Obter</code> responde em 8 s a 13 s e lê no máximo 200 contratos vigentes.</li><li>Falha simulada pelo gatilho do próprio painel: número do contrato igual a <code>ERRO</code>.</li></ul></section>
+  <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
+</main>
+</div>
+</div>
+<script>
+document.querySelectorAll('figure img').forEach(function (img) {
+  img.addEventListener('click', function () { window.open(img.src, '_blank'); });
+});
+</script>
+</body>
+</html>
