@@ -94,6 +94,7 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
 .mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
 .mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
 .tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
 .rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
 @media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
 @media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
@@ -102,7 +103,7 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
 <body>
 <div class="app">
 <aside class="lateral" aria-label="Navegação do relatório">
-  <div class="marca"><h1>Teste PBI #23548 · Controle de Acessos</h1><p>12/11/2026 · SEAD_HU01 · cenários 01 a 13</p></div>
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Teste PBI #23548 · Controle de Acessos</h1><p>12/11/2026 · SEAD_HU01 · cenários 01 a 13</p></div>
   <div>
     <p class="rotulo">Resultado dos 73 casos</p>
     <div class="barra" role="img" aria-label="24 passaram, 10 falharam, 5 parciais, 34 não executados">

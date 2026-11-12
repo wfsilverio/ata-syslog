@@ -83,6 +83,7 @@ table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--
 figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
 figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
 figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
 .rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
 @media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
 @media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
@@ -91,7 +92,7 @@ figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:va
 <body>
 <div class="app">
 <aside class="lateral" aria-label="Navegação do relatório">
-  <div class="marca"><h1>Teste SEAD_HU001<br>Listar Contratos</h1><p>12/11/2026 · Gestor de Contrato · SEAD</p></div>
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Teste SEAD_HU001<br>Listar Contratos</h1><p>12/11/2026 · Gestor de Contrato · SEAD</p></div>
   <div>
     <p class="rotulo">Resultado dos 51 passos</p>
     <div class="barra" role="img" aria-label="31 passaram, 14 falharam, 4 parciais, 2 não executados">

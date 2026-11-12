@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro de Testes · Consultar Saldos — 12/11/2026 · PBI 20630 · 15 cenários</title>
+<style>
+:root { --fundo:#f5f4f1; --cartao:#fff; --tinta:#1b1a18; --suave:#5f5b55; --fraco:#8a857d; --linha:#e6e2da;
+  --verde:#1f6b4a; --verde-claro:#e6f3ec; --azul:#2458a6; --azul-claro:#e8eff9; --ambar:#9a6410; --ambar-claro:#fbf1dc;
+  --vermelho:#9b2f2f; --vermelho-claro:#fbe7e5; --cinza-claro:#eeece7; --raio:10px; --sombra:0 1px 2px rgba(27,26,24,.05),0 1px 1px rgba(27,26,24,.03); }
+* { box-sizing:border-box; }
+html { scroll-padding-top:16px; }
+body { margin:0; background:var(--fundo); color:var(--tinta); font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+code { font:12.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; background:var(--cinza-claro); padding:1px 5px; border-radius:4px; word-break:break-word; }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
+.lateral { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-right:1px solid var(--linha); padding:22px 18px 28px; display:flex; flex-direction:column; gap:20px; }
+.principal { padding:28px 36px 80px; max-width:1040px; width:100%; }
+main { display:grid; gap:18px; }
+.marca h1 { margin:0; font-size:18px; line-height:1.25; }
+.marca p { margin:4px 0 0; color:var(--suave); font-size:13px; }
+.rotulo { margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.barra { display:flex; height:8px; background:var(--linha); border-radius:99px; overflow:hidden; }
+.barra span { display:block; }
+.b-ok { background:var(--verde); } .b-falha { background:var(--vermelho); } .b-parcial { background:#e3b45c; } .b-nexec { background:#b9b3a8; }
+.legenda { list-style:none; margin:8px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12.5px; color:var(--suave); }
+.legenda strong { color:var(--tinta); }
+.ponto { display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px; flex:none; }
+.ponto.ok { background:var(--verde); } .ponto.falha { background:var(--vermelho); } .ponto.parcial { background:#e3b45c; } .ponto.nexec { background:#b9b3a8; }
+nav { display:grid; gap:1px; }
+.nav-ct { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:2px 6px; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; }
+.nav-ct:hover { background:var(--fundo); }
+.nav-ct span:nth-child(2) { font-weight:600; white-space:nowrap; }
+.nav-sub { color:var(--suave); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-top { display:block; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; font-weight:600; }
+.nav-top:hover { background:var(--fundo); }
+.topo { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 24px; }
+.topo h2 { margin:0 0 4px; font-size:22px; letter-spacing:-.01em; }
+.topo .sub { margin:0 0 14px; color:var(--suave); }
+.meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 18px; margin:0; }
+.meta dt { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.meta dd { margin:2px 0 0; font-size:14px; }
+.veredito { display:inline-block; margin-top:14px; font-weight:700; padding:4px 12px; border-radius:99px; }
+.veredito.falha { color:var(--vermelho); background:var(--vermelho-claro); } .veredito.ok { color:var(--verde); background:var(--verde-claro); } .veredito.parcial { color:var(--ambar); background:var(--ambar-claro); }
+.numeros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.num { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra); }
+.num b { display:block; font-size:26px; line-height:1.1; }
+.num span { font-size:12.5px; color:var(--suave); }
+.num.ok b { color:var(--verde); } .num.falha b { color:var(--vermelho); } .num.parcial b { color:var(--ambar); } .num.nexec b { color:var(--fraco); }
+.bloco { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px; }
+.bloco > h2 { margin:0 0 10px; font-size:17px; }
+.bloco p { margin:0 0 10px; }
+.bloco ul { margin:0; padding-left:20px; } .bloco li { margin:3px 0; }
+.cartao { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); overflow:hidden; }
+.cartao summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 18px; }
+.cartao summary::-webkit-details-marker { display:none; }
+.cartao summary::after { content:"▸"; margin-left:auto; color:var(--fraco); transition:transform .15s; }
+.cartao[open] summary::after { transform:rotate(90deg); }
+.cartao summary h3 { margin:0; font-size:15px; }
+.qtd { font-size:12.5px; color:var(--fraco); }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.selo.ok { color:var(--verde); background:var(--verde-claro); } .selo.falha { color:var(--vermelho); background:var(--vermelho-claro); }
+.selo.parcial { color:var(--ambar); background:var(--ambar-claro); } .selo.nexec { color:var(--suave); background:var(--cinza-claro); }
+table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--linha); }
+.passos td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--linha); font-size:14px; }
+.passos tr:last-child td { border-bottom:0; }
+.evid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.evid a { display:grid; gap:2px; width:168px; text-decoration:none; color:var(--suave); font-size:11.5px; }
+.evid img { width:168px; height:110px; object-fit:cover; object-position:top left; border:1px solid var(--linha); border-radius:6px; background:var(--fundo); }
+.evid a:hover img { border-color:var(--verde); }
+.passos td.n { width:52px; color:var(--fraco); font-weight:700; text-align:right; }
+.passos td.st { width:150px; text-align:right; }
+.esp, .obt { margin-top:6px; color:var(--suave); }
+.esp span, .obt span { display:inline-block; min-width:68px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--fraco); }
+.obt { color:var(--tinta); }
+.falhas { display:grid; gap:12px; }
+.achado { border:1px solid var(--linha); border-left:4px solid var(--fraco); border-radius:8px; padding:12px 16px; }
+.achado header { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.achado h3 { margin:0; font-size:15px; }
+.achado ul { margin:0; padding-left:18px; } .achado li { margin:2px 0; font-size:14px; }
+.achado p { margin:4px 0; font-size:14px; }
+.sev { font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.sev-crítica { border-left-color:#6d1313; } .sev-crítica .sev { color:#fff; background:#7d1a1a; }
+.sev-alta { border-left-color:var(--vermelho); } .sev-alta .sev { color:var(--vermelho); background:var(--vermelho-claro); }
+.sev-média { border-left-color:#e3b45c; } .sev-média .sev { color:var(--ambar); background:var(--ambar-claro); }
+.sev-baixa { border-left-color:var(--azul); } .sev-baixa .sev { color:var(--azul); background:var(--azul-claro); }
+table.msgs { width:100%; border-collapse:collapse; margin:6px 0 4px; font-size:13.5px; }
+table.msgs th, table.msgs td { text-align:left; vertical-align:top; padding:6px 8px; border:1px solid var(--linha); }
+table.msgs th { background:var(--fundo); font-size:12px; }
+.galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
+figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.antes { display:block; font-size:11.5px; color:var(--fraco); margin-bottom:3px; }
+.mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
+.tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
+.rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+@media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
+@media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="lateral" aria-label="Navegação do relatório">
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Roteiro Consultar Saldos</h1><p>12/11/2026 · PBI 20630 · 15 cenários</p></div>
+  <div>
+    <p class="rotulo">Resultado dos 15 casos</p>
+    <div class="barra" role="img" aria-label="1 passaram, 1 falharam, 0 parciais, 13 não executados">
+      <span class="b-ok" style="width:6.67%"></span><span class="b-falha" style="width:6.67%"></span><span class="b-parcial" style="width:0.00%"></span><span class="b-nexec" style="width:86.67%"></span>
+    </div>
+    <ul class="legenda">
+      <li><span class="ponto ok"></span><strong>1</strong> passaram</li><li><span class="ponto falha"></span><strong>1</strong> falharam</li>
+      <li><span class="ponto parcial"></span><strong>0</strong> parciais</li><li><span class="ponto nexec"></span><strong>13</strong> não executados</li>
+    </ul>
+  </div>
+  <div>
+    <p class="rotulo">Seções</p>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a>
+  </div>
+  <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Painel"><span class="ponto falha"></span><span>Painel</span><span class="nav-sub">painel resumo</span></a><a class="nav-ct" href="#g-Saldos"><span class="ponto nexec"></span><span>Saldos</span><span class="nav-sub">saldo do contrato, de empenho e pago</span></a><a class="nav-ct" href="#g-Execu-o-financeira"><span class="ponto nexec"></span><span>Execução financeira</span><span class="nav-sub">previsto, empenhado, comprometido, liquidado, pago e disponível</span></a><a class="nav-ct" href="#g-Visualiza-o"><span class="ponto nexec"></span><span>Visualização</span><span class="nav-sub">percentual e gráfico</span></a><a class="nav-ct" href="#g-Acesso"><span class="ponto ok"></span><span>Acesso</span><span class="nav-sub">usuário não autorizado</span></a><a class="nav-ct" href="#g-Formato"><span class="ponto nexec"></span><span>Formato</span><span class="nav-sub">exibição monetária</span></a><a class="nav-ct" href="#g-Consist-ncia"><span class="ponto nexec"></span><span>Consistência</span><span class="nav-sub">painel e gráfico</span></a></nav></div>
+</aside>
+<div class="principal">
+<main>
+  <section class="topo" id="resumo">
+    <span class="tipo">Execução</span>
+    <h2>Roteiro de Testes · Consultar Saldos</h2>
+    <p class="sub">Roteiro da analista Fabiana (PBI 20630), executado na interface e por chamada direta com o perfil Gestor de Contrato da SEAD em sete contratos Publicado.</p>
+    <dl class="meta">
+      <div><dt>Data e hora</dt><dd>12/11/2026, das 13h40 às 14h10 (horário de Brasília)</dd></div>
+      <div><dt>Perfil</dt><dd>login 04934988181, Gestor de Contrato, Secretaria da Administração (cenário <code>gestor</code> do Simular entrada do SISLOG)</dd></div>
+      <div><dt>Ambiente</dt><dd>GCG em <code>http://localhost:5000</code> (Localhost), branch <code>local/execucao-localhost</code>, commit <code>f0fcf58</code>, dados do SISLOG de homologação</dd></div>
+      <div><dt>Executado por</dt><dd>Skill testar-roteiro-gcg, criada por Wellington Silvério</dd></div>
+    </dl>
+    <span class="veredito falha">❌ Reprovado</span>
+  </section>
+  <section class="numeros" aria-label="Contagem">
+    <div class="num"><b>15</b><span>casos</span></div><div class="num ok"><b>1</b><span>passaram</span></div>
+    <div class="num falha"><b>1</b><span>falharam</span></div><div class="num parcial"><b>0</b><span>parciais</span></div>
+    <div class="num nexec"><b>13</b><span>não executados</span></div>
+  </section>
+  
+  <section class="bloco"><h2>Principal achado</h2><p><strong>O painel de Saldos não carrega para nenhum contrato.</strong> A aba mostra &quot;A consulta não foi concluída / Não foi possível realizar a consulta. Tente novamente.&quot;, porque a integração de saldos (<code>IServicoIntegracaoSaldos</code>) falha em todos os sete contratos testados.</p><p>Sem os dados, não dá para conferir saldos, os seis componentes da execução financeira, o percentual, o gráfico nem o formato monetário. Esses 13 casos ficaram bloqueados. Só o controle de acesso (CT013) foi conferido.</p></section>
+  <section class="bloco" id="falhas"><h2>Falhas encontradas</h2><div class="falhas"><article class="achado sev-crítica"><header><span class="sev">Crítica</span><h3>1. A integração de saldos falha para todos os contratos</h3></header><ul><li><strong>Passo:</strong> CT001 (e bloqueia CT002 a CT012, CT014 e CT015)</li><li><strong>Esperado:</strong> painel resumo com as informações financeiras do contrato</li><li><strong>Obtido:</strong><ul><li><code>ObterSaldos</code> cai no <code>catch</code> da integração e devolve a mensagem genérica.</li><li>Hoje cedo a mesma chamada demorou 202 s e travou o GCG inteiro; à tarde falha em cerca de 1,3 s.</li><li>A causa não aparece, porque o log do GCG não é gravado no Linux.</li></ul></li><li><strong>Evidência:</strong> CT001-01; respostas da API para 7 contratos</li></ul></article></div></section>
+  <h2 style="margin:10px 0 0;font-size:17px">Casos e evidências</h2>
+  <details class="cartao" id="g-Painel" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Painel — painel resumo</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">001</td><td><strong>Acessar o painel resumo</strong><div class="esp"><span>Esperado</span> Painel com as principais informações financeiras</div><div class="obt"><span>Obtido</span> Aba Saldos: &quot;A consulta não foi concluída&quot;, com Tentar novamente. <code>ObterSaldos</code> → <code>{&quot;Sucesso&quot;:false,&quot;Mensagem&quot;:&quot;Não foi possível realizar a consulta. Tente novamente.&quot;}</code> nos 7 contratos</div><div class="evid"><a href="consultar-saldos-2026-11-12/CT001-01.jpg" target="_blank" title="CT001-01"><img src="consultar-saldos-2026-11-12/CT001-01.jpg" alt="Evidência CT001-01" loading="lazy"><span>CT001-01</span></a></div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Saldos" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Saldos — saldo do contrato, de empenho e pago</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">002</td><td><strong>Saldo remanescente do contrato</strong><div class="esp"><span>Esperado</span> Saldo do Contrato em formato monetário</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">003</td><td><strong>Saldo de empenho do exercício</strong><div class="esp"><span>Esperado</span> Saldo de Empenho correto</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">004</td><td><strong>Saldo pago</strong><div class="esp"><span>Esperado</span> Valor efetivamente pago</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Execu-o-financeira" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Execução financeira — previsto, empenhado, comprometido, liquidado, pago e disponível</h3><span class="qtd">6 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">005</td><td><strong>Previsto</strong><div class="esp"><span>Esperado</span> Previsto correto</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">006</td><td><strong>Empenhado</strong><div class="esp"><span>Esperado</span> Empenhado correto</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">007</td><td><strong>Comprometido</strong><div class="esp"><span>Esperado</span> Comprometido correto</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">008</td><td><strong>Liquidado</strong><div class="esp"><span>Esperado</span> Liquidado correto</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">009</td><td><strong>Pago</strong><div class="esp"><span>Esperado</span> Pago no detalhamento</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">010</td><td><strong>Disponível</strong><div class="esp"><span>Esperado</span> Disponível correto</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Visualiza-o" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Visualização — percentual e gráfico</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">011</td><td><strong>Percentual de consumo</strong><div class="esp"><span>Esperado</span> Percentual conforme a fórmula aprovada</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">012</td><td><strong>Gráfico da execução financeira</strong><div class="esp"><span>Esperado</span> Gráfico com os seis valores</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Acesso" >
+<summary><span class="selo ok">✅ Passou</span><h3>Acesso — usuário não autorizado</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">013</td><td><strong>Restringir usuário não autorizado</strong><div class="esp"><span>Esperado</span> Consulta não disponibilizada</div><div class="obt"><span>Obtido</span> Sem sessão: <code>ObterSaldos</code> → 302 para o login (navegação) e 401 (AJAX). Usuário sem perfil no GCG: entrada recusada (&quot;O usuário não tem perfil no GCG.&quot;) e 401 no <code>ObterSaldos</code></div></td><td class="st"><span class="selo ok">✅ Passou</span></td></tr></tbody></table></details><details class="cartao" id="g-Formato" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Formato — exibição monetária</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">014</td><td><strong>Exibição monetária</strong><div class="esp"><span>Esperado</span> Valores em formato monetário</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Consist-ncia" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Consistência — painel e gráfico</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">015</td><td><strong>Painel e gráfico</strong><div class="esp"><span>Esperado</span> Valores do gráfico iguais aos do painel</div><div class="obt"><span>Obtido</span> Painel não carrega (CT001)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details>
+  <section class="bloco"><h2>Erros de console e rede</h2><ul><li><code>GET /Contratos/ObterSaldos?codigo=…</code> → 200 com <code>Sucesso: false</code>, para todos os contratos.</li></ul></section>
+  <section class="bloco"><h2>Observações e sugestões</h2><ul><li><strong>Conferir a integração:</strong> verificar o endereço e a disponibilidade da integração de saldos (SIAFIC) no ambiente Localhost e reexecutar este roteiro. O reteste vai ser reconhecido automaticamente.</li><li><strong>Valores de referência:</strong> os CT002 a CT011 pedem valores conhecidos para comparar. Será preciso uma planilha ou consulta do SIAFIC dos contratos escolhidos.</li></ul></section>
+  <section class="bloco" id="condicoes"><h2>Condições do teste</h2><ul><li>Contratos testados: 159173, 159175, 159135, 159184, 159105 (SEAD), 154765 (SSP) e 154769 (PM), todos Publicado.</li><li>Hoje cedo, o <code>ObterSaldos</code> do 159175 levou 202 s e travou o servidor. Agora responde em cerca de 1,3 s, mas sempre com falha.</li></ul></section>
+  <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
+</main>
+</div>
+</div>
+<script>
+document.querySelectorAll('figure img').forEach(function (img) {
+  img.addEventListener('click', function () { window.open(img.src, '_blank'); });
+});
+</script>
+</body>
+</html>

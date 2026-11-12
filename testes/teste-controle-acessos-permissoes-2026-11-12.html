@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro de Testes · Controle de Acessos e Permissões por Perfil — 12/11/2026 · PBI 23548 · HU 23670 · 14 cenários</title>
+<style>
+:root { --fundo:#f5f4f1; --cartao:#fff; --tinta:#1b1a18; --suave:#5f5b55; --fraco:#8a857d; --linha:#e6e2da;
+  --verde:#1f6b4a; --verde-claro:#e6f3ec; --azul:#2458a6; --azul-claro:#e8eff9; --ambar:#9a6410; --ambar-claro:#fbf1dc;
+  --vermelho:#9b2f2f; --vermelho-claro:#fbe7e5; --cinza-claro:#eeece7; --raio:10px; --sombra:0 1px 2px rgba(27,26,24,.05),0 1px 1px rgba(27,26,24,.03); }
+* { box-sizing:border-box; }
+html { scroll-padding-top:16px; }
+body { margin:0; background:var(--fundo); color:var(--tinta); font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+code { font:12.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; background:var(--cinza-claro); padding:1px 5px; border-radius:4px; word-break:break-word; }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
+.lateral { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-right:1px solid var(--linha); padding:22px 18px 28px; display:flex; flex-direction:column; gap:20px; }
+.principal { padding:28px 36px 80px; max-width:1040px; width:100%; }
+main { display:grid; gap:18px; }
+.marca h1 { margin:0; font-size:18px; line-height:1.25; }
+.marca p { margin:4px 0 0; color:var(--suave); font-size:13px; }
+.rotulo { margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.barra { display:flex; height:8px; background:var(--linha); border-radius:99px; overflow:hidden; }
+.barra span { display:block; }
+.b-ok { background:var(--verde); } .b-falha { background:var(--vermelho); } .b-parcial { background:#e3b45c; } .b-nexec { background:#b9b3a8; }
+.legenda { list-style:none; margin:8px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12.5px; color:var(--suave); }
+.legenda strong { color:var(--tinta); }
+.ponto { display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px; flex:none; }
+.ponto.ok { background:var(--verde); } .ponto.falha { background:var(--vermelho); } .ponto.parcial { background:#e3b45c; } .ponto.nexec { background:#b9b3a8; }
+nav { display:grid; gap:1px; }
+.nav-ct { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:2px 6px; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; }
+.nav-ct:hover { background:var(--fundo); }
+.nav-ct span:nth-child(2) { font-weight:600; white-space:nowrap; }
+.nav-sub { color:var(--suave); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-top { display:block; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; font-weight:600; }
+.nav-top:hover { background:var(--fundo); }
+.topo { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 24px; }
+.topo h2 { margin:0 0 4px; font-size:22px; letter-spacing:-.01em; }
+.topo .sub { margin:0 0 14px; color:var(--suave); }
+.meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 18px; margin:0; }
+.meta dt { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.meta dd { margin:2px 0 0; font-size:14px; }
+.veredito { display:inline-block; margin-top:14px; font-weight:700; padding:4px 12px; border-radius:99px; }
+.veredito.falha { color:var(--vermelho); background:var(--vermelho-claro); } .veredito.ok { color:var(--verde); background:var(--verde-claro); } .veredito.parcial { color:var(--ambar); background:var(--ambar-claro); }
+.numeros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.num { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra); }
+.num b { display:block; font-size:26px; line-height:1.1; }
+.num span { font-size:12.5px; color:var(--suave); }
+.num.ok b { color:var(--verde); } .num.falha b { color:var(--vermelho); } .num.parcial b { color:var(--ambar); } .num.nexec b { color:var(--fraco); }
+.bloco { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px; }
+.bloco > h2 { margin:0 0 10px; font-size:17px; }
+.bloco p { margin:0 0 10px; }
+.bloco ul { margin:0; padding-left:20px; } .bloco li { margin:3px 0; }
+.cartao { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); overflow:hidden; }
+.cartao summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 18px; }
+.cartao summary::-webkit-details-marker { display:none; }
+.cartao summary::after { content:"▸"; margin-left:auto; color:var(--fraco); transition:transform .15s; }
+.cartao[open] summary::after { transform:rotate(90deg); }
+.cartao summary h3 { margin:0; font-size:15px; }
+.qtd { font-size:12.5px; color:var(--fraco); }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.selo.ok { color:var(--verde); background:var(--verde-claro); } .selo.falha { color:var(--vermelho); background:var(--vermelho-claro); }
+.selo.parcial { color:var(--ambar); background:var(--ambar-claro); } .selo.nexec { color:var(--suave); background:var(--cinza-claro); }
+table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--linha); }
+.passos td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--linha); font-size:14px; }
+.passos tr:last-child td { border-bottom:0; }
+.evid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.evid a { display:grid; gap:2px; width:168px; text-decoration:none; color:var(--suave); font-size:11.5px; }
+.evid img { width:168px; height:110px; object-fit:cover; object-position:top left; border:1px solid var(--linha); border-radius:6px; background:var(--fundo); }
+.evid a:hover img { border-color:var(--verde); }
+.passos td.n { width:52px; color:var(--fraco); font-weight:700; text-align:right; }
+.passos td.st { width:150px; text-align:right; }
+.esp, .obt { margin-top:6px; color:var(--suave); }
+.esp span, .obt span { display:inline-block; min-width:68px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--fraco); }
+.obt { color:var(--tinta); }
+.falhas { display:grid; gap:12px; }
+.achado { border:1px solid var(--linha); border-left:4px solid var(--fraco); border-radius:8px; padding:12px 16px; }
+.achado header { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.achado h3 { margin:0; font-size:15px; }
+.achado ul { margin:0; padding-left:18px; } .achado li { margin:2px 0; font-size:14px; }
+.achado p { margin:4px 0; font-size:14px; }
+.sev { font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.sev-crítica { border-left-color:#6d1313; } .sev-crítica .sev { color:#fff; background:#7d1a1a; }
+.sev-alta { border-left-color:var(--vermelho); } .sev-alta .sev { color:var(--vermelho); background:var(--vermelho-claro); }
+.sev-média { border-left-color:#e3b45c; } .sev-média .sev { color:var(--ambar); background:var(--ambar-claro); }
+.sev-baixa { border-left-color:var(--azul); } .sev-baixa .sev { color:var(--azul); background:var(--azul-claro); }
+table.msgs { width:100%; border-collapse:collapse; margin:6px 0 4px; font-size:13.5px; }
+table.msgs th, table.msgs td { text-align:left; vertical-align:top; padding:6px 8px; border:1px solid var(--linha); }
+table.msgs th { background:var(--fundo); font-size:12px; }
+.galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
+figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.antes { display:block; font-size:11.5px; color:var(--fraco); margin-bottom:3px; }
+.mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
+.tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
+.rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+@media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
+@media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="lateral" aria-label="Navegação do relatório">
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Roteiro Controle de Acessos</h1><p>12/11/2026 · PBI 23548 · HU 23670 · 14 cenários</p></div>
+  <div>
+    <p class="rotulo">Resultado dos 14 casos</p>
+    <div class="barra" role="img" aria-label="2 passaram, 2 falharam, 2 parciais, 8 não executados">
+      <span class="b-ok" style="width:14.29%"></span><span class="b-falha" style="width:14.29%"></span><span class="b-parcial" style="width:14.29%"></span><span class="b-nexec" style="width:57.14%"></span>
+    </div>
+    <ul class="legenda">
+      <li><span class="ponto ok"></span><strong>2</strong> passaram</li><li><span class="ponto falha"></span><strong>2</strong> falharam</li>
+      <li><span class="ponto parcial"></span><strong>2</strong> parciais</li><li><span class="ponto nexec"></span><strong>8</strong> não executados</li>
+    </ul>
+  </div>
+  <div>
+    <p class="rotulo">Seções</p>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a>
+  </div>
+  <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Identifica-o"><span class="ponto falha"></span><span>Identificação</span><span class="nav-sub">perfil, permissões e acesso direto</span></a><a class="nav-ct" href="#g-Consulta-x-edi-o"><span class="ponto falha"></span><span>Consulta x edição</span><span class="nav-sub">somente leitura</span></a><a class="nav-ct" href="#g-Perfis"><span class="ponto parcial"></span><span>Perfis</span><span class="nav-sub">Gestor, Fiscal, Fornecedor, Procurador, Analista, CGE/TCE e Coordenador</span></a><a class="nav-ct" href="#g-Indisponibilidade"><span class="ponto nexec"></span><span>Indisponibilidade</span><span class="nav-sub">consulta parcialmente indisponível</span></a><a class="nav-ct" href="#g-Alertas"><span class="ponto nexec"></span><span>Alertas</span><span class="nav-sub">alertas por perfil</span></a><a class="nav-ct" href="#g-Bloqueios"><span class="ponto parcial"></span><span>Bloqueios</span><span class="nav-sub">operações não autorizadas e contrato indisponível</span></a></nav></div>
+</aside>
+<div class="principal">
+<main>
+  <section class="topo" id="resumo">
+    <span class="tipo">Execução</span>
+    <h2>Roteiro de Testes · Controle de Acessos e Permissões por Perfil</h2>
+    <p class="sub">Roteiro da analista Fabiana (PBI 23548 · HU 23670), executado na interface e por chamada direta ao servidor com os perfis Gestor (101) e Coordenador (103).</p>
+    <dl class="meta">
+      <div><dt>Data e hora</dt><dd>12/11/2026, das 13h40 às 14h10 (horário de Brasília)</dd></div>
+      <div><dt>Perfil</dt><dd>Gestor de Contrato (101) e Coordenador de Contratos (103) do cenário <code>gestor</code>; cenário <code>sem-perfil</code> para acesso negado</dd></div>
+      <div><dt>Ambiente</dt><dd>GCG em <code>http://localhost:5000</code> (Localhost), branch <code>local/execucao-localhost</code>, commit <code>f0fcf58</code>, <code>IntegracaoEntradaSislog.UsarMock = true</code></dd></div>
+      <div><dt>Executado por</dt><dd>Skill testar-roteiro-gcg, criada por Wellington Silvério</dd></div>
+    </dl>
+    <span class="veredito falha">❌ Reprovado</span>
+  </section>
+  <section class="numeros" aria-label="Contagem">
+    <div class="num"><b>14</b><span>casos</span></div><div class="num ok"><b>2</b><span>passaram</span></div>
+    <div class="num falha"><b>2</b><span>falharam</span></div><div class="num parcial"><b>2</b><span>parciais</span></div>
+    <div class="num nexec"><b>8</b><span>não executados</span></div>
+  </section>
+  
+  <section class="bloco"><h2>Principal achado</h2><p>Este roteiro (da analista Fabiana, 14 cenários) cobre a mesma PBI 23548 já testada hoje com o roteiro técnico de 73 casos. Os resultados batem com aquela execução:</p><ul><li>O menu mostra só o que o perfil pode.</li><li>As operações protegidas são recusadas no servidor, sem dado técnico.</li><li>O <strong>acesso direto pela URL não é bloqueado</strong>: o Gestor abre o painel do Fornecedor.</li><li><strong>Não há modo somente leitura</strong> para contrato em que o usuário não está na equipe: o envio de comunicação fica liberado, e o menu do aditivo oferece Editar e Excluir.</li></ul><p>Oito cenários dependem de perfis que o mock não tem (Fiscal com telas, Fornecedor, Procurador, Analista Financeiro, CGE/TCE) ou de funções ainda não entregues (alertas, ateste, OS/OF).</p></section>
+  <section class="bloco" id="falhas"><h2>Falhas encontradas</h2><div class="falhas"><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>1. O acesso direto pela URL não é bloqueado</h3></header><ul><li><strong>Passo:</strong> CT002</li><li><strong>Esperado:</strong> &quot;Você não possui permissão para acessar esta funcionalidade.&quot;</li><li><strong>Obtido:</strong> o Gestor abre o painel e os dados do Fornecedor pela barra de endereço. A causa é a mesma da outra execução: <code>ControladorasAutorizadas</code> libera os painéis sem consultar o menu do perfil.</li><li><strong>Evidência:</strong> CT002-01</li></ul></article><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>2. Sem modo somente leitura para contrato fora do vínculo</h3></header><ul><li><strong>Passo:</strong> CT003</li><li><strong>Esperado:</strong> somente leitura, sem ações de manutenção, com mensagem de consulta apenas</li><li><strong>Obtido:</strong><ul><li>&quot;Nova comunicação&quot; fica disponível com <code>PodeEnviar: true</code>.</li><li>O menu do aditivo oferece Editar e Excluir (por ora só avisam &quot;ainda não está disponível&quot;).</li><li>Nenhuma mensagem de consulta apenas.</li></ul></li><li><strong>Evidência:</strong> CT003-01</li></ul></article><article class="achado sev-baixa"><header><span class="sev">Baixa</span><h3>3. Texto de recusa e de contrato indisponível fora da HU</h3></header><ul><li><strong>Passos:</strong> CT013, CT014</li><li><strong>Obtido:</strong><ul><li>Na recusa: &quot;Usuário não possui permissão para realizar esta operação.&quot;.</li><li>No contrato inexistente: &quot;Não foi possível realizar a consulta. Tente novamente.&quot;.</li><li>A HU pede mensagens próprias, e o roteiro só exige que não haja dado técnico.</li></ul></li></ul></article></div></section>
+  <h2 style="margin:10px 0 0;font-size:17px">Casos e evidências</h2>
+  <details class="cartao" id="g-Identifica-o" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Identificação — perfil, permissões e acesso direto</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">001</td><td><strong>Perfil e permissões</strong><div class="esp"><span>Esperado</span> Identifica perfil e órgão e mostra só o autorizado</div><div class="obt"><span>Obtido</span> Topo &quot;Servidor de Homologação (Gestor de Contrato)&quot;, escopo &quot;Contratos do órgão SEAD&quot;. Menu: Painel do Gestor e do Fiscal e Listagem de contratos</div><div class="evid"><a href="controle-acessos-permissoes-2026-11-12/CT001-01.jpg" target="_blank" title="CT001-01"><img src="controle-acessos-permissoes-2026-11-12/CT001-01.jpg" alt="Evidência CT001-01" loading="lazy"><span>CT001-01</span></a></div></td><td class="st"><span class="selo ok">✅ Passou</span></td></tr><tr><td class="n">002</td><td><strong>Bloquear acesso direto</strong><div class="esp"><span>Esperado</span> Bloqueado também pela URL, com &quot;Você não possui permissão para acessar esta funcionalidade.&quot;</div><div class="obt"><span>Obtido</span> <code>/PainelFornecedor/Inicio</code> abre &quot;Você está no perfil Fornecedor&quot; e <code>/PainelFornecedor/Obter</code> devolve os dados (<code>Sucesso: true</code>)</div><div class="evid"><a href="controle-acessos-permissoes-2026-11-12/CT002-01.jpg" target="_blank" title="CT002-01"><img src="controle-acessos-permissoes-2026-11-12/CT002-01.jpg" alt="Evidência CT002-01" loading="lazy"><span>CT002-01</span></a></div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Consulta-x-edi-o" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Consulta x edição — somente leitura</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">003</td><td><strong>Distinguir consulta de edição</strong><div class="esp"><span>Esperado</span> Somente leitura, sem ações de manutenção, com mensagem de consulta</div><div class="obt"><span>Obtido</span> No 159175 (fora da equipe): aba Avisos com &quot;Nova comunicação&quot; e <code>PodeEnviar: true</code>. No 159173, o menu do aditivo oferece Editar, Publicação/PNCP e Excluir. Nenhuma mensagem de consulta apenas</div><div class="evid"><a href="controle-acessos-permissoes-2026-11-12/CT003-01.jpg" target="_blank" title="CT003-01"><img src="controle-acessos-permissoes-2026-11-12/CT003-01.jpg" alt="Evidência CT003-01" loading="lazy"><span>CT003-01</span></a></div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Perfis" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Perfis — Gestor, Fiscal, Fornecedor, Procurador, Analista, CGE/TCE e Coordenador</h3><span class="qtd">7 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">004</td><td><strong>Gestor</strong><div class="esp"><span>Esperado</span> Manutenção só no contrato em que é Gestor; alertas de vencimento e renovação</div><div class="obt"><span>Obtido</span> O usuário do mock não é Gestor de nenhum contrato consultado; ateste, encaminhamento e alertas não implementados</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">005</td><td><strong>Fiscal</strong><div class="esp"><span>Esperado</span> Fiscalização permitida; ateste de pagamento impedido</div><div class="obt"><span>Obtido</span> Sem Fiscal com telas no mock (o cenário <code>sem-unidade</code> é recusado na entrada)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">006</td><td><strong>Fornecedor</strong><div class="esp"><span>Esperado</span> Só contratos da empresa; bloqueio de terceiros e de operações internas</div><div class="obt"><span>Obtido</span> Sem Fornecedor no mock</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">007</td><td><strong>Procurador Setorial</strong><div class="esp"><span>Esperado</span> Consulta todos; edição no próprio órgão</div><div class="obt"><span>Obtido</span> Sem Procurador no mock</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">008</td><td><strong>Analista Financeiro</strong><div class="esp"><span>Esperado</span> Consulta todos; atividades financeiras no próprio órgão</div><div class="obt"><span>Obtido</span> Sem Analista no mock</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">009</td><td><strong>Controle CGE/TCE</strong><div class="esp"><span>Esperado</span> Consulta ampla; bloqueio em outros órgãos</div><div class="obt"><span>Obtido</span> Sem CGE/TCE no mock</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">011</td><td><strong>Coordenador/Apoio</strong><div class="esp"><span>Esperado</span> Consulta todos; edita só os do órgão; impede documento oficial sem habilitação</div><div class="obt"><span>Obtido</span> 103 consulta 18.610 contratos de vários órgãos ✔; <code>PodeEnviar: false</code> ✔. Edição, OS/OF, planilhas e documento oficial não implementados</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details><details class="cartao" id="g-Indisponibilidade" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Indisponibilidade — consulta parcialmente indisponível</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">010</td><td><strong>Consulta parcialmente indisponível</strong><div class="esp"><span>Esperado</span> &quot;Não foi possível recuperar todas as informações solicitadas. Tente novamente.&quot; e preserva o que veio</div><div class="obt"><span>Obtido</span> Sem perfil CGE/TCE. Com o Gestor, a aba Saldos falha isolada (&quot;A consulta não foi concluída…&quot;) e as demais abas carregam, mas o texto não é o da HU</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Alertas" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Alertas — alertas por perfil</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">012</td><td><strong>Alertas por perfil</strong><div class="esp"><span>Esperado</span> Alertas conforme o perfil</div><div class="obt"><span>Obtido</span> Alertas não implementados (épico #20684)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Bloqueios" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Bloqueios — operações não autorizadas e contrato indisponível</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">013</td><td><strong>Operações não autorizadas</strong><div class="esp"><span>Esperado</span> Operação impedida, mensagem de permissão sem dado técnico</div><div class="obt"><span>Obtido</span> 103 em <code>POST /Contratos/EnviarComunicacao</code>: <code>{&quot;Sucesso&quot;:false,&quot;Mensagem&quot;:&quot;Usuário não possui permissão para realizar esta operação.&quot;}</code>, nada gravado. Sem sessão: 401 (AJAX) e 302 para o login</div></td><td class="st"><span class="selo ok">✅ Passou</span></td></tr><tr><td class="n">014</td><td><strong>Contrato indisponível</strong><div class="esp"><span>Esperado</span> Sem dados protegidos; contrato indisponível ou ausência de registros</div><div class="obt"><span>Obtido</span> Fornecedor sem massa. Como Gestor, código 999999999: listagem vazia (<code>TotalRows 0</code>) e <code>ObterDadosGerais</code> com &quot;Não foi possível realizar a consulta. Tente novamente.&quot; (texto genérico)</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details>
+  <section class="bloco"><h2>Erros de console e rede</h2><ul><li>Nenhum erro inesperado. As recusas usam HTTP 200 com <code>Sucesso: false</code>, ou 401/302.</li></ul></section>
+  <section class="bloco"><h2>Observações e sugestões</h2><ul><li><strong>Outra execução da mesma PBI:</strong> o roteiro técnico de hoje (73 casos) detalha a entrada, o menu e o acesso direto, incluindo o travamento do servidor nos painéis.</li><li><strong>Massa de perfis:</strong> os 8 casos sem execução precisam de Fiscal com telas, Fornecedor, Procurador, Analista e CGE/TCE no mock, e de um usuário na equipe de um contrato.</li></ul></section>
+  <section class="bloco" id="condicoes"><h2>Condições do teste</h2><ul><li>Entrada pela simulação do SISLOG, perfil 101; troca para o 103 por <code>/Principal/InicioIntranet?codigoPerfil=103</code>.</li><li>Contrato 159175: a equipe só tem o servidor 2526169, e o usuário do mock (idPessoa 1001) não está em nenhuma equipe consultada.</li><li>Relatório da outra execução da mesma PBI: https://wfsilverio.github.io/ata-syslog/testes/teste-controle-acessos-23548-2026-11-12.html</li></ul></section>
+  <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
+</main>
+</div>
+</div>
+<script>
+document.querySelectorAll('figure img').forEach(function (img) {
+  img.addEventListener('click', function () { window.open(img.src, '_blank'); });
+});
+</script>
+</body>
+</html>
