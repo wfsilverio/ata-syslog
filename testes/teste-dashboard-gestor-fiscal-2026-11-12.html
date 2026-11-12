@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro de Testes · Dashboard de Gestor e Fiscal — 12/11/2026 · PBI 22006 · HU012 · 22 cenários</title>
+<style>
+:root { --fundo:#f5f4f1; --cartao:#fff; --tinta:#1b1a18; --suave:#5f5b55; --fraco:#8a857d; --linha:#e6e2da;
+  --verde:#1f6b4a; --verde-claro:#e6f3ec; --azul:#2458a6; --azul-claro:#e8eff9; --ambar:#9a6410; --ambar-claro:#fbf1dc;
+  --vermelho:#9b2f2f; --vermelho-claro:#fbe7e5; --cinza-claro:#eeece7; --raio:10px; --sombra:0 1px 2px rgba(27,26,24,.05),0 1px 1px rgba(27,26,24,.03); }
+* { box-sizing:border-box; }
+html { scroll-padding-top:16px; }
+body { margin:0; background:var(--fundo); color:var(--tinta); font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+code { font:12.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; background:var(--cinza-claro); padding:1px 5px; border-radius:4px; word-break:break-word; }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
+.lateral { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-right:1px solid var(--linha); padding:22px 18px 28px; display:flex; flex-direction:column; gap:20px; }
+.principal { padding:28px 36px 80px; max-width:1040px; width:100%; }
+main { display:grid; gap:18px; }
+.marca h1 { margin:0; font-size:18px; line-height:1.25; }
+.marca p { margin:4px 0 0; color:var(--suave); font-size:13px; }
+.rotulo { margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.barra { display:flex; height:8px; background:var(--linha); border-radius:99px; overflow:hidden; }
+.barra span { display:block; }
+.b-ok { background:var(--verde); } .b-falha { background:var(--vermelho); } .b-parcial { background:#e3b45c; } .b-nexec { background:#b9b3a8; }
+.legenda { list-style:none; margin:8px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12.5px; color:var(--suave); }
+.legenda strong { color:var(--tinta); }
+.ponto { display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px; flex:none; }
+.ponto.ok { background:var(--verde); } .ponto.falha { background:var(--vermelho); } .ponto.parcial { background:#e3b45c; } .ponto.nexec { background:#b9b3a8; }
+nav { display:grid; gap:1px; }
+.nav-ct { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:2px 6px; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; }
+.nav-ct:hover { background:var(--fundo); }
+.nav-ct span:nth-child(2) { font-weight:600; white-space:nowrap; }
+.nav-sub { color:var(--suave); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-top { display:block; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; font-weight:600; }
+.nav-top:hover { background:var(--fundo); }
+.topo { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 24px; }
+.topo h2 { margin:0 0 4px; font-size:22px; letter-spacing:-.01em; }
+.topo .sub { margin:0 0 14px; color:var(--suave); }
+.meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 18px; margin:0; }
+.meta dt { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.meta dd { margin:2px 0 0; font-size:14px; }
+.veredito { display:inline-block; margin-top:14px; font-weight:700; padding:4px 12px; border-radius:99px; }
+.veredito.falha { color:var(--vermelho); background:var(--vermelho-claro); } .veredito.ok { color:var(--verde); background:var(--verde-claro); } .veredito.parcial { color:var(--ambar); background:var(--ambar-claro); }
+.numeros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.num { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra); }
+.num b { display:block; font-size:26px; line-height:1.1; }
+.num span { font-size:12.5px; color:var(--suave); }
+.num.ok b { color:var(--verde); } .num.falha b { color:var(--vermelho); } .num.parcial b { color:var(--ambar); } .num.nexec b { color:var(--fraco); }
+.bloco { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px; }
+.bloco > h2 { margin:0 0 10px; font-size:17px; }
+.bloco p { margin:0 0 10px; }
+.bloco ul { margin:0; padding-left:20px; } .bloco li { margin:3px 0; }
+.cartao { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); overflow:hidden; }
+.cartao summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 18px; }
+.cartao summary::-webkit-details-marker { display:none; }
+.cartao summary::after { content:"▸"; margin-left:auto; color:var(--fraco); transition:transform .15s; }
+.cartao[open] summary::after { transform:rotate(90deg); }
+.cartao summary h3 { margin:0; font-size:15px; }
+.qtd { font-size:12.5px; color:var(--fraco); }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.selo.ok { color:var(--verde); background:var(--verde-claro); } .selo.falha { color:var(--vermelho); background:var(--vermelho-claro); }
+.selo.parcial { color:var(--ambar); background:var(--ambar-claro); } .selo.nexec { color:var(--suave); background:var(--cinza-claro); }
+table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--linha); }
+.passos td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--linha); font-size:14px; }
+.passos tr:last-child td { border-bottom:0; }
+.evid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.evid a { display:grid; gap:2px; width:168px; text-decoration:none; color:var(--suave); font-size:11.5px; }
+.evid img { width:168px; height:110px; object-fit:cover; object-position:top left; border:1px solid var(--linha); border-radius:6px; background:var(--fundo); }
+.evid a:hover img { border-color:var(--verde); }
+.passos td.n { width:52px; color:var(--fraco); font-weight:700; text-align:right; }
+.passos td.st { width:150px; text-align:right; }
+.esp, .obt { margin-top:6px; color:var(--suave); }
+.esp span, .obt span { display:inline-block; min-width:68px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--fraco); }
+.obt { color:var(--tinta); }
+.falhas { display:grid; gap:12px; }
+.achado { border:1px solid var(--linha); border-left:4px solid var(--fraco); border-radius:8px; padding:12px 16px; }
+.achado header { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.achado h3 { margin:0; font-size:15px; }
+.achado ul { margin:0; padding-left:18px; } .achado li { margin:2px 0; font-size:14px; }
+.achado p { margin:4px 0; font-size:14px; }
+.sev { font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.sev-crítica { border-left-color:#6d1313; } .sev-crítica .sev { color:#fff; background:#7d1a1a; }
+.sev-alta { border-left-color:var(--vermelho); } .sev-alta .sev { color:var(--vermelho); background:var(--vermelho-claro); }
+.sev-média { border-left-color:#e3b45c; } .sev-média .sev { color:var(--ambar); background:var(--ambar-claro); }
+.sev-baixa { border-left-color:var(--azul); } .sev-baixa .sev { color:var(--azul); background:var(--azul-claro); }
+table.msgs { width:100%; border-collapse:collapse; margin:6px 0 4px; font-size:13.5px; }
+table.msgs th, table.msgs td { text-align:left; vertical-align:top; padding:6px 8px; border:1px solid var(--linha); }
+table.msgs th { background:var(--fundo); font-size:12px; }
+.galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
+figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.antes { display:block; font-size:11.5px; color:var(--fraco); margin-bottom:3px; }
+.mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
+.tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
+.rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+@media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
+@media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="lateral" aria-label="Navegação do relatório">
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Roteiro Dashboard Gestor e Fiscal</h1><p>12/11/2026 · PBI 22006 · HU012 · 22 cenários</p></div>
+  <div>
+    <p class="rotulo">Resultado dos 22 casos</p>
+    <div class="barra" role="img" aria-label="0 passaram, 1 falharam, 5 parciais, 16 não executados">
+      <span class="b-ok" style="width:0.00%"></span><span class="b-falha" style="width:4.55%"></span><span class="b-parcial" style="width:22.73%"></span><span class="b-nexec" style="width:72.73%"></span>
+    </div>
+    <ul class="legenda">
+      <li><span class="ponto ok"></span><strong>0</strong> passaram</li><li><span class="ponto falha"></span><strong>1</strong> falharam</li>
+      <li><span class="ponto parcial"></span><strong>5</strong> parciais</li><li><span class="ponto nexec"></span><strong>16</strong> não executados</li>
+    </ul>
+  </div>
+  <div>
+    <p class="rotulo">Seções</p>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a>
+  </div>
+  <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Acesso-e-recorte"><span class="ponto parcial"></span><span>Acesso e recorte</span><span class="nav-sub">CT001 a CT003 · Gestor, Fiscal e recorte</span></a><a class="nav-ct" href="#g-Indicadores"><span class="ponto nexec"></span><span>Indicadores</span><span class="nav-sub">CT004 e CT005 · contratos que demandam atenção</span></a><a class="nav-ct" href="#g-Rela-o"><span class="ponto nexec"></span><span>Relação</span><span class="nav-sub">CT006 e CT007 · relação padrão e colunas</span></a><a class="nav-ct" href="#g-Vencimento"><span class="ponto parcial"></span><span>Vencimento</span><span class="nav-sub">CT008 a CT010 · faixas e aditivo</span></a><a class="nav-ct" href="#g-Assinatura"><span class="ponto falha"></span><span>Assinatura</span><span class="nav-sub">CT011 e CT012 · assinatura pendente</span></a><a class="nav-ct" href="#g-Saldo"><span class="ponto nexec"></span><span>Saldo</span><span class="nav-sub">CT013 · saldo crítico</span></a><a class="nav-ct" href="#g-Sele-o"><span class="ponto nexec"></span><span>Seleção</span><span class="nav-sub">CT014 e CT015 · filtro por indicador</span></a><a class="nav-ct" href="#g-Pesquisa"><span class="ponto parcial"></span><span>Pesquisa</span><span class="nav-sub">CT016 a CT018 · número e fornecedor</span></a><a class="nav-ct" href="#g-Contrato"><span class="ponto nexec"></span><span>Contrato</span><span class="nav-sub">CT019 · detalhe</span></a><a class="nav-ct" href="#g-Mensagens"><span class="ponto parcial"></span><span>Mensagens</span><span class="nav-sub">CT020 e CT021 · vazio e falhas</span></a><a class="nav-ct" href="#g-P-gina-inicial"><span class="ponto parcial"></span><span>Página inicial</span><span class="nav-sub">CT022</span></a></nav></div>
+</aside>
+<div class="principal">
+<main>
+  <section class="topo" id="resumo">
+    <span class="tipo">Execução</span>
+    <h2>Roteiro de Testes · Dashboard de Gestor e Fiscal</h2>
+    <p class="sub">Roteiro da analista Fabiana (PBI 22006), executado na interface com o perfil Gestor de Contrato da SEAD, depois das correções da MSG004 e do tratamento de falha. Clique numa miniatura para ver a evidência em tamanho real.</p>
+    <dl class="meta">
+      <div><dt>Data e hora</dt><dd>12/11/2026, das 16h48 às 16h55 (horário de Brasília)</dd></div>
+      <div><dt>Perfil</dt><dd>login 04934988181, Gestor de Contrato, Secretaria da Administração (cenário <code>gestor</code> do Simular entrada do SISLOG)</dd></div>
+      <div><dt>Ambiente</dt><dd>GCG em <code>http://localhost:5000</code> (Localhost), branch <code>local/execucao-localhost</code>, commit <code>f717f20</code> com alterações locais ainda não commitadas, inclusive <code>PainelGestorFiscalController.cs</code> e <code>PainelGestorFiscal/Inicio.cshtml</code> (servidor reiniciado às 16h47, pid 2375949), dados do SISLOG de homologação</dd></div>
+      <div><dt>Executado por</dt><dd>Skill testar-roteiro-gcg, criada por Wellington Silvério</dd></div>
+    </dl>
+    <span class="veredito falha">❌ Reprovado</span>
+  </section>
+  <section class="numeros" aria-label="Contagem">
+    <div class="num"><b>22</b><span>casos</span></div><div class="num ok"><b>0</b><span>passaram</span></div>
+    <div class="num falha"><b>1</b><span>falharam</span></div><div class="num parcial"><b>5</b><span>parciais</span></div>
+    <div class="num nexec"><b>16</b><span>não executados</span></div>
+  </section>
+  
+  <section class="bloco"><h2>Principal achado</h2><p><strong>Não há como entrar como Gestor ou Fiscal com contratos no Localhost.</strong></p><ul><li>A entrada simulada grava na sessão o <code>IdPessoa</code> do mock (1001), e o painel consulta a API com esse id. Ele não existe no SISLOG, então o painel fica sempre vazio (&quot;Não há contratos disponíveis para consulta.&quot;).</li><li>O id real desse CPF no SISLOG é 4198102. A simulação recusa a troca do <code>IdPessoa</code>, tanto para esse id quanto para o de um gestor real (2526169, gestor de 16 contratos publicados): &quot;Não foi possível validar o usuário.&quot;.</li><li>O único Fiscal do mock é o cenário negativo &quot;Fiscal sem Telas&quot;, e o perfil 104 não está disponível para o usuário Gestor.</li></ul><p>Por isso 16 casos ficaram sem executar. Com o painel vazio, as correções desta tarde funcionam:</p><ul><li>a falha na carga mostra a MSG004 com o texto da análise e Tentar novamente, sem &quot;Ops!&quot;;</li><li>a MSG001 aparece para quem não tem contratos;</li><li>a pesquisa sem resultado mostra a mensagem de nenhum contrato encontrado.</li></ul><p>O que reprova: o indicador <strong>Assinatura pendente</strong> não é calculado (&quot;A API ainda não informa este indicador.&quot;).</p></section>
+  <section class="bloco" id="falhas"><h2>Falhas encontradas</h2><div class="falhas"><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>1. Sem Gestor ou Fiscal com contratos para testar</h3></header><ul><li><strong>Passos:</strong> CT002 a CT010, CT012, CT014 a CT017, CT019, CT020 e CT021 (c)</li><li><strong>Obtido:</strong><ul><li>A entrada simulada grava <code>IdPessoaFisica = 1001</code> (o <code>IdPessoa</code> do mock) e o painel usa esse id como <code>idGestor</code> e <code>idFiscal</code> na API.</li><li>Os ids do mock (1001 a 1007) não são pessoas do SISLOG.</li><li>A troca do <code>IdPessoa</code> na simulação é recusada (&quot;Não foi possível validar o usuário.&quot;).</li><li>São 16 casos sem execução.</li></ul></li><li><strong>Evidência:</strong> CT001-01</li></ul></article><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>2. Assinatura pendente não é calculada</h3></header><ul><li><strong>Passo:</strong> CT011 (e CT012)</li><li><strong>Esperado:</strong> contar os contratos com documento pendente de assinatura</li><li><strong>Obtido:</strong> &quot;—&quot; e &quot;A API ainda não informa este indicador.&quot;. Segundo o desenvolvimento, a API não informa o estado de assinatura.</li><li><strong>Evidência:</strong> CT001-01</li></ul></article><article class="achado sev-baixa"><header><span class="sev">Baixa</span><h3>3. Mensagem de pesquisa sem resultado a confirmar</h3></header><ul><li><strong>Passo:</strong> CT018</li><li><strong>Obtido:</strong> a tela usa o texto da HU. A MSG002 da análise tem outro texto. O roteiro pede a confirmação do texto oficial.</li><li><strong>Evidência:</strong> CT018-01</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>4. Saldo crítico sem critério</h3></header><ul><li><strong>Passo:</strong> CT013</li><li><strong>Obtido:</strong> &quot;—&quot; e &quot;A HU ainda não define quando o saldo é crítico.&quot;. O critério depende da área de negócio.</li></ul></article></div></section>
+  <h2 style="margin:10px 0 0;font-size:17px">Casos e evidências</h2>
+  <details class="cartao" id="g-Acesso-e-recorte" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Acesso e recorte — CT001 a CT003 · Gestor, Fiscal e recorte</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">001</td><td><strong>Acessar o Dashboard como Gestor</strong><div class="esp"><span>Esperado</span> Painel como primeira tela, indicadores em cima e a relação de contratos que demandam atenção</div><div class="obt"><span>Obtido</span> O painel abre como primeira tela (&quot;Você está no perfil Gestor de Contrato.&quot;), com os indicadores em cima e a relação embaixo. A relação está vazia: o usuário do mock não tem contratos (<code>PainelGestorFiscal/Obter</code> 200 em 1,2 s, 0 contratos)</div><div class="evid"><a href="dashboard-gestor-fiscal-2026-11-12/CT001-01.jpg" target="_blank" title="CT001-01"><img src="dashboard-gestor-fiscal-2026-11-12/CT001-01.jpg" alt="Evidência CT001-01" loading="lazy"><span>CT001-01</span></a></div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">002</td><td><strong>Acessar como Fiscal</strong><div class="esp"><span>Esperado</span> O mesmo painel para o Fiscal</div><div class="obt"><span>Obtido</span> O perfil 104 não está disponível para o usuário (&quot;O perfil informado não está disponível para este usuário.&quot;). O único Fiscal do mock é o cenário negativo &quot;Fiscal sem Telas&quot;</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">003</td><td><strong>Só os contratos do usuário</strong><div class="esp"><span>Esperado</span> Só contratos em que o usuário é Gestor ou Fiscal</div><div class="obt"><span>Obtido</span> Sem gestor com contratos na simulação</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Indicadores" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Indicadores — CT004 e CT005 · contratos que demandam atenção</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">004</td><td><strong>Contratos que demandam atenção</strong><div class="esp"><span>Esperado</span> Quantidade de contratos com ao menos um motivo</div><div class="obt"><span>Obtido</span> O cartão existe (&quot;0 de 0 contratos vigentes&quot;, &quot;Só vencimento…&quot;). Sem massa para conferir</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">005</td><td><strong>Contrato com mais de um motivo</strong><div class="esp"><span>Esperado</span> Aparece uma vez e conta uma vez</div><div class="obt"><span>Obtido</span> Sem massa</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Rela-o" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Relação — CT006 e CT007 · relação padrão e colunas</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">006</td><td><strong>Relação padrão</strong><div class="esp"><span>Esperado</span> Todos os contratos que demandam atenção</div><div class="obt"><span>Obtido</span> Sem massa</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">007</td><td><strong>Colunas mínimas</strong><div class="esp"><span>Esperado</span> Número, fornecedor, objeto, fim da vigência e motivo</div><div class="obt"><span>Obtido</span> Sem contratos na relação</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Vencimento" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Vencimento — CT008 a CT010 · faixas e aditivo</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">008</td><td><strong>Indicador por faixa</strong><div class="esp"><span>Esperado</span> Faixas de 30, 60, 90 e 120 dias com as quantidades</div><div class="obt"><span>Obtido</span> As quatro faixas aparecem com o período (&quot;até 12/12/2026&quot;, &quot;13/12/2026 a 11/01/2027&quot;, &quot;12/01/2027 a 10/02/2027&quot;, &quot;11/02/2027 a 12/03/2027&quot;) e 0 em cada. Sem massa para conferir a contagem</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">009</td><td><strong>Aditivo de prazo</strong><div class="esp"><span>Esperado</span> Usa o fim da vigência com o aditivo</div><div class="obt"><span>Obtido</span> Sem massa</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">010</td><td><strong>Filtrar por faixa</strong><div class="esp"><span>Esperado</span> Relação só da faixa escolhida</div><div class="obt"><span>Obtido</span> Sem contratos, os cartões ficam desabilitados</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Assinatura" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Assinatura — CT011 e CT012 · assinatura pendente</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">011</td><td><strong>Exibir e filtrar Assinatura pendente</strong><div class="esp"><span>Esperado</span> Contratos com documento pendente de assinatura</div><div class="obt"><span>Obtido</span> O indicador mostra &quot;—&quot; e &quot;A API ainda não informa este indicador.&quot;</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">012</td><td><strong>Documento com todas as assinaturas</strong><div class="esp"><span>Esperado</span> Não entra em Assinatura pendente</div><div class="obt"><span>Obtido</span> Depende do CT011</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Saldo" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Saldo — CT013 · saldo crítico</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">013</td><td><strong>Exibir e filtrar Saldo crítico</strong><div class="esp"><span>Esperado</span> Saldo contratual e de empenho</div><div class="obt"><span>Obtido</span> O indicador mostra &quot;—&quot; e &quot;A HU ainda não define quando o saldo é crítico.&quot;. O próprio roteiro registra que o critério não está definido</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Sele-o" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Seleção — CT014 e CT015 · filtro por indicador</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">014</td><td><strong>Destacar e remover a seleção</strong><div class="esp"><span>Esperado</span> Indicador destacado; ao remover, volta tudo</div><div class="obt"><span>Obtido</span> Sem contratos, os cartões ficam desabilitados e não podem ser selecionados. Existe o botão &quot;Limpar seleção&quot;</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">015</td><td><strong>Indicador ou faixa sem contratos</strong><div class="esp"><span>Esperado</span> MSG003 e o usuário fica no painel</div><div class="obt"><span>Obtido</span> Pede usuário com contratos e uma faixa vazia; aqui todos os cartões estão desabilitados</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Pesquisa" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Pesquisa — CT016 a CT018 · número e fornecedor</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">016</td><td><strong>Por número do contrato</strong><div class="esp"><span>Esperado</span> Mostra o contrato</div><div class="obt"><span>Obtido</span> Sem contratos do usuário</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">017</td><td><strong>Por nome do fornecedor</strong><div class="esp"><span>Esperado</span> Mostra os contratos do fornecedor</div><div class="obt"><span>Obtido</span> Sem contratos do usuário</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">018</td><td><strong>Sem resultado e contrato de outra responsabilidade</strong><div class="esp"><span>Esperado</span> Nenhum contrato e a MSG002; o usuário pode pesquisar de novo</div><div class="obt"><span>Obtido</span> &quot;100/2026&quot; (contrato 159173, de outro gestor) e &quot;FORNECEDOR INEXISTENTE XYZ&quot;: &quot;Nenhum contrato encontrado para os critérios informados.&quot; / &quot;Confira o número do contrato ou o nome do fornecedor.&quot;. O campo continua editável. O texto é o da HU; a MSG002 da análise é &quot;Nenhum contrato foi encontrado para os critérios de pesquisa informados.&quot; O roteiro pede confirmar o texto oficial</div><div class="evid"><a href="dashboard-gestor-fiscal-2026-11-12/CT018-01.jpg" target="_blank" title="CT018-01"><img src="dashboard-gestor-fiscal-2026-11-12/CT018-01.jpg" alt="Evidência CT018-01" loading="lazy"><span>CT018-01</span></a></div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details><details class="cartao" id="g-Contrato" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Contrato — CT019 · detalhe</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">019</td><td><strong>Acessar o detalhe pelo painel</strong><div class="esp"><span>Esperado</span> Detalhe do contrato com as permissões do papel</div><div class="obt"><span>Obtido</span> Sem contratos na relação</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Mensagens" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Mensagens — CT020 e CT021 · vazio e falhas</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">020</td><td><strong>Usuário sem contratos que demandam atenção</strong><div class="esp"><span>Esperado</span> Zeros e &quot;Não há contratos que demandam atenção no momento.&quot;</div><div class="obt"><span>Obtido</span> Pede um usuário com contratos sem alerta. O usuário do teste não tem contrato nenhum (situação do CT021 a)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr><tr><td class="n">021</td><td><strong>Sem contratos e falhas</strong><div class="esp"><span>Esperado</span> (a) MSG001; (b) MSG004; (c) MSG005; o usuário fica no painel</div><div class="obt"><span>Obtido</span> (a) &quot;Não há contratos disponíveis para consulta.&quot; ✔ (b) Com a carga bloqueada: &quot;O painel não foi carregado&quot; / &quot;Não foi possível carregar todas as informações do Dashboard. Tente novamente.&quot; com Tentar novamente, sem &quot;Ops!&quot; ✔. <code>Obter?busca=ERRO</code> devolve o mesmo texto. Tentar novamente, já desbloqueado, recarrega o painel ✔ (c) Sem contrato na relação para abrir</div><div class="evid"><a href="dashboard-gestor-fiscal-2026-11-12/CT021-01.jpg" target="_blank" title="CT021-01"><img src="dashboard-gestor-fiscal-2026-11-12/CT021-01.jpg" alt="Evidência CT021-01" loading="lazy"><span>CT021-01</span></a><a href="dashboard-gestor-fiscal-2026-11-12/CT021-02.jpg" target="_blank" title="CT021-02"><img src="dashboard-gestor-fiscal-2026-11-12/CT021-02.jpg" alt="Evidência CT021-02" loading="lazy"><span>CT021-02</span></a></div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details><details class="cartao" id="g-P-gina-inicial" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Página inicial — CT022</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">022</td><td><strong>Definir a página inicial</strong><div class="esp"><span>Esperado</span> Sem preferência, o Painel; a ação no Painel e na Consulta; vale a última escolha</div><div class="obt"><span>Obtido</span> Depois da entrada, o painel é a primeira tela, e o ícone ao lado do título diz &quot;Esta é a sua tela inicial&quot;. Em Gerir contratos existe &quot;Definir como tela inicial&quot;. A ação não foi acionada, pela regra de não mudar a tela inicial da sessão. Nos testes dos painéis de hoje, esse botão só mostrava &quot;Esta ação ainda não está disponível.&quot;</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details>
+  <section class="bloco"><h2>Erros de console e rede</h2><ul><li><code>GET /PainelGestorFiscal/Obter</code> → 200 em 1,2 s, <code>Sucesso: true</code>, 0 contratos.</li><li><code>GET /PainelGestorFiscal/Obter?busca=ERRO</code> → 200 com <code>Sucesso: false</code> e &quot;Não foi possível carregar todas as informações do Dashboard. Tente novamente.&quot;.</li><li>Falha simulada (status 0) → tela &quot;O painel não foi carregado&quot;, sem &quot;Ops!&quot;.</li></ul></section>
+  <section class="bloco"><h2>Observações e sugestões</h2><ul><li><strong>Massa:</strong> inclua no mock da entrada (<code>CatalogoMockEntradaSislog</code>) um Gestor e um Fiscal cujo <code>IdPessoa</code> seja o de uma pessoa real do SISLOG de homologação. Por exemplo, 2526169, gestor de 16 contratos publicados (159175, 159135, 159184…). O ideal é escolher alguém com contratos que vençam nos próximos 120 dias, para o CT008 e o CT010.</li><li><strong>Id do usuário de teste:</strong> o CPF 04934988181 é a pessoa 4198102 no SISLOG, e não 1001.</li><li><strong>Cartões com zero:</strong> sem contratos, todos os cartões ficam desabilitados. Com contratos, vale conferir se uma faixa com 0 pode ser selecionada, como o CT015 pede.</li></ul></section>
+  <section class="bloco" id="condicoes"><h2>Condições do teste</h2><ul><li>Entrada pela simulação do SISLOG (cenário <code>gestor</code>). O painel abre como primeira tela.</li><li>O cache do navegador foi atualizado antes do teste, para carregar os scripts novos.</li><li><strong>Massa:</strong> procurei gestores reais pela aba Equipe dos 26 contratos publicados. O 2526169 é gestor de 16 deles, mas a simulação não aceita entrar com esse id.</li><li><strong>Falha simulada (CT021 b):</strong> com o interceptador de XHR do navegador (status 0 em <code>PainelGestorFiscal/Obter</code>), e também pelo gatilho do próprio painel (<code>busca=ERRO</code>).</li><li><strong>Página inicial (CT022):</strong> pela regra combinada para os testes, o &quot;Definir como tela inicial&quot; não foi acionado.</li></ul></section>
+  <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
+</main>
+</div>
+</div>
+<script>
+document.querySelectorAll('figure img').forEach(function (img) {
+  img.addEventListener('click', function () { window.open(img.src, '_blank'); });
+});
+</script>
+</body>
+</html>

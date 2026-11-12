@@ -49,9 +49,9 @@ header p { margin:6px 0 0; color:var(--suave); }
     <p>Resultados dos roteiros de teste executados no GCG (Gestão de Contratos / SISLOG). Clique num cartão para abrir o relatório com os casos e as evidências. A execução mais recente de cada roteiro fica em destaque; os retestes anteriores aparecem no histórico do cartão.</p>
   </header>
   <section class="resumo" aria-label="Totais">
-    <div class="num"><b>14</b><span>roteiros</span></div><div class="num"><b>307</b><span>casos</span></div>
-    <div class="num ok"><b>96</b><span>passaram</span></div><div class="num falha"><b>82</b><span>falharam</span></div>
-    <div class="num parcial"><b>31</b><span>parciais</span></div><div class="num nexec"><b>98</b><span>não executados</span></div>
+    <div class="num"><b>15</b><span>roteiros</span></div><div class="num"><b>329</b><span>casos</span></div>
+    <div class="num ok"><b>96</b><span>passaram</span></div><div class="num falha"><b>83</b><span>falharam</span></div>
+    <div class="num parcial"><b>36</b><span>parciais</span></div><div class="num nexec"><b>114</b><span>não executados</span></div>
   </section>
   <div class="ferramentas">
     <input id="busca" type="search" placeholder="Buscar por roteiro, PBI ou resultado" aria-label="Buscar relatórios">
@@ -61,6 +61,15 @@ header p { margin:6px 0 0; color:var(--suave); }
     <button type="button" data-filtro="ok" aria-pressed="false">Aprovados</button>
   </div>
   <main class="grade" id="grade">
+<article class="cartao" data-busca="dashboard de gestor e fiscal 22006 ❌ reprovado execução" data-res="falha">
+  <a class="principal" href="teste-dashboard-gestor-fiscal-2026-11-12.html">
+    <div class="topo"><span class="tipo">Execução</span><span class="pbi">PBI 22006</span><span class="data">12/11/2026</span></div>
+    <h2>Dashboard de Gestor e Fiscal</h2>
+    <div class="barra"><span class="b-ok" style="width:0.00%"></span><span class="b-falha" style="width:4.55%"></span><span class="b-parcial" style="width:22.73%"></span><span class="b-nexec" style="width:72.73%"></span></div>
+    <p class="nums"><b>22</b> casos · <span class="c-ok">✅ 0</span> · <span class="c-falha">❌ 1</span> · <span class="c-parcial">⚠️ 5</span> · <span class="c-nexec">⏭️ 16</span></p>
+    <span class="veredito falha">❌ Reprovado</span>
+  </a>
+</article>
 <article class="cartao" data-busca="sead_hu001 · listar contratos 20629 ❌ reprovado reteste nº 1" data-res="falha">
   <a class="principal" href="teste-sead-hu001-listar-contratos-reteste-1-2026-11-12.html">
     <div class="topo"><span class="tipo">Reteste nº 1</span><span class="pbi">PBI 20629</span><span class="data">12/11/2026</span></div>
