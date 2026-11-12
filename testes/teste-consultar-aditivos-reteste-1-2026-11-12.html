@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro de Testes · Consultar Aditivos · Reteste 1 — 12/11/2026 · Reteste 1 · PBI 20631 · 8 cenários</title>
+<style>
+:root { --fundo:#f5f4f1; --cartao:#fff; --tinta:#1b1a18; --suave:#5f5b55; --fraco:#8a857d; --linha:#e6e2da;
+  --verde:#1f6b4a; --verde-claro:#e6f3ec; --azul:#2458a6; --azul-claro:#e8eff9; --ambar:#9a6410; --ambar-claro:#fbf1dc;
+  --vermelho:#9b2f2f; --vermelho-claro:#fbe7e5; --cinza-claro:#eeece7; --raio:10px; --sombra:0 1px 2px rgba(27,26,24,.05),0 1px 1px rgba(27,26,24,.03); }
+* { box-sizing:border-box; }
+html { scroll-padding-top:16px; }
+body { margin:0; background:var(--fundo); color:var(--tinta); font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+code { font:12.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; background:var(--cinza-claro); padding:1px 5px; border-radius:4px; word-break:break-word; }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
+.lateral { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-right:1px solid var(--linha); padding:22px 18px 28px; display:flex; flex-direction:column; gap:20px; }
+.principal { padding:28px 36px 80px; max-width:1040px; width:100%; }
+main { display:grid; gap:18px; }
+.marca h1 { margin:0; font-size:18px; line-height:1.25; }
+.marca p { margin:4px 0 0; color:var(--suave); font-size:13px; }
+.rotulo { margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.barra { display:flex; height:8px; background:var(--linha); border-radius:99px; overflow:hidden; }
+.barra span { display:block; }
+.b-ok { background:var(--verde); } .b-falha { background:var(--vermelho); } .b-parcial { background:#e3b45c; } .b-nexec { background:#b9b3a8; }
+.legenda { list-style:none; margin:8px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12.5px; color:var(--suave); }
+.legenda strong { color:var(--tinta); }
+.ponto { display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px; flex:none; }
+.ponto.ok { background:var(--verde); } .ponto.falha { background:var(--vermelho); } .ponto.parcial { background:#e3b45c; } .ponto.nexec { background:#b9b3a8; }
+nav { display:grid; gap:1px; }
+.nav-ct { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:2px 6px; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; }
+.nav-ct:hover { background:var(--fundo); }
+.nav-ct span:nth-child(2) { font-weight:600; white-space:nowrap; }
+.nav-sub { color:var(--suave); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-top { display:block; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; font-weight:600; }
+.nav-top:hover { background:var(--fundo); }
+.topo { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 24px; }
+.topo h2 { margin:0 0 4px; font-size:22px; letter-spacing:-.01em; }
+.topo .sub { margin:0 0 14px; color:var(--suave); }
+.meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 18px; margin:0; }
+.meta dt { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.meta dd { margin:2px 0 0; font-size:14px; }
+.veredito { display:inline-block; margin-top:14px; font-weight:700; padding:4px 12px; border-radius:99px; }
+.veredito.falha { color:var(--vermelho); background:var(--vermelho-claro); } .veredito.ok { color:var(--verde); background:var(--verde-claro); } .veredito.parcial { color:var(--ambar); background:var(--ambar-claro); }
+.numeros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.num { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra); }
+.num b { display:block; font-size:26px; line-height:1.1; }
+.num span { font-size:12.5px; color:var(--suave); }
+.num.ok b { color:var(--verde); } .num.falha b { color:var(--vermelho); } .num.parcial b { color:var(--ambar); } .num.nexec b { color:var(--fraco); }
+.bloco { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px; }
+.bloco > h2 { margin:0 0 10px; font-size:17px; }
+.bloco p { margin:0 0 10px; }
+.bloco ul { margin:0; padding-left:20px; } .bloco li { margin:3px 0; }
+.cartao { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); overflow:hidden; }
+.cartao summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 18px; }
+.cartao summary::-webkit-details-marker { display:none; }
+.cartao summary::after { content:"▸"; margin-left:auto; color:var(--fraco); transition:transform .15s; }
+.cartao[open] summary::after { transform:rotate(90deg); }
+.cartao summary h3 { margin:0; font-size:15px; }
+.qtd { font-size:12.5px; color:var(--fraco); }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.selo.ok { color:var(--verde); background:var(--verde-claro); } .selo.falha { color:var(--vermelho); background:var(--vermelho-claro); }
+.selo.parcial { color:var(--ambar); background:var(--ambar-claro); } .selo.nexec { color:var(--suave); background:var(--cinza-claro); }
+table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--linha); }
+.passos td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--linha); font-size:14px; }
+.passos tr:last-child td { border-bottom:0; }
+.evid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.evid a { display:grid; gap:2px; width:168px; text-decoration:none; color:var(--suave); font-size:11.5px; }
+.evid img { width:168px; height:110px; object-fit:cover; object-position:top left; border:1px solid var(--linha); border-radius:6px; background:var(--fundo); }
+.evid a:hover img { border-color:var(--verde); }
+.passos td.n { width:52px; color:var(--fraco); font-weight:700; text-align:right; }
+.passos td.st { width:150px; text-align:right; }
+.esp, .obt { margin-top:6px; color:var(--suave); }
+.esp span, .obt span { display:inline-block; min-width:68px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--fraco); }
+.obt { color:var(--tinta); }
+.falhas { display:grid; gap:12px; }
+.achado { border:1px solid var(--linha); border-left:4px solid var(--fraco); border-radius:8px; padding:12px 16px; }
+.achado header { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.achado h3 { margin:0; font-size:15px; }
+.achado ul { margin:0; padding-left:18px; } .achado li { margin:2px 0; font-size:14px; }
+.achado p { margin:4px 0; font-size:14px; }
+.sev { font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.sev-crítica { border-left-color:#6d1313; } .sev-crítica .sev { color:#fff; background:#7d1a1a; }
+.sev-alta { border-left-color:var(--vermelho); } .sev-alta .sev { color:var(--vermelho); background:var(--vermelho-claro); }
+.sev-média { border-left-color:#e3b45c; } .sev-média .sev { color:var(--ambar); background:var(--ambar-claro); }
+.sev-baixa { border-left-color:var(--azul); } .sev-baixa .sev { color:var(--azul); background:var(--azul-claro); }
+table.msgs { width:100%; border-collapse:collapse; margin:6px 0 4px; font-size:13.5px; }
+table.msgs th, table.msgs td { text-align:left; vertical-align:top; padding:6px 8px; border:1px solid var(--linha); }
+table.msgs th { background:var(--fundo); font-size:12px; }
+.galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
+figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.antes { display:block; font-size:11.5px; color:var(--fraco); margin-bottom:3px; }
+.mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
+.tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
+.rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+@media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
+@media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="lateral" aria-label="Navegação do relatório">
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>Roteiro Consultar Aditivos</h1><p>12/11/2026 · Reteste 1 · PBI 20631 · 8 cenários</p></div>
+  <div>
+    <p class="rotulo">Resultado dos 8 casos</p>
+    <div class="barra" role="img" aria-label="5 passaram, 1 falharam, 2 parciais, 0 não executados">
+      <span class="b-ok" style="width:62.50%"></span><span class="b-falha" style="width:12.50%"></span><span class="b-parcial" style="width:25.00%"></span><span class="b-nexec" style="width:0.00%"></span>
+    </div>
+    <ul class="legenda">
+      <li><span class="ponto ok"></span><strong>5</strong> passaram</li><li><span class="ponto falha"></span><strong>1</strong> falharam</li>
+      <li><span class="ponto parcial"></span><strong>2</strong> parciais</li><li><span class="ponto nexec"></span><strong>0</strong> não executados</li>
+    </ul>
+  </div>
+  <div>
+    <p class="rotulo">Seções</p>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#comparacao">Comparação com a anterior</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a>
+  </div>
+  <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Consulta"><span class="ponto ok"></span><span>Consulta</span><span class="nav-sub">opção, histórico e vínculo</span></a><a class="nav-ct" href="#g-Detalhe"><span class="ponto ok"></span><span>Detalhe</span><span class="nav-sub">detalhes do termo aditivo</span></a><a class="nav-ct" href="#g-Altera-es"><span class="ponto parcial"></span><span>Alterações</span><span class="nav-sub">vigência, valores e objeto</span></a><a class="nav-ct" href="#g-Vazio"><span class="ponto falha"></span><span>Vazio</span><span class="nav-sub">contrato sem aditivos</span></a></nav></div>
+</aside>
+<div class="principal">
+<main>
+  <section class="topo" id="resumo">
+    <span class="tipo">Reteste nº 1 (anterior: 12/11/2026, 14h10)</span>
+    <h2>Roteiro de Testes · Consultar Aditivos · Reteste 1</h2>
+    <p class="sub">Reteste do roteiro da analista Fabiana (PBI 20631), com o perfil Gestor de Contrato da SEAD nos contratos 159173 (com aditivos) e 159175 (sem aditivos), comparado com a execução das 14h10. Clique numa miniatura para ver a evidência em tamanho real.</p>
+    <dl class="meta">
+      <div><dt>Data e hora</dt><dd>12/11/2026, das 16h17 às 16h25 (horário de Brasília)</dd></div>
+      <div><dt>Perfil</dt><dd>login 04934988181, Gestor de Contrato, Secretaria da Administração (cenário <code>gestor</code> do Simular entrada do SISLOG)</dd></div>
+      <div><dt>Ambiente</dt><dd>GCG em <code>http://localhost:5000</code> (Localhost), branch <code>local/execucao-localhost</code>, commit <code>f717f20</code> com alterações locais ainda não commitadas (servidor reiniciado às 16h15, pid 2333848), dados do SISLOG de homologação</dd></div>
+      <div><dt>Executado por</dt><dd>Skill testar-roteiro-gcg, criada por Wellington Silvério</dd></div>
+    </dl>
+    <span class="veredito falha">❌ Reprovado</span>
+  </section>
+  <section class="numeros" aria-label="Contagem">
+    <div class="num"><b>8</b><span>casos</span></div><div class="num ok"><b>5</b><span>passaram</span></div>
+    <div class="num falha"><b>1</b><span>falharam</span></div><div class="num parcial"><b>2</b><span>parciais</span></div>
+    <div class="num nexec"><b>0</b><span>não executados</span></div>
+  </section>
+  <section class="bloco" id="comparacao"><h2>Comparação com a execução anterior</h2><ul><li><strong>Corrigidos (❌/⚠️ → ✅):</strong> CT004. O menu ⋮ não aparece mais; os detalhes ficam no próprio cartão.</li><li><strong>Reclassificado (❌ → ⚠️):</strong> CT007. Não houve mudança no sistema: o caso fica pendente da conferência da analista, porque a Descrição é o objeto do aditivo.</li><li><strong>Persistem:</strong> CT006 (sem quantitativos) e CT008 (mensagem de lista vazia).</li><li><strong>Regressões (✅ → ❌/⚠️):</strong> nenhuma.</li><li><strong>Antes não executados, agora executados:</strong> nenhum.</li><li><strong>Commit:</strong> <code>f0fcf58</code> → <code>f717f20</code>, mais as alterações locais em <code>_AbaAditivos.cshtml</code> (<code>acoes: false</code>) e <code>gcg-painel.js</code>.</li><li><strong>Relatório anterior:</strong> https://wfsilverio.github.io/ata-syslog/testes/teste-consultar-aditivos-2026-11-12.html</li></ul></section>
+  <section class="bloco"><h2>Principal achado</h2><p><strong>O menu ⋮ de Editar, Publicação/PNCP e Excluir saiu dos aditivos</strong>, e com isso o CT004 passa. A correção só aparece depois de limpar o cache do navegador: a página continua pedindo o <code>gcg-painel.js</code> com a mesma versão de antes (<code>?v=2026110501</code>), e o navegador usa a cópia antiga.</p><p>O que ainda reprova:</p><ul><li>A mensagem de contrato sem aditivos continua fora do texto do roteiro (CT008). A troca depende da decisão das analistas.</li><li>Não há quantitativos (CT006).</li><li>Não há campo de alteração do objeto (CT007). O texto mostrado no cartão sem rótulo é a <strong>Descrição</strong> do aditivo, que, pela investigação, é o único lugar onde o objeto aparece. A Fabiana deve conferir antes de reprovar de novo.</li></ul></section>
+  <section class="bloco" id="falhas"><h2>Falhas encontradas</h2><div class="falhas"><article class="achado sev-média"><header><span class="sev">Média</span><h3>1. A correção do menu fica presa no cache do navegador (fora do roteiro)</h3></header><ul><li><strong>Passo:</strong> CT004</li><li><strong>Esperado:</strong> quem já usou o GCG vê a tela nova ao abrir o contrato</li><li><strong>Obtido:</strong><ul><li>O <code>gcg-painel.js</code> mudou no disco, mas a página continua pedindo <code>gcg-painel.js?v=2026110501</code>, a mesma versão de antes.</li><li>O navegador usou a cópia em cache (<code>transferSize</code> 0) e mostrou o menu ⋮ com Editar, Publicação/PNCP e Excluir.</li><li>Só depois de atualizar o cache o menu sumiu.</li><li>Vale para as duas abas (Aditivos e Apostilamentos) e para qualquer outra correção em <code>gcg-painel.js</code>, <code>gcg-componentes.js</code> e <code>gcg-campos.js</code>.</li></ul></li><li><strong>Evidência:</strong> CT004-00-cache</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>2. Mensagem de contrato sem aditivos fora do texto</h3></header><ul><li><strong>Passo:</strong> CT008</li><li><strong>Esperado:</strong> &quot;Não existem termos aditivos vinculados a este contrato.&quot;</li><li><strong>Obtido:</strong> &quot;Sem termos aditivos&quot; / &quot;Nenhum registro encontrado para o contrato selecionado.&quot; O código traz o comentário de que o texto segue a MSG001 da Análise de Requisitos V4, e de que a analista decide qual vale.</li><li><strong>Evidência:</strong> CT008-01</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>3. Objeto do aditivo sem rótulo</h3></header><ul><li><strong>Passo:</strong> CT007</li><li><strong>Obtido:</strong> a Descrição do aditivo aparece como texto solto, sem rótulo, e não há campo próprio para a alteração do objeto.</li><li><strong>Evidência:</strong> CT007-01</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>4. Sem quantitativos</h3></header><ul><li><strong>Passo:</strong> CT006</li><li><strong>Obtido:</strong> a API não traz itens nem quantidades.</li><li><strong>Evidência:</strong> CT006-01</li></ul></article></div></section>
+  <h2 style="margin:10px 0 0;font-size:17px">Casos e evidências</h2>
+  <details class="cartao" id="g-Consulta" >
+<summary><span class="selo ok">✅ Passou</span><h3>Consulta — opção, histórico e vínculo</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">001</td><td><strong>Opção de consulta de Aditivos</strong><div class="esp"><span>Esperado</span> Opção disponível</div><div class="obt"><span>Obtido</span> Aba <strong>Aditivos</strong> no detalhe do contrato</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT001-01.jpg" target="_blank" title="CT001-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT001-01.jpg" alt="Evidência CT001-01" loading="lazy"><span>CT001-01</span></a></div></td><td class="st"><span class="antes">antes ✅</span><span class="selo ok">✅ Passou</span><span class="mud igual">igual</span></td></tr><tr><td class="n">002</td><td><strong>Histórico de termos aditivos</strong><div class="esp"><span>Esperado</span> Histórico centralizado e organizado</div><div class="obt"><span>Obtido</span> Linha do tempo &quot;3 registros · do mais recente para o mais antigo&quot;, com filtro por período de publicação</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT002-01.jpg" target="_blank" title="CT002-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT002-01.jpg" alt="Evidência CT002-01" loading="lazy"><span>CT002-01</span></a></div></td><td class="st"><span class="antes">antes ✅</span><span class="selo ok">✅ Passou</span><span class="mud igual">igual</span></td></tr><tr><td class="n">003</td><td><strong>Restringir ao contrato selecionado</strong><div class="esp"><span>Esperado</span> Só os aditivos do contrato</div><div class="obt"><span>Obtido</span> 159173 mostra só os nº 12345, 2 e 1. Na API, 159143 traz 12366546 e 123, e 159184 traz 32655 e 1, todos com o próprio código</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT003-01.jpg" target="_blank" title="CT003-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT003-01.jpg" alt="Evidência CT003-01" loading="lazy"><span>CT003-01</span></a></div></td><td class="st"><span class="antes">antes ✅</span><span class="selo ok">✅ Passou</span><span class="mud igual">igual</span></td></tr></tbody></table></details><details class="cartao" id="g-Detalhe" >
+<summary><span class="selo ok">✅ Passou</span><h3>Detalhe — detalhes do termo aditivo</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">004</td><td><strong>Detalhes do termo aditivo</strong><div class="esp"><span>Esperado</span> Consultar os detalhes e as alterações</div><div class="obt"><span>Obtido</span> Os dados ficam no próprio cartão: número, publicação, descrição, PNCP, valor, vigência, Acréscimo, Supressão e Prorrogação. <strong>O menu ⋮ não aparece mais</strong> (nenhum botão &quot;Ações do aditivo&quot; na página). Sem limpar o cache, o menu antigo continua na tela (CT004-00-cache)</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT004-00-cache.jpg" target="_blank" title="CT004-00-cache"><img src="consultar-aditivos-reteste-1-2026-11-12/CT004-00-cache.jpg" alt="Evidência CT004-00-cache" loading="lazy"><span>CT004-00-cache</span></a><a href="consultar-aditivos-reteste-1-2026-11-12/CT004-01.jpg" target="_blank" title="CT004-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT004-01.jpg" alt="Evidência CT004-01" loading="lazy"><span>CT004-01</span></a></div></td><td class="st"><span class="antes">antes ⚠️</span><span class="selo ok">✅ Passou</span><span class="mud corrigido">corrigido</span></td></tr></tbody></table></details><details class="cartao" id="g-Altera-es" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Alterações — vigência, valores e objeto</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">005</td><td><strong>Vigência</strong><div class="esp"><span>Esperado</span> Alterações de vigência</div><div class="obt"><span>Obtido</span> Cada cartão mostra a vigência do aditivo (ex.: 18/09/2026 a 21/09/2026) e a marca Prorrogação Sim/Não</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT005-01.jpg" target="_blank" title="CT005-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT005-01.jpg" alt="Evidência CT005-01" loading="lazy"><span>CT005-01</span></a></div></td><td class="st"><span class="antes">antes ✅</span><span class="selo ok">✅ Passou</span><span class="mud igual">igual</span></td></tr><tr><td class="n">006</td><td><strong>Valores e quantitativos</strong><div class="esp"><span>Esperado</span> Alterações de valores e quantitativos</div><div class="obt"><span>Obtido</span> Mostra &quot;Valor Aditivo&quot; (R$ 9.000,00) e as marcas Acréscimo e Supressão. Quantitativos continuam ausentes: a API <code>ObterAditivos</code> não tem o dado</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT006-01.jpg" target="_blank" title="CT006-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT006-01.jpg" alt="Evidência CT006-01" loading="lazy"><span>CT006-01</span></a></div></td><td class="st"><span class="antes">antes ⚠️</span><span class="selo parcial">⚠️ Parcial</span><span class="mud igual">igual</span></td></tr><tr><td class="n">007</td><td><strong>Objeto contratual</strong><div class="esp"><span>Esperado</span> Alterações do objeto</div><div class="obt"><span>Obtido</span> Não há campo &quot;Objeto&quot; nem na tela nem na API. O texto sem rótulo do cartão (&quot;teste&quot;, &quot;ff&quot;, &quot;Teste&quot;) é a <strong>Descrição</strong> do aditivo, que é onde o objeto do aditivo é informado. A analista deve conferir se isso atende</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT007-01.jpg" target="_blank" title="CT007-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT007-01.jpg" alt="Evidência CT007-01" loading="lazy"><span>CT007-01</span></a></div></td><td class="st"><span class="antes">antes ❌</span><span class="selo parcial">⚠️ Parcial</span><span class="mud mudou">mudou</span></td></tr></tbody></table></details><details class="cartao" id="g-Vazio" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Vazio — contrato sem aditivos</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">008</td><td><strong>Contrato sem aditivos</strong><div class="esp"><span>Esperado</span> Sem registros e &quot;Não existem termos aditivos vinculados a este contrato.&quot;</div><div class="obt"><span>Obtido</span> 159175: &quot;Sem termos aditivos&quot; / &quot;Nenhum registro encontrado para o contrato selecionado.&quot;, igual à execução anterior</div><div class="evid"><a href="consultar-aditivos-reteste-1-2026-11-12/CT008-01.jpg" target="_blank" title="CT008-01"><img src="consultar-aditivos-reteste-1-2026-11-12/CT008-01.jpg" alt="Evidência CT008-01" loading="lazy"><span>CT008-01</span></a></div></td><td class="st"><span class="antes">antes ❌</span><span class="selo falha">❌ Falhou</span><span class="mud igual">igual</span></td></tr></tbody></table></details>
+  <section class="bloco"><h2>Erros de console e rede</h2><ul><li>Nenhum erro. <code>ObterAditivos</code> respondeu 200 nos quatro contratos consultados (159173, 159143, 159184 e 159175).</li></ul></section>
+  <section class="bloco"><h2>Observações e sugestões</h2><ul><li><strong>Versão dos scripts:</strong> troque o <code>?v=2026110501</code> dos scripts do GCG a cada entrega, para o navegador buscar a versão nova sem limpar o cache.</li><li><strong>Link Visualizar:</strong> os aditivos publicados no PNCP têm &quot;Visualizar&quot;, que abre o termo no PNCP de treinamento.</li></ul></section>
+  <section class="bloco" id="condicoes"><h2>Condições do teste</h2><ul><li>Contrato com aditivos: <strong>159173</strong> (3 aditivos: nº 12345, 2 e 1). Comparação com 159143 (nº 12366546 e 123) e 159184 (nº 32655 e 1).</li><li>Contrato sem aditivos: <strong>159175</strong>.</li><li>Cache do navegador atualizado antes dos casos (ver o achado 1).</li></ul></section>
+  <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
+</main>
+</div>
+</div>
+<script>
+document.querySelectorAll('figure img').forEach(function (img) {
+  img.addEventListener('click', function () { window.open(img.src, '_blank'); });
+});
+</script>
+</body>
+</html>
