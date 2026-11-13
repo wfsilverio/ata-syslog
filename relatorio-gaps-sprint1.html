@@ -18,7 +18,7 @@
   header h1{margin:6px 0 8px;font-size:30px;font-weight:700;letter-spacing:-.01em}
   header p{margin:0;max-width:900px;opacity:.85}
   .wrap{max-width:1280px;margin:-64px auto 60px;padding:0 24px}
-  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
   .kpi{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;border-top:4px solid var(--c);cursor:pointer;transition:transform .12s}
   .kpi:hover{transform:translateY(-2px)}
   .kpi.sel{outline:2px solid var(--c);outline-offset:2px}
@@ -83,6 +83,7 @@
   .plan li{margin-bottom:6px}
   footer{color:var(--muted);font-size:12.5px;text-align:center;margin:30px 0}
   @media (max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}.lead,.gaps,.plan{grid-template-columns:1fr}}
+  @media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{padding:0 12px}header{padding:28px 18px 80px}.hurow{grid-template-columns:90px 1fr 28px}}
   @media print{header{padding-bottom:30px}.wrap{margin-top:10px}.tabs,.filters,.husel{display:none}.panel{display:block!important}}
 </style>
 </head>
@@ -120,6 +121,7 @@
 
   <section class="panel on" id="p-gaps">
     <div class="filters" id="filters"></div>
+    <div class="filters" id="fpes"></div>
     <div class="filters">
       <input class="search" id="q" placeholder="Buscar (ex.: liquidado, prorrogacao, Tiago, 1:08)">
       <span class="count" id="count"></span>
@@ -202,6 +204,19 @@ const G = [
  {id:"F4",o:"F",hu:["Todas"],sev:"media",t:"Testes .NET 5 não rodam na máquina",p:"“No usable version of libssl was found”."}
 ];
 
+
+const PES = {
+ A1:["Marcella","Wellington"],A2:["Marcella","Wellington"],A3:["Marcella","Wellington"],A4:["Wellington"],A5:["Wellington"],A6:["Wellington"],
+ A7:["Wellington"],A8:["Marcella","Wellington"],A9:["Wellington"],A10:["Wellington","Tiago"],A11:["Wellington"],A12:["Wellington"],
+ B1:["Marcella","Brenda"],B2:["Marcella","Brenda"],B3:["Marcella","Brenda"],B4:["Marcella","Brenda"],B5:["Marcella"],B6:["Marcella"],
+ B7:["Marcella","Brenda"],B8:["Marcella"],B9:["Marcella"],B10:["Marcella"],B11:["Marcella"],
+ C1:["Wanessa"],C2:["Wanessa","Carlos Wallace"],C3:["Wanessa"],C4:["Wanessa","Divino"],C5:["Wanessa"],
+ D1:["Alexandre"],D2:["Alexandre","Carlos Wallace"],D3:["Alexandre","Carlos Wallace"],D4:["Alexandre"],D5:["Alexandre"],D6:["Alexandre","Carlos Wallace"],
+ E1:["Tiago"],E2:["Tiago"],E3:["Tiago"],E4:["Resp. #24215"],E5:["Saulo","Wanessa"],E6:["DBA"],
+ F1:["Equipe SIOFI"],F2:["Equipe gateway"],F3:["Infra de rede"],F4:["Infra de rede"]
+};
+G.forEach(g=>g.pes=PES[g.id]||[]);
+const PESSOAS=[...new Set(G.flatMap(g=>g.pes))];
 const CMP = {
  "HU002":[
   ["Saldo previsto","Valor total do contrato","SISLOG tem o valor; o valor atualizado é cálculo do GCG (28:43)","<code>valorTotalContrato</code>, sem aditivos","par","Wellington (A1)"],
@@ -277,7 +292,7 @@ const PLAN = [
 ];
 
 const $ = s=>document.querySelector(s);
-let fOrig=null, fHu=null, q="";
+let fOrig=null, fHu=null, q="", fPes=null, fSt="todos";
 
 function counts(){const c={};Object.keys(ORIG).forEach(k=>c[k]=G.filter(g=>g.o===k&&!g.res).length);return c}
 function resolvidos(k){return G.filter(g=>g.o===k&&g.res).length}
@@ -299,11 +314,18 @@ function renderFilters(){
     `<span style="width:12px"></span>`+ch("Todas as HUs",!fHu,"h:")+HUS.map(h=>ch(h,fHu===h,"h:"+h)).join("");
   document.querySelectorAll("#filters .chip").forEach(b=>b.onclick=()=>{const [t,v]=b.dataset.act.split(":");if(t==="o")fOrig=v||null;else fHu=v||null;renderAll()});
 }
+function renderPes(){
+  const ch=(lbl,on,act,extra)=>`<button class="chip ${on?'on':''}" data-act="${act}">${lbl}${extra?` <span style="opacity:.7">${extra}</span>`:''}</button>`;
+  const ordem=PESSOAS.slice().sort((x,y)=>G.filter(g=>g.pes.includes(y)).length-G.filter(g=>g.pes.includes(x)).length);
+  $("#fpes").innerHTML=`<b style="font-size:13px;color:var(--ink2);margin-right:4px">Pessoa:</b>`+ch("Todas",!fPes,"p:")+ordem.map(n=>{const tot=G.filter(g=>g.pes.includes(n));const pend=tot.filter(g=>!g.res).length;return ch(n,fPes===n,"p:"+n,`${pend}/${tot.length}`)}).join("")+
+    `<span style="width:12px"></span><b style="font-size:13px;color:var(--ink2);margin-right:4px">Status:</b>`+ch("Todos",fSt==="todos","s:todos")+ch("Pendentes",fSt==="pend","s:pend")+ch("Feitos",fSt==="feito","s:feito");
+  document.querySelectorAll("#fpes .chip").forEach(b=>b.onclick=()=>{const [t,v]=b.dataset.act.split(":");if(t==="p")fPes=v||null;else fSt=v;renderAll()});
+}
 function renderGaps(){
   const sevTxt={critica:"Crítica",alta:"Alta",media:"Média",baixa:"Baixa"};
-  const list=G.filter(g=>(!fOrig||g.o===fOrig)&&(!fHu||g.hu.includes(fHu)||g.hu.includes("Todas"))&&(!q||(g.id+g.t+g.p+g.hu.join(" ")+ORIG[g.o].quem+(g.q||"")).toLowerCase().includes(q)));
-  $("#count").textContent=`${list.length} de ${G.length} gaps · ${G.filter(g=>g.res).length} resolvidos`;
-  $("#gaps").innerHTML=list.map(g=>`<div class="gap${g.res?' resolvido':''}" style="--c:var(--${g.res?'ok':g.o})"><div class="top"><span class="id">${g.id}</span>${g.res?'<span class="sev" style="background:var(--ok)">✓ Resolvido</span>':`<span class="sev ${g.sev}">${sevTxt[g.sev]}</span>`}${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who"><b>Quem age:</b> ${g.q||ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div>${g.res?`<div class="proof" style="margin-top:8px;background:#eaf6f0;color:#1d6b49"><b>Resolvido:</b> ${g.res}</div>`:""}</div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
+  const list=G.filter(g=>(!fPes||g.pes.includes(fPes))&&(fSt==="todos"||(fSt==="feito"?!!g.res:!g.res))&&(!fOrig||g.o===fOrig)&&(!fHu||g.hu.includes(fHu)||g.hu.includes("Todas"))&&(!q||(g.id+g.t+g.p+g.hu.join(" ")+ORIG[g.o].quem+(g.q||"")+g.pes.join(" ")).toLowerCase().includes(q)));
+  $("#count").textContent=`${list.length} de ${G.length} gaps${fPes?` · ${fPes}`:""} · ${list.filter(g=>g.res).length} feitos, ${list.filter(g=>!g.res).length} pendentes`;
+  $("#gaps").innerHTML=list.map(g=>`<div class="gap${g.res?' resolvido':''}" style="--c:var(--${g.res?'ok':g.o})"><div class="top"><span class="id">${g.id}</span>${g.res?'<span class="sev" style="background:var(--ok)">✓ Resolvido</span>':`<span class="sev ${g.sev}">${sevTxt[g.sev]}</span>`}${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who" style="margin-top:-2px">${g.pes.map(n=>`<span class="tag" style="background:${n===fPes?'#243650':'#eef1f5'};color:${n===fPes?'#fff':'var(--ink2)'}">👤 ${n}</span>`).join(" ")}</div><div class="who"><b>Quem age:</b> ${g.q||ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div>${g.res?`<div class="proof" style="margin-top:8px;background:#eaf6f0;color:#1d6b49"><b>Resolvido:</b> ${g.res}</div>`:""}</div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
 }
 let huCmp="HU002";
 function renderCmp(){
@@ -317,7 +339,7 @@ function renderPlan(){
 function go(t){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id==="p-"+t))}
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go(b.dataset.tab));
 $("#q").oninput=e=>{q=e.target.value.toLowerCase().trim();renderGaps()};
-function renderAll(){renderKpis();renderBars();renderFilters();renderGaps()}
+function renderAll(){renderKpis();renderBars();renderFilters();renderPes();renderGaps()}
 renderAll();renderCmp();renderPlan();
 </script>
 </body>
