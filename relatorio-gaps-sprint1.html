@@ -81,6 +81,27 @@
   .plan h3{margin:0 0 8px;font-size:15px}
   .plan ol{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2)}
   .plan li{margin-bottom:6px}
+
+  /* comentários */
+  .mybar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fffdf5;border:1px solid #f0e2b8;border-radius:12px;padding:10px 14px;margin-top:18px;box-shadow:var(--shadow)}
+  .mybar input{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:inherit;min-width:200px}
+  .btn{border:0;border-radius:8px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer;background:#243650;color:#fff}
+  .btn.sec{background:#eef1f5;color:var(--ink)}
+  .btn:disabled{opacity:.5;cursor:default}
+  .cm{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+  .cm summary{cursor:pointer;font-size:12.5px;font-weight:600;color:#2c4a6e;list-style:none}
+  .cm summary::-webkit-details-marker{display:none}
+  .cmt{background:#f7f8fa;border-radius:8px;padding:8px 10px;margin-top:6px;font-size:13px}
+  .cmt.meu{background:#fffaf0;border:1px dashed #e8cf8a}
+  .cmt .h{font-size:11.5px;color:var(--muted);margin-bottom:2px}
+  .cmt .h b{color:var(--ink)}
+  .pos{font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;color:#fff;margin-left:4px}
+  .pos.concordo{background:var(--ok)}.pos.discordo{background:var(--bad)}.pos.resolvido{background:#1f7fbf}.pos.duvida{background:var(--warn)}.pos.comentario{background:var(--F)}
+  .cmform{display:grid;grid-template-columns:150px 1fr auto;gap:8px;margin-top:8px}
+  .cmform select,.cmform textarea{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font:inherit;font-size:13px}
+  .cmform textarea{resize:vertical;min-height:38px}
+  .x{border:0;background:none;color:var(--bad);cursor:pointer;font-size:12px;float:right}
+  @media (max-width:640px){.cmform{grid-template-columns:1fr}.mybar{position:static}}
   footer{color:var(--muted);font-size:12.5px;text-align:center;margin:30px 0}
   @media (max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}.lead,.gaps,.plan{grid-template-columns:1fr}}
   @media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{padding:0 12px}header{padding:28px 18px 80px}.hurow{grid-template-columns:90px 1fr 28px}}
@@ -113,6 +134,17 @@
     </div>
   </div>
 
+
+  <div class="mybar" id="mybar">
+    <b>💬 Suas respostas</b>
+    <input id="autor" placeholder="Seu nome (obrigatório para enviar)" maxlength="80">
+    <span id="mycount" style="color:var(--ink2);font-size:13px"></span>
+    <span style="flex:1"></span>
+    <button class="btn" id="baixar">Baixar minhas respostas (.json)</button>
+    <button class="btn sec" id="copiar">Copiar</button>
+    <button class="btn sec" id="limpar">Limpar rascunho</button>
+  </div>
+  <div style="font-size:12.5px;color:var(--muted);margin:6px 4px 0">Comente embaixo de cada gap ou no fim da página. O rascunho fica salvo <b>só no seu navegador</b>. Para enviar, baixe o arquivo e mande ao Wellington: ele junta as respostas, e elas passam a aparecer aqui para todos.</div>
   <div class="tabs">
     <button class="tab on" data-tab="gaps">Todos os gaps</button>
     <button class="tab" data-tab="cmp">Comparativo por HU</button>
@@ -140,6 +172,12 @@
     <div class="plan" id="plan"></div>
   </section>
 
+
+  <div class="card" id="geral">
+    <h2>Comentários gerais</h2>
+    <div class="sub">Sobre o relatório como um todo, ou sobre algo que não está em nenhum gap</div>
+    <div class="cm" data-gap="geral" style="border:0;padding:0"></div>
+  </div>
   <footer>Testes automatizados não rodaram nesta máquina (.NET 5 sem libssl compatível): “está no código” foi conferido lendo o código, não executando. · Fonte: <code>roteiros-correcao/relatorio-responsabilidade-gaps.md</code></footer>
 </div>
 
@@ -325,7 +363,8 @@ function renderGaps(){
   const sevTxt={critica:"Crítica",alta:"Alta",media:"Média",baixa:"Baixa"};
   const list=G.filter(g=>(!fPes||g.pes.includes(fPes))&&(fSt==="todos"||(fSt==="feito"?!!g.res:!g.res))&&(!fOrig||g.o===fOrig)&&(!fHu||g.hu.includes(fHu)||g.hu.includes("Todas"))&&(!q||(g.id+g.t+g.p+g.hu.join(" ")+ORIG[g.o].quem+(g.q||"")+g.pes.join(" ")).toLowerCase().includes(q)));
   $("#count").textContent=`${list.length} de ${G.length} gaps${fPes?` · ${fPes}`:""} · ${list.filter(g=>g.res).length} feitos, ${list.filter(g=>!g.res).length} pendentes`;
-  $("#gaps").innerHTML=list.map(g=>`<div class="gap${g.res?' resolvido':''}" style="--c:var(--${g.res?'ok':g.o})"><div class="top"><span class="id">${g.id}</span>${g.res?'<span class="sev" style="background:var(--ok)">✓ Resolvido</span>':`<span class="sev ${g.sev}">${sevTxt[g.sev]}</span>`}${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who" style="margin-top:-2px">${g.pes.map(n=>`<span class="tag" style="background:${n===fPes?'#243650':'#eef1f5'};color:${n===fPes?'#fff':'var(--ink2)'}">👤 ${n}</span>`).join(" ")}</div><div class="who"><b>Quem age:</b> ${g.q||ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div>${g.res?`<div class="proof" style="margin-top:8px;background:#eaf6f0;color:#1d6b49"><b>Resolvido:</b> ${g.res}</div>`:""}</div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
+  $("#gaps").innerHTML=list.map(g=>`<div class="gap${g.res?' resolvido':''}" style="--c:var(--${g.res?'ok':g.o})"><div class="top"><span class="id">${g.id}</span>${g.res?'<span class="sev" style="background:var(--ok)">✓ Resolvido</span>':`<span class="sev ${g.sev}">${sevTxt[g.sev]}</span>`}${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who" style="margin-top:-2px">${g.pes.map(n=>`<span class="tag" style="background:${n===fPes?'#243650':'#eef1f5'};color:${n===fPes?'#fff':'var(--ink2)'}">👤 ${n}</span>`).join(" ")}</div><div class="who"><b>Quem age:</b> ${g.q||ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div>${g.res?`<div class="proof" style="margin-top:8px;background:#eaf6f0;color:#1d6b49"><b>Resolvido:</b> ${g.res}</div>`:""}<div class="cm" data-gap="${g.id}"></div></div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
+  renderCm();
 }
 let huCmp="HU002";
 function renderCmp(){
@@ -340,6 +379,57 @@ function go(t){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go(b.dataset.tab));
 $("#q").oninput=e=>{q=e.target.value.toLowerCase().trim();renderGaps()};
 function renderAll(){renderKpis();renderBars();renderFilters();renderPes();renderGaps()}
+
+/* ===== Comentários: publicados (respostas-gaps-sprint1.json) + rascunho local ===== */
+const CHAVE="gaps-sprint1-rascunho";
+const POS={comentario:"Comentário",concordo:"Concordo",discordo:"Discordo",resolvido:"Já resolvido",duvida:"Dúvida"};
+let PUB=[]; let RAS=lerRascunho();
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function lerRascunho(){try{const r=JSON.parse(localStorage.getItem(CHAVE)||"{}");return {autor:r.autor||"",comentarios:Array.isArray(r.comentarios)?r.comentarios:[]}}catch(e){return {autor:"",comentarios:[]}}}
+function salvar(){try{localStorage.setItem(CHAVE,JSON.stringify(RAS))}catch(e){} atualizarBarra()}
+function uid(){return (crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2))}
+function dataBR(iso){const d=new Date(iso);return isNaN(d)?"":d.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})}
+function itemHtml(c,meu){return `<div class="cmt${meu?' meu':''}"><div class="h">${meu?`<button class="x" data-del="${esc(c.id)}" title="Tirar do rascunho">remover</button>`:""}<b>${esc(meu?(RAS.autor||"Você"):c.autor)}</b>${c.posicao&&POS[c.posicao]?`<span class="pos ${esc(c.posicao)}">${POS[c.posicao]}</span>`:""} · ${dataBR(c.criadoEm)}${meu?" · <i>rascunho, ainda não enviado</i>":""}</div>${esc(c.texto).replace(/\n/g,"<br>")}</div>`}
+function renderCm(){
+  document.querySelectorAll(".cm").forEach(box=>{
+    const gap=box.dataset.gap;
+    const pub=PUB.filter(c=>c.gap===gap), meus=RAS.comentarios.filter(c=>c.gap===gap);
+    const total=pub.length+meus.length, aberto=box.dataset.aberto==="1"||gap==="geral";
+    box.innerHTML=`<details ${aberto?"open":""}><summary>💬 ${total?`${total} comentário${total>1?"s":""}`:"Comentar"}${meus.length?` <span style="color:#b07d12">(${meus.length} seu${meus.length>1?"s":""} no rascunho)</span>`:""}</summary>
+      ${pub.map(c=>itemHtml(c,false)).join("")}${meus.map(c=>itemHtml(c,true)).join("")}
+      <div class="cmform"><select>${Object.entries(POS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select><textarea maxlength="2000" placeholder="${gap==="geral"?"Seu comentário geral":"Seu comentário sobre o "+gap}"></textarea><button class="btn">Adicionar</button></div></details>`;
+    const det=box.querySelector("details"); det.ontoggle=()=>{box.dataset.aberto=det.open?"1":"0"};
+    box.querySelector(".cmform .btn").onclick=()=>{
+      const tx=box.querySelector("textarea").value.trim(); if(!tx){box.querySelector("textarea").focus();return}
+      RAS.comentarios.push({id:uid(),gap,posicao:box.querySelector("select").value,texto:tx,criadoEm:new Date().toISOString()});
+      box.dataset.aberto="1"; salvar(); renderCm();
+    };
+    box.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{RAS.comentarios=RAS.comentarios.filter(c=>c.id!==b.dataset.del);salvar();renderCm()});
+  });
+}
+function pacote(){return {versao:1,relatorio:"relatorio-gaps-sprint1",autor:RAS.autor.trim(),enviadoEm:new Date().toISOString(),comentarios:RAS.comentarios}}
+function atualizarBarra(){
+  const n=RAS.comentarios.length, ok=n>0&&RAS.autor.trim().length>1;
+  $("#mycount").textContent=n?`${n} comentário${n>1?"s":""} no rascunho`:"nenhum comentário no rascunho";
+  $("#baixar").disabled=!ok; $("#copiar").disabled=!ok;
+  $("#baixar").title=ok?"":"Escreva seu nome e pelo menos um comentário";
+}
+$("#autor").value=RAS.autor;
+$("#autor").oninput=e=>{RAS.autor=e.target.value;salvar();renderCm()};
+$("#baixar").onclick=()=>{
+  const nome=RAS.autor.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"anonimo";
+  const blob=new Blob([JSON.stringify(pacote(),null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`respostas-gaps-${nome}-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+};
+$("#copiar").onclick=async()=>{try{await navigator.clipboard.writeText(JSON.stringify(pacote(),null,2));$("#copiar").textContent="Copiado ✓";setTimeout(()=>$("#copiar").textContent="Copiar",1800)}catch(e){alert("Não foi possível copiar. Use o botão Baixar.")}};
+$("#limpar").onclick=()=>{if(RAS.comentarios.length&&!confirm("Apagar os comentários do rascunho? Os que já foram enviados não são afetados."))return;RAS.comentarios=[];salvar();renderCm()};
+fetch("respostas-gaps-sprint1.json",{cache:"no-store"}).then(r=>r.ok?r.json():{comentarios:[]}).then(d=>{
+  PUB=(d.comentarios||[]).filter(c=>c&&c.gap&&c.texto);
+  const meusIds=new Set(PUB.map(c=>c.id)); const antes=RAS.comentarios.length;
+  RAS.comentarios=RAS.comentarios.filter(c=>!meusIds.has(c.id)); if(RAS.comentarios.length!==antes)salvar();
+  renderCm();
+}).catch(()=>renderCm());
+atualizarBarra();
 renderAll();renderCmp();renderPlan();
 </script>
 </body>
