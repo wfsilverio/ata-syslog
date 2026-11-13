@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaps reais da Sprint 1 — GCG / SISLOG</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --ink:#1b2430; --ink2:#4a5566; --muted:#7a8494; --line:#e3e7ee;
+    --A:#d1453b; --B:#d98a1c; --C:#7b5cd6; --D:#1f7fbf; --E:#2f9e6e; --F:#6b7685;
+    --ok:#2f9e6e; --warn:#d98a1c; --bad:#d1453b;
+    --radius:14px; --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Inter","Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+  header{background:linear-gradient(135deg,#17212f 0%,#243650 60%,#2c4a6e 100%);color:#fff;padding:36px 40px 88px}
+  header .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+  header h1{margin:6px 0 8px;font-size:30px;font-weight:700;letter-spacing:-.01em}
+  header p{margin:0;max-width:900px;opacity:.85}
+  .wrap{max-width:1280px;margin:-64px auto 60px;padding:0 24px}
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .kpi{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;border-top:4px solid var(--c);cursor:pointer;transition:transform .12s}
+  .kpi:hover{transform:translateY(-2px)}
+  .kpi.sel{outline:2px solid var(--c);outline-offset:2px}
+  .kpi .n{font-size:30px;font-weight:700;color:var(--c);line-height:1}
+  .kpi .t{font-weight:600;margin-top:6px;font-size:13.5px}
+  .kpi .w{color:var(--muted);font-size:12.5px}
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;margin-top:18px}
+  .card h2{margin:0 0 4px;font-size:18px}
+  .card .sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .lead{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+  .callout{border-left:4px solid var(--A);background:#fdf3f2;padding:12px 16px;border-radius:8px;margin:10px 0;color:var(--ink2)}
+  .callout.b{border-color:var(--B);background:#fdf6ec}
+  .callout b{color:var(--ink)}
+  /* barras por HU */
+  .hubars{display:flex;flex-direction:column;gap:10px}
+  .hurow{display:grid;grid-template-columns:150px 1fr 34px;align-items:center;gap:10px;font-size:13px}
+  .hurow .lbl{font-weight:600}
+  .stack{display:flex;height:22px;border-radius:6px;overflow:hidden;background:#eef1f5}
+  .stack span{display:block;height:100%}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:12.5px;color:var(--ink2)}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  /* tabs */
+  .tabs{display:flex;gap:6px;margin-top:26px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 16px;border:0;background:none;font:inherit;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+  .tab.on{color:var(--ink);border-color:#2c4a6e}
+  .panel{display:none}.panel.on{display:block}
+  /* filtros */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 4px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink2)}
+  .chip.on{background:#243650;color:#fff;border-color:#243650}
+  .search{flex:1;min-width:220px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font:inherit}
+  .count{color:var(--muted);font-size:13px;margin-left:auto}
+  /* gaps */
+  .gaps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:12px}
+  .gap{background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:14px 16px}
+  .gap .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .id{font-weight:700;color:var(--c);font-size:13px}
+  .tag{font-size:11.5px;padding:2px 8px;border-radius:999px;background:#eef1f5;color:var(--ink2)}
+  .sev{font-size:11.5px;padding:2px 8px;border-radius:999px;color:#fff}
+  .sev.alta{background:var(--bad)}.sev.media{background:var(--warn)}.sev.baixa{background:var(--muted)}.sev.critica{background:#8f1d16}
+  .gap h3{margin:8px 0 6px;font-size:15px}
+  .gap .who{font-size:12.5px;color:var(--ink2);margin-bottom:6px}
+  .gap .proof{font-size:12.5px;color:var(--ink2);background:#f7f8fa;border-radius:8px;padding:8px 10px}
+  .gap .proof code{font-size:11.5px}
+  code{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;background:#eef1f5;padding:1px 5px;border-radius:5px;font-size:12px}
+  /* comparativo */
+  .husel{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  table.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px}
+  table.cmp th{position:sticky;top:0;background:#243650;color:#fff;text-align:left;padding:10px 12px;font-weight:600}
+  table.cmp th:first-child{border-top-left-radius:10px}table.cmp th:last-child{border-top-right-radius:10px}
+  table.cmp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cmp tr:nth-child(even) td{background:#fafbfc}
+  table.cmp td.item{font-weight:600;width:16%}
+  .st{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+  .st.ok{background:var(--ok)}.st.par{background:var(--warn)}.st.no{background:var(--bad)}.st.blk{background:var(--F)}
+  /* plano */
+  .plan{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+  .plan .p{border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;padding:14px 16px;background:#fff}
+  .plan h3{margin:0 0 8px;font-size:15px}
+  .plan ol{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2)}
+  .plan li{margin-bottom:6px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;margin:30px 0}
+  @media (max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}.lead,.gaps,.plan{grid-template-columns:1fr}}
+  @media print{header{padding-bottom:30px}.wrap{margin-top:10px}.tabs,.filters,.husel{display:none}.panel{display:block!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">GCG · SISLOG · Sprint 1 · 13/11/2026</div>
+  <h1>Gaps reais da implementação: quem precisa agir</h1>
+  <p>Comparação entre <b>a reunião de 09/11</b> (transcrição), <b>as HUs</b> (docx de cada PBI) e <b>a implementação</b> (branch <code style="background:rgba(255,255,255,.15);color:#fff">well-sprint1</code>, commit <code style="background:rgba(255,255,255,.15);color:#fff">34e0793</code> + alterações locais), além dos retestes de 12/11 e dos débitos técnicos. Cada gap traz a prova. “Responsável” é quem precisa agir para o gap fechar.</p>
+</header>
+
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+
+  <div class="lead">
+    <div class="card">
+      <h2>Leitura em uma frase</h2>
+      <div class="sub">O que a comparação mostra</div>
+      <div class="callout b"><b>A maior parte do que reprovou não é código mal feito.</b> São HUs que pedem dados que nenhuma fonte tem (pendência de análise, dúvidas, nota fiscal, assinatura somada no painel, unidade e categoria). A reunião de 09/11 mostrou isso, e a análise não foi ajustada.</div>
+      <div class="callout"><b>Mas há gaps reais no desenvolvimento.</b> O mais grave: <b>o mesmo contrato mostra números diferentes em telas diferentes</b>. As regras comuns criadas na HU015 só são usadas nos painéis 15 e 16. A aba Saldos (HU002) e o painel do fornecedor (HU013) não usam nenhuma delas.</div>
+      <div class="callout" style="border-color:#8f1d16;background:#fbefee"><b>Urgente, mas de outra HU:</b> o fornecedor consegue abrir contrato de outra empresa, e a listagem mostra a ele os 795 contratos da SEAD (HU001, Tiago).</div>
+    </div>
+    <div class="card">
+      <h2>Gaps por HU e origem</h2>
+      <div class="sub">Clique numa barra para filtrar a lista pela HU</div>
+      <div class="hubars" id="hubars"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-tab="gaps">Todos os gaps</button>
+    <button class="tab" data-tab="cmp">Comparativo por HU</button>
+    <button class="tab" data-tab="plan">Plano de ação</button>
+  </div>
+
+  <section class="panel on" id="p-gaps">
+    <div class="filters" id="filters"></div>
+    <div class="filters">
+      <input class="search" id="q" placeholder="Buscar (ex.: liquidado, prorrogacao, Tiago, 1:08)">
+      <span class="count" id="count"></span>
+    </div>
+    <div class="gaps" id="gaps"></div>
+  </section>
+
+  <section class="panel" id="p-cmp">
+    <div class="husel" id="husel"></div>
+    <div class="card" style="padding:0;overflow:auto">
+      <table class="cmp"><thead><tr><th>Item</th><th>O que a HU pede</th><th>O que a reunião de 09/11 disse</th><th>O que está implementado</th><th>Situação</th><th>Quem age</th></tr></thead><tbody id="cmpbody"></tbody></table>
+    </div>
+  </section>
+
+  <section class="panel" id="p-plan">
+    <div class="plan" id="plan"></div>
+  </section>
+
+  <footer>Testes automatizados não rodaram nesta máquina (.NET 5 sem libssl compatível): “está no código” foi conferido lendo o código, não executando. · Fonte: <code>roteiros-correcao/relatorio-responsabilidade-gaps.md</code></footer>
+</div>
+
+<script>
+const ORIG = {
+  A:{nome:"Implementação do GCG", quem:"Wellington (Cursor)", nota:"dá para fechar hoje"},
+  B:{nome:"Requisito / análise", quem:"Marcella · Brenda", nota:"HU pede o que não existe"},
+  C:{nome:"Gestão", quem:"Wanessa", nota:"decisão sem registro"},
+  D:{nome:"API do SISLOG", quem:"Alexandre · Carlos Wallace", nota:"campo ou rota faltando"},
+  E:{nome:"Outra HU / task do GCG", quem:"Tiago · #24215 · Saulo · DBA", nota:"aparece no painel"},
+  F:{nome:"Ambiente / infra", quem:"SIOFI · gateway · máquina", nota:"produção e testes"}
+};
+const G = [
+ {id:"A1",o:"A",hu:["HU002","HU013","HU012"],sev:"alta",t:"Números diferentes para o mesmo contrato entre telas",p:"As regras <code>RegrasEmpenhoSiofi</code>, <code>CalculadoraValorAtualizado</code>, <code>RegrasSaldoDisponivel</code> e <code>RegrasConsumoContrato</code> só são usadas nos painéis 15 e 16. A aba Saldos (<code>ServicoIntegracaoSaldos</code>) e o fornecedor não usam nenhuma: somam o processo inteiro, calculam o consumo sobre o valor original e mostram o disponível como “Fórmula a definir”."},
+ {id:"A2",o:"A",hu:["HU015"],sev:"media",t:"Dois “liquidados” no mesmo painel",p:"“Saldo a liquidar” usa <code>saldoLiquidado</code>; o bloco “Valor liquidado” e o <code>PCT_LIQUIDADO</code> usam <code>valorLiquidado</code>."},
+ {id:"A3",o:"A",hu:["HU015"],sev:"media",t:"% empenhado calculado sobre o saldo, não sobre o total",p:"<code>Fatia(\"PCT_EMPENHADO\", …, soma.SaldoEmpenho, atualizado)</code> (<code>:267</code>). Cenário 04 RN01 pede o empenhado. No processo de prova: R$ 7.529,51 (<code>saldoEmpenho</code>) × R$ 27.150,23 (<code>valorEmpenho</code>)."},
+ {id:"A4",o:"A",hu:["HU012","HU013","HU015","HU016"],sev:"media",t:"Aditivo de prazo não aplicado, embora o campo exista",p:"<code>prorrogacao</code> vem em <code>/aditivos</code> (<code>SislogAditivos.cs:32</code>, commit <code>910713c</code>) e está em <code>DtoAditivo.Prorrogacao</code>. As faixas dos 4 painéis usam só o <code>fimVigencia</code>. Os débitos dizem que o nome é “suposição”, e não é."},
+ {id:"A5",o:"A",hu:["HU013"],sev:"alta",t:"Número do contrato errado no fornecedor",p:"<code>Numero()</code> cai no <code>NumeroProcesso</code> (<code>:230-241</code>). No reteste, “25/2025” não acha nada. Não está nos débitos."},
+ {id:"A6",o:"A",hu:["HU013"],sev:"media",t:"Layout da relação do fornecedor quebrado",p:"O <code>.gcg-fila__titulo</code> fica com 4 px de largura. Nenhuma alteração de CSS no fornecedor (o commit <code>34e0793</code> só mexeu no CSS do procurador). Não está nos débitos."},
+ {id:"A7",o:"A",hu:["HU014"],sev:"baixa",t:"O cartão do procurador não desmarca",p:"O handler só faz <code>indicador = …</code> (<code>Inicio.cshtml:197-199</code>). Cenário 05 RN02 pede “remover a seleção”. Não está nos débitos."},
+ {id:"A8",o:"A",hu:["HU013"],sev:"media",t:"Saldo disponível existe na HU015 e não foi usado no fornecedor",p:"O cartão mostra “A análise ainda não define…”, mas a conta saiu da reunião (28:43–29:02) e está em <code>RegrasSaldoDisponivel</code>. O débito §14 admite que o fornecedor não chama o método."},
+ {id:"A9",o:"A",hu:["HU016"],sev:"media",t:"Equipe real e tempo de carga não verificados",p:"O débito §15 admite: a resposta real de <code>/equipe</code> de 3 contratos e o tempo de carga da SEAD não foram lidos. O fiscal vazio nos 49 contratos segue sem diagnóstico."},
+ {id:"A10",o:"A",hu:["HU012"],sev:"alta",t:"Id de pessoa Portal × SISLOG não resolvido",p:"<code>PessoaDaSessao</code> manda <code>IdPessoaFisica</code> (do Portal) como <code>idGestor</code>. Se os ids forem diferentes, o painel vem vazio em produção para todo gestor e fiscal. O <code>gestor-real</code> só contorna no Localhost."},
+ {id:"A11",o:"A",hu:["HU012","HU013","HU015"],sev:"media",t:"Débitos técnicos com afirmações falsas ou imprecisas",p:"“<code>prorrogacao</code> é suposição” (§11, §12); “SIOFI ligado” no saldo crítico (§11; ele não é chamado); “a reunião não deu a conta” (§12); % empenhado como fato (§14). As correções do confronto não foram aplicadas."},
+ {id:"A12",o:"A",hu:["Todas"],sev:"media",t:"Evidência automatizada fraca",p:"Os testes <code>TestePainel*</code> existem, mas não rodam nesta máquina (libssl). Rodar o <code>dotnet test</code> no CI antes de mover para Done."},
+
+ {id:"B1",o:"B",hu:["HU014"],sev:"critica",t:"A HU014 inteira depende de um fluxo que não existe",p:"Encaminhar → pendência → manifestação → reencaminhamento. Alexandre 30:20–30:59 (“não tem workflow”); Suellen 39:56 (“esse aditivo não existe”); Alexandre 42:22. Mesmo assim, a Marcella manteve a pendência em 11/11."},
+ {id:"B2",o:"B",hu:["HU014"],sev:"alta",t:"Dúvidas e comunicações como fonte externa",p:"43:35–45:54: não existem no SISLOG; serão do GCG. Não há HU do GCG que crie o fluxo."},
+ {id:"B3",o:"B",hu:["HU013"],sev:"alta",t:"Nota fiscal como métrica do fornecedor",p:"57:27–1:00:54: é dado da gestão, informado no módulo de OS e recebimento do GCG, que ainda não existe."},
+ {id:"B4",o:"B",hu:["HU012"],sev:"alta",t:"Assinatura pendente somada no painel",p:"51:32–53:10: o SEI só consulta um documento por vez. Num painel, seriam N contratos × M documentos. Reprovou o teste."},
+ {id:"B5",o:"B",hu:["HU012"],sev:"media",t:"Saldo crítico sem regra",p:"A HU diz “considera saldo contratual e de empenho”, sem limite. A reunião não fechou."},
+ {id:"B6",o:"B",hu:["HU016"],sev:"alta",t:"Vigente = “Publicado”, mas a massa está “Em Execução”",p:"Cenário 02 RN01. Na HU012, a Marcella respondeu “pela data”: são duas regras no mesmo produto."},
+ {id:"B7",o:"B",hu:["HU013","HU016"],sev:"baixa",t:"Contradições internas da HU",p:"HU013: “até 90 dias” × faixas de 30/60/90/120. HU016: valor “inicial” (1.3) × “incluindo aditivos” (Cenário 02 RN02)."},
+ {id:"B8",o:"B",hu:["HU002","HU013","HU015"],sev:"alta",t:"Saldo disponível sem fórmula escrita",p:"A conta saiu da reunião (28:43–29:02, chamada de “valor atualizado”). A Marcella disse que “foi definida na reunião”, mas o PDF veio cortado. Ninguém escreveu na HU."},
+ {id:"B9",o:"B",hu:["HU002","HU013","HU015","HU016"],sev:"media",t:"Liquidado: valorLiquidado ou saldoLiquidado",p:"Os dois existem no SIOFI, com valores diferentes (R$ 5.644,40 × R$ 5.476,99). Pergunta aberta desde 10/11."},
+ {id:"B10",o:"B",hu:["HU012","HU013","HU014"],sev:"baixa",t:"Indicadores zerados: ata × HU",p:"A ata de 04/11 diz que cartão zerado não filtra; a HU pede MSG002/MSG003. O reteste marca como falha."},
+ {id:"B11",o:"B",hu:["HU015","HU016"],sev:"media",t:"Respostas de 11/11 incompletas",p:"O PDF da Marcella veio cortado: falta a HU016 inteira e parte da HU015."},
+
+ {id:"C1",o:"C",hu:["Templates"],sev:"media",t:"Resposta “ainda hoje” sobre a linha do link",p:"1:06:52 — “a gente dá a resposta ainda hoje… e aí eu mando os e-mails”. Sem evidência no Azure."},
+ {id:"C2",o:"C",hu:["Todas"],sev:"alta",t:"Pedido de campos ao SISLOG não enviado",p:"1:07:23 — “dever de casa” (centralizado no Carlos Wallace, 22:08 e 22:51). Sem evidência de envio. É o que destrava D2, D3 e D6."},
+ {id:"C3",o:"C",hu:["HU014"],sev:"alta",t:"Corte de escopo da HU014 não registrado",p:"A Marcella (11/11) disse que a Wanessa registraria. Não há comentário no PBI 22350. O roteiro #24202 e o teste #24203 continuam pela v1."},
+ {id:"C4",o:"C",hu:["HU012"],sev:"media",t:"Assinatura decidida, mas sem responsável",p:"1:08:17–1:08:32: “a gente usa daqui”. O Divino (1:08:22) citou a API do SEI “retornar assinaturas”. Ninguém foi designado para integrar."},
+ {id:"C5",o:"C",hu:["HU014"],sev:"baixa",t:"Destino de dúvidas e comunicações",p:"HU futura ou fora do escopo? Sem registro."},
+
+ {id:"D1",o:"D",hu:["HU013"],sev:"media",t:"SomenteVigente=true devolve vencidos e repetidos",p:"Prova de 10/11: 9 linhas → 5 contratos → 3 vigentes. O GCG contornou com <code>Preparar</code>."},
+ {id:"D2",o:"D",hu:["HU013"],sev:"alta",t:"API da empresa sem número e ano do contrato",p:"<code>consultarContratoPelaEmpresa</code> não traz <code>numeroContrato</code>/<code>anoContrato</code>; a <code>consultaContratos</code> traz."},
+ {id:"D3",o:"D",hu:["HU015","HU016"],sev:"alta",t:"Sem unidade, categoria e valor mensal na consulta de contratos",p:"28:43: “valor mensal a gente tem”, mas só na API da empresa. Depende do pedido C2."},
+ {id:"D4",o:"D",hu:["Templates"],sev:"media",t:"API de template não existe",p:"1:06:16 — o Alexandre vai criar, em controller próprio, com conteúdo em Base64. Prazo não registrado."},
+ {id:"D5",o:"D",hu:["Templates"],sev:"baixa",t:"“Emitido por” não existe",p:"49:57 — evolução nova. Prazo não registrado."},
+ {id:"D6",o:"D",hu:["HU014"],sev:"media",t:"Lista geral de aditivos não foi pedida",p:"Oferecida em 32:34–32:49. Sem ela, o painel do procurador leva 60 s (até 400 chamadas)."},
+
+ {id:"E1",o:"E",hu:["HU013"],sev:"critica",t:"Fornecedor abre contrato de outra empresa",p:"<code>ValidarAbertura</code>/<code>ContratoConsultavel</code> não conferem o dono; <code>ListarPaginado</code> mostra os 795 contratos da SEAD. HU001 — Tiago. É uma falha de segurança."},
+ {id:"E2",o:"E",hu:["HU013","HU016"],sev:"alta",t:"Contrato “Em Execução” não abre",p:"<code>ValidarAbertura</code> só abre “Publicado”. Maior contrato, relação do fornecedor e evolução no detalhe ficam inacessíveis. HU001 — Tiago."},
+ {id:"E3",o:"E",hu:["HU014","HU016"],sev:"media",t:"Cancelado elegível, ordem inversa e linhas em branco",p:"Listagem de Gerir Contratos (HU001 — Tiago)."},
+ {id:"E4",o:"E",hu:["HU014"],sev:"alta",t:"Painel do procurador acessível pela URL",p:"O Gestor recebe 200 em <code>GET /PainelProcurador</code>. Controle de permissões #24215."},
+ {id:"E5",o:"E",hu:["Templates"],sev:"media",t:"Templates ainda em mock, embora a listagem exista",p:"<code>ObterDocumentacaoTemplates</code> → <code>MockDocumentacaoTemplates</code>. A Wanessa disse em 1:06:26 que “a de documentos a gente já pode consumir”. A 24784 (Saulo) segue em impediment."},
+ {id:"E6",o:"E",hu:["HU016"],sev:"media",t:"Avisos da HU-011 sem tabela",p:"O script <code>avisos-comunicacao-oracle.sql</code> não foi executado. A fonte é do próprio GCG (Brenda, 45:33)."},
+
+ {id:"F1",o:"F",hu:["HU013","HU015","HU016","HU002"],sev:"alta",t:"SIOFI sem URL de produção",p:"<code>appsettings.Producao.json:46</code> → <code>\"UrlServicoSiofi\": \"\"</code>."},
+ {id:"F2",o:"F",hu:["HU015"],sev:"media",t:"Gateway recusa o GCG (401 · 900909)",p:"Bloqueia a API de Dotações: IPOF e saldo de anulação."},
+ {id:"F3",o:"F",hu:["Todas"],sev:"baixa",t:"SIOFI de homologação só pelo navegador (ZTNA)",p:"No terminal dá <code>ENOTFOUND</code>; não dá para testar a API fora do navegador."},
+ {id:"F4",o:"F",hu:["Todas"],sev:"media",t:"Testes .NET 5 não rodam na máquina",p:"“No usable version of libssl was found”."}
+];
+
+const CMP = {
+ "HU002":[
+  ["Saldo previsto","Valor total do contrato","SISLOG tem o valor; o valor atualizado é cálculo do GCG (28:43)","<code>valorTotalContrato</code>, sem aditivos","par","Wellington (A1)"],
+  ["Empenhado / liquidado","Do SIAFIC","SIAFIC pelo processo, buscado pelo GCG (22:42)","SIOFI por processo, processo inteiro, sem recorte","par","Wellington (A1) · Marcella (B9)"],
+  ["Saldo disponível","Valor ainda não executado","Valor do contrato − empenhos/pagamentos (28:43–29:02)","“Fórmula a definir”; a HU015 já calcula","no","Wellington (A1) · Marcella (B8)"],
+  ["Consumo %","Liquidado ÷ previsto","—","Sobre o valor original; os painéis 15 e 16 usam o atualizado","no","Wellington (A1)"]
+ ],
+ "HU012":[
+  ["Lista gestor/fiscal","Contratos do usuário","API já existe (08:00–09:19)","<code>consultaContratos</code> idGestor/idFiscal","ok","—"],
+  ["Id do usuário","—","—","Id do Portal; pode não ser o do SISLOG","par","Wellington + Tiago (A10)"],
+  ["Vencimento","Faixas com aditivo de prazo","Aditivo vale se publicado (39:40)","Só <code>fimVigencia</code>; o <code>prorrogacao</code> existe e não é usado","par","Wellington (A4)"],
+  ["Assinatura pendente","Docs sem todas as assinaturas","SEI por documento (51:32); GCG usa o SEI direto (1:08:17)","Traço","blk","Wanessa (C4) · Marcella (B4)"],
+  ["Saldo crítico","Saldo contratual e de empenho","Fonte SIAFIC; corte não definido","Traço; SIOFI pronto, mas não é chamado","blk","Marcella (B5)"],
+  ["Demandam atenção","Contagem distinta","—","<code>HashSet</code>, com os motivos por linha","ok","—"],
+  ["Página inicial","Cenário 10","—","Preferência em JSON local","par","Wellington (débito)"]
+ ],
+ "HU013":[
+  ["Contratos da empresa","Em execução, da empresa","—","Sem duplicata e sem vencido (<code>Preparar</code>)","ok","SISLOG (D1) por trás"],
+  ["Empresa do usuário","Empresa representada","Não tratado","CPF do usuário; preposto de CNPJ vê vazio","no","Wanessa + SISLOG (C2)"],
+  ["Número do contrato","Filtro por número","—","Mostra o processo","no","Wellington (A5) · SISLOG (D2)"],
+  ["Layout da relação","—","—","Título com 4 px","no","Wellington (A6)"],
+  ["Nota fiscal","Total de notas emitidas","É da gestão do GCG (57:27–1:00:54)","Traço com legenda","blk","Marcella (B3)"],
+  ["Saldo disponível","Métrica","Conta dada em 28:43","Traço (não usa a regra da HU015)","no","Wellington (A8)"],
+  ["Abrir contrato","Detalhe do contrato","—","De outra empresa abre; “Em Execução” não abre","no","Tiago (E1, E2)"]
+ ],
+ "HU014":[
+  ["Pendência de análise","Toda a HU","Não existe no SISLOG (30:20, 39:56, 42:22)","Lista os publicados","no","Marcella (B1) · Wanessa (C3)"],
+  ["Dúvidas","Cenário 04","Não existem (43:35–45:54)","Cartão indisponível, com legenda","blk","Marcella (B2)"],
+  ["Falha parcial","Manter o recuperado","—","<code>ContratosComFalha</code> + MSG003","ok","—"],
+  ["Link ao termo","Cenário 06","—","<code>Aba</code> + <code>IdTermo</code>, com a linha destacada","ok","—"],
+  ["Remover a seleção","Cenário 05 RN02","—","O cartão não desmarca","no","Wellington (A7)"],
+  ["Carga","—","Lista geral oferecida (32:34)","60 s; até 400 chamadas","par","Wanessa (C2) · SISLOG (D6)"],
+  ["Acesso pela URL","Só o perfil","—","Outro perfil abre","no","#24215 (E4)"]
+ ],
+ "HU015":[
+  ["Recorte pela vigência","Cenário 03 RN03","—","<code>RegrasEmpenhoSiofi</code>","ok","—"],
+  ["Valor atualizado","Com aditivos publicados","Aditivo só se publicado (39:40)","<code>CalculadoraValorAtualizado</code>","ok","—"],
+  ["Saldo disponível","Valor não executado","Conta em 28:43–29:02","Atualizado − pago (a confirmar)","par","Marcella (B8)"],
+  ["Liquidado","Glossário: SALDO_LIQUIDADO","—","Dois campos no mesmo painel","no","Wellington (A2) · Marcella (B9)"],
+  ["% empenhado","Sobre o valor total","—","Usa o <code>saldoEmpenho</code>","no","Wellington (A3)"],
+  ["Anual / reajuste / mensal","Cenário 02","Valor mensal existe no SISLOG (28:43)","Traço","blk","SISLOG (D3)"],
+  ["IPOF / anulação","Contratação − IPOF","—","Traço com aviso","blk","Gateway (F2)"],
+  ["Evolução","Cenário 06","—","Traço; fora da entrega","par","Wellington (débito)"]
+ ],
+ "HU016":[
+  ["Vigente","Status “Publicado”","—","Pela data","par","Marcella (B6)"],
+  ["Valor dos vigentes","Inicial × com aditivos","Atualizado é cálculo do GCG (28:43)","Os dois cartões, lado a lado","ok","Marcella (B7)"],
+  ["Consumo","Liquidado ÷ atualizado","—","Feito, com recorte; usa <code>valorLiquidado</code>","par","Marcella (B9)"],
+  ["Equipe / suplente","Gestor, fiscal e suplentes","API equipe por função (47:19–48:39)","Textos ampliados sem ver a resposta real","par","Wellington (A9)"],
+  ["Avisos","Aba Avisos (HU-011)","Aviso será do GCG (45:33)","Legenda; tabela inexistente","blk","DBA (E6)"],
+  ["Unidade / categoria","Gráficos e filtros","—","Filtros fora; gráfico com legenda","blk","SISLOG (D3)"],
+  ["Gráfico 12 meses","Meses seguintes","—","<code>AddMonths(1)</code>","ok","—"],
+  ["Carga","—","—","Em paralelo (6), sem medição na SEAD","par","Wellington (A9)"]
+ ],
+ "Templates":[
+  ["Listagem","Documentos do contrato","Já pode consumir o que existe (1:06:26)","Mock","no","Saulo / Wanessa (E5)"],
+  ["Visualizar / exportar","6 formatos","O link é o preview e o download (1:02:10–1:03:18)","Mock gera 6 formatos","par","Wanessa / Brenda"],
+  ["Template","Conteúdo","API nova, em Base64 (1:06:16)","Mock","blk","Alexandre (D4)"],
+  ["Assinado","AssinaGO?","SEI, por documento (1:08:22)","Mock","blk","Wanessa (C4)"],
+  ["Emitido por","Coluna","Evolução nova (49:57)","Mock","blk","Alexandre (D5)"]
+ ]
+};
+const ST = {ok:"Atende",par:"Parcial",no:"Gap",blk:"Bloqueado"};
+const HUS = ["HU002","HU012","HU013","HU014","HU015","HU016","Templates"];
+
+const PLAN = [
+ {o:"A",t:"Você (Wellington / Cursor), hoje",l:["A1: aplicar as regras comuns na HU002 e na HU013 — mesmo contrato, mesmo número em todas as telas","A2/A3: um único liquidado no painel 15; % empenhado sobre o <code>valorEmpenho</code> (provisório)","A4: ler <code>/aditivos</code> de 3 contratos e ligar <code>Prorrogacao</code> + <code>linkPncp</code>","A5–A7: número e layout do fornecedor; desmarcar o cartão do procurador","A9: equipe real de 3 contratos e tempo de carga da SEAD","A11: aplicar as correções do confronto nos débitos","A12: rodar o <code>dotnet test</code> no CI e anexar o resultado"]},
+ {o:"E",t:"Tiago (urgente)",l:["E1: fornecedor abre contrato de outra empresa (segurança)","E2: “Em Execução” não abre","E3: Cancelado, ordem e linhas em branco na Listagem","A10: os ids do Portal e do SISLOG são os mesmos?"]},
+ {o:"C",t:"Wanessa",l:["C2: enviar o pedido de campos ao SISLOG (destrava D2, D3 e D6)","C3: registrar o corte de escopo da HU014","C4: designar quem integra a API “retornar assinaturas” do SEI","C1/C5: responder a linha do link e o destino das dúvidas","E5: tirar a 24784 do impediment para a listagem"]},
+ {o:"B",t:"Marcella / Brenda",l:["B8: escrever a fórmula do disponível (pago × empenhado)","B9: escolher o campo do liquidado","B5: corte do saldo crítico","B6/B7: vigente e as contradições das HUs","B11: reenviar o PDF completo (HU015 e HU016)"]},
+ {o:"D",t:"SISLOG (Alexandre / Carlos Wallace)",l:["D1/D2: corrigir <code>SomenteVigente</code> e trazer o número do contrato na API da empresa","D3: unidade, categoria e valor mensal","D4/D5: prazo da API de template e do “Emitido por”","D6: lista geral de aditivos por órgão"]},
+ {o:"F",t:"Infra / SIOFI / gateway",l:["F1: URL do SIOFI em produção","F2: liberar o GCG no gateway (900909)","F4: ambiente com libssl para o .NET 5"]}
+];
+
+const $ = s=>document.querySelector(s);
+let fOrig=null, fHu=null, q="";
+
+function counts(){const c={};Object.keys(ORIG).forEach(k=>c[k]=G.filter(g=>g.o===k).length);return c}
+function renderKpis(){
+  const c=counts();
+  $("#kpis").innerHTML=Object.entries(ORIG).map(([k,v])=>`<div class="kpi ${fOrig===k?'sel':''}" style="--c:var(--${k})" data-o="${k}"><div class="n">${c[k]}</div><div class="t">${k} · ${v.nome}</div><div class="w">${v.quem}</div></div>`).join("");
+  document.querySelectorAll(".kpi").forEach(e=>e.onclick=()=>{fOrig=fOrig===e.dataset.o?null:e.dataset.o;go("gaps");renderAll()});
+}
+function renderBars(){
+  const rows=HUS.map(h=>{const gs=G.filter(g=>g.hu.includes(h));const tot=gs.length;return {h,tot,by:Object.keys(ORIG).map(k=>[k,gs.filter(g=>g.o===k).length])}});
+  const max=Math.max(...rows.map(r=>r.tot));
+  $("#hubars").innerHTML=rows.map(r=>`<div class="hurow" style="cursor:pointer" data-h="${r.h}"><div class="lbl">${r.h}${fHu===r.h?' ◂':''}</div><div class="stack" style="width:${r.tot/max*100}%">${r.by.filter(b=>b[1]).map(b=>`<span title="${b[0]}: ${b[1]}" style="width:${b[1]/r.tot*100}%;background:var(--${b[0]})"></span>`).join("")}</div><div>${r.tot}</div></div>`).join("");
+  document.querySelectorAll(".hurow").forEach(e=>e.onclick=()=>{fHu=fHu===e.dataset.h?null:e.dataset.h;go("gaps");renderAll()});
+  $("#legend").innerHTML=Object.entries(ORIG).map(([k,v])=>`<span><i style="background:var(--${k})"></i>${k} ${v.nome}</span>`).join("")+`<span style="color:var(--muted)">· Gaps ligados a “Todas” não entram nas barras</span>`;
+}
+function renderFilters(){
+  const ch=(lbl,on,act)=>`<button class="chip ${on?'on':''}" data-act="${act}">${lbl}</button>`;
+  $("#filters").innerHTML=ch("Todas as origens",!fOrig,"o:")+Object.entries(ORIG).map(([k,v])=>ch(`${k} · ${v.nome}`,fOrig===k,"o:"+k)).join("")+
+    `<span style="width:12px"></span>`+ch("Todas as HUs",!fHu,"h:")+HUS.map(h=>ch(h,fHu===h,"h:"+h)).join("");
+  document.querySelectorAll("#filters .chip").forEach(b=>b.onclick=()=>{const [t,v]=b.dataset.act.split(":");if(t==="o")fOrig=v||null;else fHu=v||null;renderAll()});
+}
+function renderGaps(){
+  const sevTxt={critica:"Crítica",alta:"Alta",media:"Média",baixa:"Baixa"};
+  const list=G.filter(g=>(!fOrig||g.o===fOrig)&&(!fHu||g.hu.includes(fHu)||g.hu.includes("Todas"))&&(!q||(g.id+g.t+g.p+g.hu.join(" ")+ORIG[g.o].quem).toLowerCase().includes(q)));
+  $("#count").textContent=`${list.length} de ${G.length} gaps`;
+  $("#gaps").innerHTML=list.map(g=>`<div class="gap" style="--c:var(--${g.o})"><div class="top"><span class="id">${g.id}</span><span class="sev ${g.sev}">${sevTxt[g.sev]}</span>${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who"><b>Quem age:</b> ${ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div></div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
+}
+let huCmp="HU002";
+function renderCmp(){
+  $("#husel").innerHTML=HUS.map(h=>{const r=CMP[h];const gap=r.filter(x=>x[4]==="no").length;return `<button class="chip ${huCmp===h?'on':''}" data-h="${h}">${h} <span style="opacity:.7">· ${gap} gap${gap===1?'':'s'}</span></button>`}).join("");
+  document.querySelectorAll("#husel .chip").forEach(b=>b.onclick=()=>{huCmp=b.dataset.h;renderCmp()});
+  $("#cmpbody").innerHTML=CMP[huCmp].map(r=>`<tr><td class="item">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="st ${r[4]}">${ST[r[4]]}</span></td><td>${r[5]}</td></tr>`).join("");
+}
+function renderPlan(){
+  $("#plan").innerHTML=PLAN.map(p=>`<div class="p" style="--c:var(--${p.o})"><h3>${p.t}</h3><ol>${p.l.map(i=>`<li>${i}</li>`).join("")}</ol></div>`).join("");
+}
+function go(t){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id==="p-"+t))}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go(b.dataset.tab));
+$("#q").oninput=e=>{q=e.target.value.toLowerCase().trim();renderGaps()};
+function renderAll(){renderKpis();renderBars();renderFilters();renderGaps()}
+renderAll();renderCmp();renderPlan();
+</script>
+</body>
+</html>
