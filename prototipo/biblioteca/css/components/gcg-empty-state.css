@@ -1,0 +1,83 @@
+/* gcg-empty-state.css — EmptyState · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* EmptyState — Figma 35:5710 (página 05 › Feedback › Linha · EmptyState) e EmptyState/Message 35:5664.
+   Padding space/12 × space/6 · gap space/6 (conteúdo ↔ ação) · space/4 (medalhão ↔ textos) · space/2 (título ↔ texto).
+   Moldura do cartão da lista (border/subtle, radius/md): ele ocupa o lugar dela. Dentro da Table, a moldura sai. */
+
+.gcg-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gcg-space-6);
+  box-sizing: border-box;
+  padding: var(--gcg-space-12) var(--gcg-space-6);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background-color: var(--gcg-surface-base);
+  text-align: center;
+}
+
+.gcg-empty-state__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gcg-space-4);
+  width: 100%;
+}
+
+.gcg-empty-state__medallion {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--gcg-size-medallion);
+  height: var(--gcg-size-medallion);
+  border-radius: var(--gcg-radius-full);
+  background-color: var(--gcg-surface-subtle);
+  color: var(--gcg-text-muted);
+}
+.gcg-empty-state--error .gcg-empty-state__medallion {
+  background-color: var(--gcg-state-error-bg);
+  color: var(--gcg-state-error);
+}
+
+/* EmptyState/Message */
+.gcg-empty-state__message {
+  --gcg-empty-state-message-max: 440px; /* Figma: maxWidth da instância de EmptyState/Message — sem token */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--gcg-empty-state-message-max);
+  text-align: center;
+}
+.gcg-empty-state__title {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-lg-semibold);
+  letter-spacing: var(--gcg-tracking-text-lg-semibold);
+}
+.gcg-empty-state__text {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+}
+
+/* cresce do centro com a mola leve, o título e o texto sobem 4 px com fade e a ação vem por último
+   (30 ms entre um e outro). Tudo em até ~260 ms; sem movimento, aparece de uma vez. */
+.gcg-empty-state__medallion { animation: gcg-motion-pop-in var(--gcg-motion-base) var(--gcg-ease-spring) backwards; }
+.gcg-empty-state__message {
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+  animation-delay: var(--gcg-motion-stagger);
+}
+.gcg-empty-state > .gcg-button {
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+  animation-delay: calc(2 * var(--gcg-motion-stagger));
+}
+
+/* Alto contraste (barra eMAG): o medalhão ganha contorno, porque o fundo some */
+html[data-gcg-contrast='high'] .gcg-empty-state__medallion {
+  outline: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  outline-offset: calc(-1 * var(--gcg-border-width-thin));
+}

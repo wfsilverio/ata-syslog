@@ -1,0 +1,26 @@
+/* gcg-panel-link.css — PanelLink · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* PanelLink — Figma 397:37910 (página 05 › Ações › Linha · PanelLink).
+   Texto text/link em Text/SM/Semibold, seta chevron_right, gap space/1, sem padding.
+   Sublinha só no hover; no foco, o anel de 2px afastado 2px. Fica no início do eixo cruzado
+   (align-self: flex-start): quem o posiciona é a composição da tela. */
+
+.gcg-panel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gcg-text-link);
+  font: var(--gcg-font-text-sm-semibold);
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.gcg-panel-link:visited { color: var(--gcg-text-link); }
+.gcg-panel-link:hover { text-decoration: underline; }
+.gcg-panel-link:disabled { color: var(--gcg-text-disabled); cursor: default; text-decoration: none; }
+.gcg-panel-link:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; border-radius: var(--gcg-radius-sm); }

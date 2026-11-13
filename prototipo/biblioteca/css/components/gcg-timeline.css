@@ -1,0 +1,214 @@
+/* gcg-timeline.css — Timeline · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Timeline e TimelineItem — Figma 98:83131 (Timeline) e 98:83130 (Timeline/Item), página 05 › Dados › Linha · Timeline.
+   Item: trilho de 16 (size/icon-sm) + corpo, gap space/3. Trilho: traço de cima (2), marcador 16, traço de baixo (o resto).
+   Traço border-width/thick · border/default. Marcador vazio 12 surface/base com borda border-width/thick border/strong;
+   cheio (current) 16 action/primary com halo space/1 action/primary-subtle.
+   Corpo: gap space/1, espaço embaixo space/6 (0 no último). A lista não tem espaçamento: o traço encosta no do próximo. */
+
+.gcg-timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gcg-timeline-item {
+  /* Text/MD/Semibold tem linha de 20 (1.25rem): o marcador de 16 centra no título com 2 de traço acima.
+     Em rem, para acompanhar o aumento de fonte da barra eMAG. */
+  --gcg-timeline-title-lh: 1.25rem;
+  --gcg-timeline-skeleton-title-w: 160px; /* Figma: title-skeleton › bar — sem token */
+  --gcg-timeline-skeleton-meta-w: 280px;  /* Figma: meta-skeleton › bar — sem token */
+
+  display: flex;
+  gap: var(--gcg-space-3);
+  min-width: 0;
+  margin: 0;
+  list-style: none;
+
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-timeline-item:nth-child(2) { animation-delay: calc(1 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(3) { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(4) { animation-delay: calc(3 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(5) { animation-delay: calc(4 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(6) { animation-delay: calc(5 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(7) { animation-delay: calc(6 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(8) { animation-delay: calc(7 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(9) { animation-delay: calc(8 * var(--gcg-motion-stagger)); }
+.gcg-timeline-item:nth-child(n + 10) { animation-delay: calc(9 * var(--gcg-motion-stagger)); }
+
+/* ---------- trilho (decorativo) ---------- */
+.gcg-timeline-item__rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  width: var(--gcg-size-icon-sm);
+}
+.gcg-timeline-item__line {
+  display: block;
+  flex: none;
+  width: var(--gcg-border-width-thick);
+  background-color: var(--gcg-border-default);
+}
+.gcg-timeline-item__line--top { height: calc((var(--gcg-timeline-title-lh) - var(--gcg-size-icon-sm)) / 2); }
+.gcg-timeline-item__line--bottom { flex: 1 1 auto; }
+/* first: sem traço acima · last: sem traço abaixo (o espaço continua, sem cor) */
+.gcg-timeline-item--first .gcg-timeline-item__line--top,
+.gcg-timeline-item--only .gcg-timeline-item__line--top,
+.gcg-timeline-item--last .gcg-timeline-item__line--bottom,
+.gcg-timeline-item--only .gcg-timeline-item__line--bottom { background-color: transparent; }
+
+.gcg-timeline-item__marker {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--gcg-size-icon-sm);
+  height: var(--gcg-size-icon-sm);
+}
+/* marcador vazio: 12 (16 menos 2 de cada lado), borda por dentro */
+.gcg-timeline-item__dot {
+  box-sizing: border-box;
+  width: calc(var(--gcg-size-icon-sm) - 2 * var(--gcg-space-half));
+  height: calc(var(--gcg-size-icon-sm) - 2 * var(--gcg-space-half));
+  border: var(--gcg-border-width-thick) solid var(--gcg-border-strong);
+  border-radius: var(--gcg-radius-full);
+  background-color: var(--gcg-surface-base);
+}
+/* current: marcador cheio de 16 com halo */
+.gcg-timeline-item--current .gcg-timeline-item__dot {
+  width: var(--gcg-size-icon-sm);
+  height: var(--gcg-size-icon-sm);
+  border: 0;
+  background-color: var(--gcg-action-primary);
+  box-shadow: 0 0 0 var(--gcg-space-1) var(--gcg-action-primary-subtle);
+}
+
+/* ---------- corpo ---------- */
+.gcg-timeline-item__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+  padding-bottom: var(--gcg-space-6);
+}
+.gcg-timeline-item--last .gcg-timeline-item__body,
+.gcg-timeline-item--only .gcg-timeline-item__body { padding-bottom: 0; }
+
+.gcg-timeline-item__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gcg-space-1) var(--gcg-space-2);
+}
+.gcg-timeline-item__title {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+
+/* metadados: uma linha só, que quebra quando falta largura */
+.gcg-timeline-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gcg-space-1) var(--gcg-space-5);
+  margin: 0;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+.gcg-timeline-item__meta-item,
+.gcg-timeline-item__pair {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  min-width: 0;
+}
+.gcg-timeline-item__meta-value {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  margin: 0;
+}
+.gcg-timeline-item__meta-icon { flex: none; color: var(--gcg-text-muted); }
+.gcg-timeline-item__pair-label {
+  flex: none;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+.gcg-timeline-item__pair-value { display: inline-flex; margin: 0; color: var(--gcg-text-default); }
+
+/* texto livre: largura cheia, o texto quebra sob ele mesmo */
+.gcg-timeline-item__description {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gcg-space-2);
+  margin: 0;
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+.gcg-timeline-item__description-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--gcg-text-default);
+  overflow-wrap: break-word;
+}
+
+/* ---------- loading: marcador e barras provisórias ---------- */
+.gcg-timeline-item--loading .gcg-timeline-item__dot {
+  border: 0;
+  background-color: var(--gcg-surface-skeleton);
+}
+.gcg-timeline-item__skeleton {
+  display: flex;
+  padding: var(--gcg-space-1) 0;
+}
+.gcg-timeline-item__skeleton-bar {
+  display: block;
+  max-width: 100%;
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-timeline-pulse var(--gcg-motion-pulse) ease-in-out infinite;
+}
+.gcg-timeline-item__skeleton--title .gcg-timeline-item__skeleton-bar { width: var(--gcg-timeline-skeleton-title-w); }
+.gcg-timeline-item__skeleton--meta .gcg-timeline-item__skeleton-bar { width: var(--gcg-timeline-skeleton-meta-w); }
+@keyframes gcg-timeline-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gcg-timeline-item__skeleton-bar { animation: none; }
+}
+
+/* ---------- alto contraste (barra eMAG): o halo some; o marcador cheio ganha contorno ---------- */
+html[data-gcg-contrast='high'] .gcg-timeline-item--current .gcg-timeline-item__dot {
+  box-shadow: none;
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-default);
+  outline-offset: var(--gcg-space-half);
+}
+
+/* tipo, campos e ações. Mesmo trilho e mesmo marcador da linha do tempo. */
+.gcg-timeline-item__actions { display: flex; align-items: center; gap: var(--gcg-space-2); margin-left: auto; }
+.gcg-timeline-item__fields { display: flex; flex-wrap: wrap; gap: var(--gcg-space-2) var(--gcg-space-8, 32px); margin: var(--gcg-space-2) 0 0; }
+.gcg-timeline-item__field { display: flex; flex-direction: column; gap: 2px; }
+.gcg-timeline-item__field-value { margin: 0; color: var(--gcg-text-strong); font: var(--gcg-font-text-md-medium, var(--gcg-font-text-md-regular)); font-variant-numeric: tabular-nums; }
+.gcg-timeline-item--card .gcg-timeline-item__body { padding-bottom: var(--gcg-space-4); }
+.gcg-timeline-item--card .gcg-timeline-item__body > * { margin-left: 0; }
+.gcg-timeline-item--card .gcg-timeline-item__body {
+  gap: var(--gcg-space-2);
+  padding: var(--gcg-space-4) var(--gcg-space-5);
+  margin-bottom: var(--gcg-space-4);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+}
+.gcg-timeline-item--card.gcg-timeline-item--last .gcg-timeline-item__body,
+.gcg-timeline-item--card.gcg-timeline-item--only .gcg-timeline-item__body { margin-bottom: 0; padding-bottom: var(--gcg-space-4); }

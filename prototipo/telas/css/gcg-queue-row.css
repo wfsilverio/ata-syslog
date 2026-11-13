@@ -1,0 +1,72 @@
+/* gcg-queue-row.css — composição de tela (HU-013 · Painel do Fornecedor; HU-014 · Painel do Procurador Setorial), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* QueueRow — a linha das filas dos painéis do Fornecedor (HU-013) e do Procurador (HU-014). O desenho base é o da
+   HU-012 (fila.css: .fila__linha e as partes); aqui fica o que é novo. Figma: página 11, SupplierRow (HU-013), */
+
+/* a coluna a mais antes da data (HU-013: o Consumo do Contrato, 180 de largura no Figma) */
+.gcg-queue-row--extra { grid-template-columns: var(--gcg-space-1) minmax(0, 1fr) auto auto auto; }
+.gcg-queue-row__extra { display: flex; justify-content: flex-end; }
+
+/* o número em alerta (HU-014: a espera a partir de 15 dias, proposta) */
+.gcg-fila__metrica--alerta .gcg-fila__valor { color: var(--gcg-state-warning-text); }
+
+/* a linha do contrato com as demandas abertas embaixo (Figma: DemandGroup · aberta, fundo surface/hover) */
+.gcg-queue-row--expanded,
+.gcg-queue-row--expanded:hover { background: var(--gcg-surface-hover); }
+
+/* a sublinha de uma demanda (Figma: DemandSubrow, 14 · 16 · 14 · 32, fundo surface/subtle) */
+.gcg-queue-row--sub { padding-left: var(--gcg-space-8); background: var(--gcg-surface-subtle); }
+.gcg-queue-row--sub:hover { background: var(--gcg-surface-hover); }
+
+/* o grupo (HU-014): a linha do contrato e, abertas, as sublinhas; a borda é do grupo, não de cada parte */
+.gcg-queue-group { border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+.gcg-queue-group:last-child { border-bottom: 0; }
+.gcg-queue-group > .gcg-fila__linha { border-bottom: 0; animation: none; }
+.gcg-queue-group__sub { margin: 0; padding: 0; list-style: none; }
+.gcg-queue-group__sub > .gcg-fila__linha { border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); border-bottom: 0; }
+.gcg-queue-group:nth-child(2) { animation-delay: calc(1 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(3) { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(4) { animation-delay: calc(3 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(5) { animation-delay: calc(4 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(6) { animation-delay: calc(5 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(7) { animation-delay: calc(6 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(8) { animation-delay: calc(7 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(9) { animation-delay: calc(8 * var(--gcg-motion-stagger)); }
+.gcg-queue-group:nth-child(n + 10) { animation-delay: calc(9 * var(--gcg-motion-stagger)); }
+/* as sublinhas que abrem descem em cascata curta (continuidade: vêm da linha do contrato) */
+.gcg-queue-group__sub > .gcg-fila__linha { animation: gcg-motion-drop-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+.gcg-queue-group__sub > .gcg-fila__linha:nth-child(2) { animation-delay: calc(1 * var(--gcg-motion-stagger)); }
+.gcg-queue-group__sub > .gcg-fila__linha:nth-child(3) { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+.gcg-queue-group__sub > .gcg-fila__linha:nth-child(n + 4) { animation-delay: calc(3 * var(--gcg-motion-stagger)); }
+
+/* o vazio no lugar da relação (Figma: o EmptyState ocupa o cartão da fila): uma moldura só, a do cartão */
+.gcg-painel-vazio-na-fila > .gcg-empty-state { border: 0; border-radius: 0; }
+
+.gcg-queue--instant .gcg-fila__linha,
+.gcg-queue--instant .gcg-queue-group { animation: none; }
+
+/* janela estreita, ou o texto a 175% e 200% pela barra eMAG: a coluna a mais e os dados descem para baixo do
+   contrato, para o texto principal não ficar espremido */
+@media (max-width: 760px) {
+  .gcg-queue-row--extra { grid-template-columns: var(--gcg-space-1) minmax(0, 1fr) auto; }
+  .gcg-queue-row--extra .gcg-fila__dica { grid-row: span 3; }
+  .gcg-queue-row--extra .gcg-queue-row__extra { grid-column: 2; grid-row: 2; justify-content: flex-start; }
+  .gcg-queue-row--extra .gcg-fila__dados { grid-column: 2; grid-row: 3; }
+  .gcg-queue-row--extra > .gcg-tooltip:last-child { grid-column: 3; grid-row: 1 / span 3; }
+}
+html[data-gcg-text-scale='175'] .gcg-queue-row--extra,
+html[data-gcg-text-scale='200'] .gcg-queue-row--extra { grid-template-columns: var(--gcg-space-1) minmax(0, 1fr) auto; }
+html[data-gcg-text-scale='175'] .gcg-queue-row--extra .gcg-fila__dica,
+html[data-gcg-text-scale='200'] .gcg-queue-row--extra .gcg-fila__dica { grid-row: span 3; }
+html[data-gcg-text-scale='175'] .gcg-queue-row--extra .gcg-queue-row__extra,
+html[data-gcg-text-scale='200'] .gcg-queue-row--extra .gcg-queue-row__extra { grid-column: 2; grid-row: 2; justify-content: flex-start; }
+html[data-gcg-text-scale='175'] .gcg-queue-row--extra .gcg-fila__dados,
+html[data-gcg-text-scale='200'] .gcg-queue-row--extra .gcg-fila__dados { grid-column: 2; grid-row: 3; justify-content: flex-start; }
+html[data-gcg-text-scale='175'] .gcg-queue-row--extra > .gcg-tooltip:last-child,
+html[data-gcg-text-scale='200'] .gcg-queue-row--extra > .gcg-tooltip:last-child { grid-column: 3; grid-row: 1 / span 3; }
+
+/* Alto contraste (barra eMAG): a linha aberta e a sublinha se separam pela borda, não só pelo fundo */
+html[data-gcg-contrast='high'] .gcg-queue-row--expanded,
+html[data-gcg-contrast='high'] .gcg-queue-row--sub { background: var(--gcg-surface-base); }
+html[data-gcg-contrast='high'] .gcg-queue-group__sub > .gcg-fila__linha { border-top-color: var(--gcg-border-strong); }
+html[data-gcg-contrast='high'] .gcg-fila__metrica--alerta .gcg-fila__valor { color: var(--gcg-text-default); }

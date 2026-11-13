@@ -1,0 +1,30 @@
+/* gcg-popover.css — Popover · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Camada flutuante dos campos (menu do Select e da SearchField, calendário do DatePicker).
+   Não existe no Figma como componente: é o "dropdown" das variantes open=true, que lá fica
+   8 px abaixo do controle. Aqui vai em portal, fixa na janela, acima da gaveta e do Modal. */
+
+.gcg-popover {
+  position: fixed;
+  z-index: var(--gcg-z-popover);
+  box-sizing: border-box;
+}
+
+/* baixo quando abre embaixo, de baixo para cima quando abre acima do campo. A saída (mais curta, */
+.gcg-popover--bottom {
+  transform-origin: top center;
+  animation: gcg-motion-scale-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-popover--top {
+  transform-origin: bottom center;
+  animation: gcg-motion-scale-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+
+/* dinâmica da gaveta (Figma, página 09, L2 · 1 a 3: o menu empurra os campos de baixo). */
+.gcg-popover--inline {
+  position: relative;
+  z-index: auto;
+  margin-top: var(--gcg-space-1);
+  transform-origin: top center;
+  animation: gcg-motion-scale-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}

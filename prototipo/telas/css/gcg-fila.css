@@ -1,0 +1,163 @@
+/* gcg-fila.css — composição de tela (HU-012 · Painel do Gestor e do Fiscal; HU-013 · Painel do Fornecedor; HU-014 · Painel do Procurador Setorial), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Painel do Gestor e do Fiscal (HU-012) — Figma: página 11, seção HU-012, L1 a L8. Só tokens da biblioteca.
+   Grade dos indicadores: 12 colunas na coluna de conteúdo de 1144 — em cima 6 + 3 + 3, embaixo 3 + 3 + 3 + 3. */
+
+/* ── Indicadores ─────────────────────────────────────────────────────── */
+.gcg-indicadores-gf {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gcg-space-4);
+}
+.gcg-indicadores-gf > .gcg-indicator-card { grid-column: span 3; }
+.gcg-indicadores-gf > .gcg-indicator-card--geral { grid-column: span 6; }
+@media (max-width: 1100px) {
+  .gcg-indicadores-gf > .gcg-indicator-card { grid-column: span 6; }
+  .gcg-indicadores-gf > .gcg-indicator-card--geral { grid-column: span 12; }
+}
+@media (max-width: 560px) {
+  .gcg-indicadores-gf > .gcg-indicator-card,
+  .gcg-indicadores-gf > .gcg-indicator-card--geral { grid-column: span 12; }
+}
+
+/* ── Pesquisa, filtro aplicado e Ordenar por ─────────────────────────── */
+.gcg-fila-barra { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gcg-space-3) var(--gcg-space-4); }
+.gcg-fila-barra__pesquisa { width: 27.5rem; max-width: 100%; }
+.gcg-fila-barra__ordem { display: flex; align-items: center; gap: var(--gcg-space-3); margin-left: auto; }
+.gcg-fila-barra__ordem-rotulo { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); white-space: nowrap; }
+.gcg-fila-barra__select { width: 15rem; }
+
+/* ── A fila: o cartão com os que pedem ação, a divisória Em dia, os em dia e o pé com a paginação ── */
+.gcg-fila {
+  overflow: hidden;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+}
+.gcg-fila__lista { margin: 0; padding: 0; list-style: none; }
+
+/* a divisória Em dia (09/10): uma faixa discreta com a contagem e o botão de recolher */
+.gcg-fila__divisoria {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  padding: 6px var(--gcg-space-3) 6px var(--gcg-space-5); /* Figma: EmDiaDivider, 6 em cima e embaixo, 20 à esquerda e 12 à direita */
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  background: var(--gcg-surface-subtle);
+}
+.gcg-fila__lista + .gcg-fila__divisoria { border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); }
+.gcg-fila__divisoria:last-child { border-bottom: 0; }
+.gcg-fila__divisoria-titulo { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold); }
+.gcg-fila__divisoria-acao { margin-left: auto; }
+.gcg-fila__rodape { padding: var(--gcg-space-2) var(--gcg-space-4); border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); }
+.gcg-fila__linha {
+  display: grid;
+  grid-template-columns: var(--gcg-space-1) minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--gcg-space-4);
+  padding: 14px var(--gcg-space-4) 14px 0; /* Figma: PendencyRow, 14 em cima e embaixo, a faixa encostada na borda */
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  cursor: pointer;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-fila__linha:last-child { border-bottom: 0; }
+.gcg-fila__linha:hover { background: var(--gcg-surface-subtle); } /* o atributo: o frame do Figma com o mouse em cima (estado parado) */
+.gcg-fila__linha:nth-child(2) { animation-delay: calc(1 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(3) { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(4) { animation-delay: calc(3 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(5) { animation-delay: calc(4 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(6) { animation-delay: calc(5 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(7) { animation-delay: calc(6 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(8) { animation-delay: calc(7 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(9) { animation-delay: calc(8 * var(--gcg-motion-stagger)); }
+.gcg-fila__linha:nth-child(n + 10) { animation-delay: calc(9 * var(--gcg-motion-stagger)); }
+
+/* a faixa de cor: um segmento por motivo; também separa o que pede ação do que está em dia */
+.gcg-fila__dica { display: flex; align-self: stretch; width: var(--gcg-space-1); }
+.gcg-fila__faixa { display: flex; flex-direction: column; gap: var(--gcg-space-half); width: 100%; height: 100%; }
+.gcg-fila__segmento { flex: 1; }
+.gcg-fila__segmento--red { background: var(--gcg-color-red-500); }
+.gcg-fila__segmento--orange { background: var(--gcg-color-orange-500); }
+.gcg-fila__segmento--yellow { background: var(--gcg-color-yellow-500); }
+.gcg-fila__segmento--neutral { background: var(--gcg-color-neutral-400); }
+.gcg-fila__segmento--violet { background: var(--gcg-color-violet-500); }
+.gcg-fila__segmento--cyan { background: var(--gcg-color-cyan-500); }
+
+.gcg-fila__principal { display: flex; flex-direction: column; gap: var(--gcg-space-half); min-width: 0; }
+/* linha 1: o contrato (número · fornecedor), que nunca se repete */
+.gcg-fila__titulo { color: var(--gcg-text-strong); font: var(--gcg-font-text-md-semibold); letter-spacing: var(--gcg-tracking-text-md-semibold); }
+.gcg-fila__papel { color: var(--gcg-text-secondary); }
+/* linha 2: os motivos com o nome e a cor dos indicadores (os mesmos tons de texto dos cartões e da métrica) */
+.gcg-fila__motivos { font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold); }
+.gcg-fila__motivos-sep { color: var(--gcg-text-secondary); }
+.gcg-fila__motivo--red { color: var(--gcg-state-error-text); }
+.gcg-fila__motivo--orange { color: var(--gcg-state-warning-text); }
+.gcg-fila__motivo--yellow { color: var(--gcg-color-yellow-800); }
+.gcg-fila__motivo--neutral { color: var(--gcg-text-default); }
+.gcg-fila__motivo--cyan { color: var(--gcg-state-info-text); }
+.gcg-fila__motivo--violet { color: var(--gcg-color-violet-700); }
+/* linha 3: o objeto, discreto, numa linha só (a HU exige; o texto inteiro fica no title) */
+.gcg-fila__objeto { overflow: hidden; color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); text-overflow: ellipsis; white-space: nowrap; }
+/* o contrato em dia: a mesma anatomia, sem a linha dos motivos, mais discreto */
+.gcg-fila__titulo--em-dia { color: var(--gcg-text-default); }
+.gcg-fila__linha--em-dia { padding-top: var(--gcg-space-3); padding-bottom: var(--gcg-space-3); }
+.gcg-fila__linha--em-dia .gcg-fila__metrica .gcg-fila__valor { color: var(--gcg-text-secondary); } /* acima dos tons de cada ordem */
+
+.gcg-fila__dados { display: grid; grid-template-columns: 8.125rem 8.75rem; align-items: center; gap: var(--gcg-space-4); }
+.gcg-fila__fim { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); white-space: nowrap; }
+.gcg-fila__metrica { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+.gcg-fila__valor { font: var(--gcg-font-heading-md); letter-spacing: var(--gcg-tracking-heading-md); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gcg-fila__legenda { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+
+.gcg-fila__legenda .gcg-fila__legenda-detalhe { display: block; white-space: nowrap; }
+.gcg-fila__metrica--faixa-0 .gcg-fila__valor { color: var(--gcg-state-error-text); }
+.gcg-fila__metrica--faixa-1 .gcg-fila__valor { color: var(--gcg-state-warning-text); }
+.gcg-fila__metrica--faixa-2 .gcg-fila__valor { color: var(--gcg-color-yellow-800); }
+.gcg-fila__metrica--faixa-3 .gcg-fila__valor { color: var(--gcg-text-strong); }
+.gcg-fila__metrica--saldo .gcg-fila__valor { color: var(--gcg-color-violet-700); }
+.gcg-fila__metrica--assinatura .gcg-fila__valor { color: var(--gcg-state-info-text); }
+.gcg-fila__metrica--neutro .gcg-fila__valor { color: var(--gcg-text-default); }
+.gcg-fila__metrica--apagado .gcg-fila__valor { color: var(--gcg-text-muted); }
+
+@media (max-width: 760px) {
+  .gcg-fila__linha { grid-template-columns: var(--gcg-space-1) minmax(0, 1fr) auto; }
+  .gcg-fila__dica { grid-row: span 2; }
+  .gcg-fila__dados { grid-column: 2; grid-row: 2; display: flex; justify-content: space-between; }
+  .gcg-fila__linha > .gcg-tooltip:last-child { grid-column: 3; grid-row: 1 / span 2; }
+}
+
+/* ── Rodapé, estados ─────────────────────────────────────────────────── */
+/* o rodapé fica fora do cartão, sobre surface/app: o link vai no verde 700 (5,7:1); o 600 do link dá 4,09:1 nesse fundo */
+.gcg-painel-gf .gcg-contratos__rodape .gcg-panel-link { color: var(--gcg-action-primary-hover); }
+.gcg-fila-estado { padding: var(--gcg-space-8) var(--gcg-space-6); border: var(--gcg-border-width-thin) solid var(--gcg-border-default); border-radius: var(--gcg-radius-lg); background: var(--gcg-surface-base); }
+
+.gcg-fila-esqueleto { display: flex; flex-direction: column; gap: var(--gcg-space-5); }
+.gcg-fila-esqueleto__indicadores { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gcg-space-4); }
+.gcg-fila-esqueleto__cartao { grid-column: span 3; height: 6.75rem; border-radius: var(--gcg-radius-lg); background: var(--gcg-surface-skeleton); animation: gcg-painel-pulso var(--gcg-motion-pulse) ease-in-out infinite; }
+.gcg-fila-esqueleto__cartao--g { grid-column: span 6; }
+.gcg-fila-esqueleto__cartao--g, .gcg-fila-esqueleto__cartao--a, .gcg-fila-esqueleto__cartao--s { height: 7.25rem; }
+.gcg-fila-esqueleto__barra { display: flex; justify-content: space-between; gap: var(--gcg-space-4); }
+.gcg-fila-esqueleto__lista { overflow: hidden; border: var(--gcg-border-width-thin) solid var(--gcg-border-default); border-radius: var(--gcg-radius-lg); background: var(--gcg-surface-base); }
+.gcg-fila-esqueleto__linha { display: flex; align-items: center; gap: var(--gcg-space-4); padding: var(--gcg-space-5); border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); }
+.gcg-fila-esqueleto__linha:last-child { border-bottom: 0; }
+.gcg-fila-esqueleto__textos { display: flex; flex: 1; flex-direction: column; gap: var(--gcg-space-2); }
+.gcg-fila-esqueleto__bloco { display: block; border-radius: var(--gcg-radius-sm); background: var(--gcg-surface-skeleton); animation: gcg-painel-pulso var(--gcg-motion-pulse) ease-in-out infinite; }
+.gcg-fila-esqueleto__bloco--pesquisa { width: 27.5rem; max-width: 60%; height: 2.25rem; border-radius: var(--gcg-radius-md); }
+.gcg-fila-esqueleto__bloco--ordem { width: 19.75rem; max-width: 35%; height: 2.25rem; border-radius: var(--gcg-radius-md); }
+.gcg-fila-esqueleto__bloco--l1 { width: 18.75rem; max-width: 80%; height: 14px; }
+.gcg-fila-esqueleto__bloco--l2 { width: 22.5rem; max-width: 90%; height: 12px; }
+.gcg-fila-esqueleto__bloco--l3 { width: 16.25rem; max-width: 70%; height: 10px; }
+.gcg-fila-esqueleto__bloco--data { width: 6.875rem; height: 12px; }
+.gcg-fila-esqueleto__bloco--metrica { width: 5.625rem; height: 1.5rem; }
+@media (max-width: 1100px) {
+  .gcg-fila-esqueleto__cartao { grid-column: span 6; }
+  .gcg-fila-esqueleto__cartao--g { grid-column: span 12; }
+}
+
+/* Alto contraste (barra eMAG): a faixa ganha contorno; a linha em hover, borda */
+html[data-gcg-contrast='high'] .gcg-fila__segmento { outline: var(--gcg-border-width-thin) solid var(--gcg-border-strong); }
+html[data-gcg-contrast='high'] .gcg-fila { border-color: var(--gcg-border-strong); }
+
+html[data-gcg-contrast='high'] .gcg-fila__motivo,
+html[data-gcg-contrast='high'] .gcg-fila__metrica .gcg-fila__valor { color: var(--gcg-text-default); }

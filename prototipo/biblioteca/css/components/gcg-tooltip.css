@@ -1,0 +1,85 @@
+/* gcg-tooltip.css — Tooltip · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Tooltip — Figma 48:52118 (página 05 › Feedback › Linha · Tooltip).
+   Corpo color/neutral/800 · texto text/inverse em Text/SM/Regular · padding space/2 × space/3 ·
+   raio radius/sm · seta 12 × 6 na mesma cor, centrada (ou sobre o alvo, quando a dica é deslocada). */
+
+.gcg-tooltip {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.gcg-tooltip-bubble {
+  --gcg-tooltip-text-w: 15rem;   /* Figma: largura do texto 240 (em rem, cresce com o texto da barra eMAG) */
+  --gcg-tooltip-arrow-w: 12px;   /* Figma: seta 12 × 6 */
+  --gcg-tooltip-arrow-h: 6px;
+  --gcg-tooltip-bg: var(--gcg-color-neutral-800);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(calc(var(--gcg-tooltip-text-w) + 2 * var(--gcg-space-3)), calc(100vw - 2 * var(--gcg-space-2)));
+  pointer-events: auto;
+}
+.gcg-tooltip-bubble[hidden] { display: none; }
+
+.gcg-tooltip-bubble__body {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--gcg-space-2) var(--gcg-space-3);
+  border-radius: var(--gcg-radius-sm);
+  background: var(--gcg-tooltip-bg);
+  color: var(--gcg-text-inverse);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+/* Seta: triângulo 12 × 6. A posição vem de --tooltip-arrow-x (centro do alvo, em px); sem ela, o centro. */
+.gcg-tooltip-bubble__arrow {
+  flex: none;
+  width: var(--gcg-tooltip-arrow-w);
+  height: var(--gcg-tooltip-arrow-h);
+  margin-left: calc(var(--gcg-tooltip-arrow-x, 50%) - var(--gcg-tooltip-arrow-w) / 2);
+  background: var(--gcg-tooltip-bg);
+}
+/* top: a dica fica acima do alvo e a seta aponta para baixo */
+.gcg-tooltip-bubble--top .gcg-tooltip-bubble__arrow { order: 1; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+/* bottom: a dica fica abaixo do alvo e a seta aponta para cima */
+.gcg-tooltip-bubble--bottom .gcg-tooltip-bubble__arrow { order: -1; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+/* ---------- a dica de verdade: portal, fixa na janela ---------- */
+.gcg-tooltip-bubble--floating {
+  position: fixed;
+  /* atrás da superfície do menu, que também é popover */
+  z-index: calc(var(--gcg-z-popover) + 1);
+}
+
+.gcg-tooltip-bubble--floating.gcg-tooltip-bubble--top { transform-origin: var(--gcg-tooltip-arrow-x, 50%) 100%; }
+.gcg-tooltip-bubble--floating.gcg-tooltip-bubble--bottom { transform-origin: var(--gcg-tooltip-arrow-x, 50%) 0; }
+.gcg-tooltip-bubble--floating { animation: gcg-motion-scale-in var(--gcg-motion-fast) var(--gcg-ease-standard) backwards; }
+.gcg-tooltip-bubble--floating.gcg-tooltip-bubble--leaving {
+  animation: gcg-motion-scale-out var(--gcg-motion-instant) var(--gcg-ease-exit) forwards;
+  pointer-events: none;
+}
+
+.gcg-tooltip-bubble--static {
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+}
+.gcg-tooltip--force-top > .gcg-tooltip-bubble--static { bottom: calc(100% + var(--gcg-space-1)); }
+.gcg-tooltip--force-bottom > .gcg-tooltip-bubble--static { top: calc(100% + var(--gcg-space-1)); }
+
+/* ---------- alto contraste (barra eMAG): fundo preto, contorno e seta brancos ---------- */
+html[data-gcg-contrast='high'] .gcg-tooltip-bubble { --gcg-tooltip-bg: var(--gcg-border-default); }
+html[data-gcg-contrast='high'] .gcg-tooltip-bubble__body {
+  border: var(--gcg-border-width-thick) solid var(--gcg-border-default);
+  background: var(--gcg-surface-base);
+  color: var(--gcg-text-strong);
+}

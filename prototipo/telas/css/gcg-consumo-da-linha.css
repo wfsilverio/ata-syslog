@@ -1,0 +1,64 @@
+/* gcg-consumo-da-linha.css — composição de tela (HU-013 · Painel do Fornecedor), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* O Consumo do Contrato na linha do painel do Fornecedor (HU-013). Figma: página 11, HU-013, MiniConsumption.
+   Trilha 120 × 6 (surface/subtle), 8 até o número (52 de largura, Text/SM/Semibold), "consumido" embaixo, à direita. */
+.gcg-consumo-da-linha {
+  --gcg-consumo-trilha: 7.5rem; /* 120 do Figma, em rem para acompanhar o aumento de fonte da barra eMAG */
+  --gcg-consumo-numero: 3.25rem; /* 52 do Figma */
+  --gcg-consumo-espessura: 6px; /* 6 do Figma, a mesma barra da HU-016 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--gcg-space-half);
+}
+.gcg-consumo-da-linha__barra { display: flex; align-items: center; gap: var(--gcg-space-2); }
+.gcg-consumo-da-linha__trilha {
+  display: block;
+  overflow: hidden;
+  width: var(--gcg-consumo-trilha);
+  height: var(--gcg-consumo-espessura);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-surface-subtle);
+}
+
+.gcg-consumo-da-linha__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-action-primary);
+  transform-origin: left center;
+  animation: gcg-consumo-da-linha-encher var(--gcg-motion-data) var(--gcg-ease-standard) backwards;
+}
+@keyframes gcg-consumo-da-linha-encher { from { transform: translateX(-100%); } }
+.gcg-consumo-da-linha__valor {
+  width: var(--gcg-consumo-numero);
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+.gcg-consumo-da-linha__legenda { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); letter-spacing: var(--gcg-tracking-text-xs-regular); }
+
+/* as faixas de cor (16/10): a barra no 600, o número no 700 da mesma rampa */
+.gcg-consumo-da-linha--atencao .gcg-consumo-da-linha__fill { background: var(--gcg-color-yellow-600); }
+.gcg-consumo-da-linha--atencao .gcg-consumo-da-linha__valor { color: var(--gcg-color-yellow-700); }
+.gcg-consumo-da-linha--alerta .gcg-consumo-da-linha__fill { background: var(--gcg-color-orange-600); }
+.gcg-consumo-da-linha--alerta .gcg-consumo-da-linha__valor { color: var(--gcg-color-orange-700); }
+.gcg-consumo-da-linha--esgotado .gcg-consumo-da-linha__fill { background: var(--gcg-color-red-600); }
+.gcg-consumo-da-linha--esgotado .gcg-consumo-da-linha__valor { color: var(--gcg-color-red-700); }
+
+/* a linha empilhada (janela estreita ou texto a 175% e 200%, queue-row.css): a barra, o número e "consumido" lado a lado */
+@media (max-width: 760px) {
+  .gcg-consumo-da-linha { flex-direction: row; align-items: center; gap: var(--gcg-space-2); }
+}
+html[data-gcg-text-scale='175'] .gcg-consumo-da-linha,
+html[data-gcg-text-scale='200'] .gcg-consumo-da-linha { flex-direction: row; align-items: center; gap: var(--gcg-space-2); }
+
+/* o dado que já estava não enche de novo (voltar ao painel na mesma sessão) */
+.gcg-queue--instant .gcg-consumo-da-linha__fill { animation: none; }
+
+/* Alto contraste (barra eMAG): a barra ganha contorno e o número fica no texto padrão; a faixa se lê pelo número */
+html[data-gcg-contrast='high'] .gcg-consumo-da-linha__fill { outline: var(--gcg-border-width-thin) solid var(--gcg-border-strong); }
+html[data-gcg-contrast='high'] .gcg-consumo-da-linha__valor { color: var(--gcg-text-default); }

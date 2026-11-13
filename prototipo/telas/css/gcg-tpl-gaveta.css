@@ -1,0 +1,338 @@
+/* gcg-tpl-gaveta.css — composição de tela (Assinatura HU001 · Realizar assinatura documento; Assinatura HU002 · Visualizar documento assinado; Cancelar HU034 · Cancelar documentos; Exportar HU033 · Exportar documentos; Importar HU032 · Importar documentos; Templates · Consumir templates · Documentos do contrato), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* Importar, Exportar e Cancelar documentos (HU032 a HU034): composição local da aba Documentação.
+   Figma, página 22 · Telas · Documentos (HU032 a HU034). Cor, fonte e espaço vêm dos tokens; as medidas do Figma
+   sem token ficam anotadas junto da regra. Os seletores ficam presos à aba Documentação (.tpl-aba), às gavetas
+   (.tpl-gaveta) e ao preview (.tpl-preview). */
+
+/* ---------- a barra da lista: Exportar lista e Novo documento à direita, acima dos filtros (Figma: gap 12) ---------- */
+.gcg-tpl-aba .gcg-doc-barra {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--gcg-space-3);
+}
+.gcg-tpl-aba .gcg-doc-aviso { margin: 0; }
+
+/* ---------- a gaveta: o corpo com padding 24 e gap 20 (Figma: corpo da gaveta Novo documento) ---------- */
+.gcg-tpl-gaveta .gcg-tpl-preview__header { align-items: center; }
+.gcg-tpl-gaveta .gcg-tpl-gaveta__rodape { justify-content: flex-end; }
+.gcg-tpl-gaveta .gcg-doc-novo__campos,
+.gcg-tpl-gaveta .gcg-doc-cancelar__campos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-5);
+  padding: var(--gcg-space-6);
+}
+/* a gaveta Cancelar documento é mais compacta: gap 16 e padding 20 em cima e embaixo */
+.gcg-tpl-gaveta .gcg-doc-cancelar__campos { gap: var(--gcg-space-4); padding-block: var(--gcg-space-5); }
+.gcg-tpl-gaveta .gcg-doc-novo__linha {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gcg-space-4);
+  align-items: start;
+}
+.gcg-tpl-gaveta .gcg-doc-novo__alerta { margin: 0; }
+
+/* ---------- o rádio: composição local, porque a biblioteca não tem rádio. Vira componente da biblioteca no
+   terceiro uso (LEIA-ME, "Biblioteca × composição local") ---------- */
+.gcg-tpl-gaveta .gcg-doc-radio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.gcg-tpl-gaveta .gcg-doc-radio__legenda {
+  padding: 0;
+  margin-bottom: var(--gcg-space-2);
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-tpl-gaveta .gcg-doc-radio__opcoes { display: flex; flex-wrap: wrap; gap: var(--gcg-space-2) var(--gcg-space-6); }
+.gcg-tpl-gaveta .gcg-doc-radio__opcao {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  min-height: var(--gcg-size-control-sm);
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  cursor: pointer;
+}
+/* o input radio nativo cobre a opção inteira, invisível (opacity 0): o clique, o teclado e o leitor de tela
+   usam o controle nativo; a marca é só o desenho */
+.gcg-tpl-gaveta .gcg-doc-radio__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.gcg-tpl-gaveta .gcg-doc-radio__marca {
+  /* Figma: 20 × 20, contorno de 2, o ponto de 10 */
+  --gcg-doc-radio-size: 1.25rem;
+  position: relative;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--gcg-doc-radio-size);
+  height: var(--gcg-doc-radio-size);
+  border: var(--gcg-border-width-thick) solid var(--gcg-border-strong);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-surface-base);
+  transition: border-color var(--gcg-motion-fast) var(--gcg-ease-standard), box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-tpl-gaveta .gcg-doc-radio__marca::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-action-primary);
+  transform: scale(0);
+  transition: transform var(--gcg-motion-base) var(--gcg-ease-spring);
+}
+.gcg-tpl-gaveta .gcg-doc-radio__input:checked + .gcg-doc-radio__marca { border-color: var(--gcg-action-primary); }
+.gcg-tpl-gaveta .gcg-doc-radio__input:checked + .gcg-doc-radio__marca::after { transform: scale(1); }
+.gcg-tpl-gaveta .gcg-doc-radio__opcao:hover .gcg-doc-radio__marca { border-color: var(--gcg-action-primary-hover); }
+.gcg-tpl-gaveta .gcg-doc-radio__input:focus-visible + .gcg-doc-radio__marca {
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+.gcg-tpl-gaveta .gcg-doc-radio[aria-invalid='true'] .gcg-doc-radio__marca { border-color: var(--gcg-state-error); }
+.gcg-tpl-gaveta .gcg-doc-radio__erro {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  margin: 0;
+  color: var(--gcg-state-error-text);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+  animation: gcg-motion-drop-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-tpl-gaveta .gcg-doc-radio__dica {
+  margin: 0;
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+/* ---------- Arquivo Externo: a área de arrastar (tracejada, fundo cinza claro, raio 8, padding 24 × 16, gap 12) ---------- */
+.gcg-tpl-gaveta .gcg-doc-novo__arquivo { display: flex; flex-direction: column; gap: var(--gcg-space-2); }
+.gcg-tpl-gaveta .gcg-doc-novo__rotulo {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-tpl-gaveta .gcg-doc-novo__zona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gcg-space-3);
+  padding: var(--gcg-space-6) var(--gcg-space-4);
+  border: var(--gcg-border-width-thin) dashed var(--gcg-border-strong);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-subtle);
+  text-align: center;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard), border-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+
+.gcg-tpl-gaveta .gcg-doc-novo__zona[data-gcg-arrastando] {
+  border-color: var(--gcg-action-primary);
+  background: var(--gcg-action-primary-subtle);
+}
+.gcg-tpl-gaveta .gcg-doc-novo__zona-icone { color: var(--gcg-text-secondary); }
+.gcg-tpl-gaveta .gcg-doc-novo__zona-texto {
+  margin: 0;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+}
+.gcg-tpl-gaveta .gcg-doc-novo__regra {
+  margin: 0;
+  /* sobre o fundo da zona (surface-subtle), o text-muted fica abaixo do contraste 4,5:1 (medido no axe);
+     por isso o text-secondary */
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+.gcg-tpl-gaveta .gcg-doc-novo__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  margin: var(--gcg-space-1) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.gcg-tpl-gaveta .gcg-doc-novo__lista > li { animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+.gcg-tpl-gaveta .gcg-doc-novo__encaminhar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gcg-space-3);
+}
+
+/* ---------- Cancelar documento: a primeira página (fundo cinza, folha de 240 × 300), a identificação ---------- */
+.gcg-tpl-gaveta .gcg-doc-pagina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  padding: var(--gcg-space-4);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-app);
+}
+.gcg-tpl-gaveta .gcg-doc-pagina__folha {
+  /* Figma: a folha de 240 × 300, padding 24 × 20, gap 8 */
+  --gcg-doc-folha-w: 15rem;
+  --gcg-doc-folha-h: 18.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  width: var(--gcg-doc-folha-w);
+  height: var(--gcg-doc-folha-h);
+  padding: var(--gcg-space-6) var(--gcg-space-5);
+  overflow: hidden;
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+}
+.gcg-tpl-gaveta .gcg-doc-pagina__titulo {
+  margin: 0 0 var(--gcg-space-1);
+  overflow: hidden;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-xs-medium);
+  letter-spacing: var(--gcg-tracking-text-xs-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gcg-tpl-gaveta .gcg-doc-pagina__linha {
+  display: block;
+  height: 0.375rem;
+  border-radius: var(--gcg-radius-sm);
+  background: var(--gcg-surface-skeleton);
+}
+.gcg-tpl-gaveta .gcg-doc-cancelar__pergunta {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-tpl-gaveta .gcg-doc-cancelar__identificacao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  margin: 0;
+  padding: var(--gcg-space-3) var(--gcg-space-4);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-subtle);
+}
+
+/* ---------- o documento cancelado no preview: o selo acima do título e o registro do cancelamento ---------- */
+.gcg-tpl-preview .gcg-doc-preview__selo { margin-bottom: var(--gcg-space-1); }
+.gcg-tpl-preview .gcg-doc-preview__cancelamento { padding: 0 var(--gcg-space-6) var(--gcg-space-4); }
+.gcg-tpl-preview .gcg-doc-preview__cancelamento-campos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  margin: 0;
+  padding: var(--gcg-space-3) var(--gcg-space-4);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-subtle);
+}
+
+/* ---------- a seleção: a caixa na célula e a barra flutuante (fundo escuro, raio 12, a 32 da borda de baixo da
+   área visível) ---------- */
+.gcg-tpl-aba .gcg-doc-selecao__celula {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--gcg-radius-sm);
+}
+.gcg-tpl-aba .gcg-doc-selecao__celula:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+.gcg-tpl-aba .gcg-doc-selecao {
+  position: sticky;
+  bottom: var(--gcg-space-8);
+  z-index: calc(var(--gcg-z-topbar) - 1); /* acima das células fixas da tabela, abaixo da barra do topo */
+  display: flex;
+  justify-content: center;
+  margin-top: var(--gcg-space-2);
+  pointer-events: none;
+}
+.gcg-tpl-aba .gcg-doc-selecao__barra {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-4);
+  padding: var(--gcg-space-3) var(--gcg-space-3) var(--gcg-space-3) var(--gcg-space-6);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-text-strong);
+  box-shadow: var(--gcg-elevation-2);
+  pointer-events: auto;
+  animation: gcg-doc-selecao-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-tpl-aba .gcg-doc-selecao[data-gcg-state='closing'] .gcg-doc-selecao__barra {
+  animation: gcg-doc-selecao-out var(--gcg-motion-fast) var(--gcg-ease-exit) both;
+  pointer-events: none;
+}
+@keyframes gcg-doc-selecao-in { from { opacity: 0; transform: translateY(var(--gcg-motion-rise)); } to { opacity: 1; transform: translateY(0); } }
+@keyframes gcg-doc-selecao-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(var(--gcg-motion-rise)); } }
+.gcg-tpl-aba .gcg-doc-selecao__contagem {
+  margin: 0;
+  color: var(--gcg-text-inverse);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+  white-space: nowrap;
+}
+/* Limpar seleção: texto sobre o fundo escuro, com o anel de foco do sistema */
+.gcg-tpl-aba .gcg-doc-selecao__limpar {
+  min-height: var(--gcg-size-control-md);
+  padding: 0 var(--gcg-space-2);
+  border: 0;
+  border-radius: var(--gcg-radius-sm);
+  background: none;
+  color: var(--gcg-text-inverse);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-tpl-aba .gcg-doc-selecao__limpar:hover { text-decoration: underline; }
+.gcg-tpl-aba .gcg-doc-selecao__limpar:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-text-strong), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+.gcg-tpl-aba .gcg-doc-selecao__limpar:disabled { opacity: 0.6; cursor: default; }
+
+/* celular: a barra de seleção ocupa a largura e quebra em duas linhas (a contagem em cima, as ações embaixo);
+   a folha da primeira página do Cancelar documento diminui para 192 × 240 */
+@media (max-width: 600px) {
+  .gcg-tpl-aba .gcg-doc-selecao { bottom: var(--gcg-space-4); }
+  .gcg-tpl-aba .gcg-doc-selecao__barra {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--gcg-space-2) var(--gcg-space-3);
+    width: 100%;
+    padding: var(--gcg-space-3) var(--gcg-space-4);
+  }
+  .gcg-tpl-aba .gcg-doc-selecao__contagem { flex-basis: 100%; white-space: normal; }
+  .gcg-tpl-gaveta .gcg-doc-pagina__folha { --gcg-doc-folha-w: 12rem; --gcg-doc-folha-h: 15rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gcg-tpl-aba .gcg-doc-selecao__barra,
+  .gcg-tpl-aba .gcg-doc-selecao[data-gcg-state='closing'] .gcg-doc-selecao__barra,
+  .gcg-tpl-gaveta .gcg-doc-novo__lista > li { animation: none; }
+  .gcg-tpl-gaveta .gcg-doc-radio__marca::after { transition: none; }
+}
+html[data-gcg-contrast='high'] .gcg-tpl-aba .gcg-doc-selecao__barra { border: var(--gcg-border-width-thick) solid var(--gcg-border-default); }

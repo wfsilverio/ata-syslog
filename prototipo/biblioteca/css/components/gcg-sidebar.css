@@ -1,0 +1,157 @@
+/* gcg-sidebar.css — Sidebar · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Sidebar e Sidebar/Item — Figma 37:10814 e 31:17 (página 05 › Estrutura e navegação › Linha · Sidebar). */
+
+.gcg-sidebar {
+  /* Larguras do Figma sem token próprio: expandido 248 (Sidebar collapsed=false);
+     recolhido 64 = size/control-lg + 2 × space/3 (Sidebar collapsed=true). */
+  --gcg-sidebar-w-expanded: 248px;
+  --gcg-sidebar-w-collapsed: calc(var(--gcg-size-control-lg) + 2 * var(--gcg-space-3));
+
+  box-sizing: border-box;
+  width: var(--gcg-sidebar-w-expanded);
+  height: 100%;
+  padding: var(--gcg-space-4) var(--gcg-space-3);
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  background: var(--gcg-surface-base);
+  transition: width var(--gcg-motion-slow) var(--gcg-ease-standard);
+}
+.gcg-sidebar--collapsed { width: var(--gcg-sidebar-w-collapsed); }
+
+.gcg-sidebar--floating {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--gcg-z-sidebar-flutuante);
+  width: var(--gcg-sidebar-w-expanded);
+  box-shadow: var(--gcg-elevation-2);
+}
+
+/* Texto aumentado pela barra eMAG: o menu aberto cresce com o rótulo em vez de cortá-lo com
+   reticências ("Página inic…", "Consulta…" em 200%) — aumentar o texto não pode esconder conteúdo
+   (WCAG 1.4.4). Em 100% continua nos 248 do Figma; o trilho de 64 não muda (só ícones). */
+html[data-gcg-text-scale] .gcg-sidebar:not(.gcg-sidebar--collapsed) {
+  width: max-content;
+  min-width: var(--gcg-sidebar-w-expanded);
+  max-width: calc(100vw - var(--gcg-sidebar-w-collapsed));
+}
+
+.gcg-sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gcg-sidebar__list--nested { margin-top: var(--gcg-space-1); }
+.gcg-sidebar__list--nested[hidden] { display: none; }
+/* Recolhido: os quadrados de 40 ficam à esquerda (no trilho de 64 é o mesmo lugar do centro). Com */
+.gcg-sidebar--collapsed .gcg-sidebar__list { align-items: flex-start; }
+/* Grupo que a pessoa abre (Contratos): os subitens descem 4 px com fade. Só depois do primeiro
+   gesto no grupo (--toggled): a Sidebar remonta a cada rota e não pode se mexer nessa hora. */
+.gcg-sidebar__list--nested.gcg-sidebar__list--toggled:not([hidden]) {
+  animation: gcg-motion-drop-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+
+/* ---------- Sidebar/Item ---------- */
+.gcg-sidebar-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--gcg-size-control-lg);
+  margin: 0;
+  padding: 0 var(--gcg-space-3);
+  border: 0;
+  border-radius: var(--gcg-radius-md);
+  outline: none;
+  background: transparent;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: background-color, color, box-shadow;
+  transition-duration: var(--gcg-motion-fast);
+  transition-timing-function: var(--gcg-ease-standard);
+}
+.gcg-sidebar-item--level-2 { padding-left: var(--gcg-space-8); }
+
+.gcg-sidebar-item__icon { color: var(--gcg-text-muted); transition: color var(--gcg-motion-fast) var(--gcg-ease-standard); }
+.gcg-sidebar-item__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gcg-sidebar-item__chevron { color: var(--gcg-text-default); }
+
+/* Só ícone (menu recolhido): 40 × 40 */
+.gcg-sidebar-item--icon-only {
+  justify-content: center;
+  width: var(--gcg-size-control-lg);
+  height: var(--gcg-size-control-lg);
+  min-height: 0;
+  padding: 0;
+}
+
+/* hover: fundo action/neutral-subtle, rótulo text/strong, ícone text/default */
+.gcg-sidebar-item:hover {
+  background: var(--gcg-action-neutral-subtle);
+  color: var(--gcg-text-strong);
+}
+.gcg-sidebar-item:hover .gcg-sidebar-item__icon { color: var(--gcg-text-default); }
+
+/* focus: fundo surface/base e o anel do sistema (DD-004) */
+.gcg-sidebar-item:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* active: fundo action/primary-subtle, barra action/primary 4 × 20, rótulo semibold text/strong, ícone action/primary */
+.gcg-sidebar-item--active,
+.gcg-sidebar-item--active:hover {
+  background: var(--gcg-action-primary-subtle);
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-sidebar-item--active .gcg-sidebar-item__icon,
+.gcg-sidebar-item--active:hover .gcg-sidebar-item__icon { color: var(--gcg-action-primary); }
+.gcg-sidebar-item__indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: var(--gcg-space-1);
+  height: var(--gcg-size-icon-md);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-action-primary);
+  transform: translateY(-50%);
+}
+
+/* ---------- alto contraste (barra eMAG) ----------
+   Itens são links: amarelo sublinhado. Item ativo: barra branca de 4px (vem do token).
+   Hover sem fundo: contorno branco. Ícones brancos. */
+html[data-gcg-contrast='high'] .gcg-sidebar-item--link .gcg-sidebar-item__label {
+  color: var(--gcg-text-link);
+  text-decoration: underline;
+}
+html[data-gcg-contrast='high'] .gcg-sidebar-item:hover {
+  outline: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  outline-offset: calc(-1 * var(--gcg-border-width-thin));
+}
+html[data-gcg-contrast='high'] .gcg-sidebar-item .gcg-sidebar-item__icon,
+html[data-gcg-contrast='high'] .gcg-sidebar-item .gcg-sidebar-item__chevron { color: var(--gcg-text-strong); }
+html[data-gcg-contrast='high'] .gcg-sidebar--floating { border-right-width: var(--gcg-border-width-thick); }

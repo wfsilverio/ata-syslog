@@ -1,0 +1,18 @@
+/* gcg-count-up.css — CountUp · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* O texto final dá a medida (a largura não muda enquanto conta) e continua na árvore de
+   acessibilidade; só some da vista. A cópia que conta fica por cima, sem ocupar lugar. */
+.gcg-count-up {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: baseline;
+}
+.gcg-count-up__final { opacity: 0; }
+.gcg-count-up__live {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}

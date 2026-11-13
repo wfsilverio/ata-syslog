@@ -1,0 +1,129 @@
+/* gcg-icon-button.css — IconButton · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* IconButton — Figma 35:3854 (página 05 › Ações › Linha · IconButton).
+   Mesma paleta do Button (variant × color); quadrado, ícone centralizado. */
+
+.gcg-icon-button {
+  --gcg-icon-button-color: var(--gcg-action-neutral);
+  --gcg-icon-button-color-hover: var(--gcg-action-neutral-hover);
+  --gcg-icon-button-color-subtle: var(--gcg-action-neutral-subtle);
+  --gcg-icon-button-bg: transparent;
+  --gcg-icon-button-bg-hover: var(--gcg-icon-button-color-subtle);
+  --gcg-icon-button-bg-focus: var(--gcg-icon-button-bg);
+  --gcg-icon-button-fg: var(--gcg-icon-button-color);
+  --gcg-icon-button-fg-hover: var(--gcg-icon-button-fg);
+  --gcg-icon-button-border: transparent;
+  --gcg-icon-button-border-hover: var(--gcg-icon-button-border);
+  --gcg-icon-button-size: var(--gcg-size-control-md);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--gcg-icon-button-size);
+  height: var(--gcg-icon-button-size);
+  margin: 0;
+  padding: 0;
+  border: var(--gcg-border-width-thin) solid var(--gcg-icon-button-border);
+  border-radius: var(--gcg-radius-md);
+  outline: none;
+  background-color: var(--gcg-icon-button-bg);
+  color: var(--gcg-icon-button-fg);
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    border-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard),
+    transform var(--gcg-motion-instant) var(--gcg-ease-standard);
+}
+
+.gcg-icon-button:not(:disabled):active { transform: scale(var(--gcg-motion-press-icon)); }
+
+/* ---------- size: largura = altura ---------- */
+.gcg-icon-button--sm { --gcg-icon-button-size: var(--gcg-size-control-sm); }
+.gcg-icon-button--md { --gcg-icon-button-size: var(--gcg-size-control-md); }
+.gcg-icon-button--lg { --gcg-icon-button-size: var(--gcg-size-control-lg); }
+
+/* ---------- color ---------- */
+.gcg-icon-button--primary {
+  --gcg-icon-button-color: var(--gcg-action-primary);
+  --gcg-icon-button-color-hover: var(--gcg-action-primary-hover);
+  --gcg-icon-button-color-subtle: var(--gcg-action-primary-subtle);
+}
+.gcg-icon-button--neutral {
+  --gcg-icon-button-color: var(--gcg-action-neutral);
+  --gcg-icon-button-color-hover: var(--gcg-action-neutral-hover);
+  --gcg-icon-button-color-subtle: var(--gcg-action-neutral-subtle);
+}
+.gcg-icon-button--destructive {
+  --gcg-icon-button-color: var(--gcg-action-destructive);
+  --gcg-icon-button-color-hover: var(--gcg-action-destructive-hover);
+  --gcg-icon-button-color-subtle: var(--gcg-action-destructive-subtle);
+}
+
+/* ---------- variant ---------- */
+.gcg-icon-button--solid {
+  --gcg-icon-button-bg: var(--gcg-icon-button-color);
+  --gcg-icon-button-bg-hover: var(--gcg-icon-button-color-hover);
+  --gcg-icon-button-fg: var(--gcg-text-on-action);
+  --gcg-icon-button-border: transparent;
+}
+.gcg-icon-button--outline {
+  --gcg-icon-button-bg: var(--gcg-surface-base);
+  --gcg-icon-button-bg-hover: var(--gcg-icon-button-color-subtle);
+  --gcg-icon-button-fg: var(--gcg-icon-button-color);
+  --gcg-icon-button-border: var(--gcg-icon-button-color);
+}
+/* outline · neutral: borda border/default (exceção declarada, 1.55:1 — pendente de decisão) */
+.gcg-icon-button--outline.gcg-icon-button--neutral { --gcg-icon-button-border: var(--gcg-border-default); }
+/* ghost: sem fundo; no foco ganha surface/base, como no Figma */
+.gcg-icon-button--ghost {
+  --gcg-icon-button-bg: transparent;
+  --gcg-icon-button-bg-hover: var(--gcg-icon-button-color-subtle);
+  --gcg-icon-button-bg-focus: var(--gcg-surface-base);
+  --gcg-icon-button-fg: var(--gcg-icon-button-color);
+  --gcg-icon-button-border: transparent;
+}
+/* primary em outline e ghost: no hover o ícone (e a borda do outline) vão para action/primary-hover */
+.gcg-icon-button--outline.gcg-icon-button--primary { --gcg-icon-button-fg-hover: var(--gcg-action-primary-hover); --gcg-icon-button-border-hover: var(--gcg-action-primary-hover); }
+.gcg-icon-button--ghost.gcg-icon-button--primary { --gcg-icon-button-fg-hover: var(--gcg-action-primary-hover); }
+
+/* ---------- state ---------- */
+.gcg-icon-button:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+  background-color: var(--gcg-icon-button-bg-focus);
+}
+
+.gcg-icon-button:not(:disabled):hover {
+  background-color: var(--gcg-icon-button-bg-hover);
+  color: var(--gcg-icon-button-fg-hover);
+  border-color: var(--gcg-icon-button-border-hover);
+}
+
+.gcg-icon-button:disabled { cursor: not-allowed; --gcg-icon-button-fg: var(--gcg-text-disabled); }
+.gcg-icon-button--solid:disabled { --gcg-icon-button-bg: var(--gcg-surface-subtle); --gcg-icon-button-border: var(--gcg-border-subtle); }
+.gcg-icon-button--outline:disabled { --gcg-icon-button-border: var(--gcg-border-subtle); }
+
+/* ---------- alto contraste (barra eMAG) ----------
+   Fundo preto, borda 2px branca, ícone branco. Sem texto para sublinhar, o hover escurece o fundo
+   para surface/hover (o token que o alto contraste reserva para isso). O amarelo fica só para o foco. */
+html[data-gcg-contrast='high'] .gcg-icon-button {
+  --gcg-icon-button-bg: var(--gcg-surface-base);
+  --gcg-icon-button-bg-hover: var(--gcg-surface-hover);
+  --gcg-icon-button-bg-focus: var(--gcg-surface-base);
+  --gcg-icon-button-fg: var(--gcg-text-strong);
+  --gcg-icon-button-fg-hover: var(--gcg-text-strong);
+  --gcg-icon-button-border: var(--gcg-border-default);
+  --gcg-icon-button-border-hover: var(--gcg-border-default);
+  border-width: var(--gcg-border-width-thick);
+}
+html[data-gcg-contrast='high'] .gcg-icon-button:focus-visible { outline-color: var(--gcg-border-focus); }
+html[data-gcg-contrast='high'] .gcg-icon-button:disabled { --gcg-icon-button-fg: var(--gcg-text-disabled); --gcg-icon-button-border: var(--gcg-text-disabled); }

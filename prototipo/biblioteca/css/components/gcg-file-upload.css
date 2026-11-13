@@ -1,0 +1,138 @@
+/* gcg-file-upload.css — FileUpload · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* FileUpload (Figma 116:112468) e FileItem (Figma 116:112395) — página 05 › Formulário › Seleção › Linha · FileUpload.
+   FileUpload: vertical, gap space/3 entre o campo e a lista · campo: vertical, gap space/1 (rótulo · botão · ajuda)
+   rótulo Text/MD/Semibold text/strong · ajuda Text/XS/Regular text/muted · erro Icon/error + state/error (Field.css)
+   lista (slot files): vertical, gap space/2; o FileItem preenche a largura.
+   FileItem: horizontal, padding space/2 (topo, direita, base) e space/3 (esquerda), gap space/3, radius/md,
+   fundo surface/base, borda border/subtle (erro border/error) · ícone 20 (size/icon-md) text/muted (erro state/error)
+   · nome Text/MD/Medium text/default, uma linha com reticências · meta Text/XS/Regular text/muted · info gap space/half
+   · barra de envio 4 px (space/1), surface/subtle com preenchimento action/primary, radius/full · ações gap space/1. */
+
+/* ---------- FileUpload ---------- */
+.gcg-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+.gcg-file-upload:focus { outline: none; }
+
+.gcg-file-upload__field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+}
+.gcg-file-upload__field > .gcg-field__helper,
+.gcg-file-upload__field > .gcg-field__error { align-self: stretch; }
+
+.gcg-file-upload__control {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-3);
+}
+.gcg-file-upload__native { display: none; }
+
+.gcg-file-upload__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- FileItem ---------- */
+.gcg-file-item {
+  --gcg-file-item-border: var(--gcg-border-subtle);
+  --gcg-file-item-icon: var(--gcg-text-muted);
+
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--gcg-space-2) var(--gcg-space-2) var(--gcg-space-2) var(--gcg-space-3);
+  border: var(--gcg-border-width-thin) solid var(--gcg-file-item-border);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  color: var(--gcg-text-default);
+
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+  transition: border-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-file-item--error {
+  --gcg-file-item-border: var(--gcg-border-error);
+  --gcg-file-item-icon: var(--gcg-state-error);
+}
+
+.gcg-file-item__icon { flex: none; color: var(--gcg-file-item-icon); }
+
+.gcg-file-item__info {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--gcg-space-half);
+  min-width: 0;
+}
+.gcg-file-item__name {
+  overflow: hidden;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-medium);
+  letter-spacing: var(--gcg-tracking-text-md-medium);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.gcg-file-item__meta {
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+.gcg-file-item__error {
+  color: var(--gcg-state-error);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+
+/* barra de envio: 4 px, trilho surface/subtle, preenchimento action/primary */
+.gcg-file-item__progress {
+  position: relative;
+  display: block;
+  height: var(--gcg-space-1);
+  overflow: hidden;
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-surface-subtle);
+}
+
+.gcg-file-item__bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-action-primary);
+  transform-origin: left center;
+}
+/* sem progresso conhecido: a barra inteira pulsa devagar (como o esqueleto), nunca um brilho que corre */
+.gcg-file-item__progress[data-gcg-indeterminate] .gcg-file-item__bar {
+  width: 100%;
+  animation: gcg-file-item-pulse var(--gcg-motion-pulse) var(--gcg-ease-standard) infinite;
+}
+@keyframes gcg-file-item-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.gcg-file-item__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-1);
+}
+
+/* ---------- alto contraste (barra eMAG): a barra ganha contorno para não sumir no fundo preto ---------- */
+html[data-gcg-contrast='high'] .gcg-file-item__progress { outline: var(--gcg-border-width-thin) solid var(--gcg-border-default); }

@@ -1,0 +1,99 @@
+/* gcg-value-tile.css — ValueTile · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* ValueTile — Figma 42:45828 (página 05 › Dados › Linha · ValueTile).
+   Cartão surface/base · borda border-width/thin border/subtle · radius/lg · padding space/5 · gap space/2.
+   Rótulo Text/SM/Regular text/secondary · valor Heading/MD text/strong (highlight: Heading/LG) · nota Text/XS/Regular.
+   Largura: a do contêiner (216 no componente; cinco tiles com gap 16 fecham os 1144 da área de conteúdo). */
+
+.gcg-value-tile {
+  --gcg-value-tile-skeleton-w: 128px; /* Figma: value-skeleton › bar, 128 de largura — sem token */
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  padding: var(--gcg-space-5);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background-color: var(--gcg-surface-base);
+}
+.gcg-value-tile--highlight {
+  border-color: var(--gcg-action-primary);
+  background-color: var(--gcg-action-primary-subtle);
+}
+
+.gcg-value-tile__label {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+.gcg-value-tile__value {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-md);
+  letter-spacing: var(--gcg-tracking-heading-md);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: break-word;
+
+  animation: gcg-motion-fade-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-value-tile__note { animation: gcg-motion-fade-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+.gcg-value-tile--highlight .gcg-value-tile__value {
+  font: var(--gcg-font-heading-lg);
+  letter-spacing: var(--gcg-tracking-heading-lg);
+}
+
+.gcg-value-tile__note {
+  margin: 0;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+
+/* loading: a barra ocupa a altura da linha do valor (Heading/MD 28 = 8 + 12 + 8; Heading/LG 32 = 8 + 12 + 12) */
+.gcg-value-tile__skeleton {
+  display: flex;
+  margin: 0;
+  padding: var(--gcg-space-2) 0;
+}
+.gcg-value-tile--highlight .gcg-value-tile__skeleton { padding-bottom: var(--gcg-space-3); }
+.gcg-value-tile__skeleton-bar {
+  display: block;
+  width: var(--gcg-value-tile-skeleton-w);
+  max-width: 100%;
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-value-tile-pulse var(--gcg-motion-pulse) ease-in-out infinite;
+}
+@keyframes gcg-value-tile-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* Alto contraste (barra eMAG): o destaque não depende do fundo, que some — a borda dobra por fora (sem mexer no tamanho) */
+html[data-gcg-contrast='high'] .gcg-value-tile--highlight { outline: var(--gcg-border-width-thin) solid var(--gcg-action-primary); }
+html[data-gcg-contrast='high'] .gcg-value-tile__skeleton-bar { outline: var(--gcg-border-width-thin) solid var(--gcg-border-default); }
+
+/* (Figma: link com layoutGrow e conteúdo embaixo), e o cartão inteiro é clicável. */
+.gcg-value-tile--warning { border-color: var(--gcg-color-orange-200); background-color: var(--gcg-color-orange-50); }
+.gcg-value-tile--error { border-color: var(--gcg-color-red-200); background-color: var(--gcg-color-red-50); }
+/* Alto contraste (barra eMAG): a cor de gravidade é cor fixa e não troca com o modo — o texto do modo ficava
+   claro sobre o fundo claro (1,05:1; correção de 06/10). O cartão volta ao fundo e à borda do modo, como o Badge;
+   a gravidade se lê pelo rótulo do cartão. */
+html[data-gcg-contrast='high'] .gcg-value-tile--warning,
+html[data-gcg-contrast='high'] .gcg-value-tile--error { border-color: var(--gcg-border-default); background-color: var(--gcg-surface-base); }
+.gcg-value-tile--link { cursor: pointer; transition: border-color var(--gcg-motion-fast) var(--gcg-ease-standard), box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard); }
+.gcg-value-tile--link:hover { border-color: var(--gcg-action-primary); box-shadow: var(--gcg-elevation-1, 0 1px 3px rgb(0 0 0 / 0.08)); }
+.gcg-value-tile__action { display: flex; flex: 1; align-items: flex-end; margin: 0; }
+.gcg-value-tile__link {
+  display: inline-flex; align-items: center; gap: var(--gcg-space-1);
+  padding: 0; border: 0; background: none; cursor: pointer;
+  color: var(--gcg-text-link); font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  border-radius: var(--gcg-radius-sm);
+}
+.gcg-value-tile__link:hover { text-decoration: underline; }
+.gcg-value-tile__link:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; }

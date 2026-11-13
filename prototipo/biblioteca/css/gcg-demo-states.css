@@ -1,0 +1,381 @@
+/* gcg-demo-states.css — SÓ DEMONSTRAÇÃO. Alguns frames do Figma mostram um controle com o cursor em
+   cima ou com o foco (o clique do passo seguinte). Para o arquivo da tela mostrar isso parado, o
+   elemento leva data-gcg-force-state="hover" ou "focus", e as regras abaixo repetem as do :hover e
+   do :focus-visible de cada componente. NÃO vai para a aplicação: lá, o estado vem do mouse e do
+   teclado, pelo CSS do próprio componente. Gerado do protótipo em 10/11/2026. */
+
+.gcg-action-menu-item[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-action-menu-item-bg-hover);
+}
+
+.gcg-action-menu-item[data-gcg-force-state='focus'] {
+  border-radius: var(--gcg-radius-sm);
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+  background-color: var(--gcg-action-menu-item-bg-hover);
+}
+
+html[data-gcg-contrast='high'] .gcg-action-menu-item[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-surface-hover); text-decoration: underline;
+}
+
+html[data-gcg-contrast='high'] .gcg-action-menu-item[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus) !important;
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+
+.gcg-button[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+  background-color: var(--gcg-button-bg-focus);
+}
+
+.gcg-button[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-button-bg-hover);
+  color: var(--gcg-button-fg-hover);
+  border-color: var(--gcg-button-border-hover);
+}
+
+html[data-gcg-contrast='high'] .gcg-button[data-gcg-force-state='hover'] {
+  text-decoration: underline;
+}
+
+html[data-gcg-contrast='high'] .gcg-button[data-gcg-force-state='focus'] {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-checkbox[data-gcg-force-state='hover'] {
+  --gcg-checkbox-border: var(--gcg-action-neutral);
+}
+
+.gcg-checkbox[data-gcg-checked][data-gcg-force-state='hover'] {
+  --gcg-checkbox-bg: var(--gcg-action-primary-hover);
+  --gcg-checkbox-border: var(--gcg-action-primary-hover);
+}
+
+.gcg-checkbox[data-gcg-force-state='focus'] .gcg-checkbox__box {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-checkbox[data-gcg-force-state='focus'] .gcg-checkbox__box {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: var(--gcg-space-half);
+}
+
+.gcg-calendar-day[data-gcg-force-state='hover'] {
+  background: var(--gcg-surface-subtle);
+}
+
+.gcg-calendar-day[data-gcg-today][data-gcg-force-state='hover'] {
+  --gcg-day-fg: var(--gcg-action-primary-hover);
+}
+
+.gcg-calendar-day[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-calendar-day[data-gcg-force-state='focus'] {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-filter-chip[data-gcg-force-state='hover'] {
+  border-color: var(--gcg-border-strong);
+}
+
+.gcg-filter-chip[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-filter-chip[data-gcg-force-state='hover'] .gcg-filter-chip__value {
+  text-decoration: underline;
+}
+
+html[data-gcg-contrast='high'] .gcg-filter-chip[data-gcg-force-state='focus'] {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-icon-button[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+  background-color: var(--gcg-icon-button-bg-focus);
+}
+
+.gcg-icon-button[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-icon-button-bg-hover);
+  color: var(--gcg-icon-button-fg-hover);
+  border-color: var(--gcg-icon-button-border-hover);
+}
+
+html[data-gcg-contrast='high'] .gcg-icon-button[data-gcg-force-state='focus'] {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-field[data-gcg-force-state='hover'] .gcg-field__control {
+  --gcg-field-border: var(--gcg-border-strong);
+}
+
+.gcg-field[data-gcg-force-state='focus'] .gcg-field__control {
+  --gcg-field-border: var(--gcg-border-focus);
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-field[data-gcg-force-state='focus'] .gcg-field__control {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-link[data-gcg-force-state='hover'] {
+  color: var(--gcg-action-primary-hover);
+}
+
+.gcg-link[data-gcg-force-state='hover'] .gcg-link__label::after,
+.gcg-link[data-gcg-force-state='focus'] .gcg-link__label::after {
+  transform: none;
+}
+
+.gcg-link[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background-color: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-link[data-gcg-force-state='hover'] {
+  color: var(--gcg-text-link);
+}
+
+html[data-gcg-contrast='high'] .gcg-link[data-gcg-force-state='focus'] {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-pagination-item[data-gcg-force-state='hover']:not(.gcg-pagination-item--current) {
+  background-color: var(--gcg-surface-hover);
+}
+
+.gcg-pagination-item[data-gcg-force-state='focus'] {
+  background-color: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+.gcg-pagination-item--current[data-gcg-force-state='focus'] {
+  background-color: var(--gcg-action-primary);
+  color: var(--gcg-text-on-action);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  cursor: default;
+}
+
+html[data-gcg-contrast='high'] .gcg-pagination-item[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: var(--gcg-space-half);
+}
+
+html[data-gcg-contrast='high'] .gcg-pagination-item--current:not(:focus-visible):not([data-gcg-force-state='focus']) {
+  outline: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  outline-offset: calc(-1 * var(--gcg-border-width-thin));
+}
+
+.gcg-search-option[data-gcg-force-state='hover'] {
+  background: var(--gcg-surface-subtle);
+}
+
+.gcg-section-card__header[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-surface-hover);
+}
+
+.gcg-section-card__header[data-gcg-force-state='focus'] {
+  z-index: 1;
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background-color: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-section-card__header[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-surface-base);
+  text-decoration: underline;
+}
+
+html[data-gcg-contrast='high'] .gcg-section-card__header[data-gcg-force-state='focus'] {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-select-option[data-gcg-force-state='hover'] {
+  background: var(--gcg-surface-subtle);
+}
+
+.gcg-sidebar-item[data-gcg-force-state='hover'] {
+  background: var(--gcg-action-neutral-subtle);
+  color: var(--gcg-text-strong);
+}
+
+.gcg-sidebar-item[data-gcg-force-state='hover'] .gcg-sidebar-item__icon {
+  color: var(--gcg-text-default);
+}
+
+.gcg-sidebar-item[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-sidebar-item[data-gcg-force-state='hover'] {
+  outline: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  outline-offset: calc(-1 * var(--gcg-border-width-thin));
+}
+
+html[data-gcg-contrast='high'] .gcg-sidebar-item[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+}
+
+.gcg-switch[data-gcg-force-state='hover'] .gcg-switch__track {
+  background: var(--gcg-switch-track-hover);
+}
+
+.gcg-switch[data-gcg-force-state='focus'] .gcg-switch__track {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-switch[data-gcg-force-state='focus'] .gcg-switch__track {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: var(--gcg-space-half);
+}
+
+.gcg-data-table__header-cell[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-surface-hover);
+}
+
+.gcg-data-table__header-cell[data-gcg-force-state='hover'] .gcg-data-table__sort-icon:not(.gcg-data-table__sort-icon--active) {
+  color: var(--gcg-text-secondary);
+}
+
+.gcg-data-table__header-cell[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+
+.gcg-data-table__row[data-gcg-force-state='hover'] {
+  --gcg-data-table-row-bg: var(--gcg-surface-hover);
+}
+
+.gcg-data-table__row--selected[data-gcg-force-state='hover'] {
+  --gcg-data-table-row-bg: var(--gcg-action-primary-subtle);
+}
+
+.gcg-data-table__row[data-gcg-force-state='focus'] > * {
+  --gcg-data-table-cell-ring:
+  inset 0 var(--gcg-border-width-thick) 0 var(--gcg-border-focus),
+  inset 0 calc(-1 * var(--gcg-data-table-ring-bottom, var(--gcg-border-width-thin))) 0 var(--gcg-border-focus);
+  border-bottom-color: var(--gcg-border-focus);
+}
+
+.gcg-data-table__row[data-gcg-force-state='focus'] > :first-child {
+  --gcg-data-table-cell-ring:
+  inset var(--gcg-border-width-thick) 0 0 var(--gcg-border-focus),
+  inset 0 var(--gcg-border-width-thick) 0 var(--gcg-border-focus),
+  inset 0 calc(-1 * var(--gcg-data-table-ring-bottom, var(--gcg-border-width-thin))) 0 var(--gcg-border-focus);
+}
+
+.gcg-data-table__row[data-gcg-force-state='focus'] > :last-child {
+  --gcg-data-table-cell-ring:
+  inset calc(-1 * var(--gcg-border-width-thick)) 0 0 var(--gcg-border-focus),
+  inset 0 var(--gcg-border-width-thick) 0 var(--gcg-border-focus),
+  inset 0 calc(-1 * var(--gcg-data-table-ring-bottom, var(--gcg-border-width-thin))) 0 var(--gcg-border-focus);
+}
+
+.gcg-data-table__group-header[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-surface-hover);
+}
+
+.gcg-data-table__group-header[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+
+html[data-gcg-contrast='high'] .gcg-data-table__row[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+
+.gcg-tabs__tab[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-surface-hover);
+  color: var(--gcg-text-strong);
+}
+
+.gcg-tabs__tab[data-gcg-force-state='focus'] .gcg-tabs__content {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+  box-shadow: inset 0 0 0 var(--gcg-border-width-thick) var(--gcg-border-focus);
+}
+
+html[data-gcg-contrast='high'] .gcg-tabs__tab[data-gcg-force-state='hover'] {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.gcg-topbar-action[data-gcg-force-state='hover'] {
+  background-color: var(--gcg-surface-brand-hover);
+}
+
+.gcg-topbar-action[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-surface-base);
+  outline-offset: var(--gcg-space-half);
+}
+
+html[data-gcg-contrast='high'] .gcg-topbar-action[data-gcg-force-state='hover'] {
+  background-color: transparent;
+  border-color: var(--gcg-border-default);
+}
+
+html[data-gcg-contrast='high'] .gcg-topbar-action[data-gcg-force-state='focus'] {
+  outline-color: var(--gcg-border-focus);
+}
+
+.gcg-tpl-gaveta .gcg-doc-pagina .gcg-link:not([data-gcg-force-state]) {
+  color: var(--gcg-action-primary-hover);
+}
+
+.gcg-faixa[data-gcg-force-state='hover']:not(:disabled) {
+  transform: translateY(-2px); box-shadow: var(--gcg-elevation-1);
+}
+
+.gcg-fila__linha[data-gcg-force-state='hover'] {
+  background: var(--gcg-surface-subtle);
+}
+
+.gcg-queue-row--expanded[data-gcg-force-state='hover'] {
+  background: var(--gcg-surface-hover);
+}
+
+.gcg-queue-row--sub[data-gcg-force-state='hover'] {
+  background: var(--gcg-surface-hover);
+}
+
+button.gcg-saldo[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px;
+}
+
+.gcg-saldo--com-ajuda .gcg-saldo__alvo[data-gcg-force-state='focus'] {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+}
+
+.gcg-saldo--com-ajuda .gcg-saldo__ajuda[data-gcg-force-state='hover'] {
+  color: var(--gcg-text-default);
+}
+
+.gcg-saldo--com-ajuda .gcg-saldo__ajuda[data-gcg-force-state='focus'] {
+  outline: none; box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}

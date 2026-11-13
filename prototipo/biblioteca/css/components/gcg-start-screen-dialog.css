@@ -1,0 +1,22 @@
+/* gcg-start-screen-dialog.css — StartScreenDialog · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Diálogo "Tela inicial" (Figma: HU-015 · L5 · 2): duas opções como cartões de rádio, a marcada em verde. */
+.gcg-start-screen-dialog { display: flex; flex-direction: column; gap: var(--gcg-space-3); margin: 0; padding: 0; border: 0; }
+.gcg-start-screen-dialog__option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gcg-space-3);
+  padding: var(--gcg-space-3) var(--gcg-space-4);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+  cursor: pointer;
+  transition: border-color var(--gcg-motion-fast) var(--gcg-ease-standard), background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-start-screen-dialog__option:hover { border-color: var(--gcg-border-strong); }
+.gcg-start-screen-dialog__option.gcg-is-selected { border: var(--gcg-border-width-thick) solid var(--gcg-action-primary); background: var(--gcg-action-primary-subtle); }
+.gcg-start-screen-dialog__option input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--gcg-action-primary); }
+.gcg-start-screen-dialog__option:has(input:focus-visible) { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; }
+.gcg-start-screen-dialog__text { display: flex; flex-direction: column; gap: 2px; }
+.gcg-start-screen-dialog__name { display: inline-flex; align-items: center; gap: var(--gcg-space-2); color: var(--gcg-text-strong); font: var(--gcg-font-text-md-semibold); }
+.gcg-start-screen-dialog__hint { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }

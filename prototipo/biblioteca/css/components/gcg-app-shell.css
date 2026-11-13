@@ -1,0 +1,101 @@
+/* gcg-app-shell.css — AppShell · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* AppShell — Figma página 09 › "Gabarito · tela base da HU-001" (38:16410). */
+
+.gcg-app-shell {
+  --gcg-content-max: 1600px;
+  --gcg-app-shell-rail-w: calc(var(--gcg-size-control-lg) + 2 * var(--gcg-space-3)); /* trilho de 64 (Sidebar collapsed=true) */
+
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    'top top'
+    'nav main';
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  box-sizing: border-box;
+  height: 100%;
+  /* a entrada do conteúdo sobe 8px (app-shell-enter): sem o recorte, esses 8px transbordam a janela e
+     aparece uma segunda barra de rolagem na página (Bruno, 30/09). clip não cria área de rolagem. */
+  overflow: clip;
+  background: var(--gcg-surface-app);
+}
+
+.gcg-app-shell__topbar {
+  grid-area: top;
+  position: sticky;
+  top: 0;
+  z-index: var(--gcg-z-topbar);
+}
+
+.gcg-app-shell__nav {
+  grid-area: nav;
+  position: relative; /* a Sidebar flutuante (abaixo de 1440) se posiciona aqui, por cima do conteúdo */
+  min-height: 0;
+}
+/* Abaixo de 1440 a coluna é sempre o trilho: abrir o menu não empurra o conteúdo */
+.gcg-app-shell[data-gcg-layout='narrow'] .gcg-app-shell__nav { width: var(--gcg-app-shell-rail-w); }
+
+/* Conteúdo: margem space/6, gap space/4 entre PageHeader, fichas e resultados (gabarito: frame "content").
+   Alinhado à esquerda, com teto de 1600. Não rola: o cartão da tabela é o contêiner de rolagem
+   (flex: 1; min-height: 0). Se, com a fonte muito grande, o que é fixo não couber, o conteúdo
+   rola em vez de cortar (eMAG Rec. 4.3: nada pode sumir). */
+.gcg-app-shell__main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--gcg-content-max);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--gcg-space-6);
+  /* reservada e sai da margem da direita — com barra clássica (Chrome no Windows, 15 px), 9 de margem + a
+     faixa; com barra por cima (sem faixa), os 24 de sempre. O conteúdo tem a largura do Figma (1144 em 1440)
+     (--app-shell-gutter, medida no próprio <main>). Sem rolagem, a faixa é do fundo do app: não se vê. */
+  padding-right: max(0px, calc(var(--gcg-space-6) - var(--gcg-app-shell-gutter, 0px)));
+  scrollbar-gutter: stable;
+  overflow: auto;
+  /* subida (--motion-slow) — lista ↔ detalhe, entrar, página inicial. A Topbar e a Sidebar não se
+     mexem: só o <main> anima. Trocar de aba não remonta a tela (quem anima é o painel da aba). */
+  animation: gcg-app-shell-enter var(--gcg-motion-slow) var(--gcg-ease-standard) backwards;
+}
+.gcg-app-shell__main:focus { outline: none; }
+@keyframes gcg-app-shell-enter { from { opacity: 0; transform: translateY(var(--gcg-motion-rise)); } }
+
+/* Pular para o conteúdo: fora da tela até receber o foco do teclado */
+.gcg-app-shell__skip {
+  position: absolute;
+  top: var(--gcg-space-2);
+  left: var(--gcg-space-4);
+  z-index: calc(var(--gcg-z-topbar) + 1);
+  padding: var(--gcg-space-2) var(--gcg-space-3);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  color: var(--gcg-text-link);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+  text-decoration: underline;
+  transform: translateY(calc(-100% - var(--gcg-space-4)));
+
+  transition:
+    transform var(--gcg-motion-base) var(--gcg-ease-standard),
+    opacity var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-app-shell__skip:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+  transform: none;
+}
+.gcg-app-shell__skip:not(:focus-visible) { opacity: 0; pointer-events: none; }
+
+@media (max-height: 539px) {
+  .gcg-app-shell {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+  .gcg-app-shell__main { overflow: visible; padding-right: var(--gcg-space-6); }
+}

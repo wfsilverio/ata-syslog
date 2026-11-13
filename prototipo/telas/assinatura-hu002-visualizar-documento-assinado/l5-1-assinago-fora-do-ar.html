@@ -1,0 +1,2635 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assinatura HU002 · Visualizar documento assinado — L5 · 1 · AssinaGO fora do ar</title>
+<!--
+  Tela:    Assinatura HU002 · Visualizar documento assinado
+  Linha:   L5 · FE004 · Falha ao acessar o AssinaGO
+  Estado:  L5 · 1 · AssinaGO fora do ar — Figma: Página 09 · seção Assinatura HU002 · Visualizar documento assinado, frame "L5 · 1 · AssinaGO fora do ar"
+  Componentes (biblioteca/css/components/):
+    gcg-action-menu, gcg-alert, gcg-app-shell, gcg-badge, gcg-button, gcg-checkbox,
+    gcg-contract-header, gcg-data-field, gcg-date-picker, gcg-field, gcg-icon, gcg-icon-button,
+    gcg-input, gcg-link, gcg-modal, gcg-page-header, gcg-pagination, gcg-popover, gcg-scrim,
+    gcg-select, gcg-sidebar, gcg-start-screen-dialog, gcg-table, gcg-tabs, gcg-toast, gcg-tooltip,
+    gcg-topbar
+  Composição de tela (telas/css/): gcg-detalhe, gcg-tpl-gaveta, gcg-tpl-preview
+  Gerado do protótipo em 10/11/2026. Dados fictícios.
+-->
+<link rel="stylesheet" href="../../biblioteca/css/gcg-bootstrap3.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-layers.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-motion.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-base.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-action-menu.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-alert.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-app-shell.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-badge.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-checkbox.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-contract-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-data-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-date-picker.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-input.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-link.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-modal.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-page-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-pagination.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-popover.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-scrim.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-select.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-sidebar.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-dialog.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-table.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tabs.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-toast.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tooltip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-topbar.css">
+<link rel="stylesheet" href="../css/gcg-detalhe.css">
+<link rel="stylesheet" href="../css/gcg-tpl-gaveta.css">
+<link rel="stylesheet" href="../css/gcg-tpl-preview.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-emag.css">
+</head>
+<body>
+<div class="gcg-app-shell" data-gcg-layout="wide" data-gcg-sidebar="expanded">
+  <a class="gcg-app-shell__skip" href="#gcg-conteudo">Ir para o conteúdo</a>
+  <header class="gcg-topbar gcg-app-shell__topbar">
+    <div class="gcg-topbar__left">
+      <button aria-expanded="true" aria-controls="gcg-app-sidebar" type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Menu" title="Menu">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-menu"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__system">SISLOG</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <span class="gcg-topbar__module">Gestão de Contratos</span>
+    </div>
+    <div class="gcg-topbar__right">
+      <div class="gcg-topbar__emag" role="toolbar" aria-label="Acessibilidade">
+        <button tabindex="0" aria-disabled="true" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Diminuir fonte" title="Diminuir fonte" data-gcg-emag="decrease">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_decrease"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Fonte padrão" title="Fonte padrão" data-gcg-emag="reset">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_size"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar fonte" title="Aumentar fonte" data-gcg-emag="increase">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_increase"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Negrito" aria-pressed="false" title="Negrito" data-gcg-emag="bold">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_bold"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar relevo" aria-pressed="false" title="Aumentar relevo" data-gcg-emag="relief">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-shadow"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar contraste" aria-pressed="false" title="Aumentar contraste" data-gcg-emag="contrast">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contrast"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Inverter cores" aria-pressed="false" title="Inverter cores" data-gcg-emag="invert">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-invert_colors"></use></svg>
+          </span>
+        </button>
+      </div>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <button type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Ajuda" title="Ajuda">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__unit">SEAD · Unidade 90001</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <div class="gcg-topbar__user">
+        <span class="gcg-topbar__user-info">
+          <span class="gcg-topbar__user-name" title="Ana Souza">Ana Souza</span>
+          <span class="gcg-topbar__user-profile" title="Gestor de Contrato">Gestor de Contrato</span>
+        </span>
+        <button type="button" class="gcg-topbar__menu-perfil" aria-haspopup="menu" aria-expanded="false" aria-label="Menu do perfil de Ana Souza" data-gcg-popup="gcg-molde-0">
+          <span class="gcg-topbar__avatar" aria-hidden="true">A</span>
+          <span class="gcg-icon gcg-icon--sm gcg-topbar__menu-seta">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="gcg-app-shell__nav">
+    <nav id="gcg-app-sidebar" class="gcg-sidebar" aria-label="Menu principal">
+      <ul class="gcg-sidebar__list">
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-dashboard"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Dashboard</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--active gcg-sidebar-item--link" aria-current="true" href="/contratos" data-gcg-discover="true">
+            <span class="gcg-sidebar-item__indicator" aria-hidden="true"></span>
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contract"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Gerir contratos</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main id="gcg-conteudo" class="gcg-app-shell__main" tabindex="-1" style="--gcg-app-shell-gutter: 15px;">
+    <div class="gcg-page-header gcg-detalhe__bloco">
+      <nav class="gcg-page-header__breadcrumb" aria-label="Você está em">
+        <ol class="gcg-page-header__trail">
+          <li class="gcg-page-header__level">
+            <a class="gcg-page-header__crumb-link" href="/" data-gcg-discover="true">Dashboard</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <a class="gcg-page-header__crumb-link" href="/contratos" data-gcg-discover="true">Gerir contratos</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <span class="gcg-page-header__crumb gcg-page-header__crumb--current" aria-current="page">Contrato 704451</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="gcg-page-header__main">
+        <div class="gcg-page-header__heading">
+          <h1 id="gcg-detalhe-titulo" class="gcg-page-header__title">Contrato 704451</h1>
+        </div>
+      </div>
+    </div>
+    <section class="gcg-contract-header gcg-detalhe__bloco" aria-label="Identificação do contrato">
+      <dl class="gcg-contract-header__fields">
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--situation">
+          <dt class="gcg-data-field__label">Situação</dt>
+          <dd class="gcg-data-field__value">
+            <span class="gcg-contract-header__situacao">
+              <span class="gcg-badge gcg-badge--success">Publicado</span>
+              <span class="gcg-badge gcg-badge--neutral">Vigente até 15/03/2027</span>
+            </span>
+          </dd>
+        </div>
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--number">
+          <dt class="gcg-data-field__label">Número do Contrato</dt>
+          <dd class="gcg-data-field__value">449/2026</dd>
+        </div>
+        <div title="Serra Dourada Serviços S.A." class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--supplier gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Fornecedor</dt>
+          <dd class="gcg-data-field__value">Serra Dourada Serviços S.A.</dd>
+        </div>
+        <div title="Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD" class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--object gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Objeto</dt>
+          <dd class="gcg-data-field__value">Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD</dd>
+        </div>
+      </dl>
+    </section>
+    <div class="gcg-tabs gcg-detalhe__bloco">
+      <div class="gcg-tabs__list" role="tablist" aria-label="Seções do contrato" aria-orientation="horizontal">
+        <button type="button" role="tab" id="gcg-detalhe-tab-balances" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Saldos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-general" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Dados gerais</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-documents" class="gcg-tabs__tab gcg-tabs__tab--selected" aria-selected="true" tabindex="0" aria-controls="gcg-detalhe-panel-documents">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Documentação</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-occurrences" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Ocorrências</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-notices" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Avisos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-status-history" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Status/Trâmites</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-amendments" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Aditivos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-apostilles" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Apostilamentos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-team" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Equipe</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <div role="tabpanel" id="gcg-detalhe-panel-documents" aria-labelledby="gcg-detalhe-tab-documents" class="gcg-tabs-panel gcg-detalhe__painel gcg-tpl-aba">
+      <div class="gcg-doc-barra">
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r8" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md" data-gcg-popup="gcg-molde-1">
+            <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+            </span>
+            <span class="gcg-button__label">Exportar lista</span>
+            <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+            </span>
+          </button>
+        </div>
+        <button aria-haspopup="dialog" type="button" class="gcg-button gcg-button--solid gcg-button--primary gcg-button--md" data-gcg-popup="gcg-molde-2" data-gcg-acao="novo-documento">
+          <span class="gcg-button__label">Novo documento</span>
+        </button>
+      </div>
+      <form class="gcg-tpl-filtros" role="search" aria-label="Pesquisar documentos" novalidate>
+        <div class="gcg-tpl-filtros__linha">
+          <div class="gcg-field gcg-field--input gcg-tpl-filtros__numero">
+            <label id="gcg-campo-r9-rotulo" class="gcg-field__label" for="gcg-campo-r9">Número do Documento</label>
+            <div class="gcg-field__control">
+              <input id="gcg-campo-r9" class="gcg-field__native" placeholder="Ex.: 03/2026" autocomplete="off" spellcheck="false" type="text">
+            </div>
+          </div>
+          <div class="gcg-field gcg-field--select gcg-tpl-filtros__tipo">
+            <span id="gcg-campo-ra-rotulo" class="gcg-field__label">Tipo de Documento</span>
+            <div class="gcg-field__control">
+              <div id="gcg-campo-ra" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-labelledby="gcg-campo-ra-rotulo" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-ra-popup" data-gcg-popup="gcg-molde-3">
+                <span class="gcg-select__value gcg-select__value--placeholder">Todos os tipos</span>
+              </div>
+              <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+              </span>
+            </div>
+          </div>
+          <div class="gcg-field gcg-field--input gcg-tpl-filtros__nome">
+            <label id="gcg-campo-rb-rotulo" class="gcg-field__label" for="gcg-campo-rb">Nome</label>
+            <div class="gcg-field__control">
+              <input id="gcg-campo-rb" class="gcg-field__native" placeholder="Nome ou descrição" autocomplete="off" spellcheck="false" type="text">
+            </div>
+          </div>
+          <div class="gcg-field gcg-field--select gcg-tpl-filtros__pendente">
+            <span id="gcg-campo-rc-rotulo" class="gcg-field__label">Pendente de Assinatura</span>
+            <div class="gcg-field__control">
+              <div id="gcg-campo-rc" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-labelledby="gcg-campo-rc-rotulo" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-rc-popup" data-gcg-popup="gcg-molde-4">
+                <span class="gcg-select__value gcg-select__value--placeholder">Todos</span>
+              </div>
+              <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="gcg-tpl-filtros__linha">
+          <div class="gcg-field gcg-field--date gcg-tpl-filtros__data">
+            <label id="gcg-campo-rd-rotulo" class="gcg-field__label" for="gcg-campo-rd">Data de Emissão</label>
+            <div class="gcg-field__control">
+              <input id="gcg-campo-rd" class="gcg-field__native" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" autocomplete="off" spellcheck="false" type="text">
+              <button type="button" class="gcg-field__trigger gcg-datepicker__trigger" aria-label="Abrir calendário" title="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" aria-controls="gcg-campo-rd-popup" tabindex="0">
+                <span class="gcg-icon gcg-icon--sm">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="gcg-field gcg-field--date gcg-tpl-filtros__data">
+            <label id="gcg-campo-re-rotulo" class="gcg-field__label" for="gcg-campo-re">até</label>
+            <div class="gcg-field__control">
+              <input id="gcg-campo-re" class="gcg-field__native" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" autocomplete="off" spellcheck="false" type="text">
+              <button type="button" class="gcg-field__trigger gcg-datepicker__trigger" aria-label="Abrir calendário" title="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" aria-controls="gcg-campo-re-popup" tabindex="0">
+                <span class="gcg-icon gcg-icon--sm">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="gcg-tpl-filtros__botoes">
+            <button type="submit" class="gcg-button gcg-button--solid gcg-button--primary gcg-button--md">
+              <span class="gcg-button__label">Pesquisar</span>
+            </button>
+            <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+              <span class="gcg-button__label">Limpar</span>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="gcg-data-table__card gcg-tpl-tabela">
+        <div class="gcg-data-table__viewport">
+          <div class="gcg-data-table__region" role="region" aria-labelledby="gcg-rf" tabindex="0">
+            <table class="gcg-data-table" style="--gcg-data-table-min-w: 71.375rem;">
+              <caption id="gcg-rf" class="gcg-sr-only">Documentos do contrato, agrupados por tipo</caption>
+              <colgroup>
+                <col style="width: 2.5rem;">
+                <col style="width: 4rem;">
+                <col style="width: 8.625rem;">
+                <col>
+                <col style="width: 7rem;">
+                <col style="width: 7rem;">
+                <col style="width: 7.5rem;">
+                <col style="width: 4.75rem;">
+                <col style="width: 6.25rem;">
+                <col style="width: 6.25rem;">
+                <col style="width: 6.5rem;">
+                <col style="width: 6.25rem;">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--custom">
+                    <span class="gcg-data-table__header-content">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-rg">
+                        <input id="gcg-caixa-rg" class="gcg-checkbox__input" aria-label="Selecionar todos os documentos da página" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Código</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left gcg-data-table__sticky-start">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Documento</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Descrição</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Data de Emissão</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Emitido por</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Status</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Sigiloso?</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">AssinaGO?</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Integrado SEI?</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Doc. no PNCP?</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Ações</span>
+                      </span>
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="12" class="gcg-data-table__group-header gcg-data-table__group-header--leading">
+                    <span class="gcg-data-table__group-leading">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-rh">
+                        <input id="gcg-caixa-rh" class="gcg-checkbox__input" aria-label="Selecionar todos de Parecer Técnico" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="false" data-gcg-popup="gcg-molde-5">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Parecer Técnico</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">2</span>
+                        <span class="gcg-sr-only">2 documentos</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="12" class="gcg-data-table__group-header gcg-data-table__group-header--leading">
+                    <span class="gcg-data-table__group-leading">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-ri">
+                        <input id="gcg-caixa-ri" class="gcg-checkbox__input" aria-label="Selecionar todos de Parecer Jurídico" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="false" data-gcg-popup="gcg-molde-6">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Parecer Jurídico</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">1</span>
+                        <span class="gcg-sr-only">1 documento</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="12" class="gcg-data-table__group-header gcg-data-table__group-header--leading">
+                    <span class="gcg-data-table__group-leading">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-rj">
+                        <input id="gcg-caixa-rj" class="gcg-checkbox__input" aria-label="Selecionar todos de Notificação de Fornecedor / Contratado" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="false" data-gcg-popup="gcg-molde-7">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Notificação de Fornecedor / Contratado</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">1</span>
+                        <span class="gcg-sr-only">1 documento</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="12" class="gcg-data-table__group-header gcg-data-table__group-header--leading">
+                    <span class="gcg-data-table__group-leading">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-rk">
+                        <input id="gcg-caixa-rk" class="gcg-checkbox__input" aria-label="Selecionar todos de Solicitação de diligência" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="false" data-gcg-popup="gcg-molde-8">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Solicitação de diligência</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">1</span>
+                        <span class="gcg-sr-only">1 documento</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="12" class="gcg-data-table__group-header gcg-data-table__group-header--leading">
+                    <span class="gcg-data-table__group-leading">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-rl">
+                        <input id="gcg-caixa-rl" class="gcg-checkbox__input" aria-label="Selecionar todos de Ordem de Serviço" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="true">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Ordem de Serviço</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">1</span>
+                        <span class="gcg-sr-only">1 documento</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+                <tr class="gcg-data-table__row gcg-data-table__row--selected" data-gcg-row-id="3220">
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+                    <span class="gcg-doc-selecao__celula">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-rm">
+                        <input id="gcg-caixa-rm" class="gcg-checkbox__input" aria-label="Selecionar Ordem de Serviço 12/2026" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">3220</span>
+                    </span>
+                  </td>
+                  <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Ordem de Serviço 12/2026</span>
+                    </span>
+                  </th>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Posto noturno na unidade Norte</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">14/10/2026</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Paulo Teixeira Nunes</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Assinado</span>
+                      <span class="gcg-data-table__line gcg-data-table__line--2">27/10/2026 15:08</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+                    <span class="gcg-badge gcg-badge--success gcg-tpl-tabela__selo">Concluído</span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+                    <div class="gcg-data-table__actions">
+                      <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Ordem de Serviço 12/2026" href="#documento-3220" data-gcg-popup="gcg-molde-10" data-gcg-visualizar="3220">
+                        <span class="gcg-link__label">Visualizar</span>
+                      </a>
+                      <div class="gcg-action-menu gcg-action-menu--end">
+                        <button id="gcg-action-menu-trigger-rn" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Ordem de Serviço 12/2026" title="Mais ações de Ordem de Serviço 12/2026" data-gcg-popup="gcg-molde-11">
+                          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="12" class="gcg-data-table__group-header gcg-data-table__group-header--leading">
+                    <span class="gcg-data-table__group-leading">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-ro">
+                        <input id="gcg-caixa-ro" class="gcg-checkbox__input" aria-label="Selecionar todos de Ateste de Nota Fiscal" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="false" data-gcg-popup="gcg-molde-12">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Ateste de Nota Fiscal</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">2</span>
+                        <span class="gcg-sr-only">2 documentos</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="12" class="gcg-data-table__group-header gcg-data-table__group-header--leading">
+                    <span class="gcg-data-table__group-leading">
+                      <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-rp">
+                        <input id="gcg-caixa-rp" class="gcg-checkbox__input" aria-label="Selecionar todos de Termo de Recebimento Provisório" type="checkbox">
+                        <span class="gcg-checkbox__box" aria-hidden="true">
+                          <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+                          </span>
+                        </span>
+                      </label>
+                    </span>
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="false" data-gcg-popup="gcg-molde-13">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Termo de Recebimento Provisório</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">1</span>
+                        <span class="gcg-sr-only">1 documento</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="gcg-sr-only" role="status"></p>
+      </div>
+      <div class="gcg-pagination gcg-tpl-paginacao">
+        <p class="gcg-pagination__summary">
+          <span class="gcg-sr-only" aria-live="polite">Mostrando 1–9 de 9 documentos</span>
+          <span class="gcg-pagination__summary-visual" aria-hidden="true">
+            <span>Mostrando</span>
+            <strong class="gcg-pagination__number gcg-pagination__number--range">1–9</strong>
+            <span>de</span>
+            <strong class="gcg-pagination__number">9</strong>
+            <span>documentos</span>
+          </span>
+        </p>
+        <div class="gcg-pagination__controls">
+          <div class="gcg-pagination__page-size">
+            <span class="gcg-pagination__page-size-text" aria-hidden="true">Exibir</span>
+            <div class="gcg-pagination__select">
+              <div class="gcg-field gcg-field--select">
+                <div class="gcg-field__control">
+                  <div id="gcg-campo-rq" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-label="Exibir por página" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-rq-popup" data-gcg-popup="gcg-molde-14">
+                    <span class="gcg-select__value">10</span>
+                  </div>
+                  <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <span class="gcg-pagination__page-size-text" aria-hidden="true">por página</span>
+          </div>
+          <nav aria-label="Paginação">
+            <ul class="gcg-pagination__pages">
+              <li>
+                <button type="button" class="gcg-pagination-item gcg-pagination-item--prev" disabled aria-label="Página anterior">
+                  <span class="gcg-icon gcg-icon--sm">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_left"></use></svg>
+                  </span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="gcg-pagination-item gcg-pagination-item--page gcg-pagination-item--current" aria-label="Página 1" aria-current="page">1</button>
+              </li>
+              <li>
+                <button type="button" class="gcg-pagination-item gcg-pagination-item--next" disabled aria-label="Próxima página">
+                  <span class="gcg-icon gcg-icon--sm">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                  </span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <p class="gcg-sr-only" role="status" aria-live="polite"></p>
+    </div>
+  </main>
+</div>
+<div class="gcg-toaster" data-gcg-count="1">
+  <div class="gcg-toast gcg-toast--error gcg-toast--live" data-gcg-toast-id="1">
+    <span class="gcg-icon gcg-icon--md gcg-toast__icon">
+      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-error"></use></svg>
+    </span>
+    <p class="gcg-toast__message">Não foi possível acessar o documento no AssinaGO. Tente novamente.</p>
+    <span class="gcg-toast__close">
+      <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar aviso" title="Fechar aviso">
+        <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+        </span>
+      </button>
+    </span>
+  </div>
+</div>
+<div class="gcg-sr-only" role="status" aria-live="polite"></div>
+<div class="gcg-sr-only" role="alert" aria-live="assertive">
+  <p>Não foi possível acessar o documento no AssinaGO. Tente novamente.</p>
+</div>
+<div id="gcg-emag-status" class="gcg-sr-only" role="status" aria-live="polite"></div>
+<!-- Moldes do gcg-behavior.js: a parte que abre de cada menu, lista, janela e grupo recolhido desta tela
+     (o gatilho aponta com data-gcg-popup). Não aparecem: o script copia para a página ao abrir e tira ao
+     fechar. Na aplicação, o servidor pode imprimir a mesma marcação assim. Ver o LEIA-ME, "Comportamento". -->
+<template id="gcg-molde-0">
+<div data-gcg-part data-gcg-mount="up:1" data-gcg-index="2">
+  <div class="gcg-topbar__menu gcg-action-menu__surface">
+    <div role="menu" id="gcg-menu-perfil-r4" class="gcg-action-menu__list" aria-label="Menu do perfil">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Configurar tela inicial</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-logout"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Sair</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 377px; left: 1042.08px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-rv">Exportar lista como</div>
+    <div role="menu" id="gcg-action-menu-r8" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-rv">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="Excel">
+        <span class="gcg-action-menu-item__label">Excel</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="PDF">
+        <span class="gcg-action-menu-item__label">PDF</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="XML">
+        <span class="gcg-action-menu-item__label">XML</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="CSV">
+        <span class="gcg-action-menu-item__label">CSV</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="HTML">
+        <span class="gcg-action-menu-item__label">HTML</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="JSON">
+        <span class="gcg-action-menu-item__label">JSON</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-2-0">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 341px; left: 904px; width: 512px;">
+    <ul id="gcg-campo-r13-popup" role="listbox" aria-labelledby="gcg-campo-r13-rotulo" class="gcg-select-menu">
+      <li id="gcg-campo-r13-popup-op-0" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Nota de Empenho</span>
+      </li>
+      <li id="gcg-campo-r13-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Nota Fiscal</span>
+      </li>
+      <li id="gcg-campo-r13-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Certidão</span>
+      </li>
+      <li id="gcg-campo-r13-popup-op-3" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Planilha de Medição</span>
+      </li>
+      <li id="gcg-campo-r13-popup-op-4" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Aditivo</span>
+      </li>
+      <li id="gcg-campo-r13-popup-op-5" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Ordem de Serviço</span>
+      </li>
+      <li id="gcg-campo-r13-popup-op-6" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Ordem de Fornecimento</span>
+      </li>
+      <li id="gcg-campo-r13-popup-op-7" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Outros Documentos</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-2">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview gcg-tpl-gaveta" style="--gcg-tpl-preview-w: 560px;" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel gcg-doc-novo" role="dialog" aria-modal="true" aria-labelledby="gcg-rs" tabindex="-1" data-gcg-gaveta="novo-documento">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rs" class="gcg-tpl-preview__title">Novo documento</h2>
+          <p class="gcg-tpl-preview__subtitle">Anexe um arquivo ou gere um documento pelo sistema.</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar Novo documento" title="Fechar Novo documento">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body gcg-tpl-gaveta__corpo">
+        <div class="gcg-doc-novo__campos">
+          <div class="gcg-doc-novo__linha">
+            <div class="gcg-field gcg-field--input" data-gcg-disabled="true">
+              <label id="gcg-campo-r10-rotulo" class="gcg-field__label" for="gcg-campo-r10">Código</label>
+              <div class="gcg-field__control">
+                <input id="gcg-campo-r10" class="gcg-field__native" disabled autocomplete="off" spellcheck="false" type="text" value="Novo">
+              </div>
+            </div>
+            <div class="gcg-field gcg-field--input" data-gcg-disabled="true">
+              <label id="gcg-campo-r11-rotulo" class="gcg-field__label" for="gcg-campo-r11">Número do Contrato</label>
+              <div class="gcg-field__control">
+                <input id="gcg-campo-r11" class="gcg-field__native" disabled autocomplete="off" spellcheck="false" type="text" value="449/2026">
+              </div>
+            </div>
+          </div>
+          <fieldset class="gcg-doc-radio">
+            <legend class="gcg-doc-radio__legenda">Origem do Documento</legend>
+            <div class="gcg-doc-radio__opcoes">
+              <label class="gcg-doc-radio__opcao">
+                <input class="gcg-doc-radio__input" type="radio" value="Documento Externo" name="origem-_r_12_">
+                <span class="gcg-doc-radio__marca" aria-hidden="true"></span>
+                <span class="gcg-doc-radio__rotulo">Documento Externo</span>
+              </label>
+              <label class="gcg-doc-radio__opcao">
+                <input class="gcg-doc-radio__input" type="radio" value="Documento Interno" name="origem-_r_12_">
+                <span class="gcg-doc-radio__marca" aria-hidden="true"></span>
+                <span class="gcg-doc-radio__rotulo">Documento Interno</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="gcg-field gcg-field--select">
+            <span id="gcg-campo-r13-rotulo" class="gcg-field__label">Tipo do Documento</span>
+            <div class="gcg-field__control">
+              <div id="gcg-campo-r13" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-labelledby="gcg-campo-r13-rotulo" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-r13-popup" data-gcg-popup="gcg-molde-2-0">
+                <span class="gcg-select__value gcg-select__value--placeholder">Selecione o tipo</span>
+              </div>
+              <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+              </span>
+            </div>
+          </div>
+          <div class="gcg-field gcg-field--input">
+            <label id="gcg-campo-r14-rotulo" class="gcg-field__label" for="gcg-campo-r14">Descrição</label>
+            <div class="gcg-field__control">
+              <input id="gcg-campo-r14" class="gcg-field__native" placeholder="Descreva o documento" maxlength="200" autocomplete="off" spellcheck="false" type="text">
+            </div>
+          </div>
+          <fieldset class="gcg-doc-radio" aria-describedby="gcg-r15-dica">
+            <legend class="gcg-doc-radio__legenda">Sigiloso?</legend>
+            <div class="gcg-doc-radio__opcoes">
+              <label class="gcg-doc-radio__opcao">
+                <input class="gcg-doc-radio__input" type="radio" value="Não" checked name="sigiloso-_r_15_">
+                <span class="gcg-doc-radio__marca" aria-hidden="true"></span>
+                <span class="gcg-doc-radio__rotulo">Não</span>
+              </label>
+              <label class="gcg-doc-radio__opcao">
+                <input class="gcg-doc-radio__input" type="radio" value="Sim" name="sigiloso-_r_15_">
+                <span class="gcg-doc-radio__marca" aria-hidden="true"></span>
+                <span class="gcg-doc-radio__rotulo">Sim</span>
+              </label>
+            </div>
+            <p id="gcg-r15-dica" class="gcg-doc-radio__dica">Só quem tem acesso a documentos sigilosos verá este documento. Melhoria de UX.</p>
+          </fieldset>
+        </div>
+        <p class="gcg-sr-only" role="status" aria-live="polite"></p>
+      </div>
+      <footer class="gcg-tpl-preview__footer gcg-tpl-gaveta__rodape">
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Cancelar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--solid gcg-button--primary gcg-button--md" disabled>
+          <span class="gcg-button__label">Salvar arquivo</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-3">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 457px; left: 514px; width: 300px;">
+    <ul id="gcg-campo-ra-popup" role="listbox" aria-labelledby="gcg-campo-ra-rotulo" class="gcg-select-menu">
+      <li id="gcg-campo-ra-popup-op-0" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Parecer Técnico</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Notificação de Fornecedor / Contratado</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Solicitação de diligência</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-3" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Parecer Jurídico</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-4" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Ordem de Serviço</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-5" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Ordem de Fornecimento</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-6" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Ateste de Nota Fiscal</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-7" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Termo de Recebimento Provisório</span>
+      </li>
+      <li id="gcg-campo-ra-popup-op-8" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Termo de Recebimento Definitivo</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-4">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 457px; left: 1168px; width: 236px;">
+    <ul id="gcg-campo-rc-popup" role="listbox" aria-labelledby="gcg-campo-rc-rotulo" class="gcg-select-menu">
+      <li id="gcg-campo-rc-popup-op-0" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">Todos</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-campo-rc-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Sim</span>
+      </li>
+      <li id="gcg-campo-rc-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Não</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-5-0">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Parecer Técnico 03/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3187 · Parecer Técnico · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">02/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Rita Moraes Lins</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Assinado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Sim</dd>
+          </div>
+        </dl>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">PARECER TÉCNICO Nº 03/2026</p>
+            <p class="gcg-tpl-preview__ref">Contrato 449/2026 · Processo 202600417302815</p>
+            <p class="gcg-tpl-preview__par">Assunto: pedido de reequilíbrio econômico-financeiro apresentado pela contratada em 22/09/2026, referente aos postos de vigilância patrimonial.</p>
+            <p class="gcg-tpl-preview__par">1. Da análise. A contratada apresentou planilha de custos com reajuste da convenção coletiva da categoria. Os valores foram conferidos com a planilha original da proposta e com a convenção vigente.</p>
+            <p class="gcg-tpl-preview__par">2. Da conclusão. A diferença apurada corresponde a 4,8% do valor mensal dos postos. Recomenda-se o encaminhamento à área jurídica para manifestação.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 02 de outubro de 2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-5-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 569px; left: 1187px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r1a">Parecer Técnico 03/2026</div>
+    <div role="menu" id="gcg-action-menu-r17" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r1a">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-5-2">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Parecer Técnico 04/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3192 · Parecer Técnico · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">16/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Rita Moraes Lins</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Pendente de assinatura</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Sim</dd>
+          </div>
+        </dl>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">PARECER TÉCNICO Nº 04/2026</p>
+            <p class="gcg-tpl-preview__ref">Documento de exemplo do protótipo</p>
+            <p class="gcg-tpl-preview__par">Tipo: Parecer Técnico.</p>
+            <p class="gcg-tpl-preview__par">1. Do conteúdo. O texto deste documento é de exemplo: no sistema, aparece aqui o documento gerado pelo template ou pela funcionalidade de origem, sem nenhuma alteração.</p>
+            <p class="gcg-tpl-preview__par">2. Da consulta. Visualizar e exportar não modificam o documento emitido.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 16/10/2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-5-3">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 633px; left: 1187px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r1b">Parecer Técnico 04/2026</div>
+    <div role="menu" id="gcg-action-menu-r19" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r1b">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-5">
+<tbody data-gcg-part data-gcg-mount="up:3" data-gcg-index="1">
+  <tr class="gcg-data-table__row" data-gcg-row-id="3187">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r16">
+          <input id="gcg-caixa-r16" class="gcg-checkbox__input" aria-label="Selecionar Parecer Técnico 03/2026" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3187</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Parecer Técnico 03/2026</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Análise do pedido de reequilíbrio econômico</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">02/10/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Rita Moraes Lins</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Assinado</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">03/10/2026 09:12</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Sim</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Parecer Técnico 03/2026" href="#documento-3187" data-gcg-popup="gcg-molde-5-0" data-gcg-visualizar="3187">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r17" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Parecer Técnico 03/2026" title="Mais ações de Parecer Técnico 03/2026" data-gcg-popup="gcg-molde-5-1">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr class="gcg-data-table__row gcg-data-table__row--zebra" data-gcg-row-id="3192">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r18">
+          <input id="gcg-caixa-r18" class="gcg-checkbox__input" aria-label="Selecionar Parecer Técnico 04/2026" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3192</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Parecer Técnico 04/2026</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Avaliação da medição de setembro</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">16/10/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Rita Moraes Lins</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Pendente de assinatura</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">16/10/2026 14:05</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Sim</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Parecer Técnico 04/2026" href="#documento-3192" data-gcg-popup="gcg-molde-5-2" data-gcg-visualizar="3192">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r19" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Parecer Técnico 04/2026" title="Mais ações de Parecer Técnico 04/2026" data-gcg-popup="gcg-molde-5-3">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</template>
+<template id="gcg-molde-6-0">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Parecer Jurídico 11/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3201 · Parecer Jurídico · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">09/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Caio Bastos Prado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Assinado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Sim</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Sim</dd>
+          </div>
+        </dl>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">PARECER JURÍDICO Nº 11/2026</p>
+            <p class="gcg-tpl-preview__ref">Documento de exemplo do protótipo</p>
+            <p class="gcg-tpl-preview__par">Tipo: Parecer Jurídico.</p>
+            <p class="gcg-tpl-preview__par">1. Do conteúdo. O texto deste documento é de exemplo: no sistema, aparece aqui o documento gerado pelo template ou pela funcionalidade de origem, sem nenhuma alteração.</p>
+            <p class="gcg-tpl-preview__par">2. Da consulta. Visualizar e exportar não modificam o documento emitido.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 09/10/2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-6-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 669px; left: 1187px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r1e">Parecer Jurídico 11/2026</div>
+    <div role="menu" id="gcg-action-menu-r1d" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r1e">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-6">
+<tbody data-gcg-part data-gcg-mount="up:3" data-gcg-index="1">
+  <tr class="gcg-data-table__row" data-gcg-row-id="3201">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r1c">
+          <input id="gcg-caixa-r1c" class="gcg-checkbox__input" aria-label="Selecionar Parecer Jurídico 11/2026" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3201</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Parecer Jurídico 11/2026</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Prorrogação da vigência por 12 meses</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">09/10/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Caio Bastos Prado</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Assinado</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">10/10/2026 11:30</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Sim</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Sim</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Parecer Jurídico 11/2026" href="#documento-3201" data-gcg-popup="gcg-molde-6-0" data-gcg-visualizar="3201">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r1d" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Parecer Jurídico 11/2026" title="Mais ações de Parecer Jurídico 11/2026" data-gcg-popup="gcg-molde-6-1">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</template>
+<template id="gcg-molde-7-0">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Notificação 02/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3210 · Notificação de Fornecedor / Contratado · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">12/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Paulo Teixeira Nunes</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Assinado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Sim</dd>
+          </div>
+        </dl>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">NOTIFICAÇÃO Nº 02/2026</p>
+            <p class="gcg-tpl-preview__ref">Documento de exemplo do protótipo</p>
+            <p class="gcg-tpl-preview__par">Tipo: Notificação de Fornecedor / Contratado.</p>
+            <p class="gcg-tpl-preview__par">1. Do conteúdo. O texto deste documento é de exemplo: no sistema, aparece aqui o documento gerado pelo template ou pela funcionalidade de origem, sem nenhuma alteração.</p>
+            <p class="gcg-tpl-preview__par">2. Da consulta. Visualizar e exportar não modificam o documento emitido.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 12/10/2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-7-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 705px; left: 1187px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r1h">Notificação 02/2026</div>
+    <div role="menu" id="gcg-action-menu-r1g" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r1h">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-7">
+<tbody data-gcg-part data-gcg-mount="up:3" data-gcg-index="1">
+  <tr class="gcg-data-table__row" data-gcg-row-id="3210">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r1f">
+          <input id="gcg-caixa-r1f" class="gcg-checkbox__input" aria-label="Selecionar Notificação 02/2026" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3210</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Notificação 02/2026</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Atraso na entrega dos uniformes</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">12/10/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Paulo Teixeira Nunes</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Assinado</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">12/10/2026 16:48</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Sim</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Notificação 02/2026" href="#documento-3210" data-gcg-popup="gcg-molde-7-0" data-gcg-visualizar="3210">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r1g" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Notificação 02/2026" title="Mais ações de Notificação 02/2026" data-gcg-popup="gcg-molde-7-1">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</template>
+<template id="gcg-molde-8-0">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Solicitação de diligência 01/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3215 · Solicitação de diligência · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">05/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Paulo Teixeira Nunes</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Assinado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Sim</dd>
+          </div>
+        </dl>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">SOLICITAÇÃO DE DILIGÊNCIA Nº 01/2026</p>
+            <p class="gcg-tpl-preview__ref">Documento de exemplo do protótipo</p>
+            <p class="gcg-tpl-preview__par">Tipo: Solicitação de diligência.</p>
+            <p class="gcg-tpl-preview__par">1. Do conteúdo. O texto deste documento é de exemplo: no sistema, aparece aqui o documento gerado pelo template ou pela funcionalidade de origem, sem nenhuma alteração.</p>
+            <p class="gcg-tpl-preview__par">2. Da consulta. Visualizar e exportar não modificam o documento emitido.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 05/10/2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-8-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 741px; left: 1178px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r1k">Solicitação de diligência 01/2026</div>
+    <div role="menu" id="gcg-action-menu-r1j" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r1k">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-8">
+<tbody data-gcg-part data-gcg-mount="up:3" data-gcg-index="1">
+  <tr class="gcg-data-table__row" data-gcg-row-id="3215">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r1i">
+          <input id="gcg-caixa-r1i" class="gcg-checkbox__input" aria-label="Selecionar Solicitação de diligência 01/2026" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3215</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Solicitação de diligência 01/2026</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Comprovação de regularidade trabalhista</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">05/10/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Paulo Teixeira Nunes</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Assinado</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">05/10/2026 10:02</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Sim</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Solicitação de diligência 01/2026" href="#documento-3215" data-gcg-popup="gcg-molde-8-0" data-gcg-visualizar="3215">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r1j" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Solicitação de diligência 01/2026" title="Mais ações de Solicitação de diligência 01/2026" data-gcg-popup="gcg-molde-8-1">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</template>
+<template id="gcg-molde-10">
+<div data-gcg-part data-gcg-mount="body">
+  <div role="tooltip" id="gcg-tooltip-r1l" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Abre o AssinaGO em nova aba.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Ordem de Serviço 12/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3220 · Ordem de Serviço · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">14/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Paulo Teixeira Nunes</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Assinado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+        </dl>
+        <section class="gcg-tpl-preview__signatures" aria-labelledby="gcg-rr-ass">
+          <div class="gcg-tpl-preview__signatures-head">
+            <h3 id="gcg-rr-ass" class="gcg-tpl-preview__signatures-title">Assinaturas</h3>
+            <span class="gcg-badge gcg-badge--success">Concluído</span>
+          </div>
+          <ul class="gcg-tpl-preview__signers">
+            <li class="gcg-tpl-preview__signer">
+              <span class="gcg-tpl-preview__signer-name">Paulo Teixeira Nunes</span>
+              <span class="gcg-tpl-preview__signer-detail">Obrigatória · assinou em 27/10/2026 09:31</span>
+            </li>
+            <li class="gcg-tpl-preview__signer">
+              <span class="gcg-tpl-preview__signer-name">Lúcia Ferraz Gomes</span>
+              <span class="gcg-tpl-preview__signer-detail">Obrigatória · assinou em 27/10/2026 15:08</span>
+            </li>
+          </ul>
+        </section>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">ORDEM DE SERVIÇO Nº 12/2026</p>
+            <p class="gcg-tpl-preview__ref">Contrato 449/2026 · Processo 202600417302815</p>
+            <p class="gcg-tpl-preview__par">Objeto: posto noturno de vigilância na unidade Norte, a partir de 01/11/2026.</p>
+            <p class="gcg-tpl-preview__par">1. Da execução. A contratada deverá alocar um vigilante armado das 19h às 7h, todos os dias, conforme o termo de referência.</p>
+            <p class="gcg-tpl-preview__par">2. Do valor. O valor mensal estimado é de R$ 18.420,00, reservado do saldo do contrato.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 14 de outubro de 2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tooltip">
+          <a class="gcg-link gcg-link--md gcg-tpl-preview__assinago" target="_blank" rel="noopener noreferrer" href="/assinago-ficticio.html?contrato=704451&amp;codigo=3220&amp;documento=Ordem+de+Servi%C3%A7o+12%2F2026" aria-describedby="gcg-tooltip-r1l">
+            <span class="gcg-link__label">Visualizar no AssinaGO</span>
+            <span class="gcg-sr-only"> (abre em nova aba)</span>
+            <span class="gcg-icon gcg-icon--sm gcg-link__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-open_in_new"></use></svg>
+            </span>
+          </a>
+        </span>
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-11">
+<div data-gcg-part data-gcg-mount="body">
+  <div role="tooltip" id="gcg-tooltip-r1n" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Abre o AssinaGO em nova aba.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 812px; left: 1179px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r1m">Ordem de Serviço 12/2026</div>
+    <div role="menu" id="gcg-action-menu-rn" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r1m">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="verificar">
+        <span class="gcg-action-menu-item__label">Verificar Assinaturas AssinaGO</span>
+      </button>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-label="Visualizar no AssinaGO (abre em nova aba)" aria-describedby="gcg-tooltip-r1n" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="visualizar">
+          <span class="gcg-action-menu-item__label">Visualizar no AssinaGO</span>
+          <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon gcg-action-menu-item__icon--end">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-open_in_new"></use></svg>
+          </span>
+        </button>
+      </span>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-12-0">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Ateste da NF 4471</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3228 · Ateste de Nota Fiscal · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">21/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Paulo Teixeira Nunes</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Fechado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+        </dl>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">ATESTE DA NF Nº 4471</p>
+            <p class="gcg-tpl-preview__ref">Documento de exemplo do protótipo</p>
+            <p class="gcg-tpl-preview__par">Tipo: Ateste de Nota Fiscal.</p>
+            <p class="gcg-tpl-preview__par">1. Do conteúdo. O texto deste documento é de exemplo: no sistema, aparece aqui o documento gerado pelo template ou pela funcionalidade de origem, sem nenhuma alteração.</p>
+            <p class="gcg-tpl-preview__par">2. Da consulta. Visualizar e exportar não modificam o documento emitido.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 21/10/2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-12-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div role="tooltip" id="gcg-tooltip-r1t" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">É necessário integrar o documento ao AssinaGO antes de encaminhá-lo para assinatura.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div role="tooltip" id="gcg-tooltip-r1u" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">O documento selecionado não está integrado ao AssinaGO.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div role="tooltip" id="gcg-tooltip-r1v" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">O documento selecionado não está integrado ao AssinaGO.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--top" style="top: 499px; left: 1179px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r1s">Ateste da NF 4471</div>
+    <div role="menu" id="gcg-action-menu-r1p" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r1s">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="enviar">
+        <span class="gcg-action-menu-item__label">Enviar p/ o AssinaGO</span>
+      </button>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-describedby="gcg-tooltip-r1t" class="gcg-action-menu-item gcg-action-menu-item--neutral" aria-disabled="true" data-gcg-menu-item="encaminhar">
+          <span class="gcg-action-menu-item__label">Enviar p/ Assinatura AssinaGO</span>
+        </button>
+      </span>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-describedby="gcg-tooltip-r1u" class="gcg-action-menu-item gcg-action-menu-item--neutral" aria-disabled="true" data-gcg-menu-item="verificar">
+          <span class="gcg-action-menu-item__label">Verificar Assinaturas AssinaGO</span>
+        </button>
+      </span>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-label="Visualizar no AssinaGO (abre em nova aba)" aria-describedby="gcg-tooltip-r1v" class="gcg-action-menu-item gcg-action-menu-item--neutral" aria-disabled="true" data-gcg-menu-item="visualizar">
+          <span class="gcg-action-menu-item__label">Visualizar no AssinaGO</span>
+          <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon gcg-action-menu-item__icon--end">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-open_in_new"></use></svg>
+          </span>
+        </button>
+      </span>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-12-2">
+<div data-gcg-part data-gcg-mount="body">
+  <div role="tooltip" id="gcg-tooltip-r20" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Abre o AssinaGO em nova aba.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">Ateste 0198/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3196 · Ateste de Nota Fiscal · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">18/09/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Paulo Teixeira Nunes</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Assinado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+        </dl>
+        <section class="gcg-tpl-preview__signatures" aria-labelledby="gcg-rr-ass">
+          <div class="gcg-tpl-preview__signatures-head">
+            <h3 id="gcg-rr-ass" class="gcg-tpl-preview__signatures-title">Assinaturas</h3>
+            <span class="gcg-badge gcg-badge--success">Concluído</span>
+          </div>
+          <ul class="gcg-tpl-preview__signers">
+            <li class="gcg-tpl-preview__signer">
+              <span class="gcg-tpl-preview__signer-name">Paulo Teixeira Nunes</span>
+              <span class="gcg-tpl-preview__signer-detail">Obrigatória · assinou em 18/09/2026 16:02</span>
+            </li>
+            <li class="gcg-tpl-preview__signer">
+              <span class="gcg-tpl-preview__signer-name">Lúcia Ferraz Gomes</span>
+              <span class="gcg-tpl-preview__signer-detail">Obrigatória · assinou em 19/09/2026 10:15</span>
+            </li>
+          </ul>
+        </section>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">ATESTE Nº 0198/2026</p>
+            <p class="gcg-tpl-preview__ref">Documento de exemplo do protótipo</p>
+            <p class="gcg-tpl-preview__par">Tipo: Ateste de Nota Fiscal.</p>
+            <p class="gcg-tpl-preview__par">1. Do conteúdo. O texto deste documento é de exemplo: no sistema, aparece aqui o documento gerado pelo template ou pela funcionalidade de origem, sem nenhuma alteração.</p>
+            <p class="gcg-tpl-preview__par">2. Da consulta. Visualizar e exportar não modificam o documento emitido.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 18/09/2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tooltip">
+          <a class="gcg-link gcg-link--md gcg-tpl-preview__assinago" target="_blank" rel="noopener noreferrer" href="/assinago-ficticio.html?contrato=704451&amp;codigo=3196&amp;documento=Ateste+0198%2F2026" aria-describedby="gcg-tooltip-r20">
+            <span class="gcg-link__label">Visualizar no AssinaGO</span>
+            <span class="gcg-sr-only"> (abre em nova aba)</span>
+            <span class="gcg-icon gcg-icon--sm gcg-link__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-open_in_new"></use></svg>
+            </span>
+          </a>
+        </span>
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-12-3">
+<div data-gcg-part data-gcg-mount="body">
+  <div role="tooltip" id="gcg-tooltip-r22" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Abre o AssinaGO em nova aba.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--top" style="top: 635px; left: 1179px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r21">Ateste 0198/2026</div>
+    <div role="menu" id="gcg-action-menu-r1r" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r21">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="verificar">
+        <span class="gcg-action-menu-item__label">Verificar Assinaturas AssinaGO</span>
+      </button>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-label="Visualizar no AssinaGO (abre em nova aba)" aria-describedby="gcg-tooltip-r22" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="visualizar">
+          <span class="gcg-action-menu-item__label">Visualizar no AssinaGO</span>
+          <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon gcg-action-menu-item__icon--end">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-open_in_new"></use></svg>
+          </span>
+        </button>
+      </span>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-12">
+<tbody data-gcg-part data-gcg-mount="up:3" data-gcg-index="1">
+  <tr class="gcg-data-table__row" data-gcg-row-id="3228">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r1o">
+          <input id="gcg-caixa-r1o" class="gcg-checkbox__input" aria-label="Selecionar Ateste da NF 4471" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3228</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Ateste da NF 4471</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Medição de setembro/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">21/10/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Paulo Teixeira Nunes</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Fechado</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">21/10/2026 17:20</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-badge gcg-badge--neutral gcg-tpl-tabela__selo">Não&nbsp;enviado</span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Ateste da NF 4471" href="#documento-3228" data-gcg-popup="gcg-molde-12-0" data-gcg-visualizar="3228">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r1p" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Ateste da NF 4471" title="Mais ações de Ateste da NF 4471" data-gcg-popup="gcg-molde-12-1">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr class="gcg-data-table__row gcg-data-table__row--zebra" data-gcg-row-id="3196">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r1q">
+          <input id="gcg-caixa-r1q" class="gcg-checkbox__input" aria-label="Selecionar Ateste 0198/2026" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3196</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Ateste 0198/2026</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">Sem dados de nota fiscal</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Medição de agosto/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">18/09/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Paulo Teixeira Nunes</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Assinado</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">19/09/2026 10:15</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-badge gcg-badge--success gcg-tpl-tabela__selo">Concluído</span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar Ateste 0198/2026" href="#documento-3196" data-gcg-popup="gcg-molde-12-2" data-gcg-visualizar="3196">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r1r" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Ateste 0198/2026" title="Mais ações de Ateste 0198/2026" data-gcg-popup="gcg-molde-12-3">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</template>
+<template id="gcg-molde-13-0">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-tpl-preview" data-gcg-state="open">
+    <div class="gcg-scrim gcg-tpl-preview__scrim" aria-hidden="true" data-gcg-state="open"></div>
+    <aside class="gcg-tpl-preview__panel" role="dialog" aria-modal="true" aria-labelledby="gcg-rr" tabindex="-1">
+      <header class="gcg-tpl-preview__header">
+        <div class="gcg-tpl-preview__titles">
+          <h2 id="gcg-rr" class="gcg-tpl-preview__title">TRP 04/2026</h2>
+          <p class="gcg-tpl-preview__subtitle">Código 3231 · Termo de Recebimento Provisório · Contrato 704451</p>
+        </div>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar o preview" title="Fechar o preview">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </header>
+      <div class="gcg-tpl-preview__body">
+        <dl class="gcg-tpl-preview__fields">
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Data de Emissão</dt>
+            <dd class="gcg-data-field__value">22/10/2026</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Emitido por</dt>
+            <dd class="gcg-data-field__value">Paulo Teixeira Nunes</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Status</dt>
+            <dd class="gcg-data-field__value">Fechado</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Sigiloso?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default">
+            <dt class="gcg-data-field__label">Integrado SEI?</dt>
+            <dd class="gcg-data-field__value">Não</dd>
+          </div>
+        </dl>
+        <div class="gcg-tpl-preview__document">
+          <article class="gcg-tpl-preview__page" aria-label="Conteúdo do documento">
+            <p class="gcg-tpl-preview__org">SECRETARIA DE ESTADO DA ADMINISTRAÇÃO</p>
+            <p class="gcg-tpl-preview__doc-title">TRP Nº 04/2026</p>
+            <p class="gcg-tpl-preview__ref">Documento de exemplo do protótipo</p>
+            <p class="gcg-tpl-preview__par">Tipo: Termo de Recebimento Provisório.</p>
+            <p class="gcg-tpl-preview__par">1. Do conteúdo. O texto deste documento é de exemplo: no sistema, aparece aqui o documento gerado pelo template ou pela funcionalidade de origem, sem nenhuma alteração.</p>
+            <p class="gcg-tpl-preview__par">2. Da consulta. Visualizar e exportar não modificam o documento emitido.</p>
+            <p class="gcg-tpl-preview__par">Goiânia, 22/10/2026.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="gcg-tpl-preview__footer">
+        <span class="gcg-tpl-preview__spacer"></span>
+        <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md">
+          <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+          </span>
+          <span class="gcg-button__label">Baixar</span>
+        </button>
+      </footer>
+    </aside>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-13-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div role="tooltip" id="gcg-tooltip-r26" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">É necessário integrar o documento ao AssinaGO antes de encaminhá-lo para assinatura.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div role="tooltip" id="gcg-tooltip-r27" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">O documento selecionado não está integrado ao AssinaGO.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div role="tooltip" id="gcg-tooltip-r28" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">O documento selecionado não está integrado ao AssinaGO.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--top" style="top: 599px; left: 1179px;">
+    <div class="gcg-action-menu__header" id="gcg-action-menu-header-r25">TRP 04/2026</div>
+    <div role="menu" id="gcg-action-menu-r24" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-header-r25">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="enviar">
+        <span class="gcg-action-menu-item__label">Enviar p/ o AssinaGO</span>
+      </button>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-describedby="gcg-tooltip-r26" class="gcg-action-menu-item gcg-action-menu-item--neutral" aria-disabled="true" data-gcg-menu-item="encaminhar">
+          <span class="gcg-action-menu-item__label">Enviar p/ Assinatura AssinaGO</span>
+        </button>
+      </span>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-describedby="gcg-tooltip-r27" class="gcg-action-menu-item gcg-action-menu-item--neutral" aria-disabled="true" data-gcg-menu-item="verificar">
+          <span class="gcg-action-menu-item__label">Verificar Assinaturas AssinaGO</span>
+        </button>
+      </span>
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-label="Visualizar no AssinaGO (abre em nova aba)" aria-describedby="gcg-tooltip-r28" class="gcg-action-menu-item gcg-action-menu-item--neutral" aria-disabled="true" data-gcg-menu-item="visualizar">
+          <span class="gcg-action-menu-item__label">Visualizar no AssinaGO</span>
+          <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon gcg-action-menu-item__icon--end">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-open_in_new"></use></svg>
+          </span>
+        </button>
+      </span>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="cancelar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-delete"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Cancelar documento</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-13">
+<tbody data-gcg-part data-gcg-mount="up:3" data-gcg-index="1">
+  <tr class="gcg-data-table__row" data-gcg-row-id="3231">
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-doc-selecao__celula">
+        <label class="gcg-checkbox gcg-checkbox--no-label" for="gcg-caixa-r23">
+          <input id="gcg-caixa-r23" class="gcg-checkbox__input" aria-label="Selecionar TRP 04/2026" type="checkbox">
+          <span class="gcg-checkbox__box" aria-hidden="true">
+            <span class="gcg-icon gcg-icon--sm gcg-checkbox__check">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+            </span>
+          </span>
+        </label>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">3231</span>
+      </span>
+    </td>
+    <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom gcg-data-table__sticky-start">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">TRP 04/2026</span>
+      </span>
+    </th>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Recebimento dos postos de outubro</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">22/10/2026</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Paulo Teixeira Nunes</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Fechado</span>
+        <span class="gcg-data-table__line gcg-data-table__line--2">22/10/2026 09:55</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <span class="gcg-badge gcg-badge--neutral gcg-tpl-tabela__selo">Não&nbsp;enviado</span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left">
+      <span class="gcg-data-table__cell-content">
+        <span class="gcg-data-table__line gcg-data-table__line--1">Não</span>
+      </span>
+    </td>
+    <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+      <div class="gcg-data-table__actions">
+        <a aria-haspopup="dialog" class="gcg-link gcg-link--sm" aria-label="Visualizar TRP 04/2026" href="#documento-3231" data-gcg-popup="gcg-molde-13-0" data-gcg-visualizar="3231">
+          <span class="gcg-link__label">Visualizar</span>
+        </a>
+        <div class="gcg-action-menu gcg-action-menu--end">
+          <button id="gcg-action-menu-trigger-r24" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de TRP 04/2026" title="Mais ações de TRP 04/2026" data-gcg-popup="gcg-molde-13-1">
+            <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</template>
+<template id="gcg-molde-14">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--top" style="top: 797px; left: 1119.75px; width: 80px;">
+    <ul id="gcg-campo-rq-popup" role="listbox" aria-label="Exibir por página" class="gcg-select-menu">
+      <li id="gcg-campo-rq-popup-op-0" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">10</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-campo-rq-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">20</span>
+      </li>
+      <li id="gcg-campo-rq-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">50</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<script src="../../biblioteca/js/gcg-icons.js"></script>
+<script src="../../biblioteca/js/gcg-motion.js"></script>
+<script src="../../biblioteca/js/gcg-behavior.js"></script>
+</body>
+</html>

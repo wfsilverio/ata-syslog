@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HU020 · Emitir Ordem de Fornecimento — L3 · 3 · Prazo de entrega inválido</title>
+<!--
+  Tela:    HU020 · Emitir Ordem de Fornecimento
+  Linha:   L3 · Quando os dados não fecham
+  Estado:  L3 · 3 · Prazo de entrega inválido — Figma: Página 20 · seção HU020 · Emitir Ordem de Fornecimento, frame "L3 · 3 · Prazo de entrega inválido"
+  Componentes (biblioteca/css/components/):
+    gcg-action-menu, gcg-alert, gcg-app-shell, gcg-badge, gcg-button, gcg-data-field,
+    gcg-date-picker, gcg-field, gcg-icon, gcg-icon-button, gcg-input, gcg-modal, gcg-page-header,
+    gcg-popover, gcg-scrim, gcg-search-field, gcg-section-card, gcg-select, gcg-sidebar,
+    gcg-start-screen-dialog, gcg-textarea, gcg-toast, gcg-tooltip, gcg-topbar
+  Composição de tela (telas/css/): gcg-osof-form
+  Gerado do protótipo em 10/11/2026. Dados fictícios.
+-->
+<link rel="stylesheet" href="../../biblioteca/css/gcg-bootstrap3.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-layers.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-motion.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-base.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-action-menu.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-alert.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-app-shell.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-badge.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-data-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-date-picker.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-input.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-modal.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-page-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-popover.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-scrim.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-search-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-section-card.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-select.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-sidebar.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-dialog.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-textarea.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-toast.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tooltip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-topbar.css">
+<link rel="stylesheet" href="../css/gcg-osof-form.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-emag.css">
+</head>
+<body>
+<div class="gcg-app-shell" data-gcg-layout="wide" data-gcg-sidebar="expanded">
+  <a class="gcg-app-shell__skip" href="#gcg-conteudo">Ir para o conteúdo</a>
+  <header class="gcg-topbar gcg-app-shell__topbar">
+    <div class="gcg-topbar__left">
+      <button aria-expanded="true" aria-controls="gcg-app-sidebar" type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Menu" title="Menu">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-menu"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__system">SISLOG</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <span class="gcg-topbar__module">Gestão de Contratos</span>
+    </div>
+    <div class="gcg-topbar__right">
+      <div class="gcg-topbar__emag" role="toolbar" aria-label="Acessibilidade">
+        <button tabindex="0" aria-disabled="true" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Diminuir fonte" title="Diminuir fonte" data-gcg-emag="decrease">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_decrease"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Fonte padrão" title="Fonte padrão" data-gcg-emag="reset">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_size"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar fonte" title="Aumentar fonte" data-gcg-emag="increase">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_increase"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Negrito" aria-pressed="false" title="Negrito" data-gcg-emag="bold">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_bold"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar relevo" aria-pressed="false" title="Aumentar relevo" data-gcg-emag="relief">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-shadow"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar contraste" aria-pressed="false" title="Aumentar contraste" data-gcg-emag="contrast">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contrast"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Inverter cores" aria-pressed="false" title="Inverter cores" data-gcg-emag="invert">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-invert_colors"></use></svg>
+          </span>
+        </button>
+      </div>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <button type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Ajuda" title="Ajuda">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__unit">SEAD · Unidade 90001</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <div class="gcg-topbar__user">
+        <span class="gcg-topbar__user-info">
+          <span class="gcg-topbar__user-name" title="Ana Souza">Ana Souza</span>
+          <span class="gcg-topbar__user-profile" title="Gestor de Contrato">Gestor de Contrato</span>
+        </span>
+        <button type="button" class="gcg-topbar__menu-perfil" aria-haspopup="menu" aria-expanded="false" aria-label="Menu do perfil de Ana Souza" data-gcg-popup="gcg-molde-0">
+          <span class="gcg-topbar__avatar" aria-hidden="true">A</span>
+          <span class="gcg-icon gcg-icon--sm gcg-topbar__menu-seta">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="gcg-app-shell__nav">
+    <nav id="gcg-app-sidebar" class="gcg-sidebar" aria-label="Menu principal">
+      <ul class="gcg-sidebar__list">
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-dashboard"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Dashboard</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--active gcg-sidebar-item--link" aria-current="true" href="/contratos" data-gcg-discover="true">
+            <span class="gcg-sidebar-item__indicator" aria-hidden="true"></span>
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contract"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Gerir contratos</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/os-of" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-edit_note"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">OS/OF</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main id="gcg-conteudo" class="gcg-app-shell__main" tabindex="-1" style="--gcg-app-shell-gutter: 15px;">
+    <div class="gcg-osof-form__topo">
+      <div class="gcg-page-header">
+        <nav class="gcg-page-header__breadcrumb" aria-label="Você está em">
+          <ol class="gcg-page-header__trail">
+            <li class="gcg-page-header__level">
+              <a class="gcg-page-header__crumb-link" href="/" data-gcg-discover="true">Dashboard</a>
+            </li>
+            <li class="gcg-page-header__level">
+              <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+              <a class="gcg-page-header__crumb-link" href="/contratos" data-gcg-discover="true">Gerir contratos</a>
+            </li>
+            <li class="gcg-page-header__level">
+              <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+              <a class="gcg-page-header__crumb-link" href="/contratos/704377/balances" data-gcg-discover="true">Contrato 704377</a>
+            </li>
+            <li class="gcg-page-header__level">
+              <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+              <a class="gcg-page-header__crumb-link" href="/contratos/704377/orders" data-gcg-discover="true">OS/OF</a>
+            </li>
+            <li class="gcg-page-header__level">
+              <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+              <span class="gcg-page-header__crumb gcg-page-header__crumb--current" aria-current="page">Nova Ordem de Fornecimento</span>
+            </li>
+          </ol>
+        </nav>
+        <div class="gcg-page-header__main">
+          <div class="gcg-page-header__heading">
+            <h1 id="gcg-page-title" class="gcg-page-header__title">Nova Ordem de Fornecimento</h1>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--sm gcg-osof-form__voltar">
+        <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-arrow_back"></use></svg>
+        </span>
+        <span class="gcg-button__label">Voltar</span>
+      </button>
+    </div>
+    <form class="gcg-osof-form" novalidate aria-labelledby="gcg-page-title">
+      <section class="gcg-section-card gcg-section-card--expanded gcg-osof-form__bloco" aria-labelledby="gcg-section-cardr7-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardr7-title">1. Identificação do Pedido</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardr7-content">
+            <div class="gcg-osof-form__grade">
+              <div class="gcg-osof-form__celula">
+                <div class="gcg-field gcg-field--select">
+                  <span id="gcg-osof-campo-unidadeRequisitante-rotulo" class="gcg-field__label">Unidade Requisitante *</span>
+                  <div class="gcg-field__control">
+                    <div id="gcg-osof-campo-unidadeRequisitante" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-labelledby="gcg-osof-campo-unidadeRequisitante-rotulo" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-osof-campo-unidadeRequisitante-popup" data-gcg-popup="gcg-molde-1">
+                      <span class="gcg-select__value">Gerência de Compras</span>
+                    </div>
+                    <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula">
+                <div class="gcg-field gcg-field--date">
+                  <label id="gcg-osof-campo-emissao-rotulo" class="gcg-field__label" for="gcg-osof-campo-emissao">Data de Emissão *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-emissao" class="gcg-field__native" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" autocomplete="off" spellcheck="false" type="text" value="06/11/2026">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                    <button type="button" class="gcg-field__trigger gcg-datepicker__trigger" aria-label="Abrir calendário" title="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" aria-controls="gcg-osof-campo-emissao-popup" tabindex="0">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula gcg-osof-form__span-2">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-processoSei-rotulo" class="gcg-field__label" for="gcg-osof-campo-processoSei">Processo Administrativo (SEI) *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-processoSei" class="gcg-field__native" inputmode="numeric" autocomplete="off" spellcheck="false" type="text" value="202600417309126">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <dl class="gcg-data-field gcg-data-field--default">
+                <dt class="gcg-data-field__label">Contrato / Ata de Registro de Preços</dt>
+                <dd class="gcg-data-field__value">377/2026</dd>
+              </dl>
+              <div class="gcg-osof-form__celula">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-notaEmpenho-rotulo" class="gcg-field__label" for="gcg-osof-campo-notaEmpenho">Nota de Empenho (NE) nº *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-notaEmpenho" class="gcg-field__native" autocomplete="off" spellcheck="false" type="text" value="2026NE06190">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <dl class="gcg-data-field gcg-data-field--default">
+                <dt class="gcg-data-field__label">Valor do Empenho (R$)</dt>
+                <dd class="gcg-data-field__value">R$ 38.000,00</dd>
+              </dl>
+              <dl class="gcg-data-field gcg-data-field--default">
+                <dt class="gcg-data-field__label">Saldo do Empenho (R$)</dt>
+                <dd class="gcg-data-field__value">R$ 17.330,00</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-osof-form__bloco" aria-labelledby="gcg-section-cardrc-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardrc-title">2. Identificação da Contratada</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardrc-content">
+            <div class="gcg-osof-form__grade">
+              <dl class="gcg-data-field gcg-data-field--default gcg-osof-form__span-2">
+                <dt class="gcg-data-field__label">Razão Social</dt>
+                <dd class="gcg-data-field__value">Papelaria Cerrado Central Ltda</dd>
+              </dl>
+              <dl class="gcg-data-field gcg-data-field--default gcg-osof-form__span-2">
+                <dt class="gcg-data-field__label">CNPJ</dt>
+                <dd class="gcg-data-field__value">34.567.890/0001-12</dd>
+              </dl>
+              <div class="gcg-osof-form__celula gcg-osof-form__span-2">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-endereco-rotulo" class="gcg-field__label" for="gcg-osof-campo-endereco">Endereço *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-endereco" class="gcg-field__native" autocomplete="off" spellcheck="false" type="text" value="Rua das Acácias, nº 250, Setor Central, Goiânia/GO">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-cep-rotulo" class="gcg-field__label" for="gcg-osof-campo-cep">CEP *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-cep" class="gcg-field__native" inputmode="numeric" autocomplete="off" spellcheck="false" type="text" value="74.015-010">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-telefone-rotulo" class="gcg-field__label" for="gcg-osof-campo-telefone">Telefone *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-telefone" class="gcg-field__native" inputmode="tel" autocomplete="off" spellcheck="false" type="text" value="(62) 3201-0000">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula gcg-osof-form__span-2">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-email-rotulo" class="gcg-field__label" for="gcg-osof-campo-email">E-mail *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-email" class="gcg-field__native" inputmode="email" autocomplete="off" spellcheck="false" type="text" value="vendas@exemplo.com">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-osof-form__bloco gcg-osof-form__bloco--itens" aria-labelledby="gcg-section-cardrh-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardrh-title">3. Especificação dos Bens / Materiais</span></h2>
+          </div>
+          <div class="gcg-section-card__actions">
+            <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--sm">
+              <span class="gcg-button__label">Adicionar Item</span>
+            </button>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardrh-content">
+            <p class="gcg-osof-form__frase">Autorizamos o fornecimento dos itens descritos abaixo, em conformidade com as especificações contratuais e o Termo de Referência vinculados.</p>
+            <div class="gcg-osof-form__itens gcg-osof-form__itens--of" role="table" aria-label="3. Especificação dos Bens / Materiais" aria-rowcount="3">
+              <div class="gcg-osof-form__itens-linha gcg-osof-form__itens-cabecalho" role="row">
+                <span class="gcg-osof-form__itens-th" role="columnheader">Item</span>
+                <span class="gcg-osof-form__itens-th" role="columnheader">Código / SKU *</span>
+                <span class="gcg-osof-form__itens-th" role="columnheader">Descrição Detalhada do Material *</span>
+                <span class="gcg-osof-form__itens-th" role="columnheader">Unid. Medida *</span>
+                <span class="gcg-osof-form__itens-th" role="columnheader">Qtd. Solicitada *</span>
+                <span class="gcg-osof-form__itens-th" role="columnheader">Valor Unitário (R$) *</span>
+                <span class="gcg-osof-form__itens-th gcg-osof-form__itens-th--valor" role="columnheader">Valor Total (R$)</span>
+                <span class="gcg-osof-form__itens-th" role="columnheader">Ações</span>
+              </div>
+              <div class="gcg-osof-form__itens-linha" role="row" data-gcg-item="i1">
+                <span class="gcg-osof-form__itens-td gcg-osof-form__itens-numero" role="cell">1</span>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i1-codigo" class="gcg-field__native" autocomplete="off" spellcheck="false" aria-label="Código / SKU do item 1" type="text" value="PAP-0231">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i1-descricao" class="gcg-field__native" autocomplete="off" spellcheck="false" aria-label="Descrição Detalhada do Material do item 1" type="text" value="Pasta suspensa kraft com visor">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--select">
+                    <div class="gcg-field__control">
+                      <div id="gcg-osof-item-i1-unidade" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-label="Unid. Medida do item 1" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-osof-item-i1-unidade-popup" data-gcg-popup="gcg-molde-2">
+                        <span class="gcg-select__value">UN</span>
+                      </div>
+                      <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i1-quantidade" class="gcg-field__native" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Qtd. Solicitada do item 1" type="text" value="500">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i1-valorUnitario" class="gcg-field__native" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Valor Unitário (R$) do item 1" type="text" value="3,20">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <span class="gcg-osof-form__itens-td gcg-osof-form__itens-valor" role="cell">1.600,00</span>
+                <span class="gcg-osof-form__itens-td" role="cell"><button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Remover item 1" title="Remover item 1"><span class="gcg-icon gcg-icon--sm gcg-icon-button__icon"><svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg></span></button></span>
+              </div>
+              <div class="gcg-osof-form__itens-linha" role="row" data-gcg-item="i2">
+                <span class="gcg-osof-form__itens-td gcg-osof-form__itens-numero" role="cell">2</span>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i2-codigo" class="gcg-field__native" autocomplete="off" spellcheck="false" aria-label="Código / SKU do item 2" type="text" value="ENV-0118">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i2-descricao" class="gcg-field__native" autocomplete="off" spellcheck="false" aria-label="Descrição Detalhada do Material do item 2" type="text" value="Envelope A4 pardo, caixa com 250">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--select">
+                    <div class="gcg-field__control">
+                      <div id="gcg-osof-item-i2-unidade" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-label="Unid. Medida do item 2" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-osof-item-i2-unidade-popup" data-gcg-popup="gcg-molde-3">
+                        <span class="gcg-select__value">CX</span>
+                      </div>
+                      <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i2-quantidade" class="gcg-field__native" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Qtd. Solicitada do item 2" type="text" value="40">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="gcg-osof-form__itens-td" role="cell">
+                  <div class="gcg-field gcg-field--input">
+                    <div class="gcg-field__control">
+                      <input id="gcg-osof-item-i2-valorUnitario" class="gcg-field__native" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Valor Unitário (R$) do item 2" type="text" value="28,50">
+                      <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                        <span class="gcg-icon gcg-icon--sm">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <span class="gcg-osof-form__itens-td gcg-osof-form__itens-valor" role="cell">1.140,00</span>
+                <span class="gcg-osof-form__itens-td" role="cell"><button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Remover item 2" title="Remover item 2"><span class="gcg-icon gcg-icon--sm gcg-icon-button__icon"><svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg></span></button></span>
+              </div>
+            </div>
+            <dl class="gcg-data-field gcg-data-field--default gcg-osof-form__total">
+              <dt class="gcg-data-field__label">Valor Total da Autorização</dt>
+              <dd class="gcg-data-field__value">2.740,00</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-osof-form__bloco" aria-labelledby="gcg-section-cardrs-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardrs-title">4. Condições de Entrega e Recebimento</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardrs-content">
+            <div class="gcg-osof-form__grade">
+              <div class="gcg-osof-form__celula gcg-osof-form__span-3">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-localEntrega-rotulo" class="gcg-field__label" for="gcg-osof-campo-localEntrega">Local de Entrega *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-localEntrega" class="gcg-field__native" autocomplete="off" spellcheck="false" type="text" value="Almoxarifado Central, Av. Goiás, nº 305, Setor Central, Goiânia/GO">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula">
+                <div class="gcg-field gcg-field--input" data-gcg-invalid="true">
+                  <label id="gcg-osof-campo-prazoEntrega-rotulo" class="gcg-field__label" for="gcg-osof-campo-prazoEntrega">Prazo de Entrega (dias) *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-prazoEntrega" class="gcg-field__native" inputmode="numeric" autocomplete="off" spellcheck="false" aria-invalid="true" aria-describedby="gcg-osof-campo-prazoEntrega-erro" type="text" value="0">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                  <p id="gcg-osof-campo-prazoEntrega-erro" class="gcg-field__error">
+                    <span class="gcg-icon gcg-icon--sm gcg-field__error-icon">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-error"></use></svg>
+                    </span>
+                    <span>Informe um prazo de entrega válido.</span>
+                  </p>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula gcg-osof-form__span-2">
+                <div class="gcg-field gcg-field--input">
+                  <label id="gcg-osof-campo-horario-rotulo" class="gcg-field__label" for="gcg-osof-campo-horario">Horário de Recebimento *</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-osof-campo-horario" class="gcg-field__native" autocomplete="off" spellcheck="false" type="text" value="Segunda a sexta-feira, das 08:00 às 12:00 e das 14:00 às 17:00">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar campo" title="Limpar campo">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-osof-form__celula gcg-osof-form__span-2">
+                <div class="gcg-field gcg-field--search">
+                  <label id="gcg-osof-campo-fiscal-rotulo" class="gcg-field__label" for="gcg-osof-campo-fiscal">Fiscal do Contrato Responsável pelo Atesto</label>
+                  <div class="gcg-field__control">
+                    <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-search-field__icon">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-search"></use></svg>
+                    </span>
+                    <input id="gcg-osof-campo-fiscal" class="gcg-field__native" role="combobox" placeholder="Nome do fiscal" inputmode="text" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-expanded="false" aria-controls="gcg-osof-campo-fiscal-popup" type="text" value="Lúcia Ferraz Gomes · 702.318.954-60">
+                    <button type="button" class="gcg-field__clear" aria-label="Limpar pesquisa" title="Limpar pesquisa">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                      </span>
+                    </button>
+                    <span class="gcg-sr-only" role="status" aria-live="polite"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-osof-form__bloco" aria-labelledby="gcg-section-cardr11-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardr11-title">5. Observações e Responsabilidades da Contratada</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardr11-content">
+            <div class="gcg-osof-form__celula--texto-longo">
+              <div class="gcg-field gcg-field--textarea">
+                <label id="gcg-osof-campo-observacoes-rotulo" class="gcg-field__label" for="gcg-osof-campo-observacoes">Observações</label>
+                <div class="gcg-field__control">
+                  <textarea id="gcg-osof-campo-observacoes" class="gcg-field__native gcg-field__native--textarea">Entrega conforme condições estabelecidas no contrato e no edital. A Nota Fiscal Eletrônica (NF-e) deve constar o número desta Ordem de Fornecimento e o número do Contrato/Ata de Registro de Preços.</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="gcg-osof-form__rodape">
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Cancelar</span>
+        </button>
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--primary gcg-button--md" disabled>
+          <span class="gcg-button__label">Enviar Fornecedor</span>
+        </button>
+        <button type="submit" class="gcg-button gcg-button--solid gcg-button--primary gcg-button--md">
+          <span class="gcg-button__label">Salvar</span>
+        </button>
+      </div>
+      <p class="gcg-sr-only" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+</div>
+<div class="gcg-toaster" data-gcg-count="0"></div>
+<div class="gcg-sr-only" role="status" aria-live="polite"></div>
+<div class="gcg-sr-only" role="alert" aria-live="assertive"></div>
+<div id="gcg-emag-status" class="gcg-sr-only" role="status" aria-live="polite"></div>
+<!-- Moldes do gcg-behavior.js: a parte que abre de cada menu, lista, janela e grupo recolhido desta tela
+     (o gatilho aponta com data-gcg-popup). Não aparecem: o script copia para a página ao abrir e tira ao
+     fechar. Na aplicação, o servidor pode imprimir a mesma marcação assim. Ver o LEIA-ME, "Comportamento". -->
+<template id="gcg-molde-0">
+<div data-gcg-part data-gcg-mount="up:1" data-gcg-index="2">
+  <div class="gcg-topbar__menu gcg-action-menu__surface">
+    <div role="menu" id="gcg-menu-perfil-r4" class="gcg-action-menu__list" aria-label="Menu do perfil">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Configurar tela inicial</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-logout"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Sair</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 285px; left: 297px; width: 261.5px;">
+    <ul id="gcg-osof-campo-unidadeRequisitante-popup" role="listbox" aria-labelledby="gcg-osof-campo-unidadeRequisitante-rotulo" class="gcg-select-menu">
+      <li id="gcg-osof-campo-unidadeRequisitante-popup-op-0" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Almoxarifado Central</span>
+      </li>
+      <li id="gcg-osof-campo-unidadeRequisitante-popup-op-1" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">Gerência de Compras</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-osof-campo-unidadeRequisitante-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Gerência de Patrimônio</span>
+      </li>
+      <li id="gcg-osof-campo-unidadeRequisitante-popup-op-3" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Gerência de Tecnologia da Informação</span>
+      </li>
+      <li id="gcg-osof-campo-unidadeRequisitante-popup-op-4" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Superintendência de Gestão Integrada</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-2">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 566px; left: 869px; width: 92px;">
+    <ul id="gcg-osof-item-i1-unidade-popup" role="listbox" aria-label="Unid. Medida do item 1" class="gcg-select-menu">
+      <li id="gcg-osof-item-i1-unidade-popup-op-0" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">UN</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-osof-item-i1-unidade-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">CX</span>
+      </li>
+      <li id="gcg-osof-item-i1-unidade-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">KG</span>
+      </li>
+      <li id="gcg-osof-item-i1-unidade-popup-op-3" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">M</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-3">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 566px; left: 869px; width: 92px;">
+    <ul id="gcg-osof-item-i2-unidade-popup" role="listbox" aria-label="Unid. Medida do item 2" class="gcg-select-menu">
+      <li id="gcg-osof-item-i2-unidade-popup-op-0" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">UN</span>
+      </li>
+      <li id="gcg-osof-item-i2-unidade-popup-op-1" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">CX</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-osof-item-i2-unidade-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">KG</span>
+      </li>
+      <li id="gcg-osof-item-i2-unidade-popup-op-3" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">M</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<script src="../../biblioteca/js/gcg-icons.js"></script>
+<script src="../../biblioteca/js/gcg-motion.js"></script>
+<script src="../../biblioteca/js/gcg-behavior.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* gcg-aba-historico.css — composição de tela (HU-007 · Consultar tramitações; HU-008 · Consultar ocorrências), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Abas Status/Trâmites (HU-007) e Ocorrências (HU-008) — Figma, página 09, seções HU-007 · Consultar
+   tramitações (98:84168) e HU-008 · Consultar ocorrências (107:88592): o frame "painel · Status/Trâmites"
+   (ou "· Ocorrências") com o SectionCard do histórico. Só tokens.
+   A moldura do painel (8 em cima, 16 entre os blocos) está em Detalhe.css (.detalhe__painel); o cartão,
+   a linha do tempo e o estado vazio são os componentes da biblioteca, sem mudança. */
+
+/* Sem registros ou com falha, o EmptyState ocupa o lugar da linha do tempo dentro do cartão, sem
+   moldura própria (Figma: "EmptyState · sem tramitações" e "EmptyState · falha", sem borda e sem raio,
+   1094 × 212 e 1094 × 272 no conteúdo do SectionCard). */
+.gcg-aba-historico .gcg-section-card__content > .gcg-empty-state {
+  border: 0;
+  border-radius: 0;
+}

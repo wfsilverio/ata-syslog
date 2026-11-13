@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HU022 · Documentos OS/OF — L2 · 3 · Arquivo acima do limite</title>
+<!--
+  Tela:    HU022 · Documentos OS/OF
+  Linha:   L2 · Quando o arquivo não entra
+  Estado:  L2 · 3 · Arquivo acima do limite — Figma: Página 20 · seção HU022 · Documentos OS/OF, frame "L2 · 3 · Arquivo acima do limite"
+  Componentes (biblioteca/css/components/):
+    gcg-action-menu, gcg-alert, gcg-app-shell, gcg-badge, gcg-button, gcg-contract-header,
+    gcg-data-field, gcg-field, gcg-file-upload, gcg-icon, gcg-icon-button, gcg-input, gcg-link,
+    gcg-modal, gcg-page-header, gcg-scrim, gcg-section-card, gcg-sidebar, gcg-start-screen-dialog,
+    gcg-table, gcg-tabs, gcg-toast, gcg-tooltip, gcg-topbar
+  Composição de tela (telas/css/): gcg-detalhe, gcg-osof-acoes, gcg-osof-ordem
+  Gerado do protótipo em 10/11/2026. Dados fictícios.
+-->
+<link rel="stylesheet" href="../../biblioteca/css/gcg-bootstrap3.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-layers.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-motion.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-base.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-action-menu.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-alert.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-app-shell.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-badge.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-contract-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-data-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-file-upload.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-input.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-link.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-modal.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-page-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-scrim.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-section-card.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-sidebar.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-dialog.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-table.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tabs.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-toast.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tooltip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-topbar.css">
+<link rel="stylesheet" href="../css/gcg-detalhe.css">
+<link rel="stylesheet" href="../css/gcg-osof-acoes.css">
+<link rel="stylesheet" href="../css/gcg-osof-ordem.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-emag.css">
+</head>
+<body>
+<div class="gcg-app-shell" data-gcg-layout="wide" data-gcg-sidebar="expanded">
+  <a class="gcg-app-shell__skip" href="#gcg-conteudo">Ir para o conteúdo</a>
+  <header class="gcg-topbar gcg-app-shell__topbar">
+    <div class="gcg-topbar__left">
+      <button aria-expanded="true" aria-controls="gcg-app-sidebar" type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Menu" title="Menu">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-menu"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__system">SISLOG</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <span class="gcg-topbar__module">Gestão de Contratos</span>
+    </div>
+    <div class="gcg-topbar__right">
+      <div class="gcg-topbar__emag" role="toolbar" aria-label="Acessibilidade">
+        <button tabindex="0" aria-disabled="true" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Diminuir fonte" title="Diminuir fonte" data-gcg-emag="decrease">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_decrease"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Fonte padrão" title="Fonte padrão" data-gcg-emag="reset">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_size"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar fonte" title="Aumentar fonte" data-gcg-emag="increase">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_increase"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Negrito" aria-pressed="false" title="Negrito" data-gcg-emag="bold">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_bold"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar relevo" aria-pressed="false" title="Aumentar relevo" data-gcg-emag="relief">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-shadow"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar contraste" aria-pressed="false" title="Aumentar contraste" data-gcg-emag="contrast">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contrast"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Inverter cores" aria-pressed="false" title="Inverter cores" data-gcg-emag="invert">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-invert_colors"></use></svg>
+          </span>
+        </button>
+      </div>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <button type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Ajuda" title="Ajuda">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__unit">SEAD · Unidade 90001</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <div class="gcg-topbar__user">
+        <span class="gcg-topbar__user-info">
+          <span class="gcg-topbar__user-name" title="Ana Souza">Ana Souza</span>
+          <span class="gcg-topbar__user-profile" title="Gestor de Contrato">Gestor de Contrato</span>
+        </span>
+        <button type="button" class="gcg-topbar__menu-perfil" aria-haspopup="menu" aria-expanded="false" aria-label="Menu do perfil de Ana Souza" data-gcg-popup="gcg-molde-0">
+          <span class="gcg-topbar__avatar" aria-hidden="true">A</span>
+          <span class="gcg-icon gcg-icon--sm gcg-topbar__menu-seta">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="gcg-app-shell__nav">
+    <nav id="gcg-app-sidebar" class="gcg-sidebar" aria-label="Menu principal">
+      <ul class="gcg-sidebar__list">
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-dashboard"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Dashboard</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/contratos" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contract"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Gerir contratos</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--active gcg-sidebar-item--link" aria-current="true" href="/os-of" data-gcg-discover="true">
+            <span class="gcg-sidebar-item__indicator" aria-hidden="true"></span>
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-edit_note"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">OS/OF</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main id="gcg-conteudo" class="gcg-app-shell__main" tabindex="-1" style="--gcg-app-shell-gutter: 15px;">
+    <div class="gcg-page-header gcg-detalhe__bloco gcg-osof-ordem__cabecalho">
+      <nav class="gcg-page-header__breadcrumb" aria-label="Você está em">
+        <ol class="gcg-page-header__trail">
+          <li class="gcg-page-header__level">
+            <a class="gcg-page-header__crumb-link" href="/" data-gcg-discover="true">Dashboard</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <a class="gcg-page-header__crumb-link" href="/contratos" data-gcg-discover="true">Gerir contratos</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <a class="gcg-page-header__crumb-link" href="/contratos/704318/balances" data-gcg-discover="true">Contrato 704318</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <a class="gcg-page-header__crumb-link" href="/contratos/704318/orders" data-gcg-discover="true">OS/OF</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <span class="gcg-page-header__crumb gcg-page-header__crumb--current" aria-current="page">OS-0009/2026</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="gcg-page-header__main">
+        <div class="gcg-page-header__heading">
+          <div class="gcg-page-header__title-row">
+            <h1 id="gcg-osof-ordem-titulo" class="gcg-page-header__title">Ordem de Serviço OS-0009/2026</h1>
+            <span class="gcg-osof-ordem__selos">
+              <span class="gcg-badge gcg-badge--info">Em execução</span>
+            </span>
+          </div>
+        </div>
+        <div class="gcg-page-header__aside">
+          <div class="gcg-osof-ordem__acoes">
+            <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--sm gcg-osof-ordem__voltar">
+              <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-arrow_back"></use></svg>
+              </span>
+              <span class="gcg-button__label">Voltar para Gerir OS/OF</span>
+            </button>
+            <div class="gcg-osof-ordem__botoes">
+              <div class="gcg-osof-acoes gcg-osof-ordem__menu">
+                <div class="gcg-action-menu gcg-action-menu--end">
+                  <button id="gcg-action-menu-trigger-r7" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--outline gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de OS-0009/2026" title="Mais ações de OS-0009/2026" data-gcg-popup="gcg-molde-1">
+                    <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="gcg-detalhe__bloco gcg-osof-ordem__contrato" aria-labelledby="gcg-osof-ordem-contrato-titulo">
+      <h2 id="gcg-osof-ordem-contrato-titulo" class="gcg-osof-ordem__rotulo">Dados do Contrato da OS/OF</h2>
+      <section class="gcg-contract-header" aria-label="Identificação do contrato da OS/OF">
+        <dl class="gcg-contract-header__fields">
+          <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--situation">
+            <dt class="gcg-data-field__label">Situação</dt>
+            <dd class="gcg-data-field__value">
+              <span class="gcg-contract-header__situacao">
+                <span class="gcg-badge gcg-badge--success">Publicado</span>
+                <span class="gcg-badge gcg-badge--neutral">Vigente até 15/06/2027</span>
+              </span>
+            </dd>
+          </div>
+          <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--number">
+            <dt class="gcg-data-field__label">Número do Contrato</dt>
+            <dd class="gcg-data-field__value">418/2026</dd>
+          </div>
+          <div title="Serviços Gerais Ipê Amarelo Ltda" class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--supplier gcg-contract-header__field--clamp">
+            <dt class="gcg-data-field__label">Fornecedor</dt>
+            <dd class="gcg-data-field__value">Serviços Gerais Ipê Amarelo Ltda</dd>
+          </div>
+          <div title="Prestação de serviços continuados de limpeza, asseio e conservação predial" class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--object gcg-contract-header__field--clamp">
+            <dt class="gcg-data-field__label">Objeto</dt>
+            <dd class="gcg-data-field__value">Prestação de serviços continuados de limpeza, asseio e conservação predial</dd>
+          </div>
+        </dl>
+      </section>
+    </section>
+    <div class="gcg-tabs gcg-detalhe__bloco">
+      <div class="gcg-tabs__list" role="tablist" aria-label="Seções da ordem" aria-orientation="horizontal">
+        <button type="button" role="tab" id="gcg-osof-ordem-tab-balances" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Saldos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-osof-ordem-tab-general" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Dados gerais</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-osof-ordem-tab-documents" class="gcg-tabs__tab gcg-tabs__tab--selected" aria-selected="true" tabindex="0" aria-controls="gcg-osof-ordem-panel-documents">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Documentação</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-osof-ordem-tab-status-history" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Status/Trâmites</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <div role="tabpanel" id="gcg-osof-ordem-panel-documents" aria-labelledby="gcg-osof-ordem-tab-documents" tabindex="0" class="gcg-tabs-panel gcg-detalhe__painel gcg-osof-ordem__painel gcg-osof-docs">
+      <section class="gcg-section-card gcg-section-card--collapsible gcg-section-card--expanded gcg-osof-ordem__card gcg-osof-docs__incluir" aria-labelledby="gcg-section-cardr9-title" aria-describedby="gcg-section-cardr9-description">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><button type="button" id="gcg-section-cardr9-title" class="gcg-section-card__toggle" aria-expanded="true" aria-controls="gcg-section-cardr9-content">Incluir Documentos da OS/OF</button></h2>
+            <p class="gcg-section-card__description" id="gcg-section-cardr9-description">Evidências, Relatório de Fiscalização, Nota Empenho, Nota Fiscal e Outros</p>
+          </div>
+          <span class="gcg-icon gcg-icon--md gcg-section-card__chevron">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_less"></use></svg>
+          </span>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardr9-content">
+            <div class="gcg-osof-docs__categorias">
+              <div class="gcg-osof-docs__categoria" data-gcg-categoria="evidencias">
+                <div class="gcg-file-upload" role="group" aria-labelledby="gcg-campo-ra-rotulo" tabindex="-1">
+                  <div class="gcg-file-upload__field">
+                    <span id="gcg-campo-ra-rotulo" class="gcg-field__label">Evidências</span>
+                    <div class="gcg-file-upload__control">
+                      <button aria-describedby="gcg-campo-ra-ajuda" type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+                        <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                        </span>
+                        <span class="gcg-button__label">Anexar arquivos</span>
+                      </button>
+                      <input id="gcg-campo-ra" class="gcg-file-upload__native" multiple tabindex="-1" aria-hidden="true" hidden type="file">
+                      <input class="gcg-file-upload__native" tabindex="-1" aria-hidden="true" hidden type="file">
+                    </div>
+                    <p id="gcg-campo-ra-ajuda" class="gcg-field__helper">Selecione um arquivo</p>
+                  </div>
+                  <span class="gcg-sr-only" aria-live="polite" aria-atomic="true"></span>
+                </div>
+              </div>
+              <div class="gcg-osof-docs__categoria" data-gcg-categoria="relatorio">
+                <div class="gcg-file-upload" role="group" aria-labelledby="gcg-campo-rb-rotulo" tabindex="-1">
+                  <div class="gcg-file-upload__field">
+                    <span id="gcg-campo-rb-rotulo" class="gcg-field__label">Relatório de Fiscalização</span>
+                    <div class="gcg-file-upload__control">
+                      <button aria-describedby="gcg-campo-rb-ajuda" type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+                        <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                        </span>
+                        <span class="gcg-button__label">Anexar arquivos</span>
+                      </button>
+                      <input id="gcg-campo-rb" class="gcg-file-upload__native" multiple tabindex="-1" aria-hidden="true" hidden type="file">
+                      <input class="gcg-file-upload__native" tabindex="-1" aria-hidden="true" hidden type="file">
+                    </div>
+                    <p id="gcg-campo-rb-ajuda" class="gcg-field__helper">Selecione um arquivo</p>
+                  </div>
+                  <span class="gcg-sr-only" aria-live="polite" aria-atomic="true"></span>
+                </div>
+              </div>
+              <div class="gcg-osof-docs__categoria" data-gcg-categoria="notaEmpenho">
+                <div class="gcg-file-upload" role="group" aria-labelledby="gcg-campo-rc-rotulo" tabindex="-1">
+                  <div class="gcg-file-upload__field">
+                    <span id="gcg-campo-rc-rotulo" class="gcg-field__label">Nota Empenho</span>
+                    <div class="gcg-file-upload__control">
+                      <button aria-describedby="gcg-campo-rc-ajuda" type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+                        <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                        </span>
+                        <span class="gcg-button__label">Anexar arquivos</span>
+                      </button>
+                      <input id="gcg-campo-rc" class="gcg-file-upload__native" multiple tabindex="-1" aria-hidden="true" hidden type="file">
+                      <input class="gcg-file-upload__native" tabindex="-1" aria-hidden="true" hidden type="file">
+                    </div>
+                    <p id="gcg-campo-rc-ajuda" class="gcg-field__helper">Selecione um arquivo</p>
+                  </div>
+                  <span class="gcg-sr-only" aria-live="polite" aria-atomic="true"></span>
+                </div>
+              </div>
+              <div class="gcg-osof-docs__categoria" data-gcg-categoria="notaFiscal">
+                <div class="gcg-file-upload" role="group" aria-labelledby="gcg-campo-rd-rotulo" tabindex="-1">
+                  <div class="gcg-file-upload__field">
+                    <span id="gcg-campo-rd-rotulo" class="gcg-field__label">Nota Fiscal</span>
+                    <div class="gcg-file-upload__control">
+                      <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+                        <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                        </span>
+                        <span class="gcg-button__label">Anexar arquivos</span>
+                      </button>
+                      <input id="gcg-campo-rd" class="gcg-file-upload__native" multiple tabindex="-1" aria-hidden="true" hidden type="file">
+                      <input class="gcg-file-upload__native" tabindex="-1" aria-hidden="true" hidden type="file">
+                    </div>
+                  </div>
+                  <ul class="gcg-file-upload__list" aria-labelledby="gcg-campo-rd-rotulo">
+                    <li class="gcg-file-item gcg-file-item--error" data-gcg-state="error">
+                      <span class="gcg-icon gcg-icon--md gcg-file-item__icon">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-error"></use></svg>
+                      </span>
+                      <div class="gcg-file-item__info">
+                        <span class="gcg-file-item__name" title="NF-4471-digitalizada.pdf">NF-4471-digitalizada.pdf</span>
+                        <span class="gcg-file-item__meta">PDF · 12,4 MB</span>
+                        <span class="gcg-file-item__error">O arquivo excede o tamanho máximo de 10 MB.</span>
+                      </div>
+                      <div class="gcg-file-item__actions">
+                        <button aria-label="Trocar NF-4471-digitalizada.pdf" type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--sm">
+                          <span class="gcg-button__label">Trocar</span>
+                        </button>
+                        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Remover NF-4471-digitalizada.pdf" title="Remover NF-4471-digitalizada.pdf">
+                          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                          </span>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                  <span class="gcg-sr-only" aria-live="polite" aria-atomic="true"></span>
+                </div>
+              </div>
+              <div class="gcg-osof-docs__categoria" data-gcg-categoria="outros">
+                <div class="gcg-file-upload" role="group" aria-labelledby="gcg-campo-re-rotulo" tabindex="-1">
+                  <div class="gcg-file-upload__field">
+                    <span id="gcg-campo-re-rotulo" class="gcg-field__label">Outros</span>
+                    <div class="gcg-file-upload__control">
+                      <button aria-describedby="gcg-campo-re-ajuda" type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+                        <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                        </span>
+                        <span class="gcg-button__label">Anexar arquivos</span>
+                      </button>
+                      <input id="gcg-campo-re" class="gcg-file-upload__native" multiple tabindex="-1" aria-hidden="true" hidden type="file">
+                      <input class="gcg-file-upload__native" tabindex="-1" aria-hidden="true" hidden type="file">
+                    </div>
+                    <p id="gcg-campo-re-ajuda" class="gcg-field__helper">Selecione um arquivo</p>
+                  </div>
+                  <span class="gcg-sr-only" aria-live="polite" aria-atomic="true"></span>
+                </div>
+              </div>
+              <div class="gcg-osof-docs__rodape">
+                <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+                  <span class="gcg-button__label">Cancelar</span>
+                </button>
+                <button type="button" class="gcg-button gcg-button--solid gcg-button--primary gcg-button--md">
+                  <span class="gcg-button__label">Salvar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="gcg-data-table__card gcg-osof-docs__tabela">
+        <div class="gcg-data-table__viewport">
+          <div class="gcg-data-table__region" role="region" aria-labelledby="gcg-rf" tabindex="0">
+            <table class="gcg-data-table" style="--gcg-data-table-min-w: 68.75rem;">
+              <caption id="gcg-rf" class="gcg-sr-only">Documentos da ordem OS-0009/2026</caption>
+              <colgroup>
+                <col style="width: 4rem;">
+                <col>
+                <col style="width: 13.25rem;">
+                <col style="width: 7rem;">
+                <col style="width: 9.375rem;">
+                <col style="width: 8.5rem;">
+                <col style="width: 7.25rem;">
+                <col style="width: 8.125rem;">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left gcg-data-table__sticky-start">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Código</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Documento</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Descrição</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Data de Emissão</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Emitido por</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Status</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">AssinaGO?</span>
+                      </span>
+                    </span>
+                  </th>
+                  <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                    <span class="gcg-data-table__header-content">
+                      <span class="gcg-data-table__header-labels">
+                        <span class="gcg-data-table__header-label">Ações</span>
+                      </span>
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="gcg-data-table__group-row">
+                  <th scope="rowgroup" colspan="8" class="gcg-data-table__group-header">
+                    <button type="button" class="gcg-data-table__group-button" aria-expanded="true">
+                      <span class="gcg-data-table__group-content">
+                        <span class="gcg-icon gcg-icon--sm gcg-data-table__group-chevron">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                        </span>
+                        <span class="gcg-data-table__group-label">
+                          <span class="gcg-sr-only">Tipo: </span>
+                          <span class="gcg-data-table__group-value">Ordem de Serviço</span>
+                        </span>
+                        <span aria-hidden="true" class="gcg-badge gcg-badge--neutral gcg-data-table__group-badge">1</span>
+                        <span class="gcg-sr-only">1 documento</span>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+                <tr class="gcg-data-table__row" data-gcg-row-id="ordem-OS-0009/2026">
+                  <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong gcg-data-table__sticky-start">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">5590</span>
+                    </span>
+                  </th>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Ordem de Serviço OS-0009/2026</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Limpeza pós-obra do auditório</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">25/09/2026</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Ana Souza</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--two-lines">
+                    <span class="gcg-data-table__cell-content">
+                      <span class="gcg-data-table__line gcg-data-table__line--1">Assinado</span>
+                      <span class="gcg-data-table__line gcg-data-table__line--2">26/09/2026 17:05</span>
+                    </span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                    <span class="gcg-badge gcg-badge--success">Concluído</span>
+                  </td>
+                  <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--custom">
+                    <div class="gcg-data-table__actions">
+                      <a class="gcg-link gcg-link--sm" aria-label="Visualizar Ordem de Serviço OS-0009/2026" href="#documento-5590" data-gcg-visualizar="5590">
+                        <span class="gcg-link__label">Visualizar</span>
+                      </a>
+                      <div class="gcg-action-menu gcg-action-menu--end">
+                        <button id="gcg-action-menu-trigger-rg" aria-haspopup="menu" aria-expanded="false" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Mais ações de Ordem de Serviço OS-0009/2026" title="Mais ações de Ordem de Serviço OS-0009/2026" data-gcg-popup="gcg-molde-3">
+                          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-more_vert"></use></svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="gcg-sr-only" role="status"></p>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="gcg-toaster" data-gcg-count="0"></div>
+<div class="gcg-sr-only" role="status" aria-live="polite"></div>
+<div class="gcg-sr-only" role="alert" aria-live="assertive"></div>
+<div id="gcg-emag-status" class="gcg-sr-only" role="status" aria-live="polite"></div>
+<!-- Moldes do gcg-behavior.js: a parte que abre de cada menu, lista, janela e grupo recolhido desta tela
+     (o gatilho aponta com data-gcg-popup). Não aparecem: o script copia para a página ao abrir e tira ao
+     fechar. Na aplicação, o servidor pode imprimir a mesma marcação assim. Ver o LEIA-ME, "Comportamento". -->
+<template id="gcg-molde-0">
+<div data-gcg-part data-gcg-mount="up:1" data-gcg-index="2">
+  <div class="gcg-topbar__menu gcg-action-menu__surface">
+    <div role="menu" id="gcg-menu-perfil-r4" class="gcg-action-menu__list" aria-label="Menu do perfil">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Configurar tela inicial</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-logout"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Sair</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div role="tooltip" id="gcg-tooltip-rk" class="gcg-tooltip-bubble gcg-tooltip-bubble--bottom gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;" hidden>
+    <div class="gcg-tooltip-bubble__body">Esta ordem não pode mais ser editada, pois já possui Em execução (TRD) registrada.</div>
+    <span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span>
+  </div>
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--bottom" style="top: 144px; left: 1196px;">
+    <div role="menu" id="gcg-action-menu-r7" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-trigger-r7">
+      <span class="gcg-tooltip gcg-action-menu__item-hint">
+        <button type="button" role="menuitem" tabindex="-1" aria-describedby="gcg-tooltip-rk" class="gcg-action-menu-item gcg-action-menu-item--neutral" aria-disabled="true" data-gcg-menu-item="editar">
+          <span class="gcg-action-menu-item__label">Editar</span>
+        </button>
+      </span>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="cancelar">
+        <span class="gcg-action-menu-item__label">Cancelar</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--destructive" data-gcg-menu-item="excluir">
+        <span class="gcg-action-menu-item__label">Excluir</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-3">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-action-menu__surface gcg-action-menu__surface--floating gcg-action-menu__surface--align-end gcg-action-menu__surface--top" style="top: 899px; left: 1187px;">
+    <div role="menu" id="gcg-action-menu-rg" class="gcg-action-menu__list" aria-labelledby="gcg-action-menu-trigger-rg">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral" data-gcg-menu-item="Baixar">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Baixar</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<script src="../../biblioteca/js/gcg-icons.js"></script>
+<script src="../../biblioteca/js/gcg-motion.js"></script>
+<script src="../../biblioteca/js/gcg-behavior.js"></script>
+</body>
+</html>

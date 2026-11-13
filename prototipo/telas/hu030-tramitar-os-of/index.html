@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>HU030 · Tramitar Ordem de Serviço e Ordem de Fornecimento — todos os modelos</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;padding:24px 32px;background:#f4f5f7;color:#1d2433}
+h1{margin:0 0 4px;font-size:22px} p.sub{margin:0 0 24px;color:#5b6475}
+h2{font-size:16px;margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid #d8dce3}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px}
+.card{display:block;background:#fff;border:1px solid #d8dce3;border-radius:8px;overflow:hidden;text-decoration:none;color:inherit;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.15);border-color:#1a5fb4}
+.thumb{position:relative;height:225px;overflow:hidden;background:#fff;border-bottom:1px solid #eceef2}
+.thumb iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform:scale(.25);transform-origin:0 0;pointer-events:none}
+.nome{padding:10px 12px;font-size:13px;font-weight:600}
+</style></head><body>
+<p class="sub"><a href="../index.html">← todas as HUs</a></p>
+<h1>HU030 · Tramitar Ordem de Serviço e Ordem de Fornecimento</h1><p class="sub">8 modelos · clique em um para abrir em tela cheia</p>
+<section><h2>L1 · Acompanhar a ordem pela linha do tempo</h2><div class="grade"><a class="card" href="l1-1-status-tramites.html" target="_blank"><div class="thumb"><iframe src="l1-1-status-tramites.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L1 · 1 · Status/Trâmites</div></a><a class="card" href="l1-2-periodo-e-ordem-invertida.html" target="_blank"><div class="thumb"><iframe src="l1-2-periodo-e-ordem-invertida.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L1 · 2 · Período e ordem invertida</div></a><a class="card" href="l1-3-ordem-com-todas-as-etapas.html" target="_blank"><div class="thumb"><iframe src="l1-3-ordem-com-todas-as-etapas.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L1 · 3 · Ordem com todas as etapas</div></a></div></section><section><h2>L2 · Quando não há trâmite para mostrar</h2><div class="grade"><a class="card" href="l2-1-data-invertida.html" target="_blank"><div class="thumb"><iframe src="l2-1-data-invertida.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 1 · Data invertida</div></a><a class="card" href="l2-2-sem-tramitacoes.html" target="_blank"><div class="thumb"><iframe src="l2-2-sem-tramitacoes.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 2 · Sem tramitações</div></a><a class="card" href="l2-3-falha-na-consulta.html" target="_blank"><div class="thumb"><iframe src="l2-3-falha-na-consulta.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 3 · Falha na consulta</div></a><a class="card" href="l2-4-acesso-nao-autorizado.html" target="_blank"><div class="thumb"><iframe src="l2-4-acesso-nao-autorizado.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 4 · Acesso não autorizado</div></a></div></section><section><h2>L3 · Sequência das etapas</h2><div class="grade"><a class="card" href="l3-1-etapa-pendente.html" target="_blank"><div class="thumb"><iframe src="l3-1-etapa-pendente.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L3 · 1 · Etapa pendente</div></a></div></section>
+<script>
+// ajusta a escala das miniaturas à largura do card
+function ajusta(){document.querySelectorAll('.thumb').forEach(d=>{const s=d.clientWidth/1440;const f=d.querySelector('iframe');f.style.transform='scale('+s+')';d.style.height=(900*s)+'px';})}
+addEventListener('resize',ajusta);ajusta();
+</script></body></html>

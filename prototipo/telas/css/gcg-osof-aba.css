@@ -1,0 +1,98 @@
+/* gcg-osof-aba.css — composição de tela (HU019 · Emitir Ordem de Serviço; HU020 · Emitir Ordem de Fornecimento; HU021 · Emitir Termo de Recebimento Definitivo da OS/OF; HU023 · Emitir Despacho de Ordem de Pagamento; HU029 · Ateste de Ordem de Serviço e Ordem de Fornecimento; HU030 · Tramitar Ordem de Serviço e Ordem de Fornecimento), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* O cartão é o SectionCard "Ordens de Serviço" (ou "de Fornecimento"); dentro, de cima para baixo, 16 entre os blocos:
+   os filtros, a faixa da seleção (quando há marcadas), a grade, o Valor Total e a paginação. */
+
+/* ---------- ações do cartão: Em proposta · Emitir documento · Emitir OS (8 entre eles) ---------- */
+.gcg-osof-aba__acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+}
+
+/* ---------- filtros: Número 200 · Situação 220 · Período de emissão 180 · Até 180 · Pesquisar e Limpar ---------- */
+.gcg-osof-aba__filtros {
+  /* larguras do Figma (frame "filtros · aba OS/OF"); sem token de largura de campo */
+  --gcg-osof-aba-numero-w: 200px;
+  --gcg-osof-aba-situacao-w: 220px;
+  --gcg-osof-aba-data-w: 180px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--gcg-space-4);
+}
+.gcg-osof-aba__numero { width: var(--gcg-osof-aba-numero-w); }
+.gcg-osof-aba__situacao { width: var(--gcg-osof-aba-situacao-w); }
+.gcg-osof-aba__data { width: var(--gcg-osof-aba-data-w); }
+/* os botões descem 24 (a altura do rótulo e do espaço até o campo) e ficam 12 entre si */
+.gcg-osof-aba__botoes {
+  display: flex;
+  gap: var(--gcg-space-3);
+  padding-top: var(--gcg-space-6);
+}
+
+/* ---------- a faixa da seleção (composição local: action/primary-subtle, 12 × 16, raio 8) ---------- */
+.gcg-osof-aba__selecao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gcg-space-4);
+  padding: var(--gcg-space-3) var(--gcg-space-4);
+  border-radius: var(--gcg-radius-md);
+  background-color: var(--gcg-action-primary-subtle);
+  animation: gcg-motion-fade-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-osof-aba__selecao-resumo {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-8);
+  min-width: 0;
+}
+.gcg-osof-aba__selecao-quantidade {
+  margin: 0;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-heading-sm);
+  letter-spacing: var(--gcg-tracking-heading-sm);
+  white-space: nowrap;
+}
+/* o rótulo longo quebra em duas linhas, como no Figma (240 de largura) */
+.gcg-osof-aba__selecao-total {
+  --gcg-osof-aba-total-w: 240px;
+  width: var(--gcg-osof-aba-total-w);
+}
+.gcg-osof-aba__selecao-acoes {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-3);
+}
+
+/* ---------- a grade: sem moldura, só a linha de baixo (Figma: stroke border/subtle embaixo) ---------- */
+.gcg-osof-aba .gcg-osof-aba__tabela.gcg-data-table__card {
+  border-width: 0 0 var(--gcg-border-width-thin);
+  border-radius: 0;
+}
+/* a caixa da linha: a moldura que leva a dica (e entra no Tab quando a caixa está desabilitada) */
+.gcg-osof-aba__caixa {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--gcg-radius-sm);
+}
+.gcg-osof-aba__caixa:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* ---------- Valor Total das OS/OF (R$): à direita, 240 de largura ---------- */
+.gcg-osof-aba__total {
+  --gcg-osof-aba-total-w: 240px;
+  display: flex;
+  justify-content: flex-end;
+}
+.gcg-osof-aba__total > .gcg-data-field { width: var(--gcg-osof-aba-total-w); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gcg-osof-aba__selecao { animation: none; }
+}
+html[data-gcg-contrast='high'] .gcg-osof-aba__selecao { border: var(--gcg-border-width-thin) solid var(--gcg-border-strong); }

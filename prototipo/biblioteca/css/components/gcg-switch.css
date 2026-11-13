@@ -1,0 +1,106 @@
+/* gcg-switch.css — Switch · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Switch — Figma 35:2713 (página 05 › Formulário › Seleção › Linha · Switch).
+   rótulo Text/MD/Semibold text/strong · gap space/3 até a chave · trilho 36 × 20 (size/control-md × size/icon-md),
+   radius/full, padding space/half · bolinha 16 (size/icon-sm) surface/base · valor Sim/Não Text/MD/Regular
+   text/secondary a space/2 do trilho. Trilho: desligado border/strong · ligado action/primary ·
+   hover action/neutral / action/primary-hover · disabled border/default. */
+
+.gcg-switch {
+  --gcg-switch-track: var(--gcg-border-strong);
+  --gcg-switch-track-hover: var(--gcg-action-neutral);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-3);
+}
+.gcg-switch[data-gcg-checked] {
+  --gcg-switch-track: var(--gcg-action-primary);
+  --gcg-switch-track-hover: var(--gcg-action-primary-hover);
+}
+
+.gcg-switch__label {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+  cursor: pointer;
+}
+
+.gcg-switch__control {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gcg-switch__track {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--gcg-size-control-md);
+  height: var(--gcg-size-icon-md);
+  padding: var(--gcg-space-half);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-switch-track);
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+
+.gcg-switch__knob {
+  --gcg-switch-travel: calc(var(--gcg-size-control-md) - var(--gcg-size-icon-sm) - 2 * var(--gcg-space-half)); /* 36 − 16 − 2 × 2 = 16 */
+  --gcg-switch-stretch: 1.2;
+
+  width: var(--gcg-size-icon-sm);
+  height: var(--gcg-size-icon-sm);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-surface-base);
+  transform-origin: left center;
+  transition: transform var(--gcg-motion-base) var(--gcg-ease-spring);
+}
+/* ligado: a bolinha vai para a direita (36 − 16 − 2 × 2 = 16 px) */
+.gcg-switch[data-gcg-checked] .gcg-switch__knob { transform: translateX(var(--gcg-switch-travel)); }
+.gcg-switch:not([data-gcg-disabled]) .gcg-switch__control:active .gcg-switch__knob { transform: scaleX(var(--gcg-switch-stretch)); }
+.gcg-switch[data-gcg-checked]:not([data-gcg-disabled]) .gcg-switch__control:active .gcg-switch__knob {
+  transform: translateX(calc(var(--gcg-switch-travel) - (var(--gcg-switch-stretch) - 1) * var(--gcg-size-icon-sm))) scaleX(var(--gcg-switch-stretch));
+}
+
+.gcg-switch__value { animation: gcg-motion-fade-in var(--gcg-motion-fast) var(--gcg-ease-standard) backwards; }
+
+.gcg-switch__value {
+  min-width: 3ch; /* "Não" e "Sim" ocupam quase o mesmo espaço: nada pula ao alternar */
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  text-align: left;
+}
+
+/* hover (no rótulo ou na chave): o trilho escurece um passo */
+.gcg-switch:not([data-gcg-disabled]):has(.gcg-switch__label:hover, .gcg-switch__control:hover) .gcg-switch__track { background: var(--gcg-switch-track-hover); }
+
+/* focus: o anel fica no trilho */
+.gcg-switch__control:focus-visible .gcg-switch__track {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* disabled: trilho border/default (ligado e desligado; a bolinha e o texto diferenciam), valor text/disabled */
+.gcg-switch[data-gcg-disabled] { --gcg-switch-track: var(--gcg-border-default); }
+.gcg-switch[data-gcg-disabled] .gcg-switch__value { color: var(--gcg-text-disabled); }
+.gcg-switch[data-gcg-disabled] .gcg-switch__label,
+.gcg-switch[data-gcg-disabled] .gcg-switch__control { cursor: not-allowed; }
+
+/* ---------- alto contraste (barra eMAG): trilho com contorno branco, foco amarelo ---------- */
+html[data-gcg-contrast='high'] .gcg-switch__track { outline: var(--gcg-border-width-thin) solid var(--gcg-border-default); }
+html[data-gcg-contrast='high'] .gcg-switch__control:focus-visible .gcg-switch__track {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: var(--gcg-space-half);
+}

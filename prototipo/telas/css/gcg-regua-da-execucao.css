@@ -1,0 +1,76 @@
+/* gcg-regua-da-execucao.css — composição de tela (HU-015 · Painel do Analista Financeiro), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Régua da execução (HU-015, Cenários 02 a 04): o Valor Atualizado em três partes (liquidado, a
+   liquidar, não empenhado), com as chaves do empenhado e do disponível.
+   Composição local (snowflake): só esta tela usa; vira componente da biblioteca no terceiro uso. */
+
+.gcg-regua { display: flex; flex-direction: column; margin: 0; }
+.gcg-regua__chave { position: relative; box-sizing: border-box; height: 10px; min-width: 4px; cursor: default; }
+/* a chave é desenhada no ::before, para crescer da esquerda sem deformar o rótulo */
+.gcg-regua__chave::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--gcg-text-strong);
+  transform-origin: left center;
+  transition: transform var(--gcg-motion-slow) var(--gcg-ease-standard), border-color var(--gcg-motion-fast) var(--gcg-ease-standard), opacity var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-regua__chave--cima { margin-top: var(--gcg-space-6); }
+.gcg-regua__chave--cima::before { border-bottom: 0; }
+.gcg-regua__chave--baixo { margin-top: var(--gcg-space-2); margin-bottom: var(--gcg-space-6); }
+.gcg-regua__chave--baixo::before { border-top: 0; }
+.gcg-regua__chave-rotulo {
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  font-variant-numeric: tabular-nums;
+  transition: opacity var(--gcg-motion-base) var(--gcg-ease-standard), color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-regua__chave-rotulo strong { margin-right: var(--gcg-space-1); color: var(--gcg-text-strong); font-weight: 600; }
+.gcg-regua__chave--cima .gcg-regua__chave-rotulo { bottom: calc(100% + 4px); }
+.gcg-regua__chave--baixo .gcg-regua__chave-rotulo { top: calc(100% + 4px); }
+.gcg-regua__barra { display: flex; height: 28px; margin-top: var(--gcg-space-1); overflow: hidden; border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); border-radius: var(--gcg-radius-md); background: var(--gcg-surface-subtle); }
+.gcg-regua__parte { min-width: 0; cursor: default; transition: width var(--gcg-motion-slow) var(--gcg-ease-standard), opacity var(--gcg-motion-fast) var(--gcg-ease-standard), filter var(--gcg-motion-fast) var(--gcg-ease-standard); }
+.gcg-regua__parte + .gcg-regua__parte { box-shadow: inset 2px 0 0 var(--gcg-surface-base); }
+.gcg-regua__parte--liquidado { background: var(--gcg-action-primary); }
+.gcg-regua__parte--a-liquidar { background: var(--gcg-color-green-300); }
+.gcg-regua__parte--nao-empenhado { background: var(--gcg-surface-subtle); }
+.gcg-regua__nomes { display: flex; margin-top: var(--gcg-space-2); }
+.gcg-regua__nome {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-right: var(--gcg-space-2);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: opacity var(--gcg-motion-base) var(--gcg-ease-standard);
+}
+.gcg-regua__nome strong { color: var(--gcg-text-strong); font-weight: 600; }
+
+/* Destaque cruzado: o que está em foco fica pleno; o resto esmaece */
+.gcg-regua--com-destaque [data-gcg-estado='apagada'] { opacity: 0.35; }
+.gcg-regua--com-destaque .gcg-regua__parte[data-gcg-estado='acesa'] { filter: saturate(1.15); }
+.gcg-regua--com-destaque .gcg-regua__chave[data-gcg-estado='acesa']::before { border-color: var(--gcg-action-primary); border-width: 2px; }
+.gcg-regua--com-destaque .gcg-regua__chave[data-gcg-estado='acesa'] .gcg-regua__chave-rotulo strong { color: var(--gcg-action-primary); }
+
+/* Entrada (primeira carga): a barra enche da esquerda para a direita, parte por parte; as chaves se desenham depois */
+.gcg-regua:not(.gcg-regua--montada) .gcg-regua__chave::before { transform: scaleX(0); }
+.gcg-regua:not(.gcg-regua--montada) .gcg-regua__chave-rotulo,
+.gcg-regua:not(.gcg-regua--montada) .gcg-regua__nome { opacity: 0; }
+.gcg-regua--entrada .gcg-regua__parte--liquidado { transition: width 650ms var(--gcg-ease-standard); }
+.gcg-regua--entrada .gcg-regua__parte--a-liquidar { transition: width 420ms var(--gcg-ease-standard) 650ms; }
+.gcg-regua--entrada .gcg-regua__parte--nao-empenhado { transition: width 320ms var(--gcg-ease-standard) 1070ms; }
+.gcg-regua--entrada .gcg-regua__nome--liquidado { transition-delay: 450ms; }
+.gcg-regua--entrada .gcg-regua__nome--a-liquidar { transition-delay: 900ms; }
+.gcg-regua--entrada .gcg-regua__nome--nao-empenhado { transition-delay: 1250ms; }
+.gcg-regua--entrada .gcg-regua__chave--cima::before { transition-delay: 1100ms; }
+.gcg-regua--entrada .gcg-regua__chave--cima .gcg-regua__chave-rotulo { transition-delay: 1300ms; }
+.gcg-regua--entrada .gcg-regua__chave--baixo::before { transition-delay: 1400ms; }
+.gcg-regua--entrada .gcg-regua__chave--baixo .gcg-regua__chave-rotulo { transition-delay: 1600ms; }
+
+/* Alto contraste (barra eMAG): as partes ganham contorno, a cor não pode ser o único meio */
+html[data-gcg-contrast='high'] .gcg-regua__parte { outline: var(--gcg-border-width-thin) solid var(--gcg-border-strong); }

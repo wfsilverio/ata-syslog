@@ -1,0 +1,34 @@
+/* gcg-data-field.css — DataField · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* DataField — Figma 42:45798 (página 05 › Dados › Linha · DataField).
+   Rótulo Text/SM/Regular text/secondary · valor Text/MD/Medium text/strong (strong: Heading/MD) · gap space/1.
+   Largura: a do contêiner (no Figma, a instância estica ou tem largura fixa, conforme a grade). */
+
+.gcg-data-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+  margin: 0;
+}
+
+.gcg-data-field__label {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+.gcg-data-field__value {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-medium);
+  letter-spacing: var(--gcg-tracking-text-md-medium);
+  overflow-wrap: break-word;
+}
+.gcg-data-field--strong .gcg-data-field__value {
+  font: var(--gcg-font-heading-md);
+  letter-spacing: var(--gcg-tracking-heading-md);
+}
+
+/* Valor vazio: em branco, mas com a altura da linha do valor (a grade não pula) */
+.gcg-data-field__value--empty { min-height: 1lh; }

@@ -1,0 +1,67 @@
+/* gcg-osof-gerir.css — composição de tela (HU019 · Emitir Ordem de Serviço; HU024 · Editar Ordem de Serviço e Ordem de Fornecimento; HU025 · Excluir Ordem de Serviço e Ordem de Fornecimento; HU026 · Cancelar Ordem de Serviço e Ordem de Fornecimento; HU027 · Consultar Ordem de Serviço e Fornecimento), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* O AppShell já dá a margem (space/6) e o gap entre os blocos (space/4): cabeçalho, filtros e grade. */
+
+/* ---------- Filtros (HU027 C02): Buscar 440 · Tipo 220 · Situação 220 · o contador à direita ---------- */
+.gcg-osof-gerir__filtros {
+  /* sem token: as larguras dos campos no Figma (frame "filtros · HU027 C02") */
+  --gcg-osof-gerir-busca-w: 440px;
+  --gcg-osof-gerir-select-w: 220px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--gcg-space-4);
+}
+.gcg-osof-gerir__busca { flex: 0 1 var(--gcg-osof-gerir-busca-w); min-width: 0; }
+.gcg-osof-gerir__select { flex: 0 1 var(--gcg-osof-gerir-select-w); min-width: 0; }
+
+/* "Mostrando 37 de 37 registros": à direita, no meio da altura do controle (Figma: Text/SM/Regular, text/secondary) */
+.gcg-osof-gerir__contador {
+  display: flex;
+  align-items: center;
+  min-height: var(--gcg-size-control-md);
+  margin: 0 0 0 auto;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  white-space: nowrap;
+}
+
+/* ---------- Grade ---------- */
+/* O cartão da tabela tem a altura do conteúdo, como no Figma */
+.gcg-osof-gerir__tabela.gcg-data-table__card { flex: 0 1 auto; }
+
+/* Justificativa (HU027 C04 RN03 e RN04): até duas linhas, com reticências; o texto inteiro na dica */
+.gcg-osof-gerir__justificativa { display: block; min-width: 0; }
+.gcg-osof-gerir__justificativa > .gcg-tooltip { display: block; }
+.gcg-osof-gerir__abreviado {
+  display: -webkit-box;
+  overflow: hidden;
+  border-radius: var(--gcg-radius-sm);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow-wrap: break-word;
+}
+.gcg-osof-gerir__abreviado:focus { outline: none; }
+.gcg-osof-gerir__abreviado:focus-visible {
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+.gcg-osof-gerir__sem-justificativa { color: var(--gcg-text-default); }
+
+/* Ações: o olho e o ⋮ juntos, à direita (Figma: Table/ActionsCell, gap space/2) */
+.gcg-osof-gerir__acoes { gap: var(--gcg-space-2); }
+
+/* ---------- Sem permissão (HU027 · L4 · 1): o botão no tamanho dele, abaixo do aviso ---------- */
+.gcg-osof-gerir__voltar { display: flex; }
+
+/* ---------- Emitir OS/OF: a escolha do contrato (HU019 · L3 · 1) ---------- */
+/* A janela tem 560 de largura nesta tela (o Modal da biblioteca tem 440): sem token, a medida do Figma. */
+.gcg-modal.gcg-osof-gerir__janela-emitir { --gcg-modal-w: 560px; }
+.gcg-osof-gerir__emitir {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+}
+.gcg-osof-gerir__melhoria { align-self: flex-start; }

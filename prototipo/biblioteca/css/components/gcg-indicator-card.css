@@ -1,0 +1,123 @@
+/* gcg-indicator-card.css — IndicatorCard · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* IndicatorCard — Figma 337:226013 (página 05 › Dados › Linha · IndicatorCard).
+   Cartão surface/base · borda border/default · radius/lg · padding space/4 × space/5 · gap space/1.
+   Rótulo Text/SM/Semibold text/default · número Display (lg) ou Heading/LG (md) text/strong · apoio Text/SM/Regular
+   text/secondary. accent: faixa de 4 px à esquerda, na cor de dados do motivo. Largura: a da coluna da grade. */
+
+.gcg-indicator-card {
+  --gcg-indicator-card-accent: transparent;
+  --gcg-indicator-card-accent-w: var(--gcg-space-1); /* Figma: accent, 4 de largura */
+  --gcg-indicator-card-progress-h: 6px; /* Figma: IndicatorCard/Progress, 6 de altura — sem token */
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gcg-space-1);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: var(--gcg-space-4) var(--gcg-space-5);
+  overflow: hidden;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+  color: var(--gcg-text-default);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    border-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-indicator-card:hover:not(:disabled):not(.gcg-is-selected) { border-color: var(--gcg-border-strong); background: var(--gcg-surface-subtle); }
+.gcg-indicator-card:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; }
+.gcg-indicator-card:active:not(:disabled) { transform: scale(var(--gcg-motion-press)); }
+
+.gcg-indicator-card__accent {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--gcg-indicator-card-accent-w);
+  background: var(--gcg-indicator-card-accent);
+}
+.gcg-indicator-card--accent-red { --gcg-indicator-card-accent: var(--gcg-color-red-500); }
+.gcg-indicator-card--accent-orange { --gcg-indicator-card-accent: var(--gcg-color-orange-500); }
+.gcg-indicator-card--accent-yellow { --gcg-indicator-card-accent: var(--gcg-color-yellow-500); }
+.gcg-indicator-card--accent-neutral { --gcg-indicator-card-accent: var(--gcg-color-neutral-400); }
+.gcg-indicator-card--accent-cyan { --gcg-indicator-card-accent: var(--gcg-color-cyan-500); }
+.gcg-indicator-card--accent-violet { --gcg-indicator-card-accent: var(--gcg-color-violet-500); }
+
+.gcg-indicator-card__label {
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+.gcg-indicator-card__value-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--gcg-space-2); }
+.gcg-indicator-card__value {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-lg);
+  letter-spacing: var(--gcg-tracking-heading-lg);
+  font-variant-numeric: tabular-nums;
+}
+.gcg-indicator-card--lg .gcg-indicator-card__value { font: var(--gcg-font-display); letter-spacing: var(--gcg-tracking-display); }
+.gcg-indicator-card--tone-error .gcg-indicator-card__value { color: var(--gcg-state-error-text); }
+.gcg-indicator-card--tone-warning .gcg-indicator-card__value { color: var(--gcg-state-warning-text); }
+.gcg-indicator-card--tone-caution .gcg-indicator-card__value { color: var(--gcg-color-yellow-800); }
+.gcg-indicator-card__suffix,
+.gcg-indicator-card__caption {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+.gcg-indicator-card__progress {
+  display: block;
+  width: 100%;
+  height: var(--gcg-indicator-card-progress-h);
+  margin-top: var(--gcg-space-2);
+  overflow: hidden;
+  border-radius: var(--gcg-radius-sm);
+  background: var(--gcg-border-subtle);
+}
+.gcg-indicator-card__progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gcg-action-primary);
+  transform-origin: left center;
+  animation: gcg-indicator-card-fill var(--gcg-motion-data) var(--gcg-ease-standard) backwards;
+}
+@keyframes gcg-indicator-card-fill { from { transform: scaleX(0); } }
+
+/* selected: fundo, borda e texto (Cenário 06, RN02 da HU-012) — a borda dobra por dentro, sem mexer no tamanho */
+.gcg-indicator-card.gcg-is-selected {
+  border-color: var(--gcg-action-primary);
+  box-shadow: inset 0 0 0 var(--gcg-border-width-thin) var(--gcg-action-primary);
+  background: var(--gcg-color-green-50);
+}
+.gcg-indicator-card.gcg-is-selected .gcg-indicator-card__label,
+.gcg-indicator-card.gcg-is-selected .gcg-indicator-card__value,
+.gcg-indicator-card.gcg-is-selected .gcg-indicator-card__suffix { color: var(--gcg-color-green-800); }
+.gcg-indicator-card.gcg-is-selected .gcg-indicator-card__progress { background: var(--gcg-surface-base); }
+
+/* disabled: a contagem zero aparece, com o número apagado, e não clica */
+.gcg-indicator-card:disabled { cursor: default; }
+.gcg-indicator-card:disabled .gcg-indicator-card__value,
+.gcg-indicator-card:disabled .gcg-indicator-card__suffix { color: var(--gcg-text-muted); }
+
+/* Alto contraste (barra eMAG): o destaque não depende do fundo, que some; a faixa ganha contorno */
+html[data-gcg-contrast='high'] .gcg-indicator-card { border-color: var(--gcg-border-strong); }
+/* o amarelo de dados não vira token de estado: no alto contraste, o número fica branco como os outros */
+html[data-gcg-contrast='high'] .gcg-indicator-card--tone-caution .gcg-indicator-card__value { color: var(--gcg-text-strong); }
+html[data-gcg-contrast='high'] .gcg-indicator-card.gcg-is-selected { outline: var(--gcg-border-width-thick) solid var(--gcg-action-primary); outline-offset: 2px; }
+/* ficava branca sobre ele (1,04:1: o "Demandas pendentes" da HU-014, escolhido ao abrir, e a faixa escolhida da
+   HU-013). No alto contraste, o escolhido fica no fundo da tela, com o texto claro; o destaque é o contorno */
+html[data-gcg-contrast='high'] .gcg-indicator-card.gcg-is-selected { background: var(--gcg-surface-base); }
+html[data-gcg-contrast='high'] .gcg-indicator-card.gcg-is-selected .gcg-indicator-card__label,
+html[data-gcg-contrast='high'] .gcg-indicator-card.gcg-is-selected .gcg-indicator-card__value,
+html[data-gcg-contrast='high'] .gcg-indicator-card.gcg-is-selected .gcg-indicator-card__suffix { color: var(--gcg-text-strong); }
+html[data-gcg-contrast='high'] .gcg-indicator-card__accent,
+html[data-gcg-contrast='high'] .gcg-indicator-card__progress-fill { outline: var(--gcg-border-width-thin) solid var(--gcg-border-strong); }

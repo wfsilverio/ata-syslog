@@ -1,0 +1,26 @@
+/* gcg-scrim.css — Scrim · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Scrim — Figma 35:5847 (página 05 › Feedback › Linha · Modal › Fonte).
+   Fundo overlay/scrim: color/neutral/900 a 50%, com o alfa no próprio token; a camada fica a 100%.
+   Dentro do Modal o fade de entrada é --motion-base e a saída, --motion-fast (ver Modal.css). */
+
+.gcg-scrim {
+  --gcg-scrim-in-duration: var(--gcg-motion-slow);
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--gcg-z-scrim);
+  background: var(--gcg-overlay-scrim);
+  animation: gcg-motion-fade-in var(--gcg-scrim-in-duration) var(--gcg-ease-standard) backwards;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gcg-scrim--contained {
+  position: absolute;
+  z-index: auto;
+}
+
+.gcg-scrim--leaving {
+  animation: gcg-motion-fade-out var(--gcg-motion-base) var(--gcg-ease-exit) forwards;
+  pointer-events: none;
+}

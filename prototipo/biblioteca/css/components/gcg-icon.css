@@ -1,0 +1,6 @@
+/* gcg-icon.css — Icon · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+.gcg-icon { display: inline-flex; flex: none; color: inherit; }
+.gcg-icon svg { width: 100%; height: 100%; display: block; }
+.gcg-icon--sm { width: var(--gcg-size-icon-sm); height: var(--gcg-size-icon-sm); }
+.gcg-icon--md { width: var(--gcg-size-icon-md); height: var(--gcg-size-icon-md); }

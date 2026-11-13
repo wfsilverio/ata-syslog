@@ -1,0 +1,162 @@
+/* gcg-section-card.css — SectionCard · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* SectionCard — Figma 124:73997 (página 05 › Estrutura e navegação › Linha · SectionCard).
+
+   Cartão surface/base · borda border-width/thin border/subtle · radius/lg · sem padding e sem gap:
+   o cabeçalho encosta nas bordas (é ele que pinta no hover e ganha o anel no foco).
+   Cabeçalho: gap space/4, centrado na vertical · padding space/6 · space/6 · space/4 · space/6
+   (aberta) ou space/6 nos quatro lados (recolhida). Conteúdo: coluna, gap space/4, padding
+   0 · space/6 · space/6 · space/6. Aberta com textos de uma linha: 24 do topo ao título, 16 até o
+   conteúdo, 24 embaixo. */
+
+.gcg-section-card {
+  /* Os cantos do cabeçalho acompanham os do cartão por dentro da borda de 1 px (no Figma, radius/lg
+     no próprio cabeçalho; aqui o raio interno, para o fundo do hover não sobrar nos cantos). */
+  --gcg-section-card-inner-radius: calc(var(--gcg-radius-lg) - var(--gcg-border-width-thin));
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+}
+
+/* ---------- cabeçalho ---------- */
+.gcg-section-card__header {
+  position: relative; /* referência da área de clique do botão (::after) */
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-4);
+  padding: var(--gcg-space-6) var(--gcg-space-6) var(--gcg-space-4);
+  border-radius: var(--gcg-section-card-inner-radius) var(--gcg-section-card-inner-radius) 0 0;
+  background-color: var(--gcg-surface-base);
+
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard),
+    padding-bottom var(--gcg-motion-slow) var(--gcg-ease-standard);
+}
+.gcg-section-card--collapsed .gcg-section-card__header {
+  padding: var(--gcg-space-6);
+  border-radius: var(--gcg-section-card-inner-radius);
+}
+
+.gcg-section-card__heading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+}
+.gcg-section-card__title {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-sm);
+  letter-spacing: var(--gcg-tracking-heading-sm);
+  overflow-wrap: anywhere;
+}
+.gcg-section-card__description {
+  margin: 0;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+}
+
+/* O botão do Disclosure: o texto do título, sem cara de botão. A área de clique (::after) cobre o
+   cabeçalho inteiro — título, descrição e chevron. */
+.gcg-section-card__toggle {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.gcg-section-card__toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Ações: fora do botão e por cima da área de clique dele. */
+.gcg-section-card__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-2);
+}
+
+/* Chevron: size/icon-md, text/secondary, decorativo (o Icon já sai com aria-hidden). Gira 180° junto
+   Figma (expand_less aberta, expand_more recolhida). */
+.gcg-section-card__chevron {
+  flex: none;
+  color: var(--gcg-text-secondary);
+}
+
+/* state=hover: fundo surface/hover no cabeçalho inteiro (só com o ponteiro sobre a área do botão —
+   sobre as ações, não). */
+.gcg-section-card--collapsible .gcg-section-card__header:has(.gcg-section-card__toggle:hover) {
+  background-color: var(--gcg-surface-hover);
+}
+
+/* state=focus: fundo surface/base e o anel da biblioteca (DD-004) em volta do cabeçalho, desenhado
+   por cima do conteúdo. O contorno transparente aparece nos modos de cor forçada do sistema. */
+.gcg-section-card__header:has(.gcg-section-card__toggle:focus-visible) {
+  z-index: 1;
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background-color: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* ---------- conteúdo ---------- */
+/* exceção da regra de só transform e opacity: abrir e recolher é mudar a altura. */
+.gcg-section-card__collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  min-width: 0;
+}
+.gcg-section-card--collapsible .gcg-section-card__collapse {
+  transition: grid-template-rows var(--gcg-motion-slow) var(--gcg-ease-standard);
+}
+.gcg-section-card--collapsed .gcg-section-card__collapse { grid-template-rows: 0fr; }
+.gcg-section-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  min-width: 0;
+  min-height: 0; /* a linha da grade pode ir a zero */
+  padding: 0 var(--gcg-space-6) var(--gcg-space-6);
+}
+/* Recolhida: oculto com `hidden`, sem desmontar. O display: flex acima venceria o [hidden]. */
+.gcg-section-card__content[hidden] { display: none; }
+/* Na seção recolhível, o `hidden` só esconde no fim da transição (allow-discrete): o conteúdo continua
+   desenhado enquanto a altura fecha; ao abrir, aparece já no começo. Recortado só durante o movimento. */
+.gcg-section-card--collapsible .gcg-section-card__content {
+  transition: display var(--gcg-motion-slow) allow-discrete;
+}
+.gcg-section-card__collapse[data-gcg-animating] > .gcg-section-card__content { overflow: hidden; }
+
+/* ---------- alto contraste (barra eMAG) ---------- */
+html[data-gcg-contrast='high'] .gcg-section-card { border-width: var(--gcg-border-width-thick); }
+html[data-gcg-contrast='high'] .gcg-section-card--collapsible .gcg-section-card__header:has(.gcg-section-card__toggle:hover) {
+  background-color: var(--gcg-surface-base);
+  text-decoration: underline;
+}
+html[data-gcg-contrast='high'] .gcg-section-card__header:has(.gcg-section-card__toggle:focus-visible) {
+  outline-color: var(--gcg-border-focus);
+}
+/* O contorno amarelo já envolve o cabeçalho inteiro: a rede de segurança do foco (emag.css) não
+   desenha um segundo contorno em volta do texto do botão. */
+html[data-gcg-contrast='high'] .gcg-section-card__toggle:focus-visible { outline: none !important; }

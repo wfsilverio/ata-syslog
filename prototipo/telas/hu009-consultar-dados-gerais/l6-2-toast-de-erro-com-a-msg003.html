@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HU-009 · Consultar dados gerais — L6 · 2 · Toast de erro com a MSG003</title>
+<!--
+  Tela:    HU-009 · Consultar dados gerais
+  Linha:   L6 · FE04 · Falha ao acessar o PNCP
+  Estado:  L6 · 2 · Toast de erro com a MSG003 — Figma: Página 09 · seção HU-009 · Consultar dados gerais, frame "L6 · 2 · Toast de erro com a MSG003"
+  Componentes (biblioteca/css/components/):
+    gcg-action-menu, gcg-alert, gcg-app-shell, gcg-badge, gcg-button, gcg-contract-header,
+    gcg-data-field, gcg-field, gcg-icon, gcg-icon-button, gcg-input, gcg-link, gcg-modal,
+    gcg-page-header, gcg-scrim, gcg-section-card, gcg-sidebar, gcg-start-screen-dialog, gcg-table,
+    gcg-tabs, gcg-toast, gcg-tooltip, gcg-topbar
+  Composição de tela (telas/css/): gcg-aba-dados-gerais, gcg-detalhe
+  Estado parado: um controle aparece com o cursor em cima ou com o foco (data-gcg-force-state),
+    como no frame do Figma. É só demonstração (gcg-demo-states.css): na aplicação, sai.
+  Rolagem: no Figma, .gcg-app-shell__main a 1066px do topo. O arquivo abre no topo.
+  Gerado do protótipo em 27/10/2026. Dados fictícios.
+-->
+<link rel="stylesheet" href="../../biblioteca/css/gcg-bootstrap3.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-layers.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-motion.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-base.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-demo-states.css"><!-- só demonstração; antes dos componentes, como no CSS de origem -->
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-action-menu.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-alert.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-app-shell.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-badge.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-contract-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-data-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-input.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-link.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-modal.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-page-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-scrim.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-section-card.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-sidebar.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-dialog.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-table.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tabs.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-toast.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tooltip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-topbar.css">
+<link rel="stylesheet" href="../css/gcg-aba-dados-gerais.css">
+<link rel="stylesheet" href="../css/gcg-detalhe.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-emag.css">
+</head>
+<body>
+<div class="gcg-app-shell" data-gcg-layout="wide" data-gcg-sidebar="expanded">
+  <a class="gcg-app-shell__skip" href="#gcg-conteudo">Ir para o conteúdo</a>
+  <header class="gcg-topbar gcg-app-shell__topbar">
+    <div class="gcg-topbar__left">
+      <button aria-expanded="true" aria-controls="gcg-app-sidebar" type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Menu" title="Menu">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-menu"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__system">SISLOG</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <span class="gcg-topbar__module">Gestão de Contratos</span>
+    </div>
+    <div class="gcg-topbar__right">
+      <div class="gcg-topbar__emag" role="toolbar" aria-label="Acessibilidade">
+        <button tabindex="0" aria-disabled="true" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Diminuir fonte" title="Diminuir fonte" data-gcg-emag="decrease">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_decrease"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Fonte padrão" title="Fonte padrão" data-gcg-emag="reset">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_size"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar fonte" title="Aumentar fonte" data-gcg-emag="increase">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_increase"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Negrito" aria-pressed="false" title="Negrito" data-gcg-emag="bold">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_bold"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar relevo" aria-pressed="false" title="Aumentar relevo" data-gcg-emag="relief">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-shadow"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar contraste" aria-pressed="false" title="Aumentar contraste" data-gcg-emag="contrast">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contrast"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Inverter cores" aria-pressed="false" title="Inverter cores" data-gcg-emag="invert">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-invert_colors"></use></svg>
+          </span>
+        </button>
+      </div>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <button type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Ajuda" title="Ajuda">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__unit">SEAD · Unidade 90001</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <div class="gcg-topbar__user">
+        <span class="gcg-topbar__user-info">
+          <span class="gcg-topbar__user-name" title="Ana Souza">Ana Souza</span>
+          <span class="gcg-topbar__user-profile" title="Gestor de Contrato">Gestor de Contrato</span>
+        </span>
+        <button type="button" class="gcg-topbar__menu-perfil" aria-haspopup="menu" aria-expanded="false" aria-label="Menu do perfil de Ana Souza" data-gcg-popup="gcg-molde-0">
+          <span class="gcg-topbar__avatar" aria-hidden="true">A</span>
+          <span class="gcg-icon gcg-icon--sm gcg-topbar__menu-seta">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="gcg-app-shell__nav">
+    <nav id="gcg-app-sidebar" class="gcg-sidebar" aria-label="Menu principal">
+      <ul class="gcg-sidebar__list">
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-dashboard"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Dashboard</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--active gcg-sidebar-item--link" aria-current="true" href="/contratos" data-gcg-discover="true">
+            <span class="gcg-sidebar-item__indicator" aria-hidden="true"></span>
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contract"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Gerir contratos</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main id="gcg-conteudo" class="gcg-app-shell__main" tabindex="-1" style="--gcg-app-shell-gutter: 15px;">
+    <div class="gcg-page-header gcg-detalhe__bloco">
+      <nav class="gcg-page-header__breadcrumb" aria-label="Você está em">
+        <ol class="gcg-page-header__trail">
+          <li class="gcg-page-header__level">
+            <a class="gcg-page-header__crumb-link" href="/" data-gcg-discover="true">Dashboard</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <a class="gcg-page-header__crumb-link" href="/contratos" data-gcg-discover="true">Gerir contratos</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <span class="gcg-page-header__crumb gcg-page-header__crumb--current" aria-current="page">Contrato 704451</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="gcg-page-header__main">
+        <div class="gcg-page-header__heading">
+          <h1 id="gcg-detalhe-titulo" class="gcg-page-header__title">Contrato 704451</h1>
+        </div>
+      </div>
+    </div>
+    <section class="gcg-contract-header gcg-detalhe__bloco" aria-label="Identificação do contrato">
+      <dl class="gcg-contract-header__fields">
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--situation">
+          <dt class="gcg-data-field__label">Situação</dt>
+          <dd class="gcg-data-field__value">
+            <span class="gcg-contract-header__situacao">
+              <span class="gcg-badge gcg-badge--success">Publicado</span>
+              <span class="gcg-badge gcg-badge--neutral">Vigente até 15/03/2027</span>
+            </span>
+          </dd>
+        </div>
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--number">
+          <dt class="gcg-data-field__label">Número do Contrato</dt>
+          <dd class="gcg-data-field__value">449/2026</dd>
+        </div>
+        <div title="Serra Dourada Serviços S.A." class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--supplier gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Fornecedor</dt>
+          <dd class="gcg-data-field__value">Serra Dourada Serviços S.A.</dd>
+        </div>
+        <div title="Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD" class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--object gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Objeto</dt>
+          <dd class="gcg-data-field__value">Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD</dd>
+        </div>
+      </dl>
+    </section>
+    <div class="gcg-tabs gcg-detalhe__bloco">
+      <div class="gcg-tabs__list" role="tablist" aria-label="Seções do contrato" aria-orientation="horizontal">
+        <button type="button" role="tab" id="gcg-detalhe-tab-balances" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Saldos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-general" class="gcg-tabs__tab gcg-tabs__tab--selected" aria-selected="true" tabindex="0" aria-controls="gcg-detalhe-panel-general">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Dados gerais</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-documents" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Documentação</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-occurrences" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Ocorrências</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-notices" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Avisos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-status-history" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Status/Trâmites</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-amendments" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Aditivos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-apostilles" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Apostilamentos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-team" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Equipe</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <div role="tabpanel" id="gcg-detalhe-panel-general" aria-labelledby="gcg-detalhe-tab-general" tabindex="0" class="gcg-tabs-panel gcg-detalhe__painel gcg-aba-dados-gerais">
+      <section class="gcg-section-card gcg-section-card--expanded gcg-aba-dados-gerais__secao" aria-labelledby="gcg-section-cardr8-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardr8-title">Dados do Contrato</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardr8-content">
+            <div class="gcg-aba-dados-gerais__bloco">
+              <h3 class="gcg-aba-dados-gerais__subtitulo">Identificação</h3>
+              <dl class="gcg-aba-dados-gerais__grade">
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Código do Contrato</dt>
+                  <dd class="gcg-data-field__value">704451</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Tipo do Contrato</dt>
+                  <dd class="gcg-data-field__value">Contrato</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Órgão</dt>
+                  <dd class="gcg-data-field__value">SEAD</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Fornecedor</dt>
+                  <dd class="gcg-data-field__value">Serra Dourada Serviços S.A. — 12.376.555/0001-08</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo gcg-aba-dados-gerais__campo--largo">
+                  <dt class="gcg-data-field__label">Objeto Contrato</dt>
+                  <dd class="gcg-data-field__value">Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Número do Processo</dt>
+                  <dd class="gcg-data-field__value">202600417319022</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Nº Sequencial</dt>
+                  <dd class="gcg-data-field__value">449</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Ano Contrato</dt>
+                  <dd class="gcg-data-field__value">2026</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="gcg-aba-dados-gerais__bloco">
+              <h3 class="gcg-aba-dados-gerais__subtitulo">Valores e pagamento</h3>
+              <dl class="gcg-aba-dados-gerais__grade">
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Total do Contrato</dt>
+                  <dd class="gcg-data-field__value">R$ 1.376.220,00</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Mensal do Contrato</dt>
+                  <dd class="gcg-data-field__value">R$ 114.685,00</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Prazo para Pagamento (dias)</dt>
+                  <dd class="gcg-data-field__value">30</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo gcg-aba-dados-gerais__campo--largo">
+                  <dt class="gcg-data-field__label">Forma de Pagamento</dt>
+                  <dd class="gcg-data-field__value">Mensal, mediante ateste da nota fiscal pela fiscalização</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="gcg-aba-dados-gerais__bloco">
+              <h3 class="gcg-aba-dados-gerais__subtitulo">Prazos e vigência</h3>
+              <dl class="gcg-aba-dados-gerais__grade">
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Início da Vigência</dt>
+                  <dd class="gcg-data-field__value">16/03/2026</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Fim da Vigência</dt>
+                  <dd class="gcg-data-field__value">15/03/2027</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Vigência (meses)</dt>
+                  <dd class="gcg-data-field__value">12</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Data da Assinatura</dt>
+                  <dd class="gcg-data-field__value">16/03/2026</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Início da Execução</dt>
+                  <dd class="gcg-data-field__value">16/03/2026</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Prazo Execução (dias)</dt>
+                  <dd class="gcg-data-field__value">365</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Prazo Assinatura (dias)</dt>
+                  <dd class="gcg-data-field__value">5</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Validade Proposta (dias)</dt>
+                  <dd class="gcg-data-field__value">60</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Prorrogável?</dt>
+                  <dd class="gcg-data-field__value">Sim</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="gcg-aba-dados-gerais__bloco">
+              <h3 class="gcg-aba-dados-gerais__subtitulo">Classificação</h3>
+              <dl class="gcg-aba-dados-gerais__grade">
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Classificação</dt>
+                  <dd class="gcg-data-field__value">Prazo certo</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Natureza do Objeto</dt>
+                  <dd class="gcg-data-field__value">Serviços</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Instrumento Contratual</dt>
+                  <dd class="gcg-data-field__value">Termo de contrato</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Grupo do Contrato</dt>
+                  <dd class="gcg-data-field__value">Serviços</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">SubGrupo do Contrato</dt>
+                  <dd class="gcg-data-field__value">Vigilância e segurança</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Forma de Entrega</dt>
+                  <dd class="gcg-data-field__value">Execução contínua</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Contrato com Convênio?</dt>
+                  <dd class="gcg-data-field__value">Não</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Participação de Consórcio?</dt>
+                  <dd class="gcg-data-field__value">Não</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                  <dt class="gcg-data-field__label">Objeto Especial?</dt>
+                  <dd class="gcg-data-field__value">Não</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-aba-dados-gerais__secao" aria-labelledby="gcg-section-cardr9-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardr9-title">Dados da Contratação</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardr9-content">
+            <dl class="gcg-aba-dados-gerais__grade">
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Nº da Contratação</dt>
+                <dd class="gcg-data-field__value">583231</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Ano Exercício</dt>
+                <dd class="gcg-data-field__value">2026</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Modalidade</dt>
+                <dd class="gcg-data-field__value">Pregão Eletrônico</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Processo da Contratação</dt>
+                <dd class="gcg-data-field__value">202600417318870</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Exclusivo MeEpp</dt>
+                <dd class="gcg-data-field__value">Não</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Divisão Item/Lote</dt>
+                <dd class="gcg-data-field__value">Lote</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Tipo do Objeto</dt>
+                <dd class="gcg-data-field__value">Serviço</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Regime de Execução</dt>
+                <dd class="gcg-data-field__value">Empreitada por preço global</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo gcg-aba-dados-gerais__campo--largo">
+                <dt class="gcg-data-field__label">Resumo do Objeto</dt>
+                <dd class="gcg-data-field__value">Vigilância patrimonial das unidades da SEAD</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo gcg-aba-dados-gerais__campo--largo">
+                <dt class="gcg-data-field__label">Descrição do Objeto</dt>
+                <dd class="gcg-data-field__value">Prestação de serviço continuado de vigilância patrimonial nas unidades da SEAD, com postos de vigilância armada em escala 12x36, nos turnos diurno e noturno, e postos de vigilância desarmada em jornada de 44 horas semanais, com uniformes, equipamentos e supervisão a cargo da contratada.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-aba-dados-gerais__secao" aria-labelledby="gcg-section-cardra-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardra-title">Produto Contratado</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardra-content">
+            <div class="gcg-data-table__card gcg-aba-dados-gerais__produtos">
+              <div class="gcg-data-table__viewport">
+                <div class="gcg-data-table__region" role="region" aria-labelledby="gcg-rb" tabindex="0">
+                  <table class="gcg-data-table" style="--gcg-data-table-min-w: 27.5rem;">
+                    <caption id="gcg-rb" class="gcg-sr-only">Produtos contratados</caption>
+                    <colgroup><col><col style="width: 12.5rem;"></colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__header-content">
+                            <span class="gcg-data-table__header-labels">
+                              <span class="gcg-data-table__header-label">Produto Contratado</span>
+                            </span>
+                          </span>
+                        </th>
+                        <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--right">
+                          <span class="gcg-data-table__header-content">
+                            <span class="gcg-data-table__header-labels">
+                              <span class="gcg-data-table__header-label">Valor</span>
+                            </span>
+                          </span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="gcg-data-table__row" data-gcg-row-id="704451-1">
+                        <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Posto de vigilância armada 12x36 diurno</span>
+                          </span>
+                        </th>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--right">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">R$ 612.840,00</span>
+                          </span>
+                        </td>
+                      </tr>
+                      <tr class="gcg-data-table__row gcg-data-table__row--zebra" data-gcg-row-id="704451-2">
+                        <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Posto de vigilância armada 12x36 noturno</span>
+                          </span>
+                        </th>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--right">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">R$ 548.160,00</span>
+                          </span>
+                        </td>
+                      </tr>
+                      <tr class="gcg-data-table__row" data-gcg-row-id="704451-3">
+                        <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Posto de vigilância desarmada 44 horas semanais</span>
+                          </span>
+                        </th>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--right">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">R$ 215.220,00</span>
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p class="gcg-sr-only" role="status"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-aba-dados-gerais__secao" aria-labelledby="gcg-section-cardrc-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardrc-title">Portal Nacional de Contratações Públicas</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardrc-content">
+            <dl class="gcg-aba-dados-gerais__grade">
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Integrado?</dt>
+                <dd class="gcg-data-field__value">Sim</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo">
+                <dt class="gcg-data-field__label">Sequencial PNCP</dt>
+                <dd class="gcg-data-field__value">318</dd>
+              </div>
+              <div class="gcg-data-field gcg-data-field--default gcg-aba-dados-gerais__campo gcg-aba-dados-gerais__campo--link">
+                <dt class="gcg-data-field__label">Link PNCP</dt>
+                <dd class="gcg-data-field__value">
+                  <span class="gcg-tooltip">
+                    <a id="gcg-dados-gerais-link-pncp" class="gcg-link gcg-link--md" target="_blank" rel="noopener noreferrer" href="https://pncp.gov.br/app/contratos" aria-describedby="gcg-tooltip-rd" data-gcg-force-state="focus">
+                      <span class="gcg-link__label">Abrir no PNCP</span>
+                      <span class="gcg-sr-only"> (abre em nova aba)</span>
+                      <span class="gcg-icon gcg-icon--sm gcg-link__icon">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-open_in_new"></use></svg>
+                      </span>
+                    </a>
+                  </span>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <p class="gcg-sr-only" role="status"></p>
+    </div>
+  </main>
+</div>
+<div class="gcg-toaster" data-gcg-count="1">
+  <div class="gcg-toast gcg-toast--error gcg-toast--live" data-gcg-toast-id="1">
+    <span class="gcg-icon gcg-icon--md gcg-toast__icon">
+      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-error"></use></svg>
+    </span>
+    <p class="gcg-toast__message">Não foi possível acessar as informações do contrato no PNCP. Tente novamente.</p>
+    <span class="gcg-toast__close">
+      <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar aviso" title="Fechar aviso">
+        <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+        </span>
+      </button>
+    </span>
+  </div>
+</div>
+<div class="gcg-sr-only" role="status" aria-live="polite"></div>
+<div class="gcg-sr-only" role="alert" aria-live="assertive">
+  <p>Não foi possível acessar as informações do contrato no PNCP. Tente novamente.</p>
+</div>
+<div role="tooltip" id="gcg-tooltip-rd" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Abre o Portal Nacional de Contratações Públicas em nova aba</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div id="gcg-emag-status" class="gcg-sr-only" role="status" aria-live="polite"></div>
+<!-- Moldes do gcg-behavior.js: a parte que abre de cada menu, lista, janela e grupo recolhido desta tela
+     (o gatilho aponta com data-gcg-popup). Não aparecem: o script copia para a página ao abrir e tira ao
+     fechar. Na aplicação, o servidor pode imprimir a mesma marcação assim. Ver o LEIA-ME, "Comportamento". -->
+<template id="gcg-molde-0">
+<div data-gcg-part data-gcg-mount="up:1" data-gcg-index="2">
+  <div class="gcg-topbar__menu gcg-action-menu__surface">
+    <div role="menu" id="gcg-menu-perfil-r4" class="gcg-action-menu__list" aria-label="Menu do perfil">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Configurar tela inicial</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-logout"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Sair</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<script src="../../biblioteca/js/gcg-icons.js"></script>
+<script src="../../biblioteca/js/gcg-motion.js"></script>
+<script src="../../biblioteca/js/gcg-behavior.js"></script>
+</body>
+</html>

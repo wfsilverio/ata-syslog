@@ -1,0 +1,29 @@
+/* gcg-aba-equipe.css — composição de tela (HU-005 · Consultar equipe), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Aba Equipe — HU-005 · Consultar Equipe (Figma, página 09, seção HU-005 · Consultar equipe, nó
+   83:63519: o frame "painel · Equipe", com a "barra · Função e Adicionar" e a tabela). Só tokens.
+   A moldura do painel (8 em cima, 16 entre os blocos) está em Detalhe.css (.detalhe__painel). */
+
+/* A barra: o filtro Função à esquerda e Adicionar à direita, alinhados pela base (Figma: Select de
+   280 × 60 — rótulo de 20, 4 e o controle de 36 — e Button md de 36, na mesma linha de base). Sem o
+   filtro (carregando, falha, um integrante ou nenhum), só Adicionar, à direita (L1 · 3, L4, L6). */
+.gcg-aba-equipe__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--gcg-space-4);
+}
+.gcg-aba-equipe__barra--com-filtro {
+  justify-content: space-between;
+}
+
+/* O filtro Função: os 280 do Figma, em rem, para acompanhar o aumento de fonte da barra eMAG. */
+.gcg-aba-equipe__funcao {
+  --gcg-aba-equipe-funcao-w: 17.5rem; /* Figma: Select · Função, 280 de largura em 1440 */
+  width: min(100%, var(--gcg-aba-equipe-funcao-w));
+}
+
+.gcg-aba-equipe__adicionar {
+  flex: none;
+}

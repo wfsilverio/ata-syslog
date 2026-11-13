@@ -1,0 +1,130 @@
+/* gcg-toast.css — Toast · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Toast — Figma 35:2449 (página 05 › Feedback › Linha · Toast).
+
+   400 de largura (46 de altura em uma linha, 66 em duas) · padding space/3 × space/4 · gap space/3 ·
+   radius/md · fundo surface/base · borda border/subtle · sombra Elevation/1 ·
+   barra de space/1 (4) à esquerda na cor do tipo, recortada pelo raio (no Figma, retângulo absoluto
+   com clipsContent). A borda do Figma é INSIDE, entra no layout e é pintada DEPOIS dos filhos
+   (conferido no SVG exportado do componente): o traço de 1px passa por cima da barra, que mostra
+   3px de cor. Aqui a barra é o ::before e a borda o ::after, que vem depois e fica por cima;
+   o padding soma a espessura da borda. */
+
+.gcg-toast {
+  --gcg-toast-accent: var(--gcg-state-info);   /* barra */
+  --gcg-toast-icon: var(--gcg-state-info);     /* ícone */
+
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gcg-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(var(--gcg-space-3) + var(--gcg-border-width-thin)) calc(var(--gcg-space-4) + var(--gcg-border-width-thin));
+  border-radius: var(--gcg-radius-md);
+  overflow: hidden;
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+  color: var(--gcg-text-default);
+}
+/* barra lateral */
+.gcg-toast::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--gcg-space-1);
+  background: var(--gcg-toast-accent);
+}
+/* borda: posicionada e depois da barra na ordem do documento, então é pintada por cima dela (Figma) */
+.gcg-toast::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.gcg-toast__icon { color: var(--gcg-toast-icon); }
+
+.gcg-toast__message {
+  flex: 1;
+  min-width: 0;
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  overflow-wrap: anywhere;
+}
+
+/* Fechar: IconButton ghost · neutral · sm (32 × 32) num nó de size/icon-md (20) de altura.
+   O botão passa 6 para cima e 6 para baixo (margem −6 no build record), a altura do toast
+   não muda com show-close e o × fica na primeira linha do texto. */
+.gcg-toast__close {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: var(--gcg-size-icon-md);
+}
+
+/* ---------- type ---------- */
+.gcg-toast--info { --gcg-toast-accent: var(--gcg-state-info); --gcg-toast-icon: var(--gcg-state-info); }
+.gcg-toast--success { --gcg-toast-accent: var(--gcg-state-success); --gcg-toast-icon: var(--gcg-state-success); }
+/* warning: barra state/warning-border (4.21:1) e ícone state/warning-text — state/warning daria 2.18:1 */
+.gcg-toast--warning { --gcg-toast-accent: var(--gcg-state-warning-border); --gcg-toast-icon: var(--gcg-state-warning-text); }
+.gcg-toast--error { --gcg-toast-accent: var(--gcg-state-error); --gcg-toast-icon: var(--gcg-state-error); }
+
+.gcg-toaster {
+  --gcg-toaster-w: 400px; /* Figma: Toast com largura fixa de 400 */
+
+  position: fixed;
+  left: var(--gcg-space-6);
+  bottom: var(--gcg-space-6);
+  z-index: var(--gcg-z-toast);
+  display: flex;
+  flex-direction: column; /* DOM: antigo → novo; o novo fica junto à borda de baixo */
+  gap: var(--gcg-space-4);
+  width: min(var(--gcg-toaster-w), calc(100vw - 2 * var(--gcg-space-6)));
+  pointer-events: none; /* o contêiner não bloqueia cliques; só os toasts */
+}
+.gcg-toaster:empty { display: none; }
+.gcg-toaster > .gcg-toast { pointer-events: auto; }
+
+/* Vale quando quem abre a gaveta marca data-drawer-open no <html>. */
+html[data-gcg-drawer-open] .gcg-toaster {
+  width: max(288px, min(var(--gcg-toaster-w), calc(100vw - min(480px, 100vw - 64px) - 2 * var(--gcg-space-6))));
+}
+
+.gcg-toast--live { animation: gcg-toast-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+.gcg-toast--leaving {
+  animation: gcg-toast-out var(--gcg-motion-fast) var(--gcg-ease-exit) forwards;
+  pointer-events: none;
+}
+@keyframes gcg-toast-in { from { opacity: 0; transform: translateY(var(--gcg-motion-rise)); } }
+@keyframes gcg-toast-out { to { opacity: 0; transform: translateY(var(--gcg-motion-nudge)) scale(0.98); } }
+
+/* Tempo restante (só nos que somem sozinhos): barra de 2 px na cor do tipo, rente à borda de baixo,
+   entre os cantos arredondados, que encolhe da direita para a esquerda no tempo do aviso (8 s).
+   Para junto com o relógio (hover e foco: data-paused) e retoma de onde parou. Decorativa. */
+.gcg-toast__timer {
+  position: absolute;
+  right: var(--gcg-space-1);
+  bottom: var(--gcg-border-width-thin);
+  left: var(--gcg-space-1);
+  height: var(--gcg-border-width-thick);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-toast-accent);
+  transform-origin: left center;
+  animation: gcg-toast-timer var(--gcg-toast-timer-duration, 8s) linear forwards;
+  pointer-events: none;
+}
+.gcg-toast__timer[data-gcg-paused] { animation-play-state: paused; }
+@keyframes gcg-toast-timer { to { transform: scaleX(0); } }
+/* sem movimento, sem barra: o aviso some no mesmo tempo, mas nada encolhe na tela */
+@media (prefers-reduced-motion: reduce) {
+  .gcg-toast__timer { display: none; }
+}
+
+/* ---------- alto contraste (barra eMAG): borda de 2px na cor de borda do modo, sem sombra ---------- */
+html[data-gcg-contrast='high'] .gcg-toast { box-shadow: none; }
+html[data-gcg-contrast='high'] .gcg-toast::after { border-width: var(--gcg-border-width-thick); border-color: var(--gcg-border-default); }

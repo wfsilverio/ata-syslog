@@ -1,0 +1,124 @@
+/* gcg-tabs.css — Tabs · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Tabs — Figma 42:45758 (barra) e 42:45757 (Tabs/Item, 8 variantes), página 05 › Estrutura e
+
+   Barra: as abas lado a lado (gap space/1) sobre a linha de base de 1 px (border-width/thin,
+   border/default), que atravessa a largura toda — 41 de altura: 40 da aba + 1 da linha.
+   Aba: 40 = 38 do rótulo + 2 do indicador (border-width/thick). Rótulo Text/MD/Medium, padding
+   lateral space/4. */
+
+/* O contêiner que rola na horizontal quando as abas não cabem. A linha de base fica no tablist
+   (largura mínima = a da barra), para rolar junto e a barra de rolagem ficar por baixo dela. */
+.gcg-tabs {
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+
+.gcg-tabs__list {
+  display: flex;
+  gap: var(--gcg-space-1);
+  box-sizing: border-box;
+  width: max-content;
+  min-width: 100%;
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+}
+
+/* ---------- Tabs/Item ---------- */
+.gcg-tabs__tab {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* Figma: cantos de cima radius/md — o fundo do hover */
+  border-radius: var(--gcg-radius-md) var(--gcg-radius-md) 0 0;
+  outline: none;
+  background: transparent;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-md-medium);
+  letter-spacing: var(--gcg-tracking-text-md-medium);
+  white-space: nowrap; /* nunca quebra linha: a barra rola */
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: background-color, color;
+  transition-duration: var(--gcg-motion-fast);
+  transition-timing-function: var(--gcg-ease-standard);
+}
+
+/* Rótulo: 38 de altura mínima (size/control-lg − o indicador); cresce com a fonte da barra eMAG. */
+.gcg-tabs__content {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: calc(var(--gcg-size-control-lg) - var(--gcg-border-width-thick));
+  padding: 0 var(--gcg-space-4);
+  border-radius: var(--gcg-radius-md);
+  transition: box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-tabs__label { display: block; }
+
+/* Indicador: 2 px embaixo. Fechada, sem cor; aberta, action/primary.
+   de cor (o indicador antigo não fica esmaecendo atrás do novo). */
+.gcg-tabs__indicator {
+  display: block;
+  flex: none;
+  height: var(--gcg-border-width-thick);
+  background-color: transparent;
+  transform-origin: left center;
+}
+
+/* selected=true: rótulo text/strong e indicador action/primary — nunca só a cor */
+.gcg-tabs__tab--selected { color: var(--gcg-text-strong); }
+.gcg-tabs__tab--selected .gcg-tabs__indicator { background-color: var(--gcg-action-primary); }
+
+/* state=hover: fundo surface/hover na aba inteira, rótulo text/strong */
+.gcg-tabs__tab:not(:disabled):not(.gcg-tabs__tab--disabled):not(.gcg-tabs__tab--static):hover {
+  background-color: var(--gcg-surface-hover);
+  color: var(--gcg-text-strong);
+}
+
+/* state=focus: anel INTERNO de 2 px (border-width/thick, border/focus) em volta do rótulo, com
+   radius/md, acima do indicador. A aba não tem fundo, e o anel duplo da biblioteca sumiria nela —
+   anel interno"). O contorno transparente aparece nos modos de cor forçada do sistema. */
+.gcg-tabs__tab:focus-visible .gcg-tabs__content {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+  box-shadow: inset 0 0 0 var(--gcg-border-width-thick) var(--gcg-border-focus);
+}
+
+/* state=disabled: rótulo text/disabled; aberta e desabilitada, indicador border/default */
+.gcg-tabs__tab:disabled,
+.gcg-tabs__tab--disabled {
+  color: var(--gcg-text-disabled);
+  cursor: not-allowed;
+}
+.gcg-tabs__tab--selected:disabled .gcg-tabs__indicator,
+.gcg-tabs__tab--selected.gcg-tabs__tab--disabled .gcg-tabs__indicator { background-color: var(--gcg-border-default); }
+
+.gcg-tabs__tab--static { cursor: default; }
+
+/* ---------- painel ---------- */
+.gcg-tabs-panel {
+  min-width: 0;
+  outline: none;
+  border-radius: var(--gcg-radius-md);
+  transition: box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-tabs-panel:focus-visible {
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* ---------- alto contraste (barra eMAG) ----------
+   Os tokens semânticos já chegam trocados (fundo preto, texto branco, foco amarelo). Aqui só a
+   forma: a aba aberta sublinhada além do indicador, e o hover em contorno em vez de fundo. */
+html[data-gcg-contrast='high'] .gcg-tabs__tab:not(:disabled):not(.gcg-tabs__tab--disabled):not(.gcg-tabs__tab--static):hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+html[data-gcg-contrast='high'] .gcg-tabs__tab--selected .gcg-tabs__indicator { background-color: var(--gcg-text-strong); }
+
+.gcg-tabs__content { gap: var(--gcg-space-2); }

@@ -1,0 +1,83 @@
+/* gcg-contract-header.css — ContractHeader · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* ContractHeader — Figma 42:45799 (página 05 › Estrutura e navegação › Linha · ContractHeader).
+   Cartão surface/base · borda border-width/thin border/subtle · radius/lg · padding space/5 × space/6 ·
+   gap space/8 entre os campos. 104 de altura com textos curtos (1144 de largura no Figma). */
+
+.gcg-contract-header {
+  /* Figma: Código do Contrato e Número do Contrato com 152 de largura fixa. Em rem, para
+     acompanhar o aumento de fonte da barra eMAG (152px = 9.5rem). */
+  --gcg-contract-header-fixed-w: 9.5rem;
+  /* Largura mínima de Fornecedor e Objeto antes de a linha quebrar (só com fonte muito grande):
+     não vem do Figma — é a folga para os dois campos não virarem uma coluna de palavras. */
+  --gcg-contract-header-fill-min: 12rem;
+
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--gcg-space-5) var(--gcg-space-6);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+}
+
+.gcg-contract-header__fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--gcg-space-4) var(--gcg-space-8);
+  margin: 0;
+}
+
+.gcg-contract-header__field--code,
+.gcg-contract-header__field--number {
+  flex: none;
+  width: var(--gcg-contract-header-fixed-w);
+}
+.gcg-contract-header__field--supplier,
+.gcg-contract-header__field--object {
+  flex: 1 1 0;
+  min-width: var(--gcg-contract-header-fill-min);
+}
+
+/* Fornecedor e Objeto: até duas linhas, com reticências no fim. O texto inteiro continua no DOM
+   (leitor de tela) e no title do campo. */
+.gcg-contract-header__field--clamp .gcg-data-field__value {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow-wrap: break-word;
+}
+
+/* ---------- loading ---------- */
+
+.gcg-contract-header__skeleton {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: var(--gcg-size-skeleton-bar);
+  margin-block: calc((1lh - var(--gcg-size-skeleton-bar)) / 2);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-contract-header-pulse var(--gcg-motion-pulse) ease-in-out infinite;
+}
+
+.gcg-contract-header:not(.gcg-contract-header--loading) .gcg-data-field__value {
+  animation: gcg-motion-fade-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-contract-header__field--code .gcg-contract-header__skeleton,
+.gcg-contract-header__field--number .gcg-contract-header__skeleton { width: 70%; }
+.gcg-contract-header__field--object .gcg-contract-header__skeleton { width: 85%; }
+@keyframes gcg-contract-header-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* ---------- alto contraste (barra eMAG): a borda do cartão passa a 2px na cor de borda do modo ---------- */
+html[data-gcg-contrast='high'] .gcg-contract-header {
+  border-width: var(--gcg-border-width-thick);
+}
+
+.gcg-contract-header__field--situation { flex: none; width: 17rem; }
+.gcg-contract-header__situacao { display: flex; flex-wrap: wrap; gap: var(--gcg-space-1) var(--gcg-space-2); margin-top: 2px; }

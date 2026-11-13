@@ -1,0 +1,41 @@
+/* gcg-badge.css — Badge · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Badge — Figma 35:1839 (página 05 › Dados › Linha · Badge).
+   Altura size/badge (20) · padding space/2 · raio radius/sm · Text/XS/Medium · fundo state/<cor>-bg · texto state/<cor>-text · sem borda. */
+
+.gcg-badge {
+  --gcg-badge-bg: var(--gcg-state-success-bg);
+  --gcg-badge-fg: var(--gcg-state-success-text);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center; /* Figma: auto layout centrado nos dois eixos */
+  box-sizing: border-box;
+  /* min-height: com a fonte aumentada pela barra eMAG o texto cresce e a etiqueta acompanha */
+  min-height: var(--gcg-size-badge);
+  max-width: 100%;
+  padding: 0 var(--gcg-space-2);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-badge-bg);
+  color: var(--gcg-badge-fg);
+  font: var(--gcg-font-text-xs-medium);
+  letter-spacing: var(--gcg-tracking-text-xs-medium);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.gcg-badge--success { --gcg-badge-bg: var(--gcg-state-success-bg); --gcg-badge-fg: var(--gcg-state-success-text); }
+.gcg-badge--info    { --gcg-badge-bg: var(--gcg-state-info-bg);    --gcg-badge-fg: var(--gcg-state-info-text); }
+.gcg-badge--warning { --gcg-badge-bg: var(--gcg-state-warning-bg); --gcg-badge-fg: var(--gcg-state-warning-text); }
+.gcg-badge--error   { --gcg-badge-bg: var(--gcg-state-error-bg);   --gcg-badge-fg: var(--gcg-state-error-text); }
+.gcg-badge--neutral { --gcg-badge-bg: var(--gcg-state-neutral-bg); --gcg-badge-fg: var(--gcg-state-neutral-text); }
+
+/* Alto contraste (barra eMAG): fundo preto, borda 1px branca, texto branco — o status se lê pelo texto */
+html[data-gcg-contrast='high'] .gcg-badge {
+  --gcg-badge-bg: var(--gcg-surface-base);
+  --gcg-badge-fg: var(--gcg-text-strong);
+  box-shadow: none;
+  outline: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  outline-offset: calc(-1 * var(--gcg-border-width-thin));
+}

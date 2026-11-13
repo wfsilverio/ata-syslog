@@ -1,0 +1,140 @@
+/* gcg-action-menu.css — ActionMenu · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* ActionMenu — Figma 48:52156 (menu) e 48:52151 (ActionMenu/Item), página 05 › Ações › Linha · ActionMenu.
+   Menu: surface/base, borda border/subtle (border-width/thin), radius/md, Elevation/1, padding vertical
+   space/1 — igual ao Select/Menu. Cabeçalho: space/2 × space/3, Text/SM/Semibold text/strong, linha de
+   baixo border/subtle. Item: size/control-md (36), padding space/3, gap space/2, ícone size/icon-sm,
+   Text/MD/Regular. Linha: space/1 acima e abaixo, 1px border/subtle. */
+
+.gcg-action-menu {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1); /* Figma: "menu aberto" — o menu 4 px abaixo do botão */
+  vertical-align: middle;
+}
+.gcg-action-menu--end { align-items: flex-end; }
+.gcg-action-menu--start { align-items: flex-start; }
+
+/* ---------- superfície ---------- */
+.gcg-action-menu__surface {
+  --gcg-action-menu-w: 13.75rem; /* Figma: menu com 220 de largura (em rem, cresce com o texto da barra eMAG) */
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: max-content;
+  min-width: var(--gcg-action-menu-w);
+  max-width: calc(100vw - 2 * var(--gcg-space-2));
+  padding: var(--gcg-space-1) 0;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+  overflow: hidden;
+}
+/* O menu de verdade: portal, fixo na janela, acima da gaveta e do Modal */
+.gcg-action-menu__surface--floating {
+  position: fixed;
+  z-index: var(--gcg-z-popover);
+}
+/* o de baixo quando abre acima; à direita no ⋮ (alinhado pela direita), à esquerda no botão com
+   rótulo. A saída (mais curta, para o mesmo canto) é a cópia de useExitGhost, que herda a origem. */
+.gcg-action-menu__surface--bottom,
+.gcg-action-menu__surface--top { animation: gcg-motion-scale-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+.gcg-action-menu__surface--align-end.gcg-action-menu__surface--bottom { transform-origin: top right; }
+.gcg-action-menu__surface--align-start.gcg-action-menu__surface--bottom { transform-origin: top left; }
+.gcg-action-menu__surface--align-end.gcg-action-menu__surface--top { transform-origin: bottom right; }
+.gcg-action-menu__surface--align-start.gcg-action-menu__surface--top { transform-origin: bottom left; }
+
+/* cabeçalho: o título do menu, fora da lista de ações */
+.gcg-action-menu__header {
+  padding: var(--gcg-space-2) var(--gcg-space-3);
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+
+.gcg-action-menu__list { display: flex; flex-direction: column; outline: none; }
+
+.gcg-action-menu__divider {
+  flex: none;
+  height: var(--gcg-border-width-thin);
+  margin: var(--gcg-space-1) 0;
+  background: var(--gcg-border-subtle);
+}
+
+/* ---------- ActionMenu/Item ---------- */
+.gcg-action-menu-item {
+  --gcg-action-menu-item-fg: var(--gcg-text-default);
+  --gcg-action-menu-item-icon: var(--gcg-text-secondary);
+  --gcg-action-menu-item-bg-hover: var(--gcg-surface-subtle);
+
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--gcg-size-control-md);
+  margin: 0;
+  padding: 0 var(--gcg-space-3);
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  color: var(--gcg-action-menu-item-fg);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-action-menu-item__icon { color: var(--gcg-action-menu-item-icon); }
+.gcg-action-menu-item__label { flex: 1; min-width: 0; }
+
+/* color */
+.gcg-action-menu-item--destructive {
+  --gcg-action-menu-item-fg: var(--gcg-action-destructive);
+  --gcg-action-menu-item-icon: var(--gcg-action-destructive);
+  --gcg-action-menu-item-bg-hover: var(--gcg-action-destructive-subtle);
+}
+
+/* hover: fundo surface/subtle (destructive: action/destructive-subtle) */
+.gcg-action-menu-item:not([aria-disabled='true']):hover { background-color: var(--gcg-action-menu-item-bg-hover); }
+
+/* focus: o mesmo fundo do hover e o anel de 2px por dentro, border/focus, raio radius/sm.
+   No Figma o traço de dentro empurra o conteúdo 2 px; aqui é contorno para dentro, e o texto não pula
+   enquanto as setas percorrem o menu. */
+.gcg-action-menu-item:focus-visible {
+  border-radius: var(--gcg-radius-sm);
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+  background-color: var(--gcg-action-menu-item-bg-hover);
+}
+
+/* disabled: texto e ícone text/disabled; continua na ordem das setas (aria-disabled) */
+.gcg-action-menu-item[aria-disabled='true'] {
+  --gcg-action-menu-item-fg: var(--gcg-text-disabled);
+  --gcg-action-menu-item-icon: var(--gcg-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ---------- alto contraste (barra eMAG) ----------
+   Os tokens já chegam trocados (fundo preto, texto e contorno brancos, foco amarelo). O menu ganha a
+   borda branca de 2px e o foco do item fica por dentro, como no modo normal. */
+html[data-gcg-contrast='high'] .gcg-action-menu__surface { border-width: var(--gcg-border-width-thick); }
+html[data-gcg-contrast='high'] .gcg-action-menu-item:not([aria-disabled='true']):hover { background-color: var(--gcg-surface-hover); text-decoration: underline; }
+html[data-gcg-contrast='high'] .gcg-action-menu .gcg-action-menu-item:focus-visible,
+html[data-gcg-contrast='high'] .gcg-action-menu__surface .gcg-action-menu-item:focus-visible {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus) !important;
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+
+.gcg-action-menu__list > .gcg-action-menu__item-hint {
+  display: flex;
+  width: 100%;
+}
+/* o ícone depois do rótulo (open_in_new na ação que abre outro sistema) */
+.gcg-action-menu-item__icon--end { flex: none; }

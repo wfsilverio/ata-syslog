@@ -1,0 +1,61 @@
+/* gcg-paineis-ajustes.css — composição de tela (HU-016 · Painel do Coordenador de Contratos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Painéis — ajustes de 07/10/2026 (tarde), depois da apresentação à análise. Figma: página 11, HU-016 (os do HU-015 estão em financeiro/). */
+
+/* Próximos do vencimento: contrato · contratada, o prazo no selo e a seta */
+.gcg-proximos__item { grid-template-columns: minmax(0, 1fr) auto auto; }
+
+/* Panorama: unidades e Top 10 lado a lado; a categoria embaixo, na largura toda */
+.gcg-panorama { display: flex; flex-direction: column; gap: var(--gcg-space-6); }
+
+/* Rosca por unidade */
+.gcg-rosca { display: flex; flex-direction: column; gap: var(--gcg-space-4); min-width: 0; }
+.gcg-rosca__cabecalho { display: flex; align-items: center; justify-content: space-between; gap: var(--gcg-space-3); }
+.gcg-rosca__grafico { display: flex; align-items: center; gap: var(--gcg-space-6); }
+.gcg-rosca__svg { flex: none; width: 184px; height: 184px; }
+.gcg-rosca__fatia { transition: opacity var(--gcg-motion-fast) var(--gcg-ease-standard); }
+.gcg-rosca__svg--com-destaque .gcg-rosca__fatia:not(.gcg-is-acesa) { opacity: 0.35; }
+.gcg-rosca__centro-numero { fill: var(--gcg-text-strong); font-family: inherit; font-size: 13px; font-weight: 600; }
+.gcg-rosca__centro-rotulo { fill: var(--gcg-text-secondary); font-family: inherit; font-size: 6.5px; }
+.gcg-rosca__total { display: flex; flex-direction: column; gap: var(--gcg-space-1); min-width: 0; }
+.gcg-rosca__total-rotulo, .gcg-rosca__total-nota { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+.gcg-rosca__total-valor { color: var(--gcg-text-strong); font: var(--gcg-font-heading-md); letter-spacing: var(--gcg-tracking-heading-md); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gcg-rosca__tabela-caixa { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gcg-space-2); }
+.gcg-rosca__tabela, .gcg-cruzamento__tabela { width: 100%; border-collapse: collapse; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }
+.gcg-rosca__tabela th, .gcg-rosca__tabela td, .gcg-cruzamento__tabela th, .gcg-cruzamento__tabela td {
+  padding: var(--gcg-space-3) var(--gcg-space-2);
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.gcg-rosca__tabela thead th, .gcg-cruzamento__tabela thead th { padding-block: var(--gcg-space-2); border-bottom-color: var(--gcg-border-default); color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-medium); }
+.gcg-rosca__tabela th:first-child, .gcg-cruzamento__tabela th:first-child { width: 100%; text-align: left; font-weight: 400; }
+.gcg-rosca__tabela thead th:first-child, .gcg-cruzamento__tabela thead th:first-child { font: var(--gcg-font-text-xs-medium); }
+.gcg-rosca__tabela tbody tr, .gcg-cruzamento__tabela tbody tr { transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard); }
+.gcg-rosca__tabela tbody tr:hover, .gcg-rosca__tabela tbody tr.gcg-is-acesa, .gcg-cruzamento__tabela tbody tr:hover { background: var(--gcg-surface-hover); }
+.gcg-rosca__amostra { display: inline-block; width: 10px; height: 10px; margin-right: var(--gcg-space-2); border-radius: var(--gcg-radius-full); vertical-align: -1px; }
+.gcg-rosca__nome { padding: 0; border: 0; background: none; color: var(--gcg-text-default); font: inherit; text-align: left; cursor: pointer; }
+.gcg-rosca__nome:hover { color: var(--gcg-text-link); text-decoration: underline; }
+.gcg-rosca__nome:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; border-radius: var(--gcg-radius-sm); }
+.gcg-rosca__valor { color: var(--gcg-text-strong); font-weight: 600; }
+
+/* Categoria: quantidade × valor */
+.gcg-cruzamento { display: flex; flex-direction: column; gap: var(--gcg-space-4); }
+.gcg-cruzamento__barras { display: flex; flex-direction: column; gap: var(--gcg-space-3); }
+.gcg-cruzamento__linha { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); align-items: center; gap: var(--gcg-space-4); }
+.gcg-cruzamento__rotulo { display: flex; flex-direction: column; color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+.gcg-cruzamento__rotulo strong { color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); font-variant-numeric: tabular-nums; }
+.gcg-cruzamento__trilho { display: flex; height: 24px; overflow: hidden; border-radius: var(--gcg-radius-sm); background: var(--gcg-surface-subtle); }
+.gcg-cruzamento__parte { height: 100%; box-shadow: inset -1px 0 0 var(--gcg-surface-base); transition: width var(--gcg-motion-slow) var(--gcg-ease-standard); }
+.gcg-cruzamento__amostra { display: inline-block; width: 10px; height: 10px; margin-right: var(--gcg-space-2); border-radius: 2px; vertical-align: -1px; }
+html[data-gcg-contrast='high'] .gcg-cruzamento__parte,
+html[data-gcg-contrast='high'] .gcg-rosca__amostra,
+html[data-gcg-contrast='high'] .gcg-cruzamento__amostra { outline: var(--gcg-border-width-thin) solid var(--gcg-border-strong); }
+@media (max-width: 720px) {
+  .gcg-rosca__grafico { flex-direction: column; align-items: flex-start; }
+  .gcg-cruzamento__linha { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Equipe: o filtro "Só sem gestor suplente" */
+.gcg-contratos__filtro { align-self: flex-start; }

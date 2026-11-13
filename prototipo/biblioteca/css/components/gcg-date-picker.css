@@ -1,0 +1,181 @@
+/* gcg-date-picker.css — DatePicker · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* DatePicker — Figma 35:6471 · DatePicker/Calendar 35:5306 · DatePicker/Day 35:4903
+   O corpo de campo (rótulo, controle, estados, ajuda, erro, ×) está em Input/Field.css. */
+
+/* ---------- ícone de calendário (hit-calendar 24 × 24, ícone 16) ---------- */
+.gcg-datepicker__trigger {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--gcg-space-6);
+  height: var(--gcg-space-6);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--gcg-radius-sm);
+  outline: none;
+  background: transparent;
+  color: var(--gcg-field-icon);
+  cursor: pointer;
+  transition:
+    color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard),
+    transform var(--gcg-motion-instant) var(--gcg-ease-standard);
+}
+.gcg-datepicker__trigger:disabled { cursor: not-allowed; }
+.gcg-datepicker__trigger:not(:disabled):active { transform: scale(var(--gcg-motion-press-icon)); }
+.gcg-datepicker__trigger:not(:disabled):hover { color: var(--gcg-text-default); }
+/* calendário aberto: o ícone em action/primary mostra a que campo ele pertence */
+.gcg-field--date[data-gcg-open] .gcg-datepicker__trigger { color: var(--gcg-action-primary); }
+.gcg-datepicker__trigger:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* ---------- DatePicker/Calendar ---------- */
+.gcg-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  box-sizing: border-box;
+  /* 302 px: 7 dias de size/control-md + 6 × space/1 + padding space/3 dos dois lados + a borda */
+  width: calc(7 * var(--gcg-size-control-md) + 6 * var(--gcg-space-1) + 2 * var(--gcg-space-3) + 2 * var(--gcg-border-width-thin));
+  padding: var(--gcg-space-4) var(--gcg-space-3);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+}
+
+.gcg-calendar__header { display: flex; align-items: center; gap: var(--gcg-space-2); }
+.gcg-calendar__month {
+  flex: 1;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+  text-align: center;
+}
+
+.gcg-calendar__grid { display: flex; flex-direction: column; gap: var(--gcg-space-1); }
+.gcg-calendar__weekdays,
+.gcg-calendar__week { display: flex; gap: var(--gcg-space-1); }
+/* entre os dias da semana e a grade: space/3 (o gap da grade já dá space/1) */
+.gcg-calendar__weekdays { margin-bottom: calc(var(--gcg-space-3) - var(--gcg-space-1)); }
+.gcg-calendar__weekday {
+  width: var(--gcg-size-control-md);
+  padding: var(--gcg-space-1) 0;
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-xs-medium);
+  letter-spacing: var(--gcg-tracking-text-xs-medium);
+  text-align: center;
+}
+.gcg-calendar__weekday abbr { text-decoration: none; cursor: default; }
+.gcg-calendar__cell { display: flex; }
+
+.gcg-calendar__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--gcg-space-3);
+  border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+}
+
+/* ---------- DatePicker/Day ---------- */
+.gcg-calendar-day {
+  --gcg-day-fg: var(--gcg-text-default);
+  --gcg-day-dot: var(--gcg-action-primary);
+
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--gcg-size-control-md);
+  height: var(--gcg-size-control-md);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--gcg-radius-md);
+  outline: none;
+  background: transparent;
+  color: var(--gcg-day-fg);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  cursor: pointer;
+
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard),
+    transform var(--gcg-motion-instant) var(--gcg-ease-standard);
+}
+.gcg-calendar-day:not([data-gcg-disabled]):active { transform: scale(var(--gcg-motion-press-icon)); }
+
+/* outside: dia de outro mês, clicável, text/muted */
+.gcg-calendar-day[data-gcg-outside] { --gcg-day-fg: var(--gcg-text-muted); }
+
+/* today: número em action/primary Semibold + ponto de 4 px abaixo */
+.gcg-calendar-day[data-gcg-today] {
+  --gcg-day-fg: var(--gcg-action-primary);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+.gcg-calendar-day__dot {
+  position: absolute;
+  bottom: var(--gcg-space-1);
+  left: 50%;
+  width: var(--gcg-space-1);
+  height: var(--gcg-space-1);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-day-dot);
+  transform: translateX(-50%);
+}
+
+/* hover: fundo surface/subtle; hoje em hover escurece para action/primary-hover */
+.gcg-calendar-day:not([data-gcg-disabled]):not([data-gcg-selected]):hover { background: var(--gcg-surface-subtle); }
+.gcg-calendar-day[data-gcg-today]:not([data-gcg-selected]):hover { --gcg-day-fg: var(--gcg-action-primary-hover); }
+
+/* focus: fundo surface/base e o anel (teclado) */
+.gcg-calendar-day:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* selected: fundo action/primary, número text/on-action Semibold; com hoje, o ponto em text/on-action */
+.gcg-calendar-day[data-gcg-selected] {
+  --gcg-day-fg: var(--gcg-text-on-action);
+  --gcg-day-dot: var(--gcg-text-on-action);
+  background: var(--gcg-action-primary);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+
+/* disabled: fora do intervalo — text/disabled e traço de 16 × 1 (não depende só da cor) */
+.gcg-calendar-day[data-gcg-disabled] { --gcg-day-fg: var(--gcg-text-disabled); cursor: not-allowed; }
+.gcg-calendar-day__strike {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--gcg-space-4);
+  height: var(--gcg-border-width-thin);
+  background: var(--gcg-text-disabled);
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- alto contraste (barra eMAG) ---------- */
+html[data-gcg-contrast='high'] .gcg-calendar { border-color: var(--gcg-border-default); }
+html[data-gcg-contrast='high'] .gcg-calendar-day:focus-visible { outline-color: var(--gcg-border-focus); }
+html[data-gcg-contrast='high'] .gcg-calendar-day[data-gcg-selected] {
+  --gcg-day-fg: var(--gcg-text-strong);
+  --gcg-day-dot: var(--gcg-text-strong);
+  background: var(--gcg-surface-base);
+  /* a sombra é desligada nesse modo: o contorno marca a escolha */
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-default);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+html[data-gcg-contrast='high'] .gcg-datepicker__trigger:focus-visible { outline-color: var(--gcg-border-focus); outline-offset: var(--gcg-space-half); }

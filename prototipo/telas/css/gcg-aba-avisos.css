@@ -1,0 +1,188 @@
+/* gcg-aba-avisos.css — composição de tela (HU-011 · Enviar avisos/comunicação), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Aba Avisos — HU-011 · Enviar avisos/Comunicação (Figma, página 09, seção HU-011 · Enviar
+   avisos/comunicação, nó 116:113081: o frame "painel · Avisos" com a SectionCard "Nova comunicação" e a
+   SectionCard "Histórico de comunicações"). Só tokens; as medidas do Figma sem token viram variável
+   local, em rem, para acompanhar o aumento de fonte da barra eMAG.
+   A moldura do painel (8 em cima, 16 entre os blocos) está em Detalhe.css (.detalhe__painel); os cartões,
+   os campos, a tabela e as janelas são os componentes da biblioteca, sem mudança. */
+
+/* ---------- Nova comunicação: o formulário (Figma: "formulario", vertical, gap space/5) ---------- */
+.gcg-aba-avisos__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-5);
+  min-width: 0;
+}
+
+/* Contrato, Remetente e Perfil do Remetente: os três DataField de 200, com 40 entre eles
+   ("preenchido pelo sistema", gap space/10). São dado, não campo: não entram no foco. */
+.gcg-aba-avisos__sistema {
+  --gcg-aba-avisos-dado-w: 12.5rem; /* Figma: DataField · Contrato, 200 de largura */
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gcg-space-4) var(--gcg-space-10);
+  margin: 0;
+}
+.gcg-aba-avisos__sistema > .gcg-data-field { width: var(--gcg-aba-avisos-dado-w); }
+
+/* Destinatário: fieldset (sem moldura) com a legenda, o texto de apoio e as caixas — "Destinatário
+   (fieldset)", vertical, gap space/2; a legenda (20) e o apoio (16) sem espaço entre eles. */
+.gcg-aba-avisos__destinatarios {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.gcg-aba-avisos__legenda {
+  display: block;
+  padding: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-aba-avisos__apoio {
+  margin: 0;
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+/* A área das caixas: as opções, as provisórias, a MSG002 ou a MSG005 com Tentar novamente (gap space/2) */
+.gcg-aba-avisos__area-destinatarios {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gcg-space-2);
+  margin-top: var(--gcg-space-2);
+  outline: none;
+}
+.gcg-aba-avisos__tentar { align-self: flex-start; }
+.gcg-aba-avisos__erro { margin: var(--gcg-space-2) 0 0; }
+
+/* As opções: em linha, 12 entre as linhas e 32 entre as opções ("opcoes", gap space/8 · 12). Cada uma: a
+   caixa com o nome e, embaixo, o Perfil do Destinatário alinhado com o nome (recuo space/6 = caixa 16 + 8). */
+.gcg-aba-avisos__opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gcg-space-3) var(--gcg-space-8);
+}
+
+.gcg-aba-avisos__opcoes:not(.gcg-aba-avisos__opcoes--carregando) {
+  animation: gcg-motion-fade-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-aba-avisos__opcao {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.gcg-aba-avisos__perfil {
+  padding-left: var(--gcg-space-6);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+/* Carregando os destinatários (melhoria de UX; Figma: "opcoes · carregando"): cinco opções provisórias —
+   a caixa de 16 e a barra do nome (12 de altura), e embaixo a barra do perfil (72), com o pulso de */
+.gcg-aba-avisos__opcao-esqueleto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+}
+.gcg-aba-avisos__linha-esqueleto {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+}
+.gcg-aba-avisos__barra {
+  --gcg-aba-avisos-perfil-w: 4.5rem; /* Figma: a barra do perfil, 72 de largura */
+
+  display: block;
+  flex: none;
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-aba-avisos-pulso var(--gcg-motion-pulse) ease-in-out infinite;
+}
+.gcg-aba-avisos__barra--caixa {
+  width: var(--gcg-size-icon-sm);
+  height: var(--gcg-size-icon-sm);
+}
+.gcg-aba-avisos__barra--perfil {
+  width: var(--gcg-aba-avisos-perfil-w);
+  margin-left: var(--gcg-space-6);
+}
+@keyframes gcg-aba-avisos-pulso {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* Assunto: o contador fica no texto de apoio, à direita (Figma: "0/150", text-right); no erro, a
+   mensagem de erro toma o lugar dele, à esquerda, como em todo campo. */
+.gcg-aba-avisos__assunto .gcg-field__helper { text-align: right; }
+
+/* Anexo: 540 de largura (Figma: FileUpload · Anexo) */
+.gcg-aba-avisos__anexo {
+  --gcg-aba-avisos-anexo-w: 33.75rem; /* Figma: 540 */
+
+  width: min(100%, var(--gcg-aba-avisos-anexo-w));
+}
+
+/* Enviar à direita, fechando o formulário ("acoes", justify end) */
+.gcg-aba-avisos__acoes {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---------- Histórico ---------- */
+/* A tela do Figma com o ponteiro parado sobre o Visualizar (L2 · 1): a linha em hover (Table/Row
+   state=hover, a mesma variável que o :hover da Table usa). Só no cenário, até o primeiro gesto. */
+.gcg-data-table__row.gcg-aba-avisos__linha--hover { --gcg-data-table-row-bg: var(--gcg-surface-hover); }
+
+/* Sem comunicações, o EmptyState ocupa o lugar da tabela dentro do cartão, sem moldura própria (Figma:
+   "EmptyState · sem comunicações (texto proposto)", sem borda e sem raio, 1094 × 212). */
+.gcg-aba-avisos .gcg-section-card__content > .gcg-empty-state {
+  border: 0;
+  border-radius: 0;
+}
+
+/* ---------- Visualizar comunicação (Modal somente leitura, L2 · 2) ---------- */
+/* A janela tem 640 de largura (Figma: Modal · Visualizar comunicação); o Modal é o da biblioteca. */
+.gcg-modal.gcg-aba-avisos__visualizar { --gcg-modal-w: 640px; }
+
+/* Data/Hora e Remetente lado a lado (gap space/6), os outros na largura toda; space/4 entre as linhas. */
+.gcg-aba-avisos__leitura {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gcg-space-4) var(--gcg-space-6);
+  margin: 0;
+}
+.gcg-aba-avisos__leitura > * { grid-column: 1 / -1; }
+.gcg-aba-avisos__leitura > .gcg-aba-avisos__leitura-metade { grid-column: auto; }
+.gcg-aba-avisos__leitura-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+}
+.gcg-aba-avisos__leitura-rotulo {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+/* A mensagem completa, como texto corrido (Text/MD/Regular text/default), com as quebras de linha dela */
+.gcg-aba-avisos__leitura-mensagem {
+  margin: 0;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.gcg-aba-avisos__leitura-anexos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  margin: 0;
+}

@@ -1,0 +1,90 @@
+/* gcg-aba-dados-gerais.css — composição de tela (HU-002 · Consultar saldos; HU-003 · Consultar aditivos; HU-004 · Consultar apostilamentos; HU-005 · Consultar equipe; HU-006 · Consultar documentos; HU-007 · Consultar tramitações; HU-008 · Consultar ocorrências; HU-009 · Consultar dados gerais; HU-011 · Enviar avisos/comunicação; HU-013 · Painel do Fornecedor), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Aba Dados gerais — HU-009 · Consultar Dados Gerais (Figma, página 09, seção HU-009 · Consultar dados
+   gerais, nó 110:91677: o frame "painel · Dados gerais" com os quatro SectionCard). Só tokens.
+   A moldura do painel (8 em cima, 16 entre as seções) está em Detalhe.css (.detalhe__painel); os cartões,
+   os campos, a tabela, o link e o estado vazio são os componentes da biblioteca, sem mudança. */
+
+/* O painel é o contêiner da grade: quantas colunas cabem depende da largura dele e do tamanho do texto
+   (a barra eMAG aumenta a fonte sem mudar a largura da janela). */
+.gcg-aba-dados-gerais {
+  container-type: inline-size;
+  /* O painel é o bloco de referência dos textos só para leitor de tela (.sr-only, absolutos): sem isto, os do
+     fim da ficha (o aviso de nova aba do Link PNCP, os "Carregando") ficam presos à página inteira, fora do
+     <main> que rola, e a janela ganha uma segunda barra de rolagem. */
+  position: relative;
+}
+
+/* Dados do Contrato em quatro blocos (Figma: "bloco · Identificação" …): o subtítulo e a grade, 12 entre
+   eles; do segundo bloco em diante, uma divisória border/subtle em cima e 16 de respiro. Entre um bloco e
+   o outro, os 16 do conteúdo do SectionCard. */
+.gcg-aba-dados-gerais__bloco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+}
+.gcg-aba-dados-gerais__bloco + .gcg-aba-dados-gerais__bloco {
+  padding-top: var(--gcg-space-4);
+  border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+}
+
+/* O subtítulo do bloco: estilo Label (11/16, semibold, caixa alta, 6% de espaçamento), text/secondary */
+.gcg-aba-dados-gerais__subtitulo {
+  margin: 0;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-label);
+  letter-spacing: var(--gcg-tracking-label);
+  text-transform: uppercase;
+}
+
+/* A grade (Figma: "grade · 4 colunas"): quatro colunas iguais, 24 entre elas e 16 entre as linhas; os
+   campos de texto longo (Objeto Contrato, Forma de Pagamento, Resumo do Objeto, Descrição do Objeto)
+   ocupam a linha toda. Em painel estreito (janela menor, zoom ou fonte aumentada), duas colunas, depois
+   uma: o valor quebra linha dentro do campo, nunca sai dele. Com a fonte padrão, quatro colunas a partir
+   de 896 px de painel (a área de conteúdo de 1440 tem 1144). */
+.gcg-aba-dados-gerais__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gcg-space-4) var(--gcg-space-6);
+  margin: 0;
+}
+@container (min-width: 30rem) {
+  .gcg-aba-dados-gerais__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: 56rem) {
+  .gcg-aba-dados-gerais__grade { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.gcg-aba-dados-gerais__campo { align-self: start; }
+.gcg-aba-dados-gerais__campo--largo { grid-column: 1 / -1; }
+
+/* Link PNCP: o link no lugar do valor (Figma: "Campo com Link · Link PNCP" — rótulo 18, 4, link de 24) */
+.gcg-aba-dados-gerais__campo--link .gcg-data-field__value {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Carregando (Figma: "Campo carregando · …"): o rótulo e o valor provisório — a barra da célula
+   type=skeleton da tabela (12 de altura, 4 em cima e embaixo: a altura da linha do valor, e a grade não
+   pula quando os dados chegam). A largura muda de campo para campo (168 · 128 · 192 · 144; 480 nos largos),
+   em rem, para acompanhar a fonte. */
+.gcg-aba-dados-gerais__provisorio {
+  display: flex;
+  padding: var(--gcg-space-1) 0;
+}
+.gcg-aba-dados-gerais__barra {
+  display: block;
+  width: var(--gcg-aba-dados-gerais-barra-w, 10.5rem);
+  max-width: 100%;
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+
+  animation: gcg-aba-dados-gerais-pulso var(--gcg-motion-pulse) ease-in-out infinite;
+}
+@keyframes gcg-aba-dados-gerais-pulso {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* Alto contraste (barra eMAG): a barra provisória ganha contorno, porque o fundo some */
+html[data-gcg-contrast='high'] .gcg-aba-dados-gerais__barra { outline: var(--gcg-border-width-thin) solid var(--gcg-border-default); }

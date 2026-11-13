@@ -1,0 +1,136 @@
+/* gcg-pagination.css — Pagination · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Pagination — Figma 35:6354 e Pagination/Item 35:5805 (página 05 › Dados › Linha · Pagination).
+   Barra: padding space/3 × space/4 · space-between · surface/base. Controles gap space/6; "Exibir" gap space/2; itens gap space/1. */
+
+.gcg-pagination {
+  /* Figma: page-size-select, instância do Select com 80px de largura — sem token */
+  --gcg-pagination-select-w: 80px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gcg-space-2) var(--gcg-space-6);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--gcg-space-3) var(--gcg-space-4);
+  background-color: var(--gcg-surface-base);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+/* Resumo: "Mostrando 1–10 de 480 contratos" — números em Text/SM/Semibold text/strong */
+.gcg-pagination__summary { margin: 0; }
+.gcg-pagination__summary-visual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--gcg-space-1);
+  white-space: nowrap;
+}
+.gcg-pagination__number {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+
+.gcg-pagination__number--range {
+  display: inline-block;
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+
+.gcg-pagination__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gcg-space-2) var(--gcg-space-6);
+}
+.gcg-pagination__page-size {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  white-space: nowrap;
+}
+.gcg-pagination__select { flex: none; width: var(--gcg-pagination-select-w); }
+
+.gcg-pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gcg-pagination__pages > li { display: flex; }
+
+/* ---------- Pagination/Item ---------- */
+.gcg-pagination-item {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--gcg-size-control-sm);
+  height: var(--gcg-size-control-sm);
+  margin: 0;
+  padding: 0 var(--gcg-space-2);
+  border: 0;
+  border-radius: var(--gcg-radius-md);
+  outline: none;
+  background-color: transparent;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard),
+    transform var(--gcg-motion-instant) var(--gcg-ease-standard);
+}
+.gcg-pagination-item:not(:disabled):not(.gcg-pagination-item--current):not(.gcg-pagination-item--ellipsis):active {
+  transform: scale(var(--gcg-motion-press-icon));
+}
+
+/* hover: surface/hover (a página atual ignora o hover) */
+.gcg-pagination-item:not(.gcg-pagination-item--current):not(:disabled):not(.gcg-pagination-item--ellipsis):hover { background-color: var(--gcg-surface-hover); }
+
+/* foco: fundo surface/base + anel duplo (DD-004); na página atual, o anel envolve o fundo verde */
+.gcg-pagination-item:focus-visible {
+  background-color: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* current: action/primary + número em negrito (não depende só da cor) */
+.gcg-pagination-item--current,
+.gcg-pagination-item--current:focus-visible {
+  background-color: var(--gcg-action-primary);
+  color: var(--gcg-text-on-action);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  cursor: default;
+}
+
+/* disabled: só em prev e next, na primeira e na última página */
+.gcg-pagination-item:disabled {
+  background-color: transparent;
+  color: var(--gcg-text-disabled);
+  cursor: default;
+}
+
+/* reticências: text/muted, não clica */
+.gcg-pagination-item--ellipsis {
+  color: var(--gcg-text-muted);
+  cursor: default;
+}
+
+/* Alto contraste (barra eMAG): sem sombra, o foco vira contorno e a página atual ganha borda */
+html[data-gcg-contrast='high'] .gcg-pagination-item:focus-visible {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: var(--gcg-space-half);
+}

@@ -1,0 +1,46 @@
+/* gcg-fornecedor-esqueleto.css — composição de tela (HU-013 · Painel do Fornecedor), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Painel do Fornecedor (HU-013) — Figma: página 11, seção HU-013, L1 a L7. Coluna de conteúdo de 1144 (1440 com o
+   menu): os quatro valores e as quatro faixas em quatro colunas de 274 (3 + 3 + 3 + 3), 16 entre elas. */
+
+/* ── Valores e faixas ────────────────────────────────────────────────── */
+.gcg-fornecedor-indicadores { display: flex; flex-direction: column; gap: var(--gcg-space-4); }
+.gcg-fornecedor-valores,
+.gcg-fornecedor-faixas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gcg-space-4); }
+.gcg-fornecedor-valores > .gcg-value-tile { height: 100%; box-sizing: border-box; }
+@media (max-width: 1100px) {
+  .gcg-fornecedor-valores,
+  .gcg-fornecedor-faixas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .gcg-fornecedor-valores,
+  .gcg-fornecedor-faixas { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ── Filtros: Órgão contratante (320), Número do contrato (240), a faixa escolhida ou Limpar filtros e, à direita,
+      Ordenar por (Figma: FilterRow, alinhada pela base, 16 entre os itens) ── */
+.gcg-fornecedor-filtros { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--gcg-space-3) var(--gcg-space-4); }
+.gcg-fornecedor-filtros__campo { min-width: 0; }
+.gcg-fornecedor-filtros__campo--orgao { width: 20rem; max-width: 100%; }
+.gcg-fornecedor-filtros__campo--numero { width: 15rem; max-width: 100%; }
+/* Limpar filtros fica sobre surface/app: no verde 700 (5,7:1); o 600 do link dá 4,09:1 nesse fundo (como o PanelLink do rodapé) */
+.gcg-fornecedor-filtros .gcg-link { color: var(--gcg-action-primary-hover); }
+html[data-gcg-contrast='high'] .gcg-fornecedor-filtros .gcg-link { color: var(--gcg-text-link); }
+
+/* ── Rodapé: a contagem e o Consultar em Gerir Contratos, sobre surface/app ── */
+.gcg-fornecedor-rodape { min-height: 1.125rem; }
+/* o rodapé fica fora do cartão, sobre surface/app: o link vai no verde 700 (5,7:1), como na HU-012 */
+.gcg-painel-fornecedor .gcg-contratos__rodape .gcg-panel-link { color: var(--gcg-action-primary-hover); }
+
+/* ── Esqueleto (L7 · 1): os valores (116), as faixas (108), os dois campos e a relação ── */
+.gcg-fornecedor-esqueleto__cartoes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gcg-space-4); }
+.gcg-fornecedor-esqueleto__cartoes > .gcg-fila-esqueleto__cartao { grid-column: auto; }
+.gcg-fornecedor-esqueleto__valor { height: 7.25rem; }
+.gcg-fornecedor-esqueleto__faixa { height: 6.75rem; }
+.gcg-fornecedor-esqueleto__campos { display: flex; gap: var(--gcg-space-4); }
+.gcg-fornecedor-esqueleto__campo { height: 2.25rem; border-radius: var(--gcg-radius-md); }
+.gcg-fornecedor-esqueleto__campo--orgao { width: 20rem; max-width: 55%; }
+.gcg-fornecedor-esqueleto__campo--numero { width: 15rem; max-width: 40%; }
+@media (max-width: 1100px) {
+  .gcg-fornecedor-esqueleto__cartoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

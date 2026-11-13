@@ -1,0 +1,25 @@
+/* gcg-detalhe.css — composição de tela (Assinatura HU001 · Realizar assinatura documento; Assinatura HU002 · Visualizar documento assinado; HU-002 · Consultar saldos; HU-003 · Consultar aditivos; HU-004 · Consultar apostilamentos; HU-005 · Consultar equipe; HU-006 · Consultar documentos; HU-007 · Consultar tramitações; HU-008 · Consultar ocorrências; HU-009 · Consultar dados gerais; HU-011 · Enviar avisos/comunicação; HU-012 · Painel do Gestor e do Fiscal; HU-013 · Painel do Fornecedor; Templates · Consumir templates · Documentos do contrato), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Detalhe do contrato — Figma, página 09, gabarito do detalhe (43:47702) e as telas das seções
+   HU-002 · Consultar saldos (43:47696) e HU-003 · Consultar aditivos (48:52661).
+   O AppShell já dá a margem (space/6) e o gap entre os blocos (space/4): PageHeader · ContractHeader ·
+   Tabs · painel. Só tokens. */
+
+/* Os blocos têm a altura do conteúdo: o conteúdo do AppShell é flex em coluna e, se a janela ficar
+   baixa, ele rola inteiro — nenhum bloco encolhe (a barra de abas e o cartão da tabela cortam o que
+   passa, e sem isto encolheriam). */
+.gcg-detalhe__bloco,
+.gcg-detalhe__painel {
+  flex: none;
+}
+
+/* O painel da aba (Figma: frame "painel · Saldos" / "painel · Aditivos"): 8 acima (padding-top
+   space/2, somado ao gap de 16 do conteúdo = 24 da barra de abas) e 16 entre os blocos. */
+.gcg-detalhe__painel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  padding-top: var(--gcg-space-2);
+}
+
+/* O conteúdo da aba Saldos (HU-002) tem CSS próprio: AbaSaldos.css. */

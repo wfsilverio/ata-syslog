@@ -1,0 +1,60 @@
+/* gcg-motion.css — durações e curvas de movimento; prefers-reduced-motion zera tudo. Gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Regras de ouro: rápido e suave; só transform e opacity (a exceção é a altura da seção recolhível);
+   tudo vira nada com prefers-reduced-motion. */
+:root {
+  /* ---------- durações ---------- */
+  --gcg-motion-instant: 80ms;   /* resposta ao pressionar; saída da dica */
+  --gcg-motion-fast: 120ms;     /* hover, cor, anel de foco, chevron que gira; saída de menu e de Modal */
+  --gcg-motion-base: 200ms;     /* menus, calendário, dica, Modal, toast, abas, painel da aba, linhas */
+  --gcg-motion-slow: 280ms;     /* gaveta, Sidebar, seção recolhível, conteúdo que entra com a rota */
+  --gcg-motion-data: 800ms;     /* o dado chega: a contagem dos valores e o medidor que enche */
+  --gcg-motion-pulse: 1.4s;     /* esqueleto do carregando: pulso de opacidade, nunca brilho que corre */
+  --gcg-motion-stagger: 30ms;   /* cascata: intervalo entre um item e o próximo (no máximo 10 itens) */
+
+  /* ---------- curvas ---------- */
+  --gcg-ease-standard: cubic-bezier(0.2, 0, 0, 1);     /* entrada e movimento: sai rápido e assenta devagar */
+  --gcg-ease-exit: cubic-bezier(0.3, 0, 1, 1);         /* saída: acelera e some */
+  --gcg-ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1); /* mola leve: passa ~3% do fim e volta (chave, check, contador) */
+
+  /* ---------- distâncias ---------- */
+  --gcg-motion-rise: var(--gcg-space-2);   /* 8 px: subida do conteúdo da rota e do toast */
+  --gcg-motion-nudge: var(--gcg-space-1);  /* 4 px: menus, linhas, textos, painel da aba */
+  --gcg-motion-scale-from: 0.96;       /* menus, dica, calendário e Modal nascem com 96% */
+  --gcg-motion-press: 0.98;            /* botão pressionado */
+  --gcg-motion-press-icon: 0.94;       /* alvo quadrado de ícone pressionado (a mesma sensação num alvo menor) */
+}
+
+/* ---------- entradas e saídas comuns (os componentes escolhem a duração e a curva) ---------- */
+@keyframes gcg-motion-fade-in { from { opacity: 0; } }
+@keyframes gcg-motion-fade-out { to { opacity: 0; } }
+/* sobe 4 px enquanto aparece (linhas da tabela, textos); desce 4 px (o que chega de cima: aviso, erro) */
+@keyframes gcg-motion-rise-in { from { opacity: 0; transform: translateY(var(--gcg-motion-nudge)); } }
+@keyframes gcg-motion-drop-in { from { opacity: 0; transform: translateY(calc(-1 * var(--gcg-motion-nudge))); } }
+/* cresce a partir da origem (o transform-origin de quem usa): menus, dica, calendário, Modal */
+@keyframes gcg-motion-scale-in { from { opacity: 0; transform: scale(var(--gcg-motion-scale-from)); } }
+@keyframes gcg-motion-scale-out { to { opacity: 0; transform: scale(var(--gcg-motion-scale-from)); } }
+/* aparece crescendo do centro, com a mola: contador, medalhão do estado vazio */
+@keyframes gcg-motion-pop-in { from { opacity: 0; transform: scale(0.6); } }
+
+/* ---------- prefers-reduced-motion: nada anima, o estado final aparece na hora ----------
+   Os tokens vão a zero (o que é lido por var()) e a regra geral corta a duração e o atraso de toda
+   animação e transição — inclusive a da cascata, que é só atraso. O JS pergunta motionDisabled(). */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --gcg-motion-instant: 0ms;
+    --gcg-motion-fast: 0ms;
+    --gcg-motion-base: 0ms;
+    --gcg-motion-slow: 0ms;
+    --gcg-motion-data: 0ms;
+    --gcg-motion-stagger: 0ms;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}

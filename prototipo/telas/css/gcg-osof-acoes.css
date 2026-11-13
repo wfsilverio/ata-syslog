@@ -1,0 +1,29 @@
+/* gcg-osof-acoes.css — composição de tela (HU019 · Emitir Ordem de Serviço; HU020 · Emitir Ordem de Fornecimento; HU021 · Emitir Termo de Recebimento Definitivo da OS/OF; HU022 · Documentos OS/OF; HU023 · Emitir Despacho de Ordem de Pagamento; HU024 · Editar Ordem de Serviço e Ordem de Fornecimento; HU025 · Excluir Ordem de Serviço e Ordem de Fornecimento; HU026 · Cancelar Ordem de Serviço e Ordem de Fornecimento; HU027 · Consultar Ordem de Serviço e Fornecimento; HU028 · Consultar Saldo de Ordem de Serviço e Ordem de Fornecimento; HU029 · Ateste de Ordem de Serviço e Ordem de Fornecimento; HU030 · Tramitar Ordem de Serviço e Ordem de Fornecimento), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* Figma, página 20: HU025 · L1 · 1 (nó 634:226389) e HU026 · L1 · 1 (634:230465). */
+
+.gcg-osof-acoes {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* A janela tem 560 de largura nestas telas (o Modal da biblioteca tem 440): sem token, a medida do Figma. */
+.gcg-modal.gcg-osof-acoes__janela {
+  --gcg-modal-w: 560px;
+}
+
+/* O miolo: a ordem identificada e o campo, com space/4 entre eles (Figma: 308 → 340, 16 de folga) */
+.gcg-osof-acoes__conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+}
+
+/* "OS-0011/2026 · Limpeza de fachada e vidros do bloco B · R$ 18.400,00" (Figma: SemiBold 14, text/strong) */
+.gcg-osof-acoes__ordem {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  overflow-wrap: anywhere;
+}

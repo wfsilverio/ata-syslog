@@ -1,0 +1,85 @@
+/* gcg-link.css — Link · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Link — Figma 48:52107 (página 05 › Ações › Linha · Link).
+   Texto e ícone text/link (o valor de action/primary, green/600: 4,6:1 sobre surface/base);
+   hover action/primary-hover; ícone size/icon-sm; gap space/1; padding space/half; raio radius/sm.
+   Sublinhado só no hover e no foco; no foco, fundo surface/base e o anel de 2px afastado 2px. */
+
+.gcg-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--gcg-space-half);
+  border-radius: var(--gcg-radius-sm);
+  outline: none;
+  color: var(--gcg-text-link);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, box-shadow;
+  transition-duration: var(--gcg-motion-fast);
+  transition-timing-function: var(--gcg-ease-standard);
+}
+.gcg-link:visited { color: var(--gcg-text-link); }
+
+/* ---------- size ---------- */
+.gcg-link--sm { font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold); }
+.gcg-link--md { font: var(--gcg-font-text-md-medium); letter-spacing: var(--gcg-tracking-text-md-medium); }
+
+.gcg-link__label {
+  position: relative; /* referência do sublinhado (::after) */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+}
+/* para a esquerda ao sair. É um traço no mesmo pixel e na mesma espessura do text-decoration:
+   underline do Chrome para a Public Sans (conferido em 25/09 com o texto a 100, 125, 150, 175 e 200%):
+   a linha de base fica no meio-entrelinha + a ascendente (0,95 em; descendente 0,225 em, cada uma
+   arredondada ao pixel, a soma arredondada para baixo) e o traço começa 0,075 em abaixo dela, com
+   0,075 em de espessura (no mínimo 1 px). Tudo em em e lh: acompanha o texto da barra eMAG. */
+.gcg-link__label::after {
+  --gcg-link-asc: round(0.95em, 1px);
+  --gcg-link-desc: round(0.225em, 1px);
+  --gcg-link-underline-t: max(1px, round(0.075em, 1px));
+
+  content: '';
+  position: absolute;
+  top: calc(round(down, (1lh - var(--gcg-link-asc) - var(--gcg-link-desc)) / 2 + var(--gcg-link-asc), 1px) + var(--gcg-link-underline-t));
+  right: 0;
+  left: 0;
+  height: var(--gcg-link-underline-t);
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--gcg-motion-base) var(--gcg-ease-standard);
+  pointer-events: none;
+}
+.gcg-link__icon { color: inherit; }
+
+/* ---------- state ---------- */
+/* hover: rótulo e ícone em action/primary-hover, rótulo sublinhado */
+.gcg-link:hover { color: var(--gcg-action-primary-hover); }
+.gcg-link:hover .gcg-link__label::after,
+.gcg-link:focus-visible .gcg-link__label::after { transform: none; }
+
+/* focus: fundo surface/base e anel duplo (DD-004), só no foco de teclado.
+   O contorno transparente aparece nos modos de cor forçada do sistema, onde a sombra some. */
+.gcg-link:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  background-color: var(--gcg-surface-base);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* ---------- alto contraste (barra eMAG) ----------
+   e o foco vira contorno amarelo. */
+html[data-gcg-contrast='high'] .gcg-link .gcg-link__label { text-decoration: underline; }
+html[data-gcg-contrast='high'] .gcg-link__label::after { display: none; } /* o sublinhado de sempre basta */
+html[data-gcg-contrast='high'] .gcg-link:hover { color: var(--gcg-text-link); }

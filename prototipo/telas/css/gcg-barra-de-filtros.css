@@ -1,0 +1,38 @@
+/* gcg-barra-de-filtros.css — composição de tela (HU-015 · Painel do Analista Financeiro; HU-016 · Painel do Coordenador de Contratos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Barra de filtros fixa dos painéis (HU-015 Cenário 07, HU-016 Cenário 13): presa no alto ao rolar; presa,
+   ganha a sombra. As larguras dos campos de cada painel ficam aqui (painel-campo--<campo>). */
+
+.gcg-painel-filtros {
+  position: sticky;
+  top: calc(var(--gcg-space-6) * -1); /* cola no alto da área que rola (o <main> tem 24 de respiro em cima) */
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  margin: 0 calc(var(--gcg-space-2) * -1);
+  padding: var(--gcg-space-4) var(--gcg-space-4) var(--gcg-space-3);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+  transition: box-shadow var(--gcg-motion-base) var(--gcg-ease-standard), border-radius var(--gcg-motion-base) var(--gcg-ease-standard);
+}
+.gcg-painel-filtros--presa {
+  border-radius: 0 0 var(--gcg-radius-lg) var(--gcg-radius-lg);
+  box-shadow: var(--gcg-elevation-2);
+}
+.gcg-painel-filtros__campos { display: flex; flex-wrap: wrap; gap: var(--gcg-space-3) var(--gcg-space-4); align-items: flex-end; }
+.gcg-painel-filtros__linha { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gcg-space-2) var(--gcg-space-3); min-height: 32px; }
+.gcg-painel-filtros__resumo { margin: 0; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }
+.gcg-painel-filtros__resumo strong { color: var(--gcg-text-strong); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gcg-painel-filtros__fichas { display: flex; flex-wrap: wrap; gap: var(--gcg-space-2); }
+.gcg-painel-campo { min-width: 0; }
+.gcg-painel-campo--natureza { width: 18.5rem; }
+.gcg-painel-campo--ipof { width: 7.5rem; }
+.gcg-painel-campo--empenho { width: 12rem; }
+.gcg-painel-campo--contrato { width: 9.75rem; }
+.gcg-painel-campo--fornecedor { flex: 1 1 11rem; }
+.gcg-painel-campo--situacao { width: 12.5rem; }
+.gcg-painel-campo--unidade { width: 14rem; }
+.gcg-painel-campo--categoria { width: 15rem; }
+.gcg-painel-campo--buscar { flex: 1 1 18rem; }

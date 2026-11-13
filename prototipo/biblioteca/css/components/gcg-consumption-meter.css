@@ -1,0 +1,108 @@
+/* gcg-consumption-meter.css — ConsumptionMeter · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* ConsumptionMeter — Figma 42:45843 (página 05 › Dados › Linha · ConsumptionMeter).
+   Cartão surface/base · borda border-width/thin border/subtle · radius/lg · padding space/6 · gap space/3.
+   Rótulo Text/MD/Semibold text/strong · número Display text/strong, alinhado pela linha de base com a conta
+   (Text/MD/Regular text/secondary, gap space/3) · regra Text/SM/Regular text/secondary.
+   Trilha: altura size/meter (8) · surface/hover · radius/full; preenchimento action/primary · radius/full.
+   Largura: a do contêiner (560 no componente; na tela, estica). */
+
+.gcg-consumption-meter {
+  /* Figma: size/meter = 8 (coleção Primitive) — no tokens.css desde a sincronização de 25/09 */
+  --gcg-consumption-meter-track-h: var(--gcg-size-meter);
+  --gcg-consumption-meter-skeleton-w: 96px; /* Figma: value-skeleton › bar, 96 de largura — sem token */
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--gcg-space-6);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background-color: var(--gcg-surface-base);
+}
+
+.gcg-consumption-meter__label {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+
+.gcg-consumption-meter__figures {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--gcg-space-3);
+  min-width: 0;
+}
+.gcg-consumption-meter__value {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-display);
+  letter-spacing: var(--gcg-tracking-display);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.gcg-consumption-meter__detail {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- trilha e preenchimento ---------- */
+.gcg-consumption-meter__track {
+  display: flex;
+  height: var(--gcg-consumption-meter-track-h);
+  border-radius: var(--gcg-radius-full);
+  background-color: var(--gcg-surface-hover);
+  overflow: hidden;
+}
+.gcg-consumption-meter__fill {
+  display: block;
+  width: calc(var(--gcg-consumption-meter-fraction, 0) * 100%);
+  height: 100%;
+  border-radius: var(--gcg-radius-full);
+  background-color: var(--gcg-action-primary);
+  /* largura até 0), em --motion-data, junto com a contagem do percentual (CountUp). A trilha recorta
+     o que está à esquerda dela, então se vê a barra crescer de 0 até a fração — só com transform — e,
+     parada, é o desenho de sempre (a largura da fração), pixel a pixel. */
+  animation: gcg-consumption-meter-fill var(--gcg-motion-data) var(--gcg-ease-standard) backwards;
+}
+@keyframes gcg-consumption-meter-fill { from { transform: translateX(-100%); } }
+
+/* o número e a conta aparecem com fade quando os valores chegam (depois do carregando) */
+.gcg-consumption-meter__figures { animation: gcg-motion-fade-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+
+.gcg-consumption-meter__formula {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+/* ---------- loading: barra no lugar do número (Display 40 = 16 + 12 + 12); trilha vazia em surface/skeleton ---------- */
+.gcg-consumption-meter__skeleton {
+  display: flex;
+  padding: var(--gcg-space-4) 0 var(--gcg-space-3);
+}
+.gcg-consumption-meter__skeleton-bar {
+  display: block;
+  width: var(--gcg-consumption-meter-skeleton-w);
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-consumption-meter-pulse var(--gcg-motion-pulse) ease-in-out infinite;
+}
+.gcg-consumption-meter--loading .gcg-consumption-meter__track {
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-consumption-meter-pulse var(--gcg-motion-pulse) ease-in-out infinite;
+}
+@keyframes gcg-consumption-meter-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* ---------- alto contraste (barra eMAG): a trilha ganha contorno, porque o fundo some ---------- */
+html[data-gcg-contrast='high'] .gcg-consumption-meter__track {
+  outline: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+}

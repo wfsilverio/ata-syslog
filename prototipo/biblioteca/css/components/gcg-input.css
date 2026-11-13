@@ -1,0 +1,6 @@
+/* gcg-input.css — Input · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Input — Figma 35:2638 (página 05 › Formulário › Texto › Linha · Input).
+   O corpo de campo inteiro (rótulo, controle, estados, ajuda, erro, ×) está em Field.css,
+   porque Select, SearchField e DatePicker repetem o mesmo corpo (é o Input que o define).
+   O Input não tem regra própria além dessas: o ícone final (icon-end) vem depois do ×, em text/muted */

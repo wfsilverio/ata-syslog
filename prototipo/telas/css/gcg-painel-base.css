@@ -1,0 +1,37 @@
+/* gcg-painel-base.css — composição de tela (HU-012 · Painel do Gestor e do Fiscal; HU-013 · Painel do Fornecedor; HU-014 · Painel do Procurador Setorial; HU-015 · Painel do Analista Financeiro; HU-016 · Painel do Coordenador de Contratos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* O quadro dos painéis por perfil (HU-012, HU-015, HU-016): a coluna, o título de seção, o zero discreto e
+   as colunas. Coluna de conteúdo de 1144 (1440 com o menu).
+   Hierarquia: o número é o protagonista; cor só para o que pede atenção; zero discreto. */
+
+.gcg-painel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-5);
+  padding-bottom: var(--gcg-space-10, 40px);
+}
+
+.gcg-painel__titulo-secao {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-lg-semibold);
+  letter-spacing: var(--gcg-tracking-text-lg-semibold);
+}
+.gcg-painel__subtitulo {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+
+.gcg-painel-zero, .gcg-is-zero .gcg-value-tile__value { color: var(--gcg-text-muted) !important; }
+.gcg-painel-vazio { margin: 0; padding: var(--gcg-space-4) 0; color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+
+.gcg-painel-secao .gcg-section-card__title { font: var(--gcg-font-text-lg-semibold); letter-spacing: var(--gcg-tracking-text-lg-semibold); }
+.gcg-painel-colunas { display: grid; gap: var(--gcg-space-5); align-items: start; }
+.gcg-painel-colunas--2-1 { grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); }
+.gcg-painel-colunas--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gcg-space-6); }
+@media (max-width: 1180px) {
+  .gcg-painel-colunas--2-1, .gcg-painel-colunas--3 { grid-template-columns: minmax(0, 1fr); }
+}
+.gcg-painel-ancora { scroll-margin-top: 140px; }

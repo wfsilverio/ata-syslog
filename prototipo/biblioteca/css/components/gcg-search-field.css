@@ -1,0 +1,76 @@
+/* gcg-search-field.css — SearchField · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* SearchField — Figma 35:8778 · SearchField/Option 35:8112 · SearchField/Empty 35:8113 · SearchField/Menu 35:8132
+   O corpo de campo (rótulo, controle, estados, ajuda, erro, ×) está em Input/Field.css.
+   Exceção declarada: a lupa vai no início (o campo é de busca); o × fica no fim. */
+
+.gcg-search-field__icon { order: -1; }
+
+/* ---------- SearchField/Menu ---------- */
+.gcg-search-menu {
+  box-sizing: border-box;
+  padding: var(--gcg-space-1) 0;
+  overflow: hidden;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+}
+.gcg-search-menu__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- SearchField/Option ---------- */
+.gcg-search-option {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: var(--gcg-space-2) var(--gcg-space-3);
+  cursor: pointer;
+  user-select: none;
+}
+.gcg-search-option__label {
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+}
+.gcg-search-option__detail {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+/* o trecho que bate com a busca: Semibold (peso, não só cor) */
+.gcg-search-option__match--label { font: var(--gcg-font-text-md-semibold); letter-spacing: var(--gcg-tracking-text-md-semibold); }
+.gcg-search-option__match--detail { font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold); }
+
+/* hover: fundo surface/subtle (só ponteiro) */
+.gcg-search-option:hover { background: var(--gcg-surface-subtle); }
+/* active: setas — fundo surface/subtle + barra border/focus de 2 px (o texto anda 2 px, como no Figma) */
+.gcg-search-option[data-gcg-active] {
+  border-left: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  background: var(--gcg-surface-subtle);
+}
+
+/* ---------- SearchField/Empty e carregando ---------- */
+.gcg-search-empty,
+.gcg-search-loading {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  padding: var(--gcg-space-2) var(--gcg-space-3);
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+}
+.gcg-search-empty__icon,
+.gcg-search-loading__icon { flex: none; }
+/* o ícone de refresh gira enquanto busca (o Figma é parado; some com prefers-reduced-motion) */
+.gcg-search-loading__icon { animation: gcg-search-spin 1s linear infinite; }
+@keyframes gcg-search-spin { to { transform: rotate(360deg); } }
+
+/* ---------- alto contraste (barra eMAG) ---------- */
+html[data-gcg-contrast='high'] .gcg-search-menu { border-color: var(--gcg-border-default); }
+html[data-gcg-contrast='high'] .gcg-search-option:hover,
+html[data-gcg-contrast='high'] .gcg-search-option[data-gcg-active] { background: var(--gcg-surface-base); text-decoration: underline; }

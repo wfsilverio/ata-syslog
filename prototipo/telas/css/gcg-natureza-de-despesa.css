@@ -1,0 +1,41 @@
+/* gcg-natureza-de-despesa.css — composição de tela (HU-015 · Painel do Analista Financeiro), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* O filtro Natureza de Despesa até o subelemento (HU-015). Figma: página 11, HU-015, L2 · 1, "Select/Menu ·
+   Natureza de Despesa (com subelementos)": 560 de largura, 4 em cima e embaixo, a busca (4 · 8 · 8 · 8) e a lista
+   que rola embaixo dela, com o elemento em Semibold e o subelemento recuado 16.
+   O campo e as opções usam as classes do Select (Select.css); aqui fica só o que é novo. */
+
+.gcg-natureza-popover { width: min(35rem, calc(100vw - 2 * var(--gcg-space-2))); }
+
+.gcg-natureza-menu {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: var(--gcg-space-1) 0;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+}
+.gcg-natureza-menu__busca { padding: var(--gcg-space-1) var(--gcg-space-2) var(--gcg-space-2); }
+.gcg-natureza-menu__campo .gcg-field__native::-webkit-search-cancel-button { display: none; -webkit-appearance: none; }
+
+/* a lista rola embaixo da busca: a moldura é a do menu (Figma: 240 de lista visível, a última opção cortada) */
+.gcg-natureza-menu__lista.gcg-select-menu {
+  max-height: 15rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* o elemento em Semibold; o subelemento recuado 16 (o fundo da escolhida começa no recuo, como no Figma) */
+.gcg-natureza-option--elemento { font: var(--gcg-font-text-md-semibold); letter-spacing: var(--gcg-tracking-text-md-semibold); }
+.gcg-natureza-option--subelemento { margin-left: var(--gcg-space-4); }
+
+.gcg-natureza-menu__vazio {
+  margin: 0;
+  padding: var(--gcg-space-3);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+}

@@ -1,0 +1,355 @@
+/* gcg-tpl-preview.css — composição de tela (Assinatura HU001 · Realizar assinatura documento; Assinatura HU002 · Visualizar documento assinado; Cancelar HU034 · Cancelar documentos; Exportar HU033 · Exportar documentos; Importar HU032 · Importar documentos; Templates · Consumir templates · Documentos do contrato), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* templates (483:67384) e Assinatura HU001 e HU002 (484:97790, 484:112378). Só tokens; medidas de layout sem token
+   viram variáveis locais, com a origem no Figma. As regras que mexem em classes de componentes têm o escopo da aba
+   (.tpl-aba, .tpl-preview, .tpl-signatarios), com especificidade maior que a do componente (o pacote exportado carrega
+   as composições em ordem alfabética). */
+
+/* ---------- a barra de filtros (Figma: "barra · Filtros gerais (RF04)", 1144 × 132, gap 12) ---------- */
+.gcg-tpl-aba .gcg-tpl-filtros {
+  /* larguras do Figma: Número 230 · Tipo 300 · Nome 330 · Pendente 236; datas 170 (em rem, cresce com a barra eMAG) */
+  --gcg-tpl-w-numero: 14.375rem;
+  --gcg-tpl-w-tipo: 18.75rem;
+  --gcg-tpl-w-nome: 20.625rem;
+  --gcg-tpl-w-pendente: 14.75rem;
+  --gcg-tpl-w-data: 10.625rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  margin: 0;
+}
+.gcg-tpl-aba .gcg-tpl-filtros__linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--gcg-space-3);
+}
+.gcg-tpl-aba .gcg-tpl-filtros__numero { width: var(--gcg-tpl-w-numero); }
+.gcg-tpl-aba .gcg-tpl-filtros__tipo { width: var(--gcg-tpl-w-tipo); }
+.gcg-tpl-aba .gcg-tpl-filtros__nome { width: var(--gcg-tpl-w-nome); }
+.gcg-tpl-aba .gcg-tpl-filtros__pendente { width: var(--gcg-tpl-w-pendente); }
+.gcg-tpl-aba .gcg-tpl-filtros__data { width: var(--gcg-tpl-w-data); }
+/* FE02: com o erro embaixo de um campo, a linha alinha pelo topo (os campos ficam na mesma altura e o erro cresce
+   para baixo); os botões descem a altura do rótulo (24) para seguir alinhados aos campos */
+.gcg-tpl-aba .gcg-tpl-filtros__linha:has([aria-invalid='true']) { align-items: flex-start; }
+.gcg-tpl-aba .gcg-tpl-filtros__linha:has([aria-invalid='true']) .gcg-tpl-filtros__botoes { margin-top: var(--gcg-space-6); }
+/* Pesquisar e Limpar: na linha das datas, alinhados pela base dos campos (Figma: y 96) */
+.gcg-tpl-aba .gcg-tpl-filtros__botoes {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-3);
+}
+
+/* ---------- filtros específicos (RF12 a RF14): bloco tracejado, fundo cinza claro, raio 8, padding 16, gap 12 ---------- */
+.gcg-tpl-aba .gcg-tpl-especificos {
+  --gcg-tpl-w-esp-1: 12.5rem;   /* Figma: Número da Nota Fiscal 200 */
+  --gcg-tpl-w-esp-2: 16.25rem;  /* Número ou identificador do ateste 260 */
+  --gcg-tpl-w-esp-3: 13.75rem;  /* Data de emissão da Nota Fiscal 220 */
+  --gcg-tpl-w-esp-4: 18.75rem;  /* Fornecedor 300 */
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  min-width: 0;
+  margin: 0;
+  padding: var(--gcg-space-4);
+  border: var(--gcg-border-width-thin) dashed var(--gcg-border-default);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-subtle);
+}
+/* a legenda vira item do flex (float), com o Badge "Em proposta" ao lado */
+.gcg-tpl-aba .gcg-tpl-especificos__titulo {
+  float: left;
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  width: 100%;
+  padding: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-tpl-aba .gcg-tpl-especificos__campos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--gcg-space-3);
+}
+.gcg-tpl-aba .gcg-tpl-especificos__nf,
+.gcg-tpl-aba .gcg-tpl-especificos__tipo { width: var(--gcg-tpl-w-esp-1); }
+.gcg-tpl-aba .gcg-tpl-especificos__ateste { width: var(--gcg-tpl-w-esp-2); }
+.gcg-tpl-aba .gcg-tpl-especificos__data { width: var(--gcg-tpl-w-esp-3); }
+.gcg-tpl-aba .gcg-tpl-especificos__fornecedor { width: var(--gcg-tpl-w-esp-4); }
+
+/* ---------- critérios aplicados: as fichas e Limpar filtros (gap 8) ---------- */
+.gcg-tpl-aba .gcg-tpl-criterios {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gcg-space-2);
+}
+
+/* "Limpar filtros" sobre o fundo cinza da página: o text/link (green/600) dá menos de 4,5:1 sobre surface/app;
+   aqui o link usa o tom do hover (action/primary-hover), que passa. Diferença aceita (paridade). */
+.gcg-tpl-aba .gcg-tpl-criterios .gcg-link,
+.gcg-tpl-aba .gcg-tpl-criterios .gcg-link:visited { color: var(--gcg-action-primary-hover); }
+
+/* ---------- a tabela ---------- */
+/* o selo da Assinatura quebra em duas linhas na coluna de 100 (no Figma ele vaza sobre a coluna seguinte) */
+.gcg-tpl-aba .gcg-badge.gcg-tpl-tabela__selo {
+  white-space: normal;
+  text-align: left;
+  justify-content: flex-start;
+  padding-top: var(--gcg-space-half);
+  padding-bottom: var(--gcg-space-half);
+}
+/* a célula do selo cede a margem da direita (o selo de 100 do Figma: "Não enviado" cabe numa linha) */
+.gcg-tpl-aba .gcg-data-table__cell--custom:has(> .gcg-tpl-tabela__selo) { padding-right: 0; }
+/* "Acesso restrito" (OBT06): a linha de apoio, focável para a dica */
+.gcg-tpl-aba .gcg-tpl-tabela__restrito {
+  border-radius: var(--gcg-radius-sm);
+  outline: none;
+  cursor: help;
+}
+.gcg-tpl-aba .gcg-tpl-tabela__restrito:focus-visible {
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+/* a paginação fora do cartão da tabela (Figma: "Pagination (RNF04)", surface/base, padding 12 × 16) */
+.gcg-tpl-aba .gcg-tpl-paginacao {
+  flex: none;
+  border-radius: var(--gcg-radius-md);
+}
+
+/* ---------- o preview (RF06): painel de 600 à direita, sobre o véu ---------- */
+.gcg-tpl-preview {
+  --gcg-tpl-preview-w: 600px; /* Figma: painel lateral · Preview, 600 × 1024 */
+  position: fixed;
+  inset: 0;
+  z-index: var(--gcg-z-drawer);
+}
+.gcg-tpl-preview__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--gcg-z-drawer);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: min(var(--gcg-tpl-preview-w), calc(100vw - var(--gcg-space-12)));
+  outline: none;
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-2);
+  color: var(--gcg-text-default);
+  animation: gcg-tpl-preview-in var(--gcg-motion-slow) var(--gcg-ease-standard) backwards;
+}
+.gcg-tpl-preview[data-gcg-state='closing'] .gcg-tpl-preview__panel {
+  animation: gcg-tpl-preview-out var(--gcg-motion-base) var(--gcg-ease-exit) both;
+  pointer-events: none;
+}
+@keyframes gcg-tpl-preview-in { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes gcg-tpl-preview-out { from { transform: translateX(0); } to { transform: translateX(100%); } }
+
+/* cabeçalho: padding 20 × 24, gap 12, borda de baixo */
+.gcg-tpl-preview__header {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  gap: var(--gcg-space-3);
+  padding: var(--gcg-space-5) var(--gcg-space-6);
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+}
+.gcg-tpl-preview__titles { flex: 1; min-width: 0; }
+.gcg-tpl-preview__title {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-md);
+  letter-spacing: var(--gcg-tracking-heading-md);
+}
+.gcg-tpl-preview__subtitle {
+  margin: var(--gcg-space-half) 0 0;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+/* o corpo rola por dentro; cabeçalho e rodapé ficam */
+.gcg-tpl-preview__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+/* os dados da linha: duas colunas de 240, gap 24, padding 16 × 24 */
+.gcg-tpl-preview__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 15rem));
+  gap: var(--gcg-space-4) var(--gcg-space-6);
+  margin: 0;
+  padding: var(--gcg-space-4) var(--gcg-space-6);
+}
+/* o bloco Assinaturas (proposta de UX, HU002 · L1 · 2): padding 16 × 24, gap 8 */
+.gcg-tpl-preview__signatures {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  padding: var(--gcg-space-4) var(--gcg-space-6);
+}
+.gcg-tpl-preview__signatures-head {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+}
+.gcg-tpl-preview__signatures-title {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-tpl-preview__signers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gcg-tpl-preview__signer { display: flex; flex-direction: column; gap: var(--gcg-space-half); }
+.gcg-tpl-preview__signer-name {
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+.gcg-tpl-preview__signer-detail {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-xs-medium);
+  letter-spacing: var(--gcg-tracking-text-xs-medium);
+}
+/* o documento: fundo cinza (padding 20 × 24) e a página branca (padding 40, gap 12) */
+.gcg-tpl-preview__document {
+  flex: 1 0 auto;
+  padding: var(--gcg-space-5) var(--gcg-space-6);
+  background: var(--gcg-surface-app);
+}
+.gcg-tpl-preview__page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  padding: var(--gcg-space-10);
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+  color: var(--gcg-text-strong);
+}
+.gcg-tpl-preview__page p { margin: 0; }
+.gcg-tpl-preview__org {
+  font: var(--gcg-font-text-xs-medium);
+  letter-spacing: var(--gcg-tracking-text-xs-medium);
+}
+.gcg-tpl-preview__doc-title {
+  font: var(--gcg-font-text-lg-semibold);
+  letter-spacing: var(--gcg-tracking-text-lg-semibold);
+}
+.gcg-tpl-preview__ref,
+.gcg-tpl-preview__par {
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+/* rodapé: padding 16 × 24, gap 12, borda de cima; o link à esquerda, Fechar e Exportar à direita */
+.gcg-tpl-preview__footer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-3);
+  padding: var(--gcg-space-4) var(--gcg-space-6);
+  border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+}
+.gcg-tpl-preview__spacer { flex: 1; }
+
+/* ---------- a janela dos signatários: 880 (revisão de 27/10) ---------- */
+.gcg-modal.gcg-tpl-signatarios {
+  --gcg-modal-w: 880px;
+}
+.gcg-tpl-signatarios__content {
+  /* Figma: Signatário 314 · E-mail 210 · Obrigatoriedade 236 · o × 32 */
+  --gcg-tpl-sig-pessoa: 19.625rem;
+  --gcg-tpl-sig-email: 13.125rem;
+  --gcg-tpl-sig-obrig: 14.75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+}
+.gcg-tpl-signatarios__head {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+}
+.gcg-tpl-signatarios__title {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-medium);
+  letter-spacing: var(--gcg-tracking-text-md-medium);
+}
+.gcg-tpl-signatarios__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gcg-tpl-signatarios__row {
+  display: grid;
+  grid-template-columns: minmax(0, var(--gcg-tpl-sig-pessoa)) minmax(0, var(--gcg-tpl-sig-email)) minmax(0, var(--gcg-tpl-sig-obrig)) var(--gcg-size-control-sm);
+  align-items: end;
+  gap: var(--gcg-space-3);
+}
+/* o × alinhado ao centro do campo (o campo tem 36, o botão 32) */
+.gcg-tpl-signatarios__remove { margin-bottom: var(--gcg-space-half); }
+/* com erro embaixo do campo, o × fica na altura do campo */
+.gcg-tpl-signatarios__row:has([aria-invalid='true']) { align-items: start; }
+.gcg-tpl-signatarios__row:has([aria-invalid='true']) .gcg-tpl-signatarios__remove { align-self: center; }
+.gcg-tpl-signatarios__add { display: flex; }
+
+/* ---------- celular e zoom de 200% em 1280 (até 600 de largura): o painel vira folha de baixo ----------
+   No telefone, a gaveta lateral vira folha de baixo (bottom sheet), e o preview também, por ser o mesmo painel:
+   largura toda, cantos de cima arredondados, até a altura da janela menos 48, sobe de baixo e desce ao fechar.
+   O puxador é só sinal (não arrasta): fecha pelo ×, pelo véu ou pelo Esc. Pedido do Bruno, 10/11. */
+@media (max-width: 600px) {
+  .gcg-tpl-preview__panel {
+    top: auto;
+    left: 0;
+    width: 100%;
+    max-height: calc(100dvh - var(--gcg-space-12));
+    border-radius: var(--gcg-radius-lg) var(--gcg-radius-lg) 0 0;
+    animation-name: gcg-tpl-folha-in;
+  }
+  .gcg-tpl-preview__panel::before {
+    content: '';
+    flex: none;
+    align-self: center;
+    width: var(--gcg-space-10);
+    height: var(--gcg-space-1);
+    margin-top: var(--gcg-space-2);
+    border-radius: var(--gcg-radius-full);
+    background: var(--gcg-border-default);
+  }
+  .gcg-tpl-preview[data-gcg-state='closing'] .gcg-tpl-preview__panel { animation-name: gcg-tpl-folha-out; }
+  .gcg-tpl-preview__header { padding: var(--gcg-space-3) var(--gcg-space-4) var(--gcg-space-4); }
+  .gcg-tpl-preview__body { padding-inline: var(--gcg-space-4); }
+  .gcg-tpl-preview__footer { flex-wrap: wrap; padding-inline: var(--gcg-space-4); }
+}
+@keyframes gcg-tpl-folha-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes gcg-tpl-folha-out { from { transform: translateY(0); } to { transform: translateY(100%); } }
+
+/* ---------- movimento: tudo desliga com prefers-reduced-motion (a regra geral de motion.css) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .gcg-tpl-preview__panel,
+  .gcg-tpl-preview[data-gcg-state='closing'] .gcg-tpl-preview__panel { animation: none; }
+}
+
+/* ---------- alto contraste (barra eMAG): o painel com borda branca, como a gaveta ---------- */
+html[data-gcg-contrast='high'] .gcg-tpl-preview__panel { border-left: var(--gcg-border-width-thick) solid var(--gcg-border-default); box-shadow: none; }
+html[data-gcg-contrast='high'] .gcg-tpl-aba .gcg-tpl-especificos { border-color: var(--gcg-border-strong); }

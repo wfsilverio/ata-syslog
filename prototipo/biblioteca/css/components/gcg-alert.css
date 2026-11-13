@@ -1,0 +1,74 @@
+/* gcg-alert.css — Alert · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Alert — Figma 35:2021 (página 05 › Feedback › Linha · Alert).
+   Padding space/3 × space/4 · gap space/3 (ícone ↔ texto) e space/1 (título ↔ mensagem) · radius/md.
+   A borda entra na altura, como no border-box: 1 + 12 + 20 + 12 + 1 = 46 numa linha. */
+
+.gcg-alert {
+  /* paleta do tipo (preenchida por .alert--info/success/warning/error) */
+  --gcg-alert-bg: var(--gcg-state-info-bg);
+  --gcg-alert-border: var(--gcg-state-info);
+  --gcg-alert-icon: var(--gcg-state-info);
+  --gcg-alert-text: var(--gcg-state-info-text);
+
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gcg-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--gcg-space-3) var(--gcg-space-4);
+  border: var(--gcg-border-width-thin) solid var(--gcg-alert-border);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-alert-bg);
+  color: var(--gcg-alert-text);
+
+  animation: gcg-motion-drop-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+
+.gcg-alert__icon { color: var(--gcg-alert-icon); }
+
+.gcg-alert__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.gcg-alert__title { font: var(--gcg-font-text-md-semibold); letter-spacing: var(--gcg-tracking-text-md-semibold); }
+.gcg-alert__message { font: var(--gcg-font-text-md-regular); letter-spacing: var(--gcg-tracking-text-md-regular); }
+
+/* ---------- type ---------- */
+.gcg-alert--info {
+  --gcg-alert-bg: var(--gcg-state-info-bg);
+  --gcg-alert-border: var(--gcg-state-info);
+  --gcg-alert-icon: var(--gcg-state-info);
+  --gcg-alert-text: var(--gcg-state-info-text);
+}
+.gcg-alert--success {
+  --gcg-alert-bg: var(--gcg-state-success-bg);
+  --gcg-alert-border: var(--gcg-state-success);
+  --gcg-alert-icon: var(--gcg-state-success);
+  --gcg-alert-text: var(--gcg-state-success-text);
+}
+/* warning: borda state/warning-border (3.69:1) e ícone state/warning-text — state/warning daria só 1.91:1 */
+.gcg-alert--warning {
+  --gcg-alert-bg: var(--gcg-state-warning-bg);
+  --gcg-alert-border: var(--gcg-state-warning-border);
+  --gcg-alert-icon: var(--gcg-state-warning-text);
+  --gcg-alert-text: var(--gcg-state-warning-text);
+}
+.gcg-alert--error {
+  --gcg-alert-bg: var(--gcg-state-error-bg);
+  --gcg-alert-border: var(--gcg-state-error);
+  --gcg-alert-icon: var(--gcg-state-error);
+  --gcg-alert-text: var(--gcg-state-error-text);
+}
+
+/* ---------- alto contraste (barra eMAG) ----------
+   Os tokens semânticos já chegam trocados; aqui só a forma: borda de 2px na cor de borda do modo. */
+html[data-gcg-contrast='high'] .gcg-alert {
+  --gcg-alert-border: var(--gcg-border-default);
+  border-width: var(--gcg-border-width-thick);
+  padding: calc(var(--gcg-space-3) - var(--gcg-border-width-thin)) calc(var(--gcg-space-4) - var(--gcg-border-width-thin));
+}

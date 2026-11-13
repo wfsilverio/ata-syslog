@@ -1,0 +1,118 @@
+/* gcg-filter-chip.css — FilterChip · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* FilterChip — Figma 35:2235 (página 05 › Dados › Linha · FilterChip).
+   Altura size/control-sm (32) · padding space/3 · gap space/2 · raio radius/full · fundo action/primary-subtle ·
+   borda border/subtle (hover border/strong) · campo Text/SM/Regular text/secondary · valor Text/SM/Semibold text/strong ·
+   × Icon/close 16 text/muted · foco anel duplo. */
+
+.gcg-filter-chip {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  min-height: var(--gcg-size-control-sm);
+  max-width: 100%;
+  /* No Figma a borda (INSIDE) fica fora do layout: o padding desconta 1px para a largura bater (128px em "Órgão: SEAD") */
+  padding: 0 calc(var(--gcg-space-3) - var(--gcg-border-width-thin));
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-full);
+  background-color: var(--gcg-action-primary-subtle);
+  vertical-align: middle;
+  transition-property: border-color, box-shadow, transform;
+  transition-duration: var(--gcg-motion-fast);
+  transition-timing-function: var(--gcg-ease-standard);
+
+  animation: gcg-filter-chip-in var(--gcg-motion-base) var(--gcg-ease-spring) backwards;
+}
+/* várias fichas de uma vez (depois de Filtrar): entram em cascata, até a 6ª */
+.gcg-filter-chip:nth-child(2) { animation-delay: calc(1 * var(--gcg-motion-stagger)); }
+.gcg-filter-chip:nth-child(3) { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+.gcg-filter-chip:nth-child(4) { animation-delay: calc(3 * var(--gcg-motion-stagger)); }
+.gcg-filter-chip:nth-child(5) { animation-delay: calc(4 * var(--gcg-motion-stagger)); }
+.gcg-filter-chip:nth-child(n + 6) { animation-delay: calc(5 * var(--gcg-motion-stagger)); }
+
+.gcg-filter-chip.gcg-filter-chip--leaving {
+  animation: gcg-filter-chip-out var(--gcg-motion-fast) var(--gcg-ease-exit) both;
+  pointer-events: none;
+}
+/* pressionar o × (a ficha inteira é a área de clique): a ficha afunda um pouco */
+.gcg-filter-chip:has(.gcg-filter-chip__remove:active) { transform: scale(var(--gcg-motion-press-icon)); }
+@keyframes gcg-filter-chip-in { from { opacity: 0; transform: scale(0.85); } }
+@keyframes gcg-filter-chip-out { to { opacity: 0; transform: scale(0.85); } }
+
+.gcg-filter-chip__content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+}
+.gcg-filter-chip__field {
+  flex: none;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  white-space: nowrap;
+}
+.gcg-filter-chip__value {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* O × é o botão. A área de clique (::after) cobre a ficha inteira, borda incluída. */
+.gcg-filter-chip__remove {
+  display: inline-flex;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--gcg-text-muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.gcg-filter-chip__remove::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--gcg-border-width-thin));
+  border-radius: var(--gcg-radius-full);
+}
+
+/* hover: a borda escurece para border/strong */
+.gcg-filter-chip:hover { border-color: var(--gcg-border-strong); }
+
+/* focus: anel duplo em volta da ficha quando o × tem o foco de teclado */
+.gcg-filter-chip:has(.gcg-filter-chip__remove:focus-visible) {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* Alto contraste (barra eMAG): fundo preto, borda branca, textos brancos, foco em contorno amarelo */
+html[data-gcg-contrast='high'] .gcg-filter-chip { background-color: var(--gcg-surface-base); border-color: var(--gcg-border-default); }
+html[data-gcg-contrast='high'] .gcg-filter-chip__field,
+html[data-gcg-contrast='high'] .gcg-filter-chip__value,
+html[data-gcg-contrast='high'] .gcg-filter-chip__remove { color: var(--gcg-text-strong); }
+html[data-gcg-contrast='high'] .gcg-filter-chip:hover .gcg-filter-chip__value { text-decoration: underline; }
+html[data-gcg-contrast='high'] .gcg-filter-chip:has(.gcg-filter-chip__remove:focus-visible) { outline-color: var(--gcg-border-focus); }
+/* O contorno de foco já envolve a ficha: o × não ganha um segundo (a rede de segurança do
+   alto contraste, em emag.css, põe contorno em todo :focus-visible com !important) */
+@supports selector(:has(*)) {
+  html[data-gcg-contrast='high'] .gcg-filter-chip__remove:focus-visible { outline: none !important; }
+}
+
+/* Navegador sem :has(): o anel não chega à ficha, então o próprio × ganha o contorno de foco */
+@supports not selector(:has(*)) {
+  .gcg-filter-chip__remove:focus-visible {
+    outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+    outline-offset: var(--gcg-space-half);
+    border-radius: var(--gcg-radius-full);
+  }
+}

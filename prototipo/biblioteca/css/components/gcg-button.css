@@ -1,0 +1,173 @@
+/* gcg-button.css — Button · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Button — Figma 33:901 (página 05 › Ações › Linha · Button).
+   Cada combinação variant × color só preenche a paleta (--button-*); os estados leem a paleta. */
+
+.gcg-button {
+  /* cor da combinação (preenchida por .button--primary/neutral/destructive) */
+  --gcg-button-color: var(--gcg-action-primary);
+  --gcg-button-color-hover: var(--gcg-action-primary-hover);
+  --gcg-button-color-subtle: var(--gcg-action-primary-subtle);
+  /* paleta por estado (preenchida por .button--solid/outline/ghost) */
+  --gcg-button-bg: var(--gcg-button-color);
+  --gcg-button-bg-hover: var(--gcg-button-color-hover);
+  --gcg-button-bg-focus: var(--gcg-button-bg);
+  --gcg-button-fg: var(--gcg-text-on-action);
+  --gcg-button-fg-hover: var(--gcg-button-fg);
+  --gcg-button-border: transparent;
+  --gcg-button-border-hover: var(--gcg-button-border);
+  --gcg-button-padding-x: var(--gcg-space-4);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  min-height: var(--gcg-size-control-md);
+  margin: 0;
+  /* No Figma a borda (1px, INSIDE) fica fora do cálculo do layout: largura = padding + conteúdo
+     (71px no md com "Botão"). Aqui a borda ocupa 1px de cada lado, então o padding desconta esse 1px.
+     Todas as variantes têm borda (transparente no solid e no ghost): mesma largura, e desabilitar não desloca nada. */
+  padding: 0 calc(var(--gcg-button-padding-x) - var(--gcg-border-width-thin));
+  border: var(--gcg-border-width-thin) solid var(--gcg-button-border);
+  border-radius: var(--gcg-radius-md);
+  outline: none;
+  background-color: var(--gcg-button-bg);
+  color: var(--gcg-button-fg);
+  font: var(--gcg-font-text-md-medium);
+  letter-spacing: var(--gcg-tracking-text-md-medium);
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    border-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard),
+    transform var(--gcg-motion-instant) var(--gcg-ease-standard);
+}
+
+/* imediata ao gesto. Desabilitado e carregando não reagem. */
+.gcg-button:not(:disabled):not(.gcg-button--loading):not(.gcg-button--disabled):active { transform: scale(var(--gcg-motion-press)); }
+
+.gcg-button__label { display: block; }
+
+/* ---------- size ---------- */
+.gcg-button--sm { min-height: var(--gcg-size-control-sm); --gcg-button-padding-x: var(--gcg-space-3); gap: var(--gcg-space-1); }
+.gcg-button--md { min-height: var(--gcg-size-control-md); --gcg-button-padding-x: var(--gcg-space-4); gap: var(--gcg-space-2); }
+.gcg-button--lg { min-height: var(--gcg-size-control-lg); --gcg-button-padding-x: var(--gcg-space-5); gap: var(--gcg-space-2); }
+
+/* ---------- color ---------- */
+.gcg-button--primary {
+  --gcg-button-color: var(--gcg-action-primary);
+  --gcg-button-color-hover: var(--gcg-action-primary-hover);
+  --gcg-button-color-subtle: var(--gcg-action-primary-subtle);
+}
+.gcg-button--neutral {
+  --gcg-button-color: var(--gcg-action-neutral);
+  --gcg-button-color-hover: var(--gcg-action-neutral-hover);
+  --gcg-button-color-subtle: var(--gcg-action-neutral-subtle);
+}
+.gcg-button--destructive {
+  --gcg-button-color: var(--gcg-action-destructive);
+  --gcg-button-color-hover: var(--gcg-action-destructive-hover);
+  --gcg-button-color-subtle: var(--gcg-action-destructive-subtle);
+}
+
+/* ---------- variant ---------- */
+/* solid: fundo action/<cor> · hover action/<cor>-hover · rótulo text/on-action */
+.gcg-button--solid {
+  --gcg-button-bg: var(--gcg-button-color);
+  --gcg-button-bg-hover: var(--gcg-button-color-hover);
+  --gcg-button-fg: var(--gcg-text-on-action);
+  --gcg-button-border: transparent;
+}
+/* outline: fundo surface/base · hover action/<cor>-subtle · borda e rótulo action/<cor> */
+.gcg-button--outline {
+  --gcg-button-bg: var(--gcg-surface-base);
+  --gcg-button-bg-hover: var(--gcg-button-color-subtle);
+  --gcg-button-fg: var(--gcg-button-color);
+  --gcg-button-border: var(--gcg-button-color);
+}
+/* outline · neutral: a borda é border/default (exceção declarada, 1.55:1 — pendente de decisão) */
+.gcg-button--outline.gcg-button--neutral { --gcg-button-border: var(--gcg-border-default); }
+/* ghost: sem fundo · hover action/<cor>-subtle · rótulo action/<cor> ·
+   no foco ganha surface/base, como no Figma (lá o anel só aparece em nó com fundo) */
+.gcg-button--ghost {
+  --gcg-button-bg: transparent;
+  --gcg-button-bg-hover: var(--gcg-button-color-subtle);
+  --gcg-button-bg-focus: var(--gcg-surface-base);
+  --gcg-button-fg: var(--gcg-button-color);
+  --gcg-button-border: transparent;
+}
+/* primary em outline e ghost: no hover o rótulo (e a borda do outline) escurecem para action/primary-hover */
+.gcg-button--outline.gcg-button--primary { --gcg-button-fg-hover: var(--gcg-action-primary-hover); --gcg-button-border-hover: var(--gcg-action-primary-hover); }
+.gcg-button--ghost.gcg-button--primary { --gcg-button-fg-hover: var(--gcg-action-primary-hover); }
+
+/* ---------- state ---------- */
+/* focus: anel duplo (2px surface/base + 2px border/focus), só no foco de teclado.
+   O contorno transparente aparece nos modos de cor forçada do sistema, onde a sombra some. */
+.gcg-button:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+  background-color: var(--gcg-button-bg-focus);
+}
+
+/* hover: depois do foco, para valer quando os dois acontecem juntos */
+.gcg-button:not(:disabled):not(.gcg-button--disabled):hover {
+  background-color: var(--gcg-button-bg-hover);
+  color: var(--gcg-button-fg-hover);
+  border-color: var(--gcg-button-border-hover);
+}
+
+/* disabled: rótulo text/disabled em todas; solid ganha fundo surface/subtle; solid e outline, borda border/subtle.
+   (aria-disabled), para mostrar a dica no foco — o anel de foco continua. */
+.gcg-button:disabled,
+.gcg-button.gcg-button--disabled { cursor: not-allowed; --gcg-button-fg: var(--gcg-text-disabled); }
+.gcg-button--solid:disabled,
+.gcg-button--solid.gcg-button--disabled { --gcg-button-bg: var(--gcg-surface-subtle); --gcg-button-border: var(--gcg-border-subtle); }
+.gcg-button--outline:disabled,
+.gcg-button--outline.gcg-button--disabled { --gcg-button-border: var(--gcg-border-subtle); }
+
+/* ---------- alto contraste (barra eMAG) ----------
+   Fundo preto, borda 2px branca, texto branco; foco em contorno amarelo (a sombra é desligada nesse modo).
+   Os tokens semânticos já chegam trocados; aqui só a forma. */
+html[data-gcg-contrast='high'] .gcg-button {
+  --gcg-button-bg: var(--gcg-surface-base);
+  --gcg-button-bg-hover: var(--gcg-surface-base);
+  --gcg-button-bg-focus: var(--gcg-surface-base);
+  --gcg-button-fg: var(--gcg-text-strong);
+  --gcg-button-fg-hover: var(--gcg-text-strong);
+  --gcg-button-border: var(--gcg-border-default);
+  --gcg-button-border-hover: var(--gcg-border-default);
+  border-width: var(--gcg-border-width-thick);
+  padding: 0 calc(var(--gcg-button-padding-x) - var(--gcg-border-width-thick));
+}
+html[data-gcg-contrast='high'] .gcg-button:not(:disabled):not(.gcg-button--disabled):hover { text-decoration: underline; }
+html[data-gcg-contrast='high'] .gcg-button:focus-visible { outline-color: var(--gcg-border-focus); }
+html[data-gcg-contrast='high'] .gcg-button:disabled,
+html[data-gcg-contrast='high'] .gcg-button.gcg-button--disabled { --gcg-button-fg: var(--gcg-text-disabled); --gcg-button-border: var(--gcg-text-disabled); }
+
+/* ---------- state=loading (25/09/2026) ----------
+   Mesmas cores e borda do default: o hover não muda nada enquanto processa. O indicador
+   (progress_activity) fica no lugar do ícone de início, na cor do rótulo, e gira por CSS — */
+.gcg-button.gcg-button--loading {
+  --gcg-button-bg-hover: var(--gcg-button-bg);
+  --gcg-button-fg-hover: var(--gcg-button-fg);
+  --gcg-button-border-hover: var(--gcg-button-border);
+  cursor: progress;
+}
+/* O indicador aparece com fade (--motion-fast) e gira sem parar, uma volta por segundo, em ritmo
+   constante (linear): é espera, não movimento com começo e fim. */
+.gcg-button__spinner {
+  animation:
+    gcg-motion-fade-in var(--gcg-motion-fast) var(--gcg-ease-standard) backwards,
+    gcg-button-spin 1s linear infinite;
+}
+@keyframes gcg-button-spin { to { transform: rotate(360deg); } }

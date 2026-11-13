@@ -1,0 +1,187 @@
+/* gcg-recentes.css — composição de tela (HU-012 · Painel do Gestor e do Fiscal; HU-013 · Painel do Fornecedor; HU-014 · Painel do Procurador Setorial; HU-016 · Painel do Coordenador de Contratos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Painéis do Gestor e do Fiscal (HU-012) e do Coordenador de Contratos (HU-016): o que ainda não foi separado
+   em composição local. O quadro comum está em painel-base.css; o HU-015 tem os seus em financeiro/. */
+
+/* ── Listas do coordenador ───────────────────────────────────────────── */
+.gcg-proximos, .gcg-recentes__lista { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.gcg-proximos__item, .gcg-recentes__item {
+  display: grid;
+  width: 100%;
+  padding: var(--gcg-space-3) var(--gcg-space-2);
+  border: 0;
+  border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  background: none;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-regular);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-proximos__item:hover, .gcg-recentes__item:hover { background: var(--gcg-surface-hover); }
+.gcg-proximos__item:focus-visible, .gcg-recentes__item:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: -2px; border-radius: var(--gcg-radius-sm); }
+.gcg-proximos__contrato strong { color: var(--gcg-text-strong); font-weight: 600; }
+
+/* ── Números do coordenador ─────────────────────────────────────────── */
+.gcg-painel-cartoes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gcg-space-4); }
+.gcg-painel-cartoes .gcg-value-tile__value { font: var(--gcg-font-display); letter-spacing: var(--gcg-tracking-display); }
+@media (max-width: 1180px) { .gcg-painel-cartoes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gcg-maior {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+  padding: var(--gcg-space-4);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+}
+.gcg-maior__rotulo { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+.gcg-maior__valor { color: var(--gcg-text-strong); font: var(--gcg-font-heading-lg); letter-spacing: var(--gcg-tracking-heading-lg); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gcg-maior__contrato { overflow: hidden; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); text-overflow: ellipsis; white-space: nowrap; }
+.gcg-maior__contrato strong { color: var(--gcg-text-strong); }
+.gcg-maior__objeto {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-bottom: var(--gcg-space-1);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-xs-regular);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* ── Próximos do Vencimento: a escala de urgência ───────────────────── */
+.gcg-vencimentos .gcg-section-card__content { display: flex; flex-direction: column; gap: var(--gcg-space-4); }
+.gcg-faixas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gcg-space-3); margin: 0; padding: 0; list-style: none; }
+.gcg-faixa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: var(--gcg-space-3) var(--gcg-space-4);
+  border: var(--gcg-border-width-thin) solid transparent;
+  border-radius: var(--gcg-radius-lg);
+  text-align: left;
+  cursor: pointer;
+  transition: transform var(--gcg-motion-fast) var(--gcg-ease-standard), box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-faixa:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--gcg-elevation-1); } /* o atributo: o frame com o mouse em cima (estado parado) */
+.gcg-faixa:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; }
+.gcg-faixa:disabled { cursor: default; }
+.gcg-faixa__rotulo { font: var(--gcg-font-text-sm-semibold); }
+.gcg-faixa__numero { font: var(--gcg-font-display); letter-spacing: var(--gcg-tracking-display); font-variant-numeric: tabular-nums; }
+.gcg-faixa__nota { font: var(--gcg-font-text-xs-regular); opacity: 0.9; }
+.gcg-faixa--critico { border-color: var(--gcg-color-red-200); background: var(--gcg-color-red-50); color: var(--gcg-state-error-text); }
+.gcg-faixa--alto { border-color: var(--gcg-color-orange-300); background: var(--gcg-color-orange-50); color: var(--gcg-state-warning-text); }
+.gcg-faixa--medio { border-color: var(--gcg-color-orange-200); background: var(--gcg-surface-base); color: var(--gcg-state-warning-text); }
+.gcg-faixa--baixo { border-color: var(--gcg-border-subtle); background: var(--gcg-surface-subtle); color: var(--gcg-text-default); }
+.gcg-faixa--zero { border-color: var(--gcg-border-subtle); background: var(--gcg-surface-base); color: var(--gcg-text-muted); }
+.gcg-proximos { margin: 0; }
+.gcg-proximos__item { grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: var(--gcg-space-3); }
+.gcg-proximos__contrato { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gcg-proximos__prazo { color: var(--gcg-text-secondary); white-space: nowrap; }
+
+/* ── Vencimentos de Contratos por Mês ───────────────────────────────── */
+.gcg-colunas__grafico { display: flex; gap: var(--gcg-space-2); height: 10rem; margin: 0; padding: var(--gcg-space-5) 0 0; list-style: none; border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-default); }
+.gcg-colunas__mes { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.gcg-colunas__trilho { position: relative; flex: 1; display: flex; align-items: flex-end; justify-content: center; }
+.gcg-colunas__barra {
+  position: relative;
+  width: min(36px, 70%);
+  min-height: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--gcg-radius-sm) var(--gcg-radius-sm) 0 0;
+  background: var(--gcg-color-green-600);
+  cursor: pointer;
+  transition: height var(--gcg-motion-slow) var(--gcg-ease-standard), filter var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-colunas__barra:hover { filter: brightness(0.9); }
+.gcg-colunas__barra:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; }
+.gcg-colunas__barra--zero { min-height: 0; height: 0; background: none; cursor: default; }
+.gcg-colunas__numero { position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); font-variant-numeric: tabular-nums; }
+.gcg-colunas__barra--zero .gcg-colunas__numero { color: var(--gcg-text-muted); font-weight: 400; }
+.gcg-colunas__rotulo { padding-top: var(--gcg-space-2); color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); text-align: center; white-space: nowrap; }
+.gcg-colunas { display: flex; flex-direction: column; gap: var(--gcg-space-3); }
+
+/* ── Últimos 15 dias ────────────────────────────────────────────────── */
+.gcg-recentes .gcg-section-card__content { display: flex; flex-direction: column; gap: var(--gcg-space-2); }
+.gcg-recentes__painel { display: flex; flex-direction: column; }
+.gcg-recentes__lista { margin: 0; }
+.gcg-recentes__item { gap: 2px; }
+.gcg-recentes__linha1 { display: flex; justify-content: space-between; gap: var(--gcg-space-3); min-width: 0; }
+.gcg-recentes__linha1 strong { overflow: hidden; color: var(--gcg-text-strong); font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.gcg-recentes__data { flex: none; color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); font-variant-numeric: tabular-nums; }
+.gcg-recentes__linha2 { overflow: hidden; color: var(--gcg-text-default); text-overflow: ellipsis; white-space: nowrap; }
+.gcg-recentes__linha3 { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+.gcg-recentes__rodape { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gcg-space-2); padding-top: var(--gcg-space-3); border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); }
+
+/* ── Barras horizontais ordenadas ───────────────────────────────────── */
+.gcg-panorama__bloco { display: flex; flex-direction: column; gap: var(--gcg-space-3); min-width: 0; }
+.gcg-barras { display: flex; flex-direction: column; gap: var(--gcg-space-3); }
+.gcg-barras__lista { display: flex; flex-direction: column; gap: var(--gcg-space-1); margin: 0; padding: 0; list-style: none; }
+.gcg-barras__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  width: 100%;
+  padding: var(--gcg-space-2);
+  border: 0;
+  border-radius: var(--gcg-radius-md);
+  background: none;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-regular);
+  text-align: left;
+}
+button.gcg-barras__item { cursor: pointer; transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard); }
+button.gcg-barras__item:hover { background: var(--gcg-surface-hover); }
+button.gcg-barras__item:hover .gcg-barras__fill { filter: brightness(0.92); }
+button.gcg-barras__item:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: -2px; }
+.gcg-barras__topo { display: flex; align-items: baseline; gap: var(--gcg-space-2); min-width: 0; }
+.gcg-barras__posicao { flex: none; width: 1.25rem; color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-medium); font-variant-numeric: tabular-nums; }
+.gcg-barras__rotulo { flex: 1; min-width: 0; overflow: hidden; color: var(--gcg-text-default); text-overflow: ellipsis; white-space: nowrap; }
+.gcg-barras__valor { flex: none; color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); font-variant-numeric: tabular-nums; }
+.gcg-barras__trilho { display: block; height: 8px; overflow: hidden; border-radius: var(--gcg-radius-full); background: var(--gcg-surface-subtle); }
+.gcg-barras__fill { display: block; height: 100%; border-radius: var(--gcg-radius-full); background: var(--gcg-color-green-600); transition: width var(--gcg-motion-slow) var(--gcg-ease-standard); }
+.gcg-barras__detalhe { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+
+/* ── Contratos do órgão ─────────────────────────────────────────────── */
+.gcg-contratos__painel { display: flex; flex-direction: column; gap: var(--gcg-space-3); margin-top: var(--gcg-space-4); }
+.gcg-contratos__nota { margin: 0; color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+.gcg-contratos__rodape { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gcg-space-3); }
+.gcg-contratos__contagem { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+.gcg-contratos__rodape .gcg-panel-link { margin-left: auto; align-self: center; }
+.gcg-mini-consumo { display: inline-flex; align-items: center; gap: var(--gcg-space-2); width: 100%; }
+.gcg-mini-consumo__trilho { flex: 1; height: 6px; overflow: hidden; border-radius: var(--gcg-radius-full); background: var(--gcg-surface-subtle); }
+.gcg-mini-consumo__fill { display: block; height: 100%; border-radius: var(--gcg-radius-full); background: var(--gcg-action-primary); }
+.gcg-mini-consumo__fill--acima { background: var(--gcg-color-orange-500); }
+.gcg-mini-consumo__valor { flex: none; min-width: 3.25rem; color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); font-variant-numeric: tabular-nums; text-align: right; }
+
+/* Alto contraste (barra eMAG): as partes e as barras ganham contorno, a cor não pode ser o único meio */
+html[data-gcg-contrast='high'] .gcg-barras__fill,
+html[data-gcg-contrast='high'] .gcg-colunas__barra,
+html[data-gcg-contrast='high'] .gcg-mini-consumo__fill { outline: var(--gcg-border-width-thin) solid var(--gcg-border-strong); }
+html[data-gcg-contrast='high'] .gcg-faixa { border-color: var(--gcg-border-strong); }
+
+/* ── Alinhamento ao Figma da HU-016 (L1 · 1) ─────────────────────────── */
+.gcg-painel__subtitulo-linha { display: flex; align-items: baseline; justify-content: space-between; gap: var(--gcg-space-3); }
+.gcg-painel__nota { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+.gcg-painel-colunas--iguais { align-items: stretch; }
+.gcg-painel-colunas--iguais > .gcg-section-card { height: 100%; box-sizing: border-box; }
+.gcg-painel-colunas--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gcg-space-6); }
+@media (max-width: 1180px) { .gcg-painel-colunas--2 { grid-template-columns: minmax(0, 1fr); } }
+.gcg-panorama__coluna { display: flex; flex-direction: column; gap: var(--gcg-space-6); min-width: 0; }
+.gcg-painel-cartoes { grid-template-columns: 252fr 300fr 320fr 224fr; align-items: stretch; }
+.gcg-painel-cartoes .gcg-value-tile__link { text-align: left; white-space: nowrap; }
+.gcg-faixa__nota { white-space: nowrap; }
+.gcg-painel-cartoes > * { height: 100%; box-sizing: border-box; }
+.gcg-maior .gcg-panel-link { margin-top: auto; }
+.gcg-faixa__rotulo { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.gcg-faixa__linha { display: flex; align-items: baseline; gap: var(--gcg-space-2); font: var(--gcg-font-text-sm-regular); }
+.gcg-proximos__seta { color: var(--gcg-text-secondary); }
+.gcg-recentes__item { display: flex; flex-direction: column; gap: 2px; }
+.gcg-recentes__titulo { overflow: hidden; color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); text-overflow: ellipsis; white-space: nowrap; }
+.gcg-recentes__rodape { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
+.gcg-barras__detalhe { margin-left: var(--gcg-space-2); color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+.gcg-mini-consumo__valor--acima { color: var(--gcg-state-warning-text); }

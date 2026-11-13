@@ -1,0 +1,31 @@
+/* gcg-estados-do-painel.css — composição de tela (HU-012 · Painel do Gestor e do Fiscal; HU-013 · Painel do Fornecedor; HU-014 · Painel do Procurador Setorial; HU-015 · Painel do Analista Financeiro; HU-016 · Painel do Coordenador de Contratos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Estados do painel inteiro: o esqueleto da primeira carga e a moldura da falha e do sem resultado
+   (o conteúdo é o EmptyState da biblioteca). */
+
+.gcg-painel-estado { padding: var(--gcg-space-8) var(--gcg-space-6); border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); border-radius: var(--gcg-radius-lg); background: var(--gcg-surface-base); }
+.gcg-painel-esqueleto { display: flex; flex-direction: column; gap: var(--gcg-space-5); }
+.gcg-painel-esqueleto__bloco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  padding: var(--gcg-space-5) var(--gcg-space-6);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+}
+.gcg-painel-esqueleto__bloco--faixa { min-height: 12rem; }
+.gcg-painel-esqueleto__bloco--cartoes { min-height: 8rem; }
+.gcg-painel-esqueleto__bloco--grafico { min-height: 16rem; }
+.gcg-painel-esqueleto__bloco--lista { min-height: 12rem; }
+.gcg-painel-esqueleto__barra {
+  display: block;
+  width: 60%;
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background: var(--gcg-surface-skeleton);
+  animation: gcg-painel-pulso var(--gcg-motion-pulse) ease-in-out infinite;
+}
+.gcg-painel-esqueleto__barra--titulo { width: 14rem; height: 16px; }
+.gcg-painel-esqueleto__barra--curta { width: 35%; }
+@keyframes gcg-painel-pulso { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }

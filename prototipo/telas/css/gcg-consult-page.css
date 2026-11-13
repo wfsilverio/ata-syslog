@@ -1,0 +1,26 @@
+/* gcg-consult-page.css — composição de tela (HU-001 · Listar contratos; HU-002 · Consultar saldos; HU-003 · Consultar aditivos; HU-004 · Consultar apostilamentos; HU-005 · Consultar equipe; HU-006 · Consultar documentos; HU-007 · Consultar tramitações; HU-008 · Consultar ocorrências; HU-009 · Consultar dados gerais; HU-010 · Exportar lista de contratos; HU-011 · Enviar avisos/comunicação; HU-015 · Painel do Analista Financeiro; HU-016 · Painel do Coordenador de Contratos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Tela Consultar contratos (HU-001) — Figma página 09, "Gabarito · tela base da HU-001" e L1 · 4.
+   O AppShell já dá a margem (space/6) e o gap entre os blocos (space/4). */
+
+/* Fichas dos critérios aplicados: gap space/2, quebram linha (Figma: frame "chips", gap 8) */
+.gcg-consult-page__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gcg-space-2);
+}
+
+/* O cartão da tabela tem a altura do conteúdo, como no Figma (L1 · 4: 744 de altura), e encolhe
+   quando a janela não comporta — aí só as linhas rolam e a paginação continua à vista */
+.gcg-consult-page__table.gcg-data-table__card--stretch {
+  flex: 0 1 auto;
+}
+
+/* Cenário do Figma com a gaveta rolada além do fim do conteúdo (L2 · 4, L3 · 1 e 2): a folga no fim
+   do corpo. O corpo da gaveta é flex em coluna — sem flex: none, a folga vazia encolheria a zero e
+   a medida nunca fecharia. */
+.gcg-consult-drawer__folga {
+  flex: none;
+}
+
+.gcg-consult-page__resumo-recorte { margin: 0; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }

@@ -1,0 +1,148 @@
+/* gcg-osof-form.css — composição de tela (HU019 · Emitir Ordem de Serviço; HU020 · Emitir Ordem de Fornecimento; HU024 · Editar Ordem de Serviço e Ordem de Fornecimento), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* "formulario". Figma, página 20 · Telas · OS/OF: frames "painel · Nova Ordem de Serviço" (HU019 · L1 · 2,
+   634:155821) e "painel · Nova Ordem de Fornecimento" (HU020 · L1 · 2, 634:165281).
+   O AppShell já dá a margem (space/6) e o gap entre os blocos (space/4). Cor, fonte, espaço e raio vêm dos tokens; as
+   medidas do Figma sem token ficam em variáveis locais, com a origem ao lado. */
+
+.gcg-osof-form,
+.gcg-osof-form__topo,
+.gcg-osof-form__acesso,
+.gcg-osof-form__indisponivel {
+  flex: none; /* a página rola inteira: nenhum bloco encolhe (o conteúdo do AppShell é flex em coluna) */
+}
+
+/* ---------- cabeçalho: o PageHeader e o Voltar no canto (Figma: Button ghost · neutral · sm, 8 acima da trilha) ---------- */
+.gcg-osof-form__topo { position: relative; }
+.gcg-osof-form__voltar {
+  position: absolute;
+  top: calc(-1 * var(--gcg-space-2));
+  right: 0;
+}
+
+/* ---------- o formulário: os blocos e o rodapé, com 16 entre eles (Figma: painel, gap 16) ---------- */
+.gcg-osof-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  margin: 0;
+}
+
+/* a grade de 4 colunas dos blocos (Figma: "grade · 4 colunas", colunas de 262 e gap 16 em 1094) */
+.gcg-osof-form__grade {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gcg-space-4);
+  align-items: start;
+  margin: 0;
+}
+.gcg-osof-form__celula { min-width: 0; }
+/* o Textarea do Figma tem o rodapé (contador desligado) ocupando 4 + 16 abaixo do controle de 120 */
+.gcg-osof-form__celula--texto-longo { padding-bottom: var(--gcg-space-5); }
+.gcg-osof-form__span-2 { grid-column: span 2; }
+.gcg-osof-form__span-3 { grid-column: span 3; }
+.gcg-osof-form__span-4 { grid-column: 1 / -1; }
+/* começa linha nova mesmo com coluna livre antes (Figma: a Nota de Empenho abre a linha 4 do bloco do contrato) */
+.gcg-osof-form__nova-linha { grid-column-start: 1; }
+
+/* ---------- o bloco dos itens ---------- */
+.gcg-osof-form__frase {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+}
+.gcg-osof-form__aviso-itens { margin: 0; }
+.gcg-osof-form__aviso-itens:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* a grade dos itens (Figma: "grade de itens", gap 8 entre as linhas e entre as colunas) */
+.gcg-osof-form__itens {
+  --gcg-osof-itens-raio-cabecalho: 6px; /* Figma: cabeçalho da grade, raio 6 (sem token) */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+}
+/* colunas do Figma, em px (sem token): Item 36 · campos · Valor Total · Ações 48; a descrição estica */
+.gcg-osof-form__itens--os { --gcg-osof-itens-colunas: 36px minmax(0, 1fr) 90px 104px 140px 128px 48px; }
+.gcg-osof-form__itens--of { --gcg-osof-itens-colunas: 36px 128px minmax(0, 1fr) 92px 112px 128px 110px 48px; }
+
+.gcg-osof-form__itens-linha {
+  display: grid;
+  grid-template-columns: var(--gcg-osof-itens-colunas);
+  column-gap: var(--gcg-space-2);
+  align-items: start;
+}
+.gcg-osof-form__itens-linha--nova { animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+
+.gcg-osof-form__itens-cabecalho {
+  align-items: center;
+  min-height: var(--gcg-size-control-md);
+  border-radius: var(--gcg-osof-itens-raio-cabecalho);
+  background: var(--gcg-surface-subtle);
+}
+.gcg-osof-form__itens-th {
+  min-width: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+.gcg-osof-form__itens-th--valor { text-align: right; }
+
+.gcg-osof-form__itens-td { min-width: 0; }
+.gcg-osof-form__itens-numero,
+.gcg-osof-form__itens-valor {
+  display: flex;
+  align-items: center;
+  min-height: var(--gcg-size-control-md);
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+}
+.gcg-osof-form__itens-valor {
+  justify-content: flex-end;
+}
+
+/* ---------- rodapé: Cancelar, Enviar Fornecedor e Salvar à direita (Figma: "rodapé · ações", gap 12) ---------- */
+.gcg-osof-form__rodape {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--gcg-space-3);
+}
+
+/* ---------- quando a rota não abre o formulário (o aviso do módulo e o caminho de volta, HU027 · L4 · 1) ---------- */
+.gcg-osof-form__acesso {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gcg-space-4);
+}
+.gcg-osof-form__acesso > .gcg-alert { align-self: stretch; }
+
+/* ---------- janela estreita (zoom alto, 1280 com a fonte grande): a grade dos blocos vira 2 colunas e a dos itens
+   rola na horizontal, sem cortar o anel de foco ---------- */
+@media (max-width: 1100px) {
+  .gcg-osof-form__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gcg-osof-form__span-3 { grid-column: 1 / -1; }
+  .gcg-osof-form__itens {
+    --gcg-osof-itens-min: 760px; /* sem token: a soma das colunas fixas mais uma descrição legível */
+    overflow-x: auto;
+    margin: calc(-1 * var(--gcg-space-1));
+    padding: var(--gcg-space-1);
+  }
+  .gcg-osof-form__itens-linha { min-width: var(--gcg-osof-itens-min); }
+  .gcg-osof-form__voltar { position: static; align-self: flex-end; }
+  .gcg-osof-form__topo { display: flex; flex-direction: column-reverse; gap: var(--gcg-space-2); }
+}
+@media (max-width: 600px) {
+  .gcg-osof-form__grade { grid-template-columns: minmax(0, 1fr); }
+  .gcg-osof-form__span-2,
+  .gcg-osof-form__span-3 { grid-column: 1 / -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gcg-osof-form__itens-linha--nova { animation: none; }
+}

@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HU-011 · Enviar avisos/comunicação — L1 · 8 · Comunicação enviada</title>
+<!--
+  Tela:    HU-011 · Enviar avisos/comunicação
+  Linha:   L1 · Enviar comunicação — fluxo básico
+  Estado:  L1 · 8 · Comunicação enviada — Figma: Página 09 · seção HU-011 · Enviar avisos/comunicação, frame "L1 · 8 · Comunicação enviada"
+  Componentes (biblioteca/css/components/):
+    gcg-action-menu, gcg-alert, gcg-app-shell, gcg-badge, gcg-button, gcg-contract-header,
+    gcg-data-field, gcg-date-picker, gcg-field, gcg-file-upload, gcg-icon, gcg-icon-button,
+    gcg-input, gcg-link, gcg-modal, gcg-page-header, gcg-popover, gcg-scrim, gcg-section-card,
+    gcg-sidebar, gcg-start-screen-dialog, gcg-table, gcg-tabs, gcg-textarea, gcg-toast, gcg-tooltip,
+    gcg-topbar
+  Composição de tela (telas/css/): gcg-aba-avisos, gcg-detalhe, gcg-filtro-periodo
+  Gerado do protótipo em 27/10/2026. Dados fictícios.
+-->
+<link rel="stylesheet" href="../../biblioteca/css/gcg-bootstrap3.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-layers.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-motion.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-base.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-action-menu.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-alert.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-app-shell.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-badge.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-contract-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-data-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-date-picker.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-file-upload.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-input.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-link.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-modal.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-page-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-popover.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-scrim.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-section-card.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-sidebar.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-dialog.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-table.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tabs.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-textarea.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-toast.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tooltip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-topbar.css">
+<link rel="stylesheet" href="../css/gcg-aba-avisos.css">
+<link rel="stylesheet" href="../css/gcg-detalhe.css">
+<link rel="stylesheet" href="../css/gcg-filtro-periodo.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-emag.css">
+</head>
+<body>
+<div class="gcg-app-shell" data-gcg-layout="wide" data-gcg-sidebar="expanded">
+  <a class="gcg-app-shell__skip" href="#gcg-conteudo">Ir para o conteúdo</a>
+  <header class="gcg-topbar gcg-app-shell__topbar">
+    <div class="gcg-topbar__left">
+      <button aria-expanded="true" aria-controls="gcg-app-sidebar" type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Menu" title="Menu">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-menu"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__system">SISLOG</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <span class="gcg-topbar__module">Gestão de Contratos</span>
+    </div>
+    <div class="gcg-topbar__right">
+      <div class="gcg-topbar__emag" role="toolbar" aria-label="Acessibilidade">
+        <button tabindex="0" aria-disabled="true" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Diminuir fonte" title="Diminuir fonte" data-gcg-emag="decrease">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_decrease"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Fonte padrão" title="Fonte padrão" data-gcg-emag="reset">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_size"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar fonte" title="Aumentar fonte" data-gcg-emag="increase">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_increase"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Negrito" aria-pressed="false" title="Negrito" data-gcg-emag="bold">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_bold"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar relevo" aria-pressed="false" title="Aumentar relevo" data-gcg-emag="relief">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-shadow"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar contraste" aria-pressed="false" title="Aumentar contraste" data-gcg-emag="contrast">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contrast"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Inverter cores" aria-pressed="false" title="Inverter cores" data-gcg-emag="invert">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-invert_colors"></use></svg>
+          </span>
+        </button>
+      </div>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <button type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Ajuda" title="Ajuda">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__unit">SEAD · Unidade 90001</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <div class="gcg-topbar__user">
+        <span class="gcg-topbar__user-info">
+          <span class="gcg-topbar__user-name" title="Ana Souza">Ana Souza</span>
+          <span class="gcg-topbar__user-profile" title="Gestor de Contrato">Gestor de Contrato</span>
+        </span>
+        <button type="button" class="gcg-topbar__menu-perfil" aria-haspopup="menu" aria-expanded="false" aria-label="Menu do perfil de Ana Souza" data-gcg-popup="gcg-molde-0">
+          <span class="gcg-topbar__avatar" aria-hidden="true">A</span>
+          <span class="gcg-icon gcg-icon--sm gcg-topbar__menu-seta">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="gcg-app-shell__nav">
+    <nav id="gcg-app-sidebar" class="gcg-sidebar" aria-label="Menu principal">
+      <ul class="gcg-sidebar__list">
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-dashboard"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Dashboard</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--active gcg-sidebar-item--link" aria-current="true" href="/contratos" data-gcg-discover="true">
+            <span class="gcg-sidebar-item__indicator" aria-hidden="true"></span>
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contract"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Gerir contratos</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main id="gcg-conteudo" class="gcg-app-shell__main" tabindex="-1" style="--gcg-app-shell-gutter: 15px;">
+    <div class="gcg-page-header gcg-detalhe__bloco">
+      <nav class="gcg-page-header__breadcrumb" aria-label="Você está em">
+        <ol class="gcg-page-header__trail">
+          <li class="gcg-page-header__level">
+            <a class="gcg-page-header__crumb-link" href="/" data-gcg-discover="true">Dashboard</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <a class="gcg-page-header__crumb-link" href="/contratos" data-gcg-discover="true">Gerir contratos</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <span class="gcg-page-header__crumb gcg-page-header__crumb--current" aria-current="page">Contrato 704451</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="gcg-page-header__main">
+        <div class="gcg-page-header__heading">
+          <h1 id="gcg-detalhe-titulo" class="gcg-page-header__title">Contrato 704451</h1>
+        </div>
+      </div>
+    </div>
+    <section class="gcg-contract-header gcg-detalhe__bloco" aria-label="Identificação do contrato">
+      <dl class="gcg-contract-header__fields">
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--situation">
+          <dt class="gcg-data-field__label">Situação</dt>
+          <dd class="gcg-data-field__value">
+            <span class="gcg-contract-header__situacao">
+              <span class="gcg-badge gcg-badge--success">Publicado</span>
+              <span class="gcg-badge gcg-badge--neutral">Vigente até 15/03/2027</span>
+            </span>
+          </dd>
+        </div>
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--number">
+          <dt class="gcg-data-field__label">Número do Contrato</dt>
+          <dd class="gcg-data-field__value">449/2026</dd>
+        </div>
+        <div title="Serra Dourada Serviços S.A." class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--supplier gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Fornecedor</dt>
+          <dd class="gcg-data-field__value">Serra Dourada Serviços S.A.</dd>
+        </div>
+        <div title="Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD" class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--object gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Objeto</dt>
+          <dd class="gcg-data-field__value">Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD</dd>
+        </div>
+      </dl>
+    </section>
+    <div class="gcg-tabs gcg-detalhe__bloco">
+      <div class="gcg-tabs__list" role="tablist" aria-label="Seções do contrato" aria-orientation="horizontal">
+        <button type="button" role="tab" id="gcg-detalhe-tab-balances" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Saldos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-general" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Dados gerais</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-documents" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Documentação</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-occurrences" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Ocorrências</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-notices" class="gcg-tabs__tab gcg-tabs__tab--selected" aria-selected="true" tabindex="0" aria-controls="gcg-detalhe-panel-notices">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Avisos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-status-history" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Status/Trâmites</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-amendments" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Aditivos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-apostilles" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Apostilamentos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-team" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Equipe</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <div role="tabpanel" id="gcg-detalhe-panel-notices" aria-labelledby="gcg-detalhe-tab-notices" class="gcg-tabs-panel gcg-detalhe__painel gcg-aba-avisos">
+      <section id="gcg-nova-comunicacao" class="gcg-section-card gcg-section-card--collapsible gcg-section-card--collapsed gcg-aba-avisos__nova" aria-labelledby="gcg-nova-comunicacao-title" aria-describedby="gcg-nova-comunicacao-description">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><button type="button" id="gcg-nova-comunicacao-title" class="gcg-section-card__toggle" aria-expanded="false" aria-controls="gcg-nova-comunicacao-content">Nova comunicação</button></h2>
+            <p class="gcg-section-card__description" id="gcg-nova-comunicacao-description">Envie um aviso ou comunicação aos participantes do contrato.</p>
+          </div>
+          <span class="gcg-icon gcg-icon--md gcg-section-card__chevron">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-nova-comunicacao-content" hidden>
+            <div class="gcg-aba-avisos__form">
+              <dl class="gcg-aba-avisos__sistema">
+                <div class="gcg-data-field gcg-data-field--default">
+                  <dt class="gcg-data-field__label">Contrato</dt>
+                  <dd class="gcg-data-field__value">704451</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default">
+                  <dt class="gcg-data-field__label">Remetente</dt>
+                  <dd class="gcg-data-field__value">Ana Souza</dd>
+                </div>
+                <div class="gcg-data-field gcg-data-field--default">
+                  <dt class="gcg-data-field__label">Perfil do Remetente</dt>
+                  <dd class="gcg-data-field__value">Gestor</dd>
+                </div>
+              </dl>
+              <fieldset class="gcg-aba-avisos__destinatarios" aria-describedby="gcg-r8-destinatario-apoio">
+                <legend class="gcg-aba-avisos__legenda">Destinatário</legend>
+                <p id="gcg-r8-destinatario-apoio" class="gcg-aba-avisos__apoio">Selecione um ou mais.</p>
+                <div class="gcg-aba-avisos__area-destinatarios" tabindex="-1">
+                  <div class="gcg-aba-avisos__opcoes gcg-aba-avisos__opcoes--carregando" aria-hidden="true">
+                    <div class="gcg-aba-avisos__opcao-esqueleto">
+                      <span class="gcg-aba-avisos__linha-esqueleto">
+                        <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--caixa"></span>
+                        <span class="gcg-aba-avisos__barra" style="width: 9.375rem;"></span>
+                      </span>
+                      <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--perfil"></span>
+                    </div>
+                    <div class="gcg-aba-avisos__opcao-esqueleto">
+                      <span class="gcg-aba-avisos__linha-esqueleto">
+                        <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--caixa"></span>
+                        <span class="gcg-aba-avisos__barra" style="width: 9.125rem;"></span>
+                      </span>
+                      <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--perfil"></span>
+                    </div>
+                    <div class="gcg-aba-avisos__opcao-esqueleto">
+                      <span class="gcg-aba-avisos__linha-esqueleto">
+                        <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--caixa"></span>
+                        <span class="gcg-aba-avisos__barra" style="width: 11.125rem;"></span>
+                      </span>
+                      <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--perfil"></span>
+                    </div>
+                    <div class="gcg-aba-avisos__opcao-esqueleto">
+                      <span class="gcg-aba-avisos__linha-esqueleto">
+                        <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--caixa"></span>
+                        <span class="gcg-aba-avisos__barra" style="width: 9rem;"></span>
+                      </span>
+                      <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--perfil"></span>
+                    </div>
+                    <div class="gcg-aba-avisos__opcao-esqueleto">
+                      <span class="gcg-aba-avisos__linha-esqueleto">
+                        <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--caixa"></span>
+                        <span class="gcg-aba-avisos__barra" style="width: 11rem;"></span>
+                      </span>
+                      <span class="gcg-aba-avisos__barra gcg-aba-avisos__barra--perfil"></span>
+                    </div>
+                  </div>
+                  <span class="gcg-sr-only" role="status">Carregando os destinatários</span>
+                </div>
+              </fieldset>
+              <div class="gcg-field gcg-field--input gcg-aba-avisos__assunto">
+                <label id="gcg-aviso-assunto-rotulo" class="gcg-field__label" for="gcg-aviso-assunto">Assunto</label>
+                <div class="gcg-field__control">
+                  <input id="gcg-aviso-assunto" class="gcg-field__native" placeholder="Digite o assunto" maxlength="150" autocomplete="off" spellcheck="false" aria-describedby="gcg-aviso-assunto-ajuda" type="text">
+                </div>
+                <p id="gcg-aviso-assunto-ajuda" class="gcg-field__helper">0/150</p>
+              </div>
+              <div class="gcg-field gcg-field--textarea gcg-field--fixed-height gcg-aba-avisos__mensagem" style="height: 148px;">
+                <label id="gcg-aviso-mensagem-rotulo" class="gcg-field__label" for="gcg-aviso-mensagem">Mensagem</label>
+                <div class="gcg-field__control">
+                  <textarea id="gcg-aviso-mensagem" class="gcg-field__native gcg-field__native--textarea" placeholder="Digite a mensagem" maxlength="4000" aria-describedby="gcg-aviso-mensagem-contador"></textarea>
+                </div>
+                <div class="gcg-field__footer">
+                  <span id="gcg-aviso-mensagem-contador" class="gcg-field__counter"><span aria-hidden="true">0/4.000</span><span class="gcg-sr-only">0 de 4.000 caracteres</span></span>
+                  <span class="gcg-sr-only" aria-live="polite" aria-atomic="true"></span>
+                </div>
+              </div>
+              <div class="gcg-file-upload gcg-aba-avisos__anexo" role="group" aria-labelledby="gcg-campo-rc-rotulo" tabindex="-1">
+                <div class="gcg-file-upload__field">
+                  <span id="gcg-campo-rc-rotulo" class="gcg-field__label">Anexo</span>
+                  <div class="gcg-file-upload__control">
+                    <button aria-describedby="gcg-campo-rc-ajuda" type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+                      <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                      </span>
+                      <span class="gcg-button__label">Anexar arquivo</span>
+                    </button>
+                    <input id="gcg-campo-rc" class="gcg-file-upload__native" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" tabindex="-1" aria-hidden="true" hidden type="file">
+                    <input class="gcg-file-upload__native" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" tabindex="-1" aria-hidden="true" hidden type="file">
+                  </div>
+                  <p id="gcg-campo-rc-ajuda" class="gcg-field__helper">PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG ou PNG. Até 5 arquivos.</p>
+                </div>
+                <span class="gcg-sr-only" aria-live="polite" aria-atomic="true"></span>
+              </div>
+              <div class="gcg-aba-avisos__acoes">
+                <button aria-haspopup="dialog" type="button" class="gcg-button gcg-button--solid gcg-button--primary gcg-button--md" disabled>
+                  <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-send"></use></svg>
+                  </span>
+                  <span class="gcg-button__label">Enviar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="gcg-historico-avisos" class="gcg-section-card gcg-section-card--expanded gcg-aba-avisos__historico" aria-labelledby="gcg-historico-avisos-title" aria-describedby="gcg-historico-avisos-description">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-historico-avisos-title">Histórico de comunicações</span></h2>
+            <p class="gcg-section-card__description" id="gcg-historico-avisos-description">Do mais recente para o mais antigo</p>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-historico-avisos-content">
+            <div class="gcg-filtro-periodo" role="group" aria-label="Filtrar por período (Data/Hora da comunicação)">
+              <div class="gcg-filtro-periodo__campo">
+                <div class="gcg-field gcg-field--date">
+                  <label id="gcg-campo-rf-rotulo" class="gcg-field__label" for="gcg-campo-rf">Data inicial</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-campo-rf" class="gcg-field__native" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" autocomplete="off" spellcheck="false" type="text">
+                    <button type="button" class="gcg-field__trigger gcg-datepicker__trigger" aria-label="Abrir calendário" title="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" aria-controls="gcg-campo-rf-popup" tabindex="0">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-filtro-periodo__campo">
+                <div class="gcg-field gcg-field--date">
+                  <label id="gcg-campo-rg-rotulo" class="gcg-field__label" for="gcg-campo-rg">Data final</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-campo-rg" class="gcg-field__native" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" autocomplete="off" spellcheck="false" type="text">
+                    <button type="button" class="gcg-field__trigger gcg-datepicker__trigger" aria-label="Abrir calendário" title="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" aria-controls="gcg-campo-rg-popup" tabindex="0">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="gcg-data-table__card gcg-aba-avisos__tabela">
+              <div class="gcg-data-table__viewport">
+                <div class="gcg-data-table__region" role="region" aria-labelledby="gcg-rh" tabindex="0">
+                  <table class="gcg-data-table" style="--gcg-data-table-min-w: 68.25rem;">
+                    <caption id="gcg-rh" class="gcg-sr-only">Histórico de comunicações do contrato</caption>
+                    <colgroup>
+                      <col style="width: 11rem;">
+                      <col style="width: 13.75rem;">
+                      <col style="width: 18.75rem;">
+                      <col>
+                      <col style="width: 6rem;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__header-content">
+                            <span class="gcg-data-table__header-labels">
+                              <span class="gcg-data-table__header-label">Data/Hora</span>
+                            </span>
+                          </span>
+                        </th>
+                        <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                          <span class="gcg-data-table__header-content">
+                            <span class="gcg-data-table__header-labels">
+                              <span class="gcg-data-table__header-label">Remetente</span>
+                            </span>
+                          </span>
+                        </th>
+                        <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                          <span class="gcg-data-table__header-content">
+                            <span class="gcg-data-table__header-labels">
+                              <span class="gcg-data-table__header-label">Destinatário</span>
+                            </span>
+                          </span>
+                        </th>
+                        <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--left">
+                          <span class="gcg-data-table__header-content">
+                            <span class="gcg-data-table__header-labels">
+                              <span class="gcg-data-table__header-label">Assunto</span>
+                            </span>
+                          </span>
+                        </th>
+                        <th scope="col" class="gcg-data-table__header-cell gcg-data-table__header-cell--right">
+                          <span class="gcg-data-table__header-content">
+                            <span class="gcg-data-table__header-labels">
+                              <span class="gcg-data-table__header-label">Visualizar</span>
+                            </span>
+                          </span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="gcg-data-table__row" data-gcg-row-id="704451-4">
+                        <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">25/09/2026 15:42:18</span>
+                          </span>
+                        </th>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Ana Souza</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Serra Dourada Serviços S.A., Camila Rodrigues Teles</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Convocação para reunião de alinhamento da fiscalização</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--right gcg-data-table__cell--custom">
+                          <div class="gcg-data-table__actions">
+                            <span class="gcg-tooltip">
+                              <button aria-haspopup="dialog" aria-describedby="gcg-tooltip-ri" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Visualizar comunicação de 25/09/2026 15:42:18" data-gcg-popup="gcg-molde-2" data-gcg-visualizar="704451-4">
+                                <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-visibility"></use></svg>
+                                </span>
+                              </button>
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="gcg-data-table__row gcg-data-table__row--zebra" data-gcg-row-id="704451-3">
+                        <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">18/09/2026 10:32:05</span>
+                          </span>
+                        </th>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Marcos Antônio Ribeiro</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Serra Dourada Serviços S.A.</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Notificação: relatório mensal de agosto entregue fora do prazo</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--right gcg-data-table__cell--custom">
+                          <div class="gcg-data-table__actions">
+                            <span class="gcg-tooltip">
+                              <button aria-haspopup="dialog" aria-describedby="gcg-tooltip-rj" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Visualizar comunicação de 18/09/2026 10:32:05" data-gcg-popup="gcg-molde-3" data-gcg-visualizar="704451-3">
+                                <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-visibility"></use></svg>
+                                </span>
+                              </button>
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="gcg-data-table__row" data-gcg-row-id="704451-2">
+                        <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">25/08/2026 14:10:47</span>
+                          </span>
+                        </th>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Camila Rodrigues Teles</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Serra Dourada Serviços S.A.</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Solicitação de troca dos uniformes dos vigilantes</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--right gcg-data-table__cell--custom">
+                          <div class="gcg-data-table__actions">
+                            <span class="gcg-tooltip">
+                              <button aria-haspopup="dialog" aria-describedby="gcg-tooltip-rk" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Visualizar comunicação de 25/08/2026 14:10:47" data-gcg-popup="gcg-molde-4" data-gcg-visualizar="704451-2">
+                                <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-visibility"></use></svg>
+                                </span>
+                              </button>
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="gcg-data-table__row gcg-data-table__row--zebra" data-gcg-row-id="704451-1">
+                        <th scope="row" class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__sticky-start">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">05/06/2026 09:02:13</span>
+                          </span>
+                        </th>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Marcos Antônio Ribeiro</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Camila Rodrigues Teles, Paulo Henrique Vasconcelos</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--left gcg-data-table__cell--strong">
+                          <span class="gcg-data-table__cell-content">
+                            <span class="gcg-data-table__line gcg-data-table__line--1">Início da fiscalização do 1º Termo Aditivo</span>
+                          </span>
+                        </td>
+                        <td class="gcg-data-table__cell gcg-data-table__cell--right gcg-data-table__cell--custom">
+                          <div class="gcg-data-table__actions">
+                            <span class="gcg-tooltip">
+                              <button aria-haspopup="dialog" aria-describedby="gcg-tooltip-rl" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--md" aria-label="Visualizar comunicação de 05/06/2026 09:02:13" data-gcg-popup="gcg-molde-5" data-gcg-visualizar="704451-1">
+                                <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-visibility"></use></svg>
+                                </span>
+                              </button>
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p class="gcg-sr-only" role="status"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="gcg-toaster" data-gcg-count="1">
+  <div class="gcg-toast gcg-toast--success gcg-toast--live" data-gcg-toast-id="1">
+    <span class="gcg-icon gcg-icon--md gcg-toast__icon">
+      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+    </span>
+    <p class="gcg-toast__message">Comunicação enviada com sucesso.</p>
+    <span class="gcg-toast__close">
+      <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Fechar aviso" title="Fechar aviso">
+        <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+        </span>
+      </button>
+    </span>
+  </div>
+</div>
+<div class="gcg-sr-only" role="status" aria-live="polite"><p>Comunicação enviada com sucesso.</p></div>
+<div class="gcg-sr-only" role="alert" aria-live="assertive"></div>
+<div role="tooltip" id="gcg-tooltip-ri" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Visualizar</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-rj" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Visualizar</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-rk" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Visualizar</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-rl" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Visualizar</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div id="gcg-emag-status" class="gcg-sr-only" role="status" aria-live="polite"></div>
+<!-- Moldes do gcg-behavior.js: a parte que abre de cada menu, lista, janela e grupo recolhido desta tela
+     (o gatilho aponta com data-gcg-popup). Não aparecem: o script copia para a página ao abrir e tira ao
+     fechar. Na aplicação, o servidor pode imprimir a mesma marcação assim. Ver o LEIA-ME, "Comportamento". -->
+<template id="gcg-molde-0">
+<div data-gcg-part data-gcg-mount="up:1" data-gcg-index="2">
+  <div class="gcg-topbar__menu gcg-action-menu__surface">
+    <div role="menu" id="gcg-menu-perfil-r4" class="gcg-action-menu__list" aria-label="Menu do perfil">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Configurar tela inicial</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-logout"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Sair</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-2">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-modal-layer">
+    <div class="gcg-scrim gcg-scrim--contained" aria-hidden="true" data-gcg-state="open"></div>
+    <div class="gcg-modal gcg-modal--primary gcg-aba-avisos__visualizar" role="dialog" aria-modal="true" aria-labelledby="gcg-rm-title" aria-describedby="gcg-rm-body" tabindex="-1">
+      <div class="gcg-modal__header">
+        <h2 class="gcg-modal__title" id="gcg-rm-title">Visualizar comunicação</h2>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm gcg-modal__close" aria-label="Fechar" title="Fechar">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </div>
+      <div class="gcg-modal__content">
+        <p class="gcg-modal__body" id="gcg-rm-body">Somente leitura: a comunicação enviada não pode ser alterada.</p>
+        <div class="gcg-modal__slot">
+          <dl class="gcg-aba-avisos__leitura">
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Data/Hora</dt>
+              <dd class="gcg-data-field__value">25/09/2026 15:42:18</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Remetente</dt>
+              <dd class="gcg-data-field__value">Ana Souza</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Destinatário</dt>
+              <dd class="gcg-data-field__value">Serra Dourada Serviços S.A., Camila Rodrigues Teles</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Assunto</dt>
+              <dd class="gcg-data-field__value">Convocação para reunião de alinhamento da fiscalização</dd>
+            </div>
+            <div class="gcg-aba-avisos__leitura-bloco">
+              <dt class="gcg-aba-avisos__leitura-rotulo">Mensagem</dt>
+              <dd class="gcg-aba-avisos__leitura-mensagem">Prezados, convocamos a contratada e a fiscalização para a reunião de alinhamento do contrato em 02/10/2026, às 9h, na sala 204 da SEAD. A pauta segue em anexo. Pedimos a presença do preposto e a confirmação até 30/09/2026.</dd>
+            </div>
+            <div class="gcg-aba-avisos__leitura-bloco">
+              <dt class="gcg-aba-avisos__leitura-rotulo">Anexo</dt>
+              <dd class="gcg-aba-avisos__leitura-anexos">
+                <div class="gcg-file-item gcg-file-item--readonly" data-gcg-state="readonly">
+                  <span class="gcg-icon gcg-icon--md gcg-file-item__icon">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                  </span>
+                  <div class="gcg-file-item__info">
+                    <span class="gcg-file-item__name" title="Pauta-reuniao-alinhamento.pdf">Pauta-reuniao-alinhamento.pdf</span>
+                    <span class="gcg-file-item__meta">PDF · 148 KB</span>
+                  </div>
+                  <div class="gcg-file-item__actions">
+                    <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Baixar Pauta-reuniao-alinhamento.pdf" title="Baixar Pauta-reuniao-alinhamento.pdf">
+                      <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="gcg-modal__footer">
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-3">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-modal-layer">
+    <div class="gcg-scrim gcg-scrim--contained" aria-hidden="true" data-gcg-state="open"></div>
+    <div class="gcg-modal gcg-modal--primary gcg-aba-avisos__visualizar" role="dialog" aria-modal="true" aria-labelledby="gcg-rm-title" aria-describedby="gcg-rm-body" tabindex="-1">
+      <div class="gcg-modal__header">
+        <h2 class="gcg-modal__title" id="gcg-rm-title">Visualizar comunicação</h2>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm gcg-modal__close" aria-label="Fechar" title="Fechar">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </div>
+      <div class="gcg-modal__content">
+        <p class="gcg-modal__body" id="gcg-rm-body">Somente leitura: a comunicação enviada não pode ser alterada.</p>
+        <div class="gcg-modal__slot">
+          <dl class="gcg-aba-avisos__leitura">
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Data/Hora</dt>
+              <dd class="gcg-data-field__value">18/09/2026 10:32:05</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Remetente</dt>
+              <dd class="gcg-data-field__value">Marcos Antônio Ribeiro</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Destinatário</dt>
+              <dd class="gcg-data-field__value">Serra Dourada Serviços S.A.</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Assunto</dt>
+              <dd class="gcg-data-field__value">Notificação: relatório mensal de agosto entregue fora do prazo</dd>
+            </div>
+            <div class="gcg-aba-avisos__leitura-bloco">
+              <dt class="gcg-aba-avisos__leitura-rotulo">Mensagem</dt>
+              <dd class="gcg-aba-avisos__leitura-mensagem">Prezados, registramos que o relatório mensal de execução de agosto de 2026 foi entregue em 12/09/2026, depois do prazo previsto no contrato. Pedimos que os próximos relatórios sejam entregues no prazo, para não prejudicar a fiscalização. A notificação formal segue em anexo.</dd>
+            </div>
+            <div class="gcg-aba-avisos__leitura-bloco">
+              <dt class="gcg-aba-avisos__leitura-rotulo">Anexo</dt>
+              <dd class="gcg-aba-avisos__leitura-anexos">
+                <div class="gcg-file-item gcg-file-item--readonly" data-gcg-state="readonly">
+                  <span class="gcg-icon gcg-icon--md gcg-file-item__icon">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-attach_file"></use></svg>
+                  </span>
+                  <div class="gcg-file-item__info">
+                    <span class="gcg-file-item__name" title="Notificacao-relatorio-agosto.pdf">Notificacao-relatorio-agosto.pdf</span>
+                    <span class="gcg-file-item__meta">PDF · 312 KB</span>
+                  </div>
+                  <div class="gcg-file-item__actions">
+                    <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm" aria-label="Baixar Notificacao-relatorio-agosto.pdf" title="Baixar Notificacao-relatorio-agosto.pdf">
+                      <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-download"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="gcg-modal__footer">
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-4">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-modal-layer">
+    <div class="gcg-scrim gcg-scrim--contained" aria-hidden="true" data-gcg-state="open"></div>
+    <div class="gcg-modal gcg-modal--primary gcg-aba-avisos__visualizar" role="dialog" aria-modal="true" aria-labelledby="gcg-rm-title" aria-describedby="gcg-rm-body" tabindex="-1">
+      <div class="gcg-modal__header">
+        <h2 class="gcg-modal__title" id="gcg-rm-title">Visualizar comunicação</h2>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm gcg-modal__close" aria-label="Fechar" title="Fechar">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </div>
+      <div class="gcg-modal__content">
+        <p class="gcg-modal__body" id="gcg-rm-body">Somente leitura: a comunicação enviada não pode ser alterada.</p>
+        <div class="gcg-modal__slot">
+          <dl class="gcg-aba-avisos__leitura">
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Data/Hora</dt>
+              <dd class="gcg-data-field__value">25/08/2026 14:10:47</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Remetente</dt>
+              <dd class="gcg-data-field__value">Camila Rodrigues Teles</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Destinatário</dt>
+              <dd class="gcg-data-field__value">Serra Dourada Serviços S.A.</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Assunto</dt>
+              <dd class="gcg-data-field__value">Solicitação de troca dos uniformes dos vigilantes</dd>
+            </div>
+            <div class="gcg-aba-avisos__leitura-bloco">
+              <dt class="gcg-aba-avisos__leitura-rotulo">Mensagem</dt>
+              <dd class="gcg-aba-avisos__leitura-mensagem">Prezados, reiteramos o pedido de 07/08/2026 para a troca dos uniformes dos vigilantes, que continuam com peças desgastadas e sem a identificação da empresa. Solicitamos a troca até 04/09/2026, conforme o termo de referência.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="gcg-modal__footer">
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-5">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-modal-layer">
+    <div class="gcg-scrim gcg-scrim--contained" aria-hidden="true" data-gcg-state="open"></div>
+    <div class="gcg-modal gcg-modal--primary gcg-aba-avisos__visualizar" role="dialog" aria-modal="true" aria-labelledby="gcg-rm-title" aria-describedby="gcg-rm-body" tabindex="-1">
+      <div class="gcg-modal__header">
+        <h2 class="gcg-modal__title" id="gcg-rm-title">Visualizar comunicação</h2>
+        <button type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--neutral gcg-icon-button--sm gcg-modal__close" aria-label="Fechar" title="Fechar">
+          <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+          </span>
+        </button>
+      </div>
+      <div class="gcg-modal__content">
+        <p class="gcg-modal__body" id="gcg-rm-body">Somente leitura: a comunicação enviada não pode ser alterada.</p>
+        <div class="gcg-modal__slot">
+          <dl class="gcg-aba-avisos__leitura">
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Data/Hora</dt>
+              <dd class="gcg-data-field__value">05/06/2026 09:02:13</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default gcg-aba-avisos__leitura-metade">
+              <dt class="gcg-data-field__label">Remetente</dt>
+              <dd class="gcg-data-field__value">Marcos Antônio Ribeiro</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Destinatário</dt>
+              <dd class="gcg-data-field__value">Camila Rodrigues Teles, Paulo Henrique Vasconcelos</dd>
+            </div>
+            <div class="gcg-data-field gcg-data-field--default">
+              <dt class="gcg-data-field__label">Assunto</dt>
+              <dd class="gcg-data-field__value">Início da fiscalização do 1º Termo Aditivo</dd>
+            </div>
+            <div class="gcg-aba-avisos__leitura-bloco">
+              <dt class="gcg-aba-avisos__leitura-rotulo">Mensagem</dt>
+              <dd class="gcg-aba-avisos__leitura-mensagem">Camila e Paulo, peço que a fiscalização passe a acompanhar os dois postos de vigilância diurna acrescidos pelo 1º Termo Aditivo na sede administrativa e registre no sistema as ocorrências que encontrar.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="gcg-modal__footer">
+        <button type="button" class="gcg-button gcg-button--outline gcg-button--neutral gcg-button--md">
+          <span class="gcg-button__label">Fechar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<script src="../../biblioteca/js/gcg-icons.js"></script>
+<script src="../../biblioteca/js/gcg-motion.js"></script>
+<script src="../../biblioteca/js/gcg-behavior.js"></script>
+</body>
+</html>

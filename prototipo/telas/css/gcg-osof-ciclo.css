@@ -1,0 +1,136 @@
+/* gcg-osof-ciclo.css — composição de tela (HU021 · Emitir Termo de Recebimento Definitivo da OS/OF; HU023 · Emitir Despacho de Ordem de Pagamento; HU029 · Ateste de Ordem de Serviço e Ordem de Fornecimento), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* Ateste de Nota Fiscal (HU029). Figma, página 20: "painel · Termo de Recebimento Definitivo da OS" e afins, um
+   SectionCard por bloco, 16 entre eles, e o rodapé com as ações à direita. */
+
+/* ---------- o cabeçalho: a trilha e o título, com o Voltar para a aba OS/OF à direita da trilha ---------- */
+.gcg-osof-ciclo__cabecalho {
+  position: relative;
+  flex: none;
+}
+/* Figma: Button ghost · neutral · sm (32 de altura), centrado na linha da trilha (16): 8 acima dela */
+.gcg-osof-ciclo__voltar {
+  position: absolute;
+  top: calc(-1 * var(--gcg-space-2));
+  right: 0;
+}
+
+.gcg-osof-ciclo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  min-width: 0;
+}
+
+/* o conteúdo de um bloco: 16 entre as partes */
+.gcg-osof-ciclo__bloco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  min-width: 0;
+}
+
+/* ---------- campos somente leitura: grade de 4 colunas (262 no Figma), 16 entre elas ---------- */
+.gcg-osof-ciclo__campos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gcg-space-4);
+  margin: 0;
+}
+.gcg-osof-ciclo__campos--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.gcg-osof-ciclo__campo--linha { grid-column: 1 / -1; }
+.gcg-osof-ciclo__campo--dupla { grid-column: span 2; }
+.gcg-osof-ciclo__campos--janela { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* ---------- filtros do termo: Número da OS/OF 200 · Período 180 · Até 180 · Situação 200 · Pesquisar e Limpar ---------- */
+.gcg-osof-ciclo__filtros {
+  /* larguras do Figma (frame "filtros · termo"); sem token de largura de campo */
+  --gcg-osof-ciclo-numero-w: 200px;
+  --gcg-osof-ciclo-data-w: 180px;
+  --gcg-osof-ciclo-situacao-w: 200px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--gcg-space-4);
+}
+.gcg-osof-ciclo__filtro--numero { width: var(--gcg-osof-ciclo-numero-w); }
+.gcg-osof-ciclo__filtro--data { width: var(--gcg-osof-ciclo-data-w); }
+.gcg-osof-ciclo__filtro--situacao { width: var(--gcg-osof-ciclo-situacao-w); }
+.gcg-osof-ciclo__filtro-botoes {
+  display: flex;
+  gap: var(--gcg-space-3);
+  padding-top: var(--gcg-space-6);
+}
+
+/* ---------- grades: sem moldura, só a linha de baixo (Figma: stroke border/subtle embaixo) ---------- */
+.gcg-osof-ciclo .gcg-osof-ciclo__tabela.gcg-data-table__card {
+  border-width: 0 0 var(--gcg-border-width-thin);
+  border-radius: 0;
+}
+/* a linha de total (despacho): o rótulo e os valores em negrito vêm da célula strong */
+.gcg-osof-ciclo__caixa {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--gcg-radius-sm);
+}
+.gcg-osof-ciclo__caixa:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* o estado vazio da grade: a moldura é a do próprio EmptyState (Figma: o frame da tabela com o EmptyState dentro) */
+.gcg-osof-ciclo__vazio { min-width: 0; }
+
+/* o Valor Total das selecionadas: o rótulo longo quebra em duas linhas, como no Figma (273 de largura) */
+.gcg-osof-ciclo__total-selecionadas {
+  --gcg-osof-ciclo-total-w: 273px;
+  width: var(--gcg-osof-ciclo-total-w);
+}
+
+/* ---------- o rodapé: Cancelar e Salvar (ou Gerar) à direita, 12 entre eles ---------- */
+.gcg-osof-ciclo__rodape {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gcg-space-3);
+}
+
+/* ---------- o aviso de sem permissão (HU021 · L2 · 5): o botão embaixo do aviso ---------- */
+.gcg-osof-ciclo__acoes-do-aviso {
+  display: flex;
+}
+
+/* ---------- despacho: o texto do bloco 5 e o "Gerado em" ---------- */
+.gcg-osof-ciclo__texto {
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-medium);
+  letter-spacing: var(--gcg-tracking-text-md-medium);
+}
+.gcg-osof-ciclo__periodo { min-width: 0; }
+.gcg-osof-ciclo__periodo-campo { margin: 0; }
+
+/* ---------- ateste: a caixa de ratificação abaixo do nome do gestor ---------- */
+.gcg-osof-ciclo__ratificacao { margin: 0; }
+
+/* a mensagem de erro de um controle sem campo (a caixa de ratificação), no tom do erro dos campos */
+.gcg-osof-ciclo__erro {
+  margin: var(--gcg-space-1) 0 0;
+  color: var(--gcg-state-error);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+
+/* um cartão sem título (a falha ao carregar do ateste, HU029 · L3 · 1), na moldura do SectionCard */
+.gcg-osof-ciclo__cartao {
+  box-sizing: border-box;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+}
+/* dentro do cartão, o estado de falha não tem moldura própria (Figma, HU029 · L3 · 1) */
+.gcg-osof-ciclo__cartao > .gcg-empty-state { border: 0; }
+
+/* os textos do fiscal em leitura (a ratificação, o termo e o ateste salvos): o contador continua legível (4,5:1),
+   porque diz o tamanho do que foi escrito; o campo desabilitado em si segue a biblioteca */
+.gcg-osof-ciclo .gcg-field[data-gcg-disabled] .gcg-field__counter { color: var(--gcg-text-muted); }

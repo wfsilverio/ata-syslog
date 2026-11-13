@@ -1,0 +1,127 @@
+/* gcg-emag.css — os modos da barra de acessibilidade (eMAG), ligados por atributos no <html>: tamanho do texto, negrito, relevo, alto contraste e inversão. Carregar por último: troca os tokens. Gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Cada componente cuida da própria forma no alto contraste; aqui ficam o tamanho do texto,
+   o negrito, o relevo, a inversão e a troca dos tokens semânticos do alto contraste. */
+
+/* ---------- Tamanho do texto ----------
+   font-size do <html> em %: os text styles estão em rem, então o texto escala e a
+   estrutura (em px) não. Respeita a fonte padrão que a pessoa configurou no navegador. */
+html[data-gcg-text-scale='125'] { font-size: 125%; }
+html[data-gcg-text-scale='150'] { font-size: 150%; }
+html[data-gcg-text-scale='175'] { font-size: 175%; }
+html[data-gcg-text-scale='200'] { font-size: 200%; }
+
+/* ---------- Negrito ---------- (sem especificação no eMAG: todo o texto em 700) */
+html[data-gcg-bold] body * { font-weight: 700 !important; }
+
+/* ---------- Relevo ---------- */
+html[data-gcg-relief] { --gcg-emag-relief-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35); }
+html[data-gcg-relief] body * { text-shadow: var(--gcg-emag-relief-shadow); }
+
+/* ---------- Inverter cores ----------
+   No <html>, nunca no <body>: filtro num ancestral vira o bloco de contenção dos
+   position: fixed (Topbar, gaveta, Modal, toasts). No elemento raiz a spec abre exceção.
+   hue-rotate devolve o matiz de forma aproximada (o verde continua verde). */
+html[data-gcg-invert] { filter: invert(1) hue-rotate(180deg); }
+/* Fotos, vídeos e o que for marcado não invertem: o mesmo filtro de novo desfaz.
+   O véu (Scrim) também: invertido, o preto translúcido virava branco e CLAREAVA o fundo atrás da
+   gaveta e do Modal, em vez de escurecer (responsividade e acessibilidade, 24/09/2026). */
+html[data-gcg-invert] :is(img, picture, video, canvas, [data-gcg-no-invert], .gcg-scrim) { filter: invert(1) hue-rotate(180deg); }
+
+/* Fundo preto, texto branco, link amarelo sublinhado, ícones e contornos brancos, foco amarelo.
+   Troca os TOKENS SEMÂNTICOS: todo componente que usa token acompanha sem regra própria.
+   As três cores são normativas do eMAG e não existem no Figma: ficam em variáveis locais. */
+html[data-gcg-contrast='high'] {
+  --gcg-emag-black: #000000;
+  --gcg-emag-white: var(--gcg-color-neutral-0);
+  --gcg-emag-yellow: #FFF333;
+
+  color-scheme: dark;                  /* barras de rolagem e controles nativos escuros */
+
+  /* Ações: o que era preenchido de cor vira bloco branco com texto preto (text/on-action) */
+  --gcg-action-primary: var(--gcg-emag-white);
+  --gcg-action-primary-hover: var(--gcg-emag-white);
+  --gcg-action-primary-subtle: var(--gcg-emag-black);
+  --gcg-action-secondary: var(--gcg-emag-white);
+  --gcg-action-secondary-hover: var(--gcg-emag-white);
+  --gcg-action-secondary-subtle: var(--gcg-emag-black);
+  --gcg-action-destructive: var(--gcg-emag-white);
+  --gcg-action-destructive-hover: var(--gcg-emag-white);
+  --gcg-action-destructive-subtle: var(--gcg-emag-black);
+  --gcg-action-neutral: var(--gcg-emag-white);
+  --gcg-action-neutral-hover: var(--gcg-emag-white);
+  --gcg-action-neutral-subtle: var(--gcg-emag-black);
+  --gcg-brand-green: var(--gcg-emag-white);
+
+  /* Texto */
+  --gcg-text-strong: var(--gcg-emag-white);
+  --gcg-text-default: var(--gcg-emag-white);
+  --gcg-text-secondary: var(--gcg-emag-white);
+  --gcg-text-muted: var(--gcg-emag-white);
+  --gcg-text-disabled: var(--gcg-color-neutral-400); /* cinza sobre preto: 8:1, e ainda se distingue do ativo */
+  --gcg-text-inverse: var(--gcg-emag-white);
+  --gcg-text-on-action: var(--gcg-emag-black);
+  --gcg-text-link: var(--gcg-emag-yellow);
+
+  /* Superfícies */
+  --gcg-surface-base: var(--gcg-emag-black);
+  --gcg-surface-app: var(--gcg-emag-black);
+  --gcg-surface-subtle: var(--gcg-emag-black);
+  --gcg-surface-zebra: var(--gcg-emag-black);
+  --gcg-surface-hover: var(--gcg-color-neutral-900);    /* passar o mouse ainda se vê: branco sobre ele dá 14,9:1 */
+  --gcg-surface-skeleton: var(--gcg-color-neutral-700);
+  --gcg-surface-brand: var(--gcg-emag-white);
+  --gcg-surface-brand-hover: var(--gcg-emag-white);
+
+  /* Bordas e foco */
+  --gcg-border-default: var(--gcg-emag-white);
+  --gcg-border-subtle: var(--gcg-emag-white);
+  --gcg-border-strong: var(--gcg-emag-white);
+  --gcg-border-focus: var(--gcg-emag-yellow);
+  --gcg-border-error: var(--gcg-emag-white);
+
+  /* Estados: o status se lê pelo texto e pelo ícone, não pela cor */
+  --gcg-state-success: var(--gcg-emag-white);
+  --gcg-state-success-bg: var(--gcg-emag-black);
+  --gcg-state-success-text: var(--gcg-emag-white);
+  --gcg-state-warning: var(--gcg-emag-white);
+  --gcg-state-warning-bg: var(--gcg-emag-black);
+  --gcg-state-warning-text: var(--gcg-emag-white);
+  --gcg-state-warning-border: var(--gcg-emag-white);
+  --gcg-state-error: var(--gcg-emag-white);
+  --gcg-state-error-bg: var(--gcg-emag-black);
+  --gcg-state-error-text: var(--gcg-emag-white);
+  --gcg-state-info: var(--gcg-emag-white);
+  --gcg-state-info-bg: var(--gcg-emag-black);
+  --gcg-state-info-text: var(--gcg-emag-white);
+  --gcg-state-neutral: var(--gcg-emag-white);
+  --gcg-state-neutral-bg: var(--gcg-emag-black);
+  --gcg-state-neutral-text: var(--gcg-emag-white);
+
+  /* Sem sombras: a separação é feita por contorno branco */
+  --gcg-elevation-1: none;
+  --gcg-elevation-2: none;
+}
+
+html[data-gcg-contrast='high'] a,
+html[data-gcg-contrast='high'] a:hover,
+html[data-gcg-contrast='high'] a:active,
+html[data-gcg-contrast='high'] a:visited {
+  color: var(--gcg-text-link);
+  text-decoration: underline;
+}
+
+/* Sem sombras de nenhum tipo (inclusive o anel de foco em box-shadow e o relevo) */
+html[data-gcg-contrast='high'] *,
+html[data-gcg-contrast='high'] *::before,
+html[data-gcg-contrast='high'] *::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Rede de segurança do foco: sem box-shadow, todo foco de teclado vira contorno amarelo de 2px
+   afastado 2px (eMAG Rec. 4.4). Os componentes que já desenham o próprio contorno continuam iguais. */
+html[data-gcg-contrast='high'] :focus-visible {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus) !important;
+  outline-offset: var(--gcg-space-half);
+}

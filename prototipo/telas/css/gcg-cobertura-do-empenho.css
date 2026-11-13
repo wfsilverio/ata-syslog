@@ -1,0 +1,28 @@
+/* gcg-cobertura-do-empenho.css — composição de tela (HU-015 · Painel do Analista Financeiro), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Cobertura do empenho (melhoria de UX, em proposta): quantos contratos têm empenho para no máximo
+   1 mês de execução.
+   Composição local (snowflake): só esta tela usa; vira componente da biblioteca no terceiro uso. */
+
+.gcg-cobertura {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-4);
+  padding: var(--gcg-space-4) var(--gcg-space-5);
+  border: var(--gcg-border-width-thin) solid var(--gcg-state-warning-border);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-state-warning-bg);
+}
+.gcg-cobertura--ok { border-color: var(--gcg-border-subtle); background: var(--gcg-surface-base); }
+.gcg-cobertura__icone { flex: none; color: var(--gcg-state-warning-text); }
+.gcg-cobertura--ok .gcg-cobertura__icone { color: var(--gcg-state-success); }
+.gcg-cobertura__texto { flex: 1; min-width: 0; }
+.gcg-cobertura__titulo { display: flex; align-items: center; gap: var(--gcg-space-2); margin: 0 0 var(--gcg-space-1); color: var(--gcg-state-warning-text); font: var(--gcg-font-text-sm-semibold); }
+.gcg-cobertura--ok .gcg-cobertura__titulo { color: var(--gcg-text-strong); }
+.gcg-cobertura__texto p { margin: 0; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }
+.gcg-cobertura__texto .gcg-cobertura__destaque { color: var(--gcg-text-strong); font: var(--gcg-font-text-md-semibold); }
+
+.gcg-cobertura .gcg-panel-link { align-self: center; }
+/* dá 5,72:1. No alto contraste, o amarelo dos links (text/link) sobre o preto, como os outros links do painel */
+.gcg-cobertura .gcg-panel-link:not(:disabled) { color: var(--gcg-action-primary-hover); }
+html[data-gcg-contrast='high'] .gcg-cobertura .gcg-panel-link:not(:disabled) { color: var(--gcg-text-link); }

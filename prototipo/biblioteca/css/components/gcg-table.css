@@ -1,0 +1,443 @@
+/* gcg-table.css — Table · gerado do protótipo em 10/11/2026. Não editar à mão: regerar. */
+
+/* Table — Figma, página 05 › Dados › Linha · Table (35:6538).
+   Peças: Table/HeaderCell 35:5305 · Table/Cell 35:5574 · Table/Row 35:5663 · Table/GroupHeader 35:5721 · Table/SkeletonRow 35:5722.
+   Anel de foco das peças da grade: interno, 2px border/focus nos quatro lados (a tabela não corta).
+   A linha pinta as células por variável (--data-table-row-bg): a célula fixa do Código acompanha zebra, hover e seleção. */
+
+/* ---------- cartão: moldura + área que rola + rodapé ---------- */
+.gcg-data-table__card {
+  /* Sinal de rolagem: não há token de sombra de 6px — GOV.BR Design System, Table (desloc. 1px, desfoque 6px) */
+  --gcg-data-table-shadow-size: 6px;
+  --gcg-data-table-shadow: color-mix(in srgb, var(--gcg-color-neutral-900) 14%, transparent);
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background-color: var(--gcg-surface-base);
+  overflow: hidden;
+}
+/* Tela da lista: o cartão ocupa a altura do pai e só as linhas rolam */
+.gcg-data-table__card--stretch { flex: 1 1 auto; min-height: 0; }
+
+/* Foco na região de rolagem (Tab + setas rolam): anel duplo em volta do cartão (DD-004) */
+.gcg-data-table__card:has(> .gcg-data-table__viewport > .gcg-data-table__region:focus-visible) {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+.gcg-data-table__viewport {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.gcg-data-table__card--stretch .gcg-data-table__viewport { flex: 1 1 auto; }
+
+.gcg-data-table__region {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  outline: none;
+  /* o foco de teclado numa linha não para escondido sob o cabeçalho fixo */
+  scroll-padding-top: var(--gcg-size-control-lg);
+}
+/* Barra de rolagem só quando as linhas passam da altura (scrollbar-gutter: auto, o padrão).
+   Paridade, 24/09/2026: com "stable", a faixa da barra ficava reservada mesmo sem rolagem — uma tira
+   branca de 15 px à direita do cabeçalho, da zebra e das divisórias, o Objeto 13 px mais estreito e o
+   estado vazio fora do centro, em todas as telas do Figma (nenhuma rola em 1440 × 1024). Quando a
+   lista passa da altura (20 por página, janela baixa), a barra aparece e o Objeto cede a largura dela. */
+.gcg-data-table__card--stretch .gcg-data-table__region {
+  overscroll-behavior: contain;
+}
+
+/* Sombra na borda direita enquanto há colunas escondidas à direita */
+.gcg-data-table__viewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--gcg-data-table-shadow-size);
+  background: linear-gradient(to left, var(--gcg-data-table-shadow), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-data-table__viewport[data-gcg-more-right]::after { opacity: 1; }
+
+.gcg-data-table__footer { flex: none; }
+.gcg-data-table__card--stretch .gcg-data-table__footer { border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); }
+
+/* ---------- a tabela ---------- */
+.gcg-data-table {
+  width: 100%;
+  /* soma das colunas fixas + o mínimo da coluna flexível (Objeto: 240), em rem — vem do componente */
+  min-width: var(--gcg-data-table-min-w, 0);
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+/* ---------- Table/HeaderCell ---------- */
+.gcg-data-table__header-cell {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: var(--gcg-size-control-lg);
+  padding: 0;
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  background-color: var(--gcg-surface-subtle);
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-data-table__header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(var(--gcg-size-control-lg) - var(--gcg-border-width-thin));
+  margin: 0;
+  /* Figma: a borda de baixo é traço interno (não ocupa espaço) e o conteúdo centra nos 40px.
+     Aqui a borda ocupa 1px; 1px a mais em cima devolve o centro ao mesmo ponto (rótulo a 11, ícone a 12). */
+  padding: var(--gcg-border-width-thin) var(--gcg-space-2) 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+}
+.gcg-data-table__sort-button { outline: none; cursor: pointer; }
+.gcg-data-table__header-cell--right .gcg-data-table__header-content { justify-content: flex-end; }
+.gcg-data-table__header-labels { display: flex; flex-direction: column; min-width: 0; }
+.gcg-data-table__header-cell--right .gcg-data-table__header-labels { align-items: flex-end; text-align: right; }
+
+.gcg-data-table__sort-icon {
+  color: var(--gcg-text-muted);
+  transition: color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-data-table__sort-icon--active { color: var(--gcg-action-primary); }
+
+/* hover: fundo surface/hover; o ícone neutro escurece para text/secondary */
+.gcg-data-table__header-cell--sortable:hover { background-color: var(--gcg-surface-hover); }
+.gcg-data-table__header-cell--sortable:hover .gcg-data-table__sort-icon:not(.gcg-data-table__sort-icon--active) { color: var(--gcg-text-secondary); }
+
+/* foco: anel interno de 2px nos quatro lados, por cima da borda inferior */
+.gcg-data-table__header-cell:has(.gcg-data-table__sort-button:focus-visible) {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+
+/* Sombra sob o cabeçalho quando as linhas rolaram */
+.gcg-data-table__header-cell::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + var(--gcg-border-width-thin));
+  right: 0;
+  left: 0;
+  height: var(--gcg-data-table-shadow-size);
+  background: linear-gradient(to bottom, var(--gcg-data-table-shadow), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-data-table__viewport[data-gcg-scrolled-y] .gcg-data-table__header-cell::after { opacity: 1; }
+
+/* ---------- coluna fixa à esquerda (Código) ---------- */
+.gcg-data-table__sticky-start { position: sticky; left: 0; z-index: 1; }
+.gcg-data-table__header-cell.gcg-data-table__sticky-start { z-index: 3; }
+/* Sombra à direita do Código quando a tabela rolou na horizontal */
+.gcg-data-table__sticky-start::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: var(--gcg-data-table-shadow-size);
+  background: linear-gradient(to right, var(--gcg-data-table-shadow), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-data-table__viewport[data-gcg-scrolled-x] .gcg-data-table__sticky-start::before { opacity: 1; }
+
+/* ---------- Table/Cell ---------- */
+.gcg-data-table__cell {
+  padding: var(--gcg-space-3) var(--gcg-space-2);
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  background-color: var(--gcg-data-table-row-bg, transparent);
+  /* as duas sombras de dentro (a barra da seleção e o anel do foco) são sempre inset, para a transição */
+  box-shadow: var(--gcg-data-table-cell-bar, inset 0 0 transparent), var(--gcg-data-table-cell-ring, inset 0 0 transparent);
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  text-align: left;
+  vertical-align: middle;
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-data-table__cell-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-half);
+  min-width: 0;
+}
+.gcg-data-table__line { display: block; min-width: 0; overflow: hidden; }
+/* line-1: até 2 linhas, com reticências (o texto inteiro vai no title) */
+.gcg-data-table__line--1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow-wrap: break-word;
+}
+/* com a linha de apoio, a line-1 fica em uma linha */
+.gcg-data-table__cell--two-lines .gcg-data-table__line--1,
+.gcg-data-table__line--2 {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.gcg-data-table__line--2 {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+.gcg-data-table__cell--strong {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+/* align=right (Valor): à direita, algarismos de largura igual, nunca trunca */
+.gcg-data-table__cell--right { text-align: right; font-variant-numeric: tabular-nums; }
+.gcg-data-table__cell--right .gcg-data-table__cell-content { align-items: flex-end; }
+.gcg-data-table__cell--right .gcg-data-table__line--1 { display: block; overflow: visible; white-space: nowrap; }
+
+.gcg-data-table__cell--custom { overflow: visible; }
+
+/* Table/ActionsCell (48:52179): a ação principal (Link) e o botão Mais ações, alinhados à direita, gap space/2.
+   Sem a ação principal, o lugar fica vazio e o botão continua na mesma coluna. */
+.gcg-data-table__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gcg-space-2);
+  min-width: 0;
+}
+
+.gcg-data-table__skeleton-bar {
+  display: block;
+  width: 100%;
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-data-table-pulse var(--gcg-motion-pulse) ease-in-out infinite;
+}
+@keyframes gcg-data-table-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* ---------- Table/Row ---------- */
+.gcg-data-table__row {
+  --gcg-data-table-row-bg: var(--gcg-surface-base);
+  height: var(--gcg-size-row-md);
+  outline: none;
+}
+
+/* subida, --motion-base, 30 ms entre uma e a próxima, só até a 10ª (da 11ª em diante, junto com a
+   10ª). Vale para a lista depois de Filtrar e ao trocar de página, para as abas do detalhe e para o
+   grupo que abre: toda linha nova entra; a que já estava não se mexe. As linhas esqueleto chegam
+   com um fade curto. A cascata é só atraso — com prefers-reduced-motion e no modo cenário, some. */
+.gcg-data-table__row:not(.gcg-data-table__row--skeleton) {
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-data-table__row--skeleton { animation: gcg-motion-fade-in var(--gcg-motion-fast) var(--gcg-ease-standard) backwards; }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(2) { animation-delay: calc(1 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(3) { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(4) { animation-delay: calc(3 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(5) { animation-delay: calc(4 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(6) { animation-delay: calc(5 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(7) { animation-delay: calc(6 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(8) { animation-delay: calc(7 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(9) { animation-delay: calc(8 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row:nth-child(n + 10) { animation-delay: calc(9 * var(--gcg-motion-stagger)); }
+.gcg-data-table tbody > .gcg-data-table__row--skeleton:nth-child(n) { animation-delay: 0s; }
+/* abre, os anexos descem dele — fade + 4 px de descida (motion-drop-in), --motion-base, sem o atraso
+   da posição na tabela; entre um anexo e o próximo, o intervalo da cascata (continuidade). */
+.gcg-data-table tbody > .gcg-data-table__row.gcg-data-table__row--child { animation-name: gcg-motion-drop-in; animation-delay: 0s; }
+.gcg-data-table tbody > .gcg-data-table__row--child + .gcg-data-table__row.gcg-data-table__row--child { animation-delay: var(--gcg-motion-stagger); }
+.gcg-data-table tbody > .gcg-data-table__row--child + .gcg-data-table__row--child + .gcg-data-table__row.gcg-data-table__row--child { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+/* o rodapé (a paginação) aparece com fade quando os resultados chegam */
+.gcg-data-table__footer { animation: gcg-motion-fade-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards; }
+/* Figma: a divisória da linha é traço interno (não ocupa espaço) e as células centram nos 64px.
+   Aqui a borda de 1px ocupa espaço: 1px a menos embaixo devolve o centro ao mesmo ponto (texto a 23). */
+.gcg-data-table__row > .gcg-data-table__cell { padding-bottom: calc(var(--gcg-space-3) - var(--gcg-border-width-thin)); }
+.gcg-data-table__row--zebra { --gcg-data-table-row-bg: var(--gcg-surface-zebra); }
+.gcg-data-table__row--interactive { cursor: pointer; }
+.gcg-data-table__row:hover { --gcg-data-table-row-bg: var(--gcg-surface-hover); }
+.gcg-data-table__row--skeleton,
+.gcg-data-table__row--skeleton:hover { --gcg-data-table-row-bg: var(--gcg-surface-base); }
+
+/* selected (persistente): action/primary-subtle + barra de 4px action/primary; o hover não apaga a seleção */
+.gcg-data-table__row--selected,
+.gcg-data-table__row--selected:hover { --gcg-data-table-row-bg: var(--gcg-action-primary-subtle); }
+.gcg-data-table__row--selected > :first-child { --gcg-data-table-cell-bar: inset var(--gcg-space-1) 0 0 var(--gcg-action-primary); }
+
+/* focus (passageiro): anel interno de 2px nos quatro lados, desenhado nas células */
+.gcg-data-table__row:focus-visible > * {
+  --gcg-data-table-cell-ring:
+    inset 0 var(--gcg-border-width-thick) 0 var(--gcg-border-focus),
+    inset 0 calc(-1 * var(--gcg-data-table-ring-bottom, var(--gcg-border-width-thin))) 0 var(--gcg-border-focus);
+  border-bottom-color: var(--gcg-border-focus);
+}
+.gcg-data-table__row:focus-visible > :first-child {
+  --gcg-data-table-cell-ring:
+    inset var(--gcg-border-width-thick) 0 0 var(--gcg-border-focus),
+    inset 0 var(--gcg-border-width-thick) 0 var(--gcg-border-focus),
+    inset 0 calc(-1 * var(--gcg-data-table-ring-bottom, var(--gcg-border-width-thin))) 0 var(--gcg-border-focus);
+}
+.gcg-data-table__row:focus-visible > :last-child {
+  --gcg-data-table-cell-ring:
+    inset calc(-1 * var(--gcg-border-width-thick)) 0 0 var(--gcg-border-focus),
+    inset 0 var(--gcg-border-width-thick) 0 var(--gcg-border-focus),
+    inset 0 calc(-1 * var(--gcg-data-table-ring-bottom, var(--gcg-border-width-thin))) 0 var(--gcg-border-focus);
+}
+
+/* ---------- a última linha não leva divisória ----------
+   Quem fecha a lista é a borda do cartão ou a de cima do rodapé (a paginação da tela). Com as duas, ficava uma
+   linha dupla de 2px (revisão de 24/09/2026). Vale no cartão da tela (stretch, rodapé com borda em cima) e no
+   cartão sem rodapé; no cartão comum com rodapé, o rodapé não tem borda e a divisória da última linha é que separa
+   a lista da paginação. Só a última linha do último tbody: no agrupamento, a divisória entre um grupo e o próximo
+   continua. No Figma é o mesmo: a última Table/Row sem traço (06-figma/scripts/figma-scr.js, S.dropLastDivider). */
+.gcg-data-table__card--stretch,
+.gcg-data-table__card:not(:has(> .gcg-data-table__footer)) { --gcg-data-table-last-divider: 0px; }
+.gcg-data-table > tbody:last-of-type > tr:last-child > * {
+  border-bottom-width: var(--gcg-data-table-last-divider, var(--gcg-border-width-thin));
+  /* o anel de foco perde a borda embaixo: a sombra interna cobre o que falta (2px no total) */
+  --gcg-data-table-ring-bottom: calc(var(--gcg-border-width-thick) - var(--gcg-data-table-last-divider, var(--gcg-border-width-thin)));
+}
+/* sem a borda de 1px, o padding de baixo volta ao inteiro: o texto fica no mesmo centro das outras linhas */
+.gcg-data-table > tbody:last-of-type > .gcg-data-table__row:last-child > .gcg-data-table__cell {
+  padding-bottom: calc(var(--gcg-space-3) - var(--gcg-data-table-last-divider, var(--gcg-border-width-thin)));
+}
+
+/* ---------- Table/GroupHeader ---------- */
+.gcg-data-table__group-header {
+  height: var(--gcg-size-control-md);
+  padding: 0;
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  background-color: var(--gcg-surface-app);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  text-align: left;
+  vertical-align: middle;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-data-table__group-header:hover { background-color: var(--gcg-surface-hover); }
+.gcg-data-table__group-header:has(.gcg-data-table__group-button:focus-visible) {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+.gcg-data-table__group-button {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(var(--gcg-size-control-md) - var(--gcg-border-width-thin));
+  margin: 0;
+  /* mesmo acerto do cabeçalho: o conteúdo centra nos 36px, como no Figma (texto a 9, chevron a 10) */
+  padding: var(--gcg-border-width-thin) var(--gcg-space-2) 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+/* o rótulo do grupo acompanha a rolagem horizontal, preso à esquerda */
+.gcg-data-table__group-content {
+  position: sticky;
+  left: var(--gcg-space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  white-space: nowrap;
+}
+.gcg-data-table__group-chevron { color: var(--gcg-text-secondary); }
+.gcg-data-table__group-label { display: flex; align-items: center; gap: var(--gcg-space-1); }
+.gcg-data-table__group-value {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+
+/* ---------- vazio: o EmptyState ocupa o lugar das linhas, sem moldura própria ---------- */
+.gcg-data-table__empty { padding: 0; border: 0; }
+.gcg-data-table__empty > .gcg-empty-state { border: 0; border-radius: 0; }
+
+/* ---------- janela muito baixa (menos de 3 linhas): a página rola, o cabeçalho solta ---------- */
+@media (max-height: 539px) {
+  .gcg-data-table__card--stretch { flex: none; }
+  .gcg-data-table__header-cell { top: auto; }
+}
+
+/* ---------- alto contraste (barra eMAG): sem sombras, seleção e foco por borda e contorno ---------- */
+/* a barra da seleção fica na cor da ação (branca), para não se confundir com o foco (amarelo) */
+html[data-gcg-contrast='high'] .gcg-data-table__row--selected > :first-child {
+  padding-left: calc(var(--gcg-space-2) - var(--gcg-space-1));
+  border-left: var(--gcg-space-1) solid var(--gcg-action-primary);
+}
+html[data-gcg-contrast='high'] .gcg-data-table__row:focus-visible {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: calc(-1 * var(--gcg-border-width-thick));
+}
+html[data-gcg-contrast='high'] .gcg-data-table__card:has(> .gcg-data-table__viewport > .gcg-data-table__region:focus-visible) {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: var(--gcg-space-half);
+}
+
+/* A caixa antes do botão da faixa (marca o grupo inteiro), na largura da coluna de seleção (40 do Figma,
+   página 22): a caixa e o botão lado a lado, sem mudar a faixa das outras telas. */
+/* A caixa fica presa à borda esquerda da faixa e o botão começa depois dela: o espaço entre os dois no HTML
+   (a quebra de linha de quem escreve o markup) não empurra o botão. */
+.gcg-data-table__group-header--leading {
+  position: relative;
+}
+.gcg-data-table__group-leading {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  width: 2.5rem;
+  /* o mesmo recuo da célula (space/2): a caixa da faixa fica na coluna das caixas das linhas */
+  padding-left: var(--gcg-space-2);
+}
+.gcg-data-table__group-header--leading .gcg-data-table__group-button {
+  width: calc(100% - 2.5rem);
+  margin-left: 2.5rem;
+  padding-left: 0;
+}
+/* o cabeçalho com conteúdo próprio (a caixa "selecionar todos"): alinhado como as caixas das linhas */
+.gcg-data-table__header-cell--custom .gcg-data-table__header-content {
+  justify-content: flex-start;
+}

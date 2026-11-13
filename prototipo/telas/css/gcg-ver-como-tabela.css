@@ -1,0 +1,25 @@
+/* gcg-ver-como-tabela.css — composição de tela (HU-002 · Consultar saldos; HU-012 · Painel do Gestor e do Fiscal; HU-013 · Painel do Fornecedor; HU-015 · Painel do Analista Financeiro; HU-016 · Painel do Coordenador de Contratos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Ver como tabela: o mesmo dado de um gráfico numa tabela simples, para quem não lê o gráfico
+   (leitor de tela, alto contraste). HU-015 (evolução do consumo) e HU-016 (duas vezes). */
+
+.gcg-ver-tabela { display: flex; flex-direction: column; gap: var(--gcg-space-3); }
+.gcg-ver-tabela__botao {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gcg-text-link);
+  font: var(--gcg-font-text-sm-semibold);
+  cursor: pointer;
+}
+.gcg-ver-tabela__botao:hover { text-decoration: underline; }
+.gcg-ver-tabela__botao:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; border-radius: var(--gcg-radius-sm); }
+.gcg-ver-tabela__tabela { width: 100%; border-collapse: collapse; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }
+.gcg-ver-tabela__tabela th, .gcg-ver-tabela__tabela td { padding: var(--gcg-space-2) var(--gcg-space-3); border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); text-align: left; }
+.gcg-ver-tabela__tabela td { text-align: right; font-variant-numeric: tabular-nums; }
+.gcg-ver-tabela__tabela thead th { color: var(--gcg-text-secondary); font-weight: 600; }
+.gcg-ver-tabela__tabela thead th + th { text-align: right; }

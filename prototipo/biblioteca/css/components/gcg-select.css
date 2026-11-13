@@ -1,0 +1,114 @@
+/* gcg-select.css — Select · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Select — Figma 35:6798 · Select/Option 35:5857 · Select/Menu 35:5858
+   O corpo de campo (rótulo, controle, estados, ajuda, erro, ×) está em Input/Field.css. */
+
+/* ---------- controle ---------- */
+.gcg-field--select .gcg-field__control { cursor: pointer; }
+.gcg-field--select[data-gcg-disabled] .gcg-field__control { cursor: not-allowed; }
+
+.gcg-select__trigger {
+  display: flex;
+  align-items: center;
+  cursor: inherit;
+  user-select: none;
+}
+.gcg-select__value {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--gcg-field-fg);
+}
+/* "Todos" (vazio) em text/muted */
+.gcg-select__value--placeholder { color: var(--gcg-field-placeholder); }
+
+/* chevron expand_more 16 text/muted; girado 180° com o menu aberto (Figma: open=true) */
+.gcg-select__chevron { transition: transform var(--gcg-motion-fast) var(--gcg-ease-standard); }
+.gcg-field--select[data-gcg-open] .gcg-select__chevron { transform: rotate(180deg); }
+
+/* ---------- Select/Menu ---------- */
+.gcg-select-menu {
+  position: relative; /* referência do offsetTop das opções (rolar só a lista até a opção ativa) */
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--gcg-space-1) 0;
+  list-style: none;
+  /* para em 8 opções visíveis e rola: 8 × size/control-md + 2 × space/1 (+ a borda) */
+  max-height: calc(8 * var(--gcg-size-control-md) + 2 * var(--gcg-space-1) + 2 * var(--gcg-border-width-thin));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-1);
+}
+
+/* barra de rolagem do Figma (show-scrollbar): trilho de 4 px border/subtle, polegar border/strong,
+   radius/full, afastada 4 px da borda e do topo */
+.gcg-select-menu::-webkit-scrollbar { width: calc(3 * var(--gcg-space-1)); }
+.gcg-select-menu::-webkit-scrollbar-track {
+  margin: var(--gcg-space-1) 0;
+  border: var(--gcg-space-1) solid transparent;
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-border-subtle);
+  background-clip: padding-box;
+}
+.gcg-select-menu::-webkit-scrollbar-thumb {
+  border: var(--gcg-space-1) solid transparent;
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-border-strong);
+  background-clip: padding-box;
+}
+@supports not selector(::-webkit-scrollbar) {
+  .gcg-select-menu { scrollbar-width: thin; scrollbar-color: var(--gcg-border-strong) var(--gcg-border-subtle); }
+}
+
+/* ---------- Select/Option ---------- */
+.gcg-select-option {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  min-height: var(--gcg-size-control-md);
+  padding: 0 var(--gcg-space-3);
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  cursor: pointer;
+  user-select: none;
+}
+.gcg-select-option__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.gcg-select-option__check { color: var(--gcg-action-primary); }
+/* a lixeira (IconButton ghost neutral sm, 32 × 32) cabe na linha de 36, 12 px antes da borda */
+.gcg-select-option__remove { flex: none; }
+
+/* hover: fundo surface/subtle (só ponteiro) */
+.gcg-select-option:hover { background: var(--gcg-surface-subtle); }
+
+/* active: foco virtual pelas setas — fundo surface/subtle + barra border/focus de 2 px à esquerda
+   (no Figma a barra empurra o texto 2 px, de 12 para 14) */
+.gcg-select-option[data-gcg-active] {
+  border-left: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  background: var(--gcg-surface-subtle);
+}
+
+/* selected: fundo action/primary-subtle, Text/MD/Semibold text/strong e check action/primary */
+.gcg-select-option[data-gcg-selected] {
+  background: var(--gcg-action-primary-subtle);
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+
+/* ---------- alto contraste (barra eMAG) ---------- */
+html[data-gcg-contrast='high'] .gcg-select-menu { border-color: var(--gcg-border-default); }
+html[data-gcg-contrast='high'] .gcg-select-option[data-gcg-selected] { text-decoration: underline; }
+html[data-gcg-contrast='high'] .gcg-select-option:hover,
+html[data-gcg-contrast='high'] .gcg-select-option[data-gcg-selected],
+html[data-gcg-contrast='high'] .gcg-select-option[data-gcg-active] { background: var(--gcg-surface-base); }

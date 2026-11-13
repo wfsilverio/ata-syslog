@@ -1,0 +1,142 @@
+/* gcg-page-header.css — PageHeader · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* PageHeader — Figma 35:3863 (página 05 › Estrutura e navegação › Linha · PageHeader). */
+
+.gcg-page-header {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--gcg-space-2);
+  min-width: 0;
+}
+
+/* Trilha: Text/XS/Regular; pai e barra em text/muted, item atual em text/default */
+.gcg-page-header__trail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+}
+/* Cada nível: a barra "/" (a partir do segundo) e o rótulo, com o mesmo gap space/1 da trilha. */
+.gcg-page-header__level {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+}
+.gcg-page-header__crumb--current { color: var(--gcg-text-default); }
+/* Contraste (axe, WCAG 1.4.3): text/muted sobre surface/app dá 4,19:1 em 12 px — abaixo de 4,5:1.
+   O item pai usa text/secondary (5,3:1); a barra "/" é decorativa (aria-hidden) e fica em text/muted.
+   Diferença do Figma a levar à equipe: o token do item pai na página 05 (24/09/2026). */
+.gcg-page-header__crumb:not(.gcg-page-header__crumb--current),
+.gcg-page-header__crumb-link { color: var(--gcg-text-secondary); }
+
+/* o link é melhoria de UX. Mesma cor e tamanho do texto da trilha; sublinhado no hover (a cor não
+   é o único sinal) e o anel de foco da biblioteca (DD-004). */
+.gcg-page-header__crumb-link {
+  position: relative; /* referência do sublinhado (::after) */
+  border-radius: var(--gcg-radius-sm);
+  outline: none;
+  text-decoration: none;
+  text-underline-offset: var(--gcg-space-half);
+  transition:
+    color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-page-header__crumb-link:hover { color: var(--gcg-text-default); }
+/* afastamento de space/half (a linha de base pela mesma conta do Link.css, mais 2 px). */
+.gcg-page-header__crumb-link::after {
+  --gcg-crumb-asc: round(0.95em, 1px);
+  --gcg-crumb-desc: round(0.225em, 1px);
+
+  content: '';
+  position: absolute;
+  top: calc(round(down, (1lh - var(--gcg-crumb-asc) - var(--gcg-crumb-desc)) / 2 + var(--gcg-crumb-asc), 1px) + var(--gcg-space-half));
+  right: 0;
+  left: 0;
+  height: max(1px, round(0.075em, 1px));
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--gcg-motion-base) var(--gcg-ease-standard);
+  pointer-events: none;
+}
+.gcg-page-header__crumb-link:hover::after { transform: none; }
+.gcg-page-header__crumb-link:focus-visible {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+.gcg-page-header__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: var(--gcg-space-4);
+  min-width: 0;
+}
+.gcg-page-header__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+}
+.gcg-page-header__title-row { display: flex; align-items: center; gap: var(--gcg-space-2); }
+.gcg-page-header__title {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-lg);
+  letter-spacing: var(--gcg-tracking-heading-lg);
+}
+.gcg-page-header__scope {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+.gcg-page-header__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-2);
+}
+.gcg-page-header__filter-trigger {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Contador de critérios: fundo surface/brand, Text/XS/Medium text/on-action, radius/full,
+   largura mínima size/icon-md, padding space/half × space/1 e anel surface/base de
+   border-width/thick por fora (stroke OUTSIDE no Figma: não muda o tamanho). Canto superior
+   direito do botão, 8px para fora (Figma: x 86 e y −8 num botão de 98).
+   Preso pela borda ESQUERDA (12 para dentro do botão, 4 depois do fim do rótulo), não pela
+   direita: em 100% dá o mesmo lugar do Figma; com a fonte aumentada pela barra eMAG o contador
+   cresce para fora do botão em vez de cobrir o "s" de Filtros (responsividade, 24/09/2026). */
+.gcg-page-header__counter {
+  position: absolute;
+  top: calc(-1 * var(--gcg-space-2));
+  left: calc(100% - var(--gcg-space-3));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--gcg-size-icon-md);
+  padding: var(--gcg-space-half) var(--gcg-space-1);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-surface-brand);
+  box-shadow: 0 0 0 var(--gcg-border-width-thick) var(--gcg-surface-base);
+  color: var(--gcg-text-on-action);
+  font: var(--gcg-font-text-xs-medium);
+  letter-spacing: var(--gcg-tracking-text-xs-medium);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none; /* o clique no número abre a gaveta, como o botão */
+  /* remonta o contador a cada número) */
+  animation: gcg-motion-pop-in var(--gcg-motion-base) var(--gcg-ease-spring) backwards;
+}
+
+.gcg-page-header__aside { display: flex; align-items: center; gap: var(--gcg-space-3); margin-left: auto; }

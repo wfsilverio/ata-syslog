@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HU-015 · Painel do Analista Financeiro — L2 · 2 · Resultado com a ficha</title>
+<!--
+  Tela:    HU-015 · Painel do Analista Financeiro
+  Linha:   L2 · Filtrar por Natureza de Despesa
+  Estado:  L2 · 2 · Resultado com a ficha — Figma: Página 11 · seção HU-015 · Painel do Analista Financeiro, frame "L2 · 2 · Resultado com a ficha"
+  Componentes (biblioteca/css/components/):
+    gcg-action-menu, gcg-alert, gcg-app-shell, gcg-badge, gcg-button, gcg-field, gcg-filter-chip,
+    gcg-icon, gcg-icon-button, gcg-input, gcg-modal, gcg-page-header, gcg-panel-link, gcg-popover,
+    gcg-scrim, gcg-search-field, gcg-section-card, gcg-select, gcg-sidebar, gcg-start-screen-button,
+    gcg-start-screen-dialog, gcg-toast, gcg-tooltip, gcg-topbar
+  Composição de tela (telas/css/): gcg-barra-de-filtros, gcg-cartao-de-saldo, gcg-cobertura-do-empenho, gcg-data-do-siafic, gcg-evolucao-do-consumo, gcg-execucao-financeira, gcg-natureza-de-despesa, gcg-painel-base, gcg-regua-da-execucao, gcg-ver-como-tabela, gcg-vigencia-dos-contratos
+  Gerado do protótipo em 27/10/2026. Dados fictícios.
+-->
+<link rel="stylesheet" href="../../biblioteca/css/gcg-bootstrap3.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-layers.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-motion.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-base.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-action-menu.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-alert.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-app-shell.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-badge.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-filter-chip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-input.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-modal.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-page-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-panel-link.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-popover.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-scrim.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-search-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-section-card.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-select.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-sidebar.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-dialog.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-toast.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tooltip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-topbar.css">
+<link rel="stylesheet" href="../css/gcg-barra-de-filtros.css">
+<link rel="stylesheet" href="../css/gcg-cartao-de-saldo.css">
+<link rel="stylesheet" href="../css/gcg-cobertura-do-empenho.css">
+<link rel="stylesheet" href="../css/gcg-data-do-siafic.css">
+<link rel="stylesheet" href="../css/gcg-evolucao-do-consumo.css">
+<link rel="stylesheet" href="../css/gcg-execucao-financeira.css">
+<link rel="stylesheet" href="../css/gcg-natureza-de-despesa.css">
+<link rel="stylesheet" href="../css/gcg-painel-base.css">
+<link rel="stylesheet" href="../css/gcg-regua-da-execucao.css">
+<link rel="stylesheet" href="../css/gcg-ver-como-tabela.css">
+<link rel="stylesheet" href="../css/gcg-vigencia-dos-contratos.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-emag.css">
+</head>
+<body>
+<div class="gcg-app-shell" data-gcg-layout="wide" data-gcg-sidebar="expanded">
+  <a class="gcg-app-shell__skip" href="#gcg-conteudo">Ir para o conteúdo</a>
+  <header class="gcg-topbar gcg-app-shell__topbar">
+    <div class="gcg-topbar__left">
+      <button aria-expanded="true" aria-controls="gcg-app-sidebar" type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Menu" title="Menu">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-menu"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__system">SISLOG</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <span class="gcg-topbar__module">Gestão de Contratos</span>
+    </div>
+    <div class="gcg-topbar__right">
+      <div class="gcg-topbar__emag" role="toolbar" aria-label="Acessibilidade">
+        <button tabindex="0" aria-disabled="true" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Diminuir fonte" title="Diminuir fonte" data-gcg-emag="decrease">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_decrease"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Fonte padrão" title="Fonte padrão" data-gcg-emag="reset">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_size"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar fonte" title="Aumentar fonte" data-gcg-emag="increase">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_increase"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Negrito" aria-pressed="false" title="Negrito" data-gcg-emag="bold">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_bold"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar relevo" aria-pressed="false" title="Aumentar relevo" data-gcg-emag="relief">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-shadow"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar contraste" aria-pressed="false" title="Aumentar contraste" data-gcg-emag="contrast">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contrast"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Inverter cores" aria-pressed="false" title="Inverter cores" data-gcg-emag="invert">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-invert_colors"></use></svg>
+          </span>
+        </button>
+      </div>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <button type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Ajuda" title="Ajuda">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__unit">SEAD · Unidade 90022</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <div class="gcg-topbar__user">
+        <span class="gcg-topbar__user-info">
+          <span class="gcg-topbar__user-name" title="Rodrigo Tavares Leal">Rodrigo Tavares Leal</span>
+          <span class="gcg-topbar__user-profile" title="Analista Financeiro">Analista Financeiro</span>
+        </span>
+        <button type="button" class="gcg-topbar__menu-perfil" aria-haspopup="menu" aria-expanded="false" aria-label="Menu do perfil de Rodrigo Tavares Leal" data-gcg-popup="gcg-molde-0">
+          <span class="gcg-topbar__avatar" aria-hidden="true">R</span>
+          <span class="gcg-icon gcg-icon--sm gcg-topbar__menu-seta">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="gcg-app-shell__nav">
+    <nav id="gcg-app-sidebar" class="gcg-sidebar" aria-label="Menu principal">
+      <ul class="gcg-sidebar__list">
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--active gcg-sidebar-item--link" aria-current="page" href="/" data-gcg-discover="true">
+            <span class="gcg-sidebar-item__indicator" aria-hidden="true"></span>
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-dashboard"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Dashboard</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/contratos" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contract"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Gerir contratos</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main id="gcg-conteudo" class="gcg-app-shell__main" tabindex="-1" style="--gcg-app-shell-gutter: 15px;">
+    <div class="gcg-painel">
+      <div class="gcg-page-header">
+        <nav class="gcg-page-header__breadcrumb" aria-label="Você está em">
+          <ol class="gcg-page-header__trail">
+            <li class="gcg-page-header__level">
+              <span class="gcg-page-header__crumb">Gestão de Contratos</span>
+            </li>
+            <li class="gcg-page-header__level">
+              <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+              <span class="gcg-page-header__crumb gcg-page-header__crumb--current" aria-current="page">Dashboard</span>
+            </li>
+          </ol>
+        </nav>
+        <div class="gcg-page-header__main">
+          <div class="gcg-page-header__heading">
+            <div class="gcg-page-header__title-row">
+              <h1 id="gcg-page-title" class="gcg-page-header__title">Dashboard</h1>
+              <span class="gcg-tooltip">
+                <button aria-describedby="gcg-tooltip-r4" type="button" class="gcg-icon-button gcg-icon-button--ghost gcg-icon-button--primary gcg-icon-button--md gcg-start-screen-button gcg-start-screen-button--current" aria-label="Esta é a sua tela inicial">
+                  <span class="gcg-icon gcg-icon--sm gcg-icon-button__icon">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+                  </span>
+                </button>
+              </span>
+            </div>
+            <p class="gcg-page-header__scope">Boas-vindas, Rodrigo. Você está no perfil Analista Financeiro.</p>
+          </div>
+          <div class="gcg-page-header__aside">
+            <span class="gcg-siafic" title="Data e hora da última atualização dos dados obtidos do SIAFIC">
+              <span class="gcg-icon gcg-icon--sm">
+                <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-today"></use></svg>
+              </span>
+              <span>Dados do SIAFIC de <strong>29/09/2026 às 07:30</strong></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="gcg-painel-filtros" role="search" aria-label="Filtros do painel">
+        <div class="gcg-painel-filtros__campos">
+          <div class="gcg-field gcg-field--select gcg-natureza-de-despesa gcg-painel-campo gcg-painel-campo--natureza">
+            <span id="gcg-campo-r5-rotulo" class="gcg-field__label">Natureza de Despesa</span>
+            <div class="gcg-field__control">
+              <div id="gcg-campo-r5" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-labelledby="gcg-campo-r5-rotulo" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-r5-popup" title="3.3.90.37 · Locação de Mão de Obra" data-gcg-popup="gcg-molde-1">
+                <span class="gcg-select__value">3.3.90.37 · Locação de Mão de Obra</span>
+              </div>
+              <button type="button" class="gcg-field__clear" aria-label="Limpar seleção" title="Limpar seleção">
+                <span class="gcg-icon gcg-icon--sm">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                </span>
+              </button>
+              <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+              </span>
+            </div>
+          </div>
+          <div class="gcg-field gcg-field--select gcg-painel-campo gcg-painel-campo--ipof">
+            <span id="gcg-campo-r7-rotulo" class="gcg-field__label">IPOF</span>
+            <div class="gcg-field__control">
+              <div id="gcg-campo-r7" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-labelledby="gcg-campo-r7-rotulo" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-r7-popup" data-gcg-popup="gcg-molde-2">
+                <span class="gcg-select__value gcg-select__value--placeholder">Todos</span>
+              </div>
+              <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+              </span>
+            </div>
+          </div>
+          <div class="gcg-painel-campo gcg-painel-campo--empenho">
+            <div class="gcg-field gcg-field--search">
+              <label id="gcg-campo-r8-rotulo" class="gcg-field__label" for="gcg-campo-r8">Número do Empenho</label>
+              <div class="gcg-field__control">
+                <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-search-field__icon">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-search"></use></svg>
+                </span>
+                <input id="gcg-campo-r8" class="gcg-field__native" role="combobox" placeholder="Ex.: 2026NE522109" inputmode="text" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-expanded="false" aria-controls="gcg-campo-r8-popup" type="text">
+                <span class="gcg-sr-only" role="status" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
+          <div class="gcg-painel-campo gcg-painel-campo--contrato">
+            <div class="gcg-field gcg-field--search">
+              <label id="gcg-campo-r9-rotulo" class="gcg-field__label" for="gcg-campo-r9">Número do Contrato</label>
+              <div class="gcg-field__control">
+                <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-search-field__icon">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-search"></use></svg>
+                </span>
+                <input id="gcg-campo-r9" class="gcg-field__native" role="combobox" placeholder="Ex.: 418/2026" inputmode="text" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-expanded="false" aria-controls="gcg-campo-r9-popup" type="text">
+                <span class="gcg-sr-only" role="status" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
+          <div class="gcg-painel-campo gcg-painel-campo--fornecedor">
+            <div class="gcg-field gcg-field--search">
+              <label id="gcg-campo-ra-rotulo" class="gcg-field__label" for="gcg-campo-ra">Nome do Fornecedor</label>
+              <div class="gcg-field__control">
+                <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-search-field__icon">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-search"></use></svg>
+                </span>
+                <input id="gcg-campo-ra" class="gcg-field__native" role="combobox" placeholder="Parte do nome" inputmode="text" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-expanded="false" aria-controls="gcg-campo-ra-popup" type="text">
+                <span class="gcg-sr-only" role="status" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gcg-painel-filtros__linha">
+          <p class="gcg-painel-filtros__resumo" aria-live="polite">Mostrando <strong>4 contratos vigentes</strong></p>
+          <div class="gcg-painel-filtros__fichas" aria-label="Filtros aplicados">
+            <span class="gcg-filter-chip">
+              <span class="gcg-filter-chip__content">
+                <span class="gcg-filter-chip__field">Natureza de Despesa:</span>
+                <span class="gcg-filter-chip__value">3.3.90.37 · Locação de Mão de Obra</span>
+              </span>
+              <button title="Remover filtro Natureza de Despesa: 3.3.90.37 · Locação de Mão de Obra" type="button" class="gcg-filter-chip__remove" aria-label="Remover filtro Natureza de Despesa: 3.3.90.37 · Locação de Mão de Obra">
+                <span class="gcg-icon gcg-icon--sm">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-close"></use></svg>
+                </span>
+              </button>
+            </span>
+          </div>
+          <button type="button" class="gcg-button gcg-button--ghost gcg-button--neutral gcg-button--sm">
+            <span class="gcg-icon gcg-icon--sm gcg-button__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-filter_alt_off"></use></svg>
+            </span>
+            <span class="gcg-button__label">Limpar filtros</span>
+          </button>
+        </div>
+      </div>
+      <section class="gcg-section-card gcg-section-card--expanded gcg-painel-secao gcg-exec" aria-labelledby="gcg-section-cardrd-title">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-section-cardrd-title">Execução financeira</span></h2>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-section-cardrd-content">
+            <div class="gcg-exec__topo">
+              <div class="gcg-exec__bloco">
+                <span class="gcg-exec__rotulo">Valor Atualizado dos contratos</span>
+                <span class="gcg-exec__valor">R$ 1.741.951,83</span>
+                <span class="gcg-exec__nota">Valor inicial <strong>R$ 1.616.715,81</strong> + aditivos e apostilamentos <strong>R$ 125.236,02</strong></span>
+                <button type="button" class="gcg-panel-link" aria-label="Consultar em Gerir Contratos: Valor Atualizado dos contratos">Consultar em Gerir Contratos<span class="gcg-icon gcg-icon--sm"><svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg></span></button>
+              </div>
+              <div class="gcg-exec__bloco">
+                <span class="gcg-exec__rotulo">Valor da Contratação Anual</span>
+                <span class="gcg-exec__valor">R$ 1.607.495,40</span>
+                <button type="button" class="gcg-panel-link" aria-label="Consultar em Gerir Contratos: Valor da Contratação Anual">Consultar em Gerir Contratos<span class="gcg-icon gcg-icon--sm"><svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg></span></button>
+              </div>
+              <div class="gcg-exec__bloco">
+                <span class="gcg-exec__rotulo">Valor Estimado Mensal</span>
+                <span class="gcg-exec__valor">R$ 133.957,96</span>
+                <button type="button" class="gcg-panel-link" aria-label="Consultar em Gerir Contratos: Valor Estimado Mensal">Consultar em Gerir Contratos<span class="gcg-icon gcg-icon--sm"><svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg></span></button>
+              </div>
+            </div>
+            <div class="gcg-exec__consumo">Consumo dos Contratos (%)</div>
+            <figure class="gcg-regua gcg-regua--montada">
+              <div class="gcg-regua__chave gcg-regua__chave--cima" aria-hidden="true" style="width: 51.6951%;">
+                <span class="gcg-regua__chave-rotulo"><strong>Saldo Empenhado</strong> 51,7%</span>
+              </div>
+              <div class="gcg-regua__barra" role="img" aria-label="Do Valor Atualizado, R$ 1.741.951,83: Valor Pago/Liquidado R$ 597.847,63 (34,3%); Saldo a Liquidar R$ 302.655,33 (17,4%); Não empenhado R$ 841.448,87 (48,3%). Saldo Empenhado 51,7%; Saldo Disponível dos Contratos 65,7%.">
+                <span class="gcg-regua__parte gcg-regua__parte--liquidado" style="width: 34.3206%;"></span>
+                <span class="gcg-regua__parte gcg-regua__parte--a-liquidar" style="width: 17.3745%;"></span>
+                <span class="gcg-regua__parte gcg-regua__parte--nao-empenhado" style="width: 48.3049%;"></span>
+              </div>
+              <div class="gcg-regua__nomes" aria-hidden="true">
+                <span class="gcg-regua__nome gcg-regua__nome--liquidado" style="width: 34.3206%;"><strong>Valor Pago/Liquidado</strong>34,3%</span>
+                <span class="gcg-regua__nome gcg-regua__nome--a-liquidar" style="width: 17.3745%;"><strong>Saldo a Liquidar</strong>17,4%</span>
+                <span class="gcg-regua__nome gcg-regua__nome--nao-empenhado" style="width: 48.3049%;"><strong>Não empenhado</strong>48,3%</span>
+              </div>
+              <div class="gcg-regua__chave gcg-regua__chave--baixo" aria-hidden="true" style="margin-left: 34.3206%; width: 65.6794%;">
+                <span class="gcg-regua__chave-rotulo"><strong>Saldo Disponível dos Contratos</strong> 65,7%</span>
+              </div>
+            </figure>
+            <div class="gcg-exec__saldos">
+              <span class="gcg-tooltip">
+                <button type="button" class="gcg-saldo gcg-saldo--empenhado" aria-label="Saldo Empenhado: R$ 900.502,96. Consultar em Gerir Contratos" aria-describedby="gcg-tooltip-re">
+                  <span class="gcg-saldo__amostra" aria-hidden="true"></span>
+                  <span class="gcg-saldo__rotulo">
+                    <span>Saldo Empenhado</span>
+                    <span class="gcg-icon gcg-icon--sm gcg-saldo__seta">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                    </span>
+                  </span>
+                  <span class="gcg-saldo__valor">R$ 900.502,96</span>
+                </button>
+              </span>
+              <div class="gcg-saldo gcg-saldo--anulacao gcg-saldo--com-ajuda">
+                <span class="gcg-tooltip gcg-saldo__alvo-dica">
+                  <button type="button" class="gcg-saldo__alvo" aria-label="Saldo de Anulação: R$ 64.735,63. Consultar em Gerir Contratos" aria-describedby="gcg-tooltip-rf"></button>
+                </span>
+                <span class="gcg-saldo__amostra" aria-hidden="true"></span>
+                <span class="gcg-saldo__rotulo">
+                  <span class="gcg-saldo__rotulo-texto" aria-hidden="true">Saldo de Anulação</span>
+                  <span class="gcg-tooltip gcg-saldo__ajuda-dica">
+                    <button type="button" class="gcg-saldo__ajuda" aria-label="O que é o Saldo de Anulação" aria-describedby="gcg-tooltip-rg">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+                      </span>
+                    </button>
+                  </span>
+                  <span class="gcg-saldo__espaco" aria-hidden="true"></span>
+                  <span class="gcg-icon gcg-icon--sm gcg-saldo__seta">
+                    <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                  </span>
+                </span>
+                <span class="gcg-saldo__corpo" aria-hidden="true">
+                  <span class="gcg-saldo__valor">R$ 64.735,63</span>
+                  <span class="gcg-saldo__nota">3,7% · fora da régua</span>
+                </span>
+              </div>
+              <span class="gcg-tooltip">
+                <button type="button" class="gcg-saldo gcg-saldo--liquidado" aria-label="Valor Pago/Liquidado: R$ 597.847,63. Consultar em Gerir Contratos" aria-describedby="gcg-tooltip-rh">
+                  <span class="gcg-saldo__amostra" aria-hidden="true"></span>
+                  <span class="gcg-saldo__rotulo">
+                    <span>Valor Pago/Liquidado</span>
+                    <span class="gcg-icon gcg-icon--sm gcg-saldo__seta">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                    </span>
+                  </span>
+                  <span class="gcg-saldo__valor">R$ 597.847,63</span>
+                </button>
+              </span>
+              <span class="gcg-tooltip">
+                <button type="button" class="gcg-saldo gcg-saldo--a-liquidar" aria-label="Saldo a Liquidar: R$ 302.655,33. Consultar em Gerir Contratos" aria-describedby="gcg-tooltip-ri">
+                  <span class="gcg-saldo__amostra" aria-hidden="true"></span>
+                  <span class="gcg-saldo__rotulo">
+                    <span>Saldo a Liquidar</span>
+                    <span class="gcg-icon gcg-icon--sm gcg-saldo__seta">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                    </span>
+                  </span>
+                  <span class="gcg-saldo__valor">R$ 302.655,33</span>
+                </button>
+              </span>
+              <span class="gcg-tooltip">
+                <button type="button" class="gcg-saldo gcg-saldo--disponivel" aria-label="Saldo Disponível dos Contratos: R$ 1.144.104,20. Consultar em Gerir Contratos" aria-describedby="gcg-tooltip-rj">
+                  <span class="gcg-saldo__amostra" aria-hidden="true"></span>
+                  <span class="gcg-saldo__rotulo">
+                    <span>Saldo Disponível dos Contratos</span>
+                    <span class="gcg-icon gcg-icon--sm gcg-saldo__seta">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg>
+                    </span>
+                  </span>
+                  <span class="gcg-saldo__valor">R$ 1.144.104,20</span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="gcg-cobertura" aria-labelledby="gcg-cobertura-titulo">
+        <span class="gcg-icon gcg-icon--md gcg-cobertura__icone">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-warning"></use></svg>
+        </span>
+        <div class="gcg-cobertura__texto">
+          <h2 id="gcg-cobertura-titulo" class="gcg-cobertura__titulo">Cobertura do empenho <span class="gcg-badge gcg-badge--info">Em proposta</span></h2>
+          <p class="gcg-cobertura__destaque" title="Saldo a Liquidar menor ou igual ao Valor Estimado Mensal, fora os que terminam em até 30 dias.">1 contrato tem empenho para no máximo 1 mês de execução</p>
+        </div>
+        <button type="button" class="gcg-panel-link" aria-label="Consultar em Gerir Contratos: Cobertura do empenho">Consultar em Gerir Contratos<span class="gcg-icon gcg-icon--sm"><svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-chevron_right"></use></svg></span></button>
+      </section>
+      <div class="gcg-painel-colunas gcg-painel-colunas--2-1">
+        <section class="gcg-evolucao" aria-labelledby="gcg-evolucao-titulo">
+          <header class="gcg-evolucao__cabecalho">
+            <h2 id="gcg-evolucao-titulo" class="gcg-painel__titulo-secao">Evolução do Consumo dos Contratos</h2>
+            <div class="gcg-evolucao__controles">
+              <div class="gcg-segmentado" role="group" aria-label="Visão do gráfico">
+                <button type="button" aria-pressed="true" class="gcg-is-on">Mensal</button>
+                <button type="button" aria-pressed="false">Anual</button>
+              </div>
+              <div class="gcg-evolucao__exercicio">
+                <span class="gcg-evolucao__exercicio-rotulo" aria-hidden="true">Exercício</span>
+                <div class="gcg-field gcg-field--select gcg-evolucao__exercicio-campo">
+                  <div class="gcg-field__control">
+                    <div id="gcg-campo-rk" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-label="Exercício" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-rk-popup" data-gcg-popup="gcg-molde-3">
+                      <span class="gcg-select__value">2026</span>
+                    </div>
+                    <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="gcg-evolucao__desvio" aria-live="polite">
+            <p class="gcg-evolucao__destaque"><strong>97,4%</strong> do estimado até ago/2026</p>
+            <p class="gcg-evolucao__detalhe">Liquidado <span class="gcg-sem-quebra">R$ 597.064,31</span> · Estimado <span class="gcg-sem-quebra">R$ 612.739,26</span></p>
+          </div>
+          <ul class="gcg-evolucao__legenda" aria-hidden="true">
+            <li><span class="gcg-evolucao__amostra gcg-evolucao__amostra--barra"></span>Liquidado no mês</li>
+            <li><span class="gcg-evolucao__amostra gcg-evolucao__amostra--alvo"></span>Valor Estimado Mensal</li>
+            <li><span class="gcg-evolucao__amostra gcg-evolucao__amostra--acima"></span>Acima do estimado (+3%)</li>
+            <li><span class="gcg-evolucao__amostra gcg-evolucao__amostra--futuro"></span>Meses a vir</li>
+          </ul>
+          <div class="gcg-evolucao__grafico">
+            <div class="gcg-evolucao__eixo" aria-hidden="true">
+              <span class="gcg-evolucao__eixo-titulo">R$ mil</span>
+              <span style="bottom: 0%;">0</span>
+              <span style="bottom: 25%;">50</span>
+              <span style="bottom: 50%;">100</span>
+              <span style="bottom: 75%;">150</span>
+              <span style="bottom: 100%;">200</span>
+            </div>
+            <ol class="gcg-evolucao__colunas" aria-label="Valor liquidado e Valor Estimado Mensal por período">
+              <li class="gcg-evolucao__grade" aria-hidden="true" style="bottom: calc(0% + 2.25rem);"></li>
+              <li class="gcg-evolucao__grade" aria-hidden="true" style="bottom: calc(25% + 1.6875rem);"></li>
+              <li class="gcg-evolucao__grade" aria-hidden="true" style="bottom: calc(50% + 1.125rem);"></li>
+              <li class="gcg-evolucao__grade" aria-hidden="true" style="bottom: calc(75% + 0.5625rem);"></li>
+              <li class="gcg-evolucao__grade" aria-hidden="true" style="bottom: calc(100% + 0rem);"></li>
+              <li class="gcg-evolucao__coluna">
+                <span class="gcg-evolucao__trilho" role="img" aria-label="Jan/2026: liquidado R$ 0,00 · Valor Estimado Mensal R$ 0,00">
+                  <span class="gcg-evolucao__barra" style="height: 0%;"></span>
+                </span>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Jan</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <span class="gcg-evolucao__trilho" role="img" aria-label="Fev/2026: liquidado R$ 0,00 · Valor Estimado Mensal R$ 0,00">
+                  <span class="gcg-evolucao__barra" style="height: 0%;"></span>
+                </span>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Fev</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <span class="gcg-evolucao__trilho" role="img" aria-label="Mar/2026: liquidado R$ 0,00 · Valor Estimado Mensal R$ 0,00">
+                  <span class="gcg-evolucao__barra" style="height: 0%;"></span>
+                </span>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Mar</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <button type="button" class="gcg-evolucao__trilho" aria-label="Abr/2026: liquidado R$ 101.262,38 · Valor Estimado Mensal R$ 114.685,00. Consultar em Gerir Contratos">
+                  <span class="gcg-evolucao__barra" style="height: 50.6312%;"></span>
+                  <span class="gcg-evolucao__alvo" style="bottom: 57.3425%;"></span>
+                </button>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Abr</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <button type="button" class="gcg-evolucao__trilho" aria-label="Mai/2026: liquidado R$ 107.973,69 · Valor Estimado Mensal R$ 114.685,00. Consultar em Gerir Contratos">
+                  <span class="gcg-evolucao__barra" style="height: 53.9868%;"></span>
+                  <span class="gcg-evolucao__alvo" style="bottom: 57.3425%;"></span>
+                </button>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Mai</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <button type="button" class="gcg-evolucao__trilho" aria-label="Jun/2026: liquidado R$ 115.549,94 · Valor Estimado Mensal R$ 115.453,37. Consultar em Gerir Contratos">
+                  <span class="gcg-evolucao__barra" style="height: 57.775%;"></span>
+                  <span class="gcg-evolucao__alvo" style="bottom: 57.7267%;"></span>
+                </button>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Jun</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <button type="button" class="gcg-evolucao__trilho" aria-label="Jul/2026: liquidado R$ 140.510,34 · Valor Estimado Mensal R$ 133.957,95 · acima do estimado. Consultar em Gerir Contratos">
+                  <span class="gcg-evolucao__barra gcg-evolucao__barra--acima" style="height: 70.2552%;"></span>
+                  <span class="gcg-evolucao__alvo" style="bottom: 66.979%;"></span>
+                </button>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Jul</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <button type="button" class="gcg-evolucao__trilho" aria-label="Ago/2026: liquidado R$ 131.767,96 · Valor Estimado Mensal R$ 133.957,94. Consultar em Gerir Contratos">
+                  <span class="gcg-evolucao__barra" style="height: 65.884%;"></span>
+                  <span class="gcg-evolucao__alvo" style="bottom: 66.979%;"></span>
+                </button>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Ago</span>
+              </li>
+              <li class="gcg-evolucao__coluna">
+                <button type="button" class="gcg-evolucao__trilho" aria-label="Set/2026 (em curso): liquidado R$ 783,32 · Valor Estimado Mensal R$ 133.957,96. Consultar em Gerir Contratos">
+                  <span class="gcg-evolucao__barra" style="height: 0.39166%;"></span>
+                  <span class="gcg-evolucao__alvo" style="bottom: 66.979%;"></span>
+                </button>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Set<small>em curso</small></span>
+              </li>
+              <li class="gcg-evolucao__coluna gcg-evolucao__coluna--futura">
+                <span class="gcg-evolucao__trilho" role="img" aria-label="Out/2026: mês a vir · Valor Estimado Mensal R$ 133.957,95">
+                  <span class="gcg-evolucao__alvo" style="bottom: 66.979%;"></span>
+                </span>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Out</span>
+              </li>
+              <li class="gcg-evolucao__coluna gcg-evolucao__coluna--futura">
+                <span class="gcg-evolucao__trilho" role="img" aria-label="Nov/2026: mês a vir · Valor Estimado Mensal R$ 133.957,95">
+                  <span class="gcg-evolucao__alvo" style="bottom: 66.979%;"></span>
+                </span>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Nov</span>
+              </li>
+              <li class="gcg-evolucao__coluna gcg-evolucao__coluna--futura">
+                <span class="gcg-evolucao__trilho" role="img" aria-label="Dez/2026: mês a vir · Valor Estimado Mensal R$ 133.957,95">
+                  <span class="gcg-evolucao__alvo" style="bottom: 66.979%;"></span>
+                </span>
+                <span class="gcg-evolucao__rotulo" aria-hidden="true">Dez</span>
+              </li>
+            </ol>
+          </div>
+          <div class="gcg-ver-tabela">
+            <button type="button" class="gcg-ver-tabela__botao" aria-expanded="false" aria-controls="gcg-tabela-rl"><span class="gcg-icon gcg-icon--sm"><svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-table_rows"></use></svg></span>Ver como tabela</button>
+          </div>
+        </section>
+        <section class="gcg-vigencia" aria-labelledby="gcg-vigencia-titulo">
+          <header class="gcg-vigencia__cabecalho">
+            <h2 id="gcg-vigencia-titulo" class="gcg-painel__titulo-secao">Vigência dos Contratos</h2>
+            <div class="gcg-field gcg-field--select gcg-vigencia__faixa">
+              <div class="gcg-field__control">
+                <div id="gcg-campo-rm" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-label="Vencem em" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-rm-popup" data-gcg-popup="gcg-molde-4">
+                  <span class="gcg-select__value">Até 60 dias</span>
+                </div>
+                <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                  <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                </span>
+              </div>
+            </div>
+          </header>
+          <div class="gcg-vigencia__numero">
+            <strong class="gcg-painel-zero">0</strong>
+            <span>contratos vencem em até 60 dias</span>
+          </div>
+          <p class="gcg-painel-vazio">Nenhum contrato do recorte termina em até 60 dias.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+<div role="tooltip" id="gcg-tooltip-r4" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--bottom gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Esta é a sua tela inicial</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div class="gcg-toaster" data-gcg-count="0"></div>
+<div class="gcg-sr-only" role="status" aria-live="polite"></div>
+<div class="gcg-sr-only" role="alert" aria-live="assertive"></div>
+<div id="gcg-emag-status" class="gcg-sr-only" role="status" aria-live="polite"></div>
+<div role="tooltip" id="gcg-tooltip-re" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--bottom gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Consultar em Gerir Contratos: 4 contratos</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-rf" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--bottom gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Consultar em Gerir Contratos: 2 contratos</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-rg" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--top gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Diferença entre o valor total da contratação e o valor total do IPOF no SIAFIC. Aparece quando o IPOF é menor que a contratação.</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-rh" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--bottom gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Consultar em Gerir Contratos: 4 contratos</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-ri" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--bottom gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Consultar em Gerir Contratos: 4 contratos</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<div role="tooltip" id="gcg-tooltip-rj" hidden class="gcg-tooltip-bubble gcg-tooltip-bubble--bottom gcg-tooltip-bubble--floating" style="top: 0px; left: 0px; opacity: 0;"><div class="gcg-tooltip-bubble__body">Consultar em Gerir Contratos: 4 contratos</div><span class="gcg-tooltip-bubble__arrow" aria-hidden="true"></span></div>
+<!-- Moldes do gcg-behavior.js: a parte que abre de cada menu, lista, janela e grupo recolhido desta tela
+     (o gatilho aponta com data-gcg-popup). Não aparecem: o script copia para a página ao abrir e tira ao
+     fechar. Na aplicação, o servidor pode imprimir a mesma marcação assim. Ver o LEIA-ME, "Comportamento". -->
+<template id="gcg-molde-0">
+<div data-gcg-part data-gcg-mount="up:1" data-gcg-index="2">
+  <div class="gcg-topbar__menu gcg-action-menu__surface">
+    <div role="menu" id="gcg-menu-perfil-r0" class="gcg-action-menu__list" aria-label="Menu do perfil">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Configurar tela inicial</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-logout"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Sair</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom gcg-natureza-popover" style="top: 267px; left: 281px;">
+    <div class="gcg-natureza-menu">
+      <div class="gcg-natureza-menu__busca">
+        <div class="gcg-field gcg-field--input gcg-natureza-menu__campo">
+          <div class="gcg-field__control">
+            <input id="gcg-natureza-busca-r6" class="gcg-field__native" placeholder="Pesquisar pelo código ou pelo nome" autocomplete="off" spellcheck="false" aria-label="Pesquisar pelo código ou pelo nome" aria-controls="gcg-campo-r5-popup" type="search">
+            <span class="gcg-icon gcg-icon--sm gcg-field__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-search"></use></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <ul id="gcg-campo-r5-popup" role="listbox" aria-label="Natureza de Despesa" class="gcg-select-menu gcg-natureza-menu__lista">
+        <li id="gcg-campo-r5-popup-op-0" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--todas">
+          <span class="gcg-select-option__label">Todas</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-1" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--elemento">
+          <span class="gcg-select-option__label">3.3.90.30 · Material de Consumo</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-2" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.30.01 · Combustíveis e lubrificantes automotivos</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-3" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.30.04 · Gás e outros materiais engarrafados</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-4" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.30.07 · Gêneros de alimentação</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-5" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.30.16 · Material de expediente</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-6" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.30.22 · Material de limpeza e produtos de higienização</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-7" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.30.26 · Material elétrico e eletrônico</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-8" role="option" aria-selected="true" class="gcg-select-option gcg-natureza-option gcg-natureza-option--elemento" data-gcg-selected="true">
+          <span class="gcg-select-option__label">3.3.90.37 · Locação de Mão de Obra</span>
+          <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+          </span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-9" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.37.01 · Apoio administrativo, técnico e operacional</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-10" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.37.02 · Limpeza e conservação</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-11" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.37.03 · Vigilância ostensiva</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-12" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--elemento">
+          <span class="gcg-select-option__label">3.3.90.39 · Outros Serviços de Terceiros – Pessoa Jurídica</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-13" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.39.17 · Manutenção e conservação de máquinas e equipamentos</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-14" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.39.99 · Outros serviços de terceiros</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-15" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--elemento">
+          <span class="gcg-select-option__label">3.3.90.40 · Serviços de Tecnologia da Informação e Comunicação – Pessoa Jurídica</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-16" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.40.12 · Telefonia e comunicação de dados</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-17" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">3.3.90.40.20 · Suporte e manutenção de soluções de TIC</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-18" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--elemento">
+          <span class="gcg-select-option__label">4.4.90.51 · Obras e Instalações</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-19" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">4.4.90.51.91 · Obras em andamento</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-20" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">4.4.90.51.92 · Instalações</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-21" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--elemento">
+          <span class="gcg-select-option__label">4.4.90.52 · Equipamentos e Material Permanente</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-22" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">4.4.90.52.35 · Equipamentos de processamento de dados</span>
+        </li>
+        <li id="gcg-campo-r5-popup-op-23" role="option" aria-selected="false" class="gcg-select-option gcg-natureza-option gcg-natureza-option--subelemento">
+          <span class="gcg-select-option__label">4.4.90.52.99 · Outros materiais permanentes</span>
+        </li>
+      </ul>
+      <span class="gcg-sr-only" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-2">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 267px; left: 593px; width: 120px;">
+    <ul id="gcg-campo-r7-popup" role="listbox" aria-labelledby="gcg-campo-r7-rotulo" class="gcg-select-menu">
+      <li id="gcg-campo-r7-popup-op-0" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">Todos</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-campo-r7-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">0101</span>
+      </li>
+      <li id="gcg-campo-r7-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">0215</span>
+      </li>
+      <li id="gcg-campo-r7-popup-op-3" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">0330</span>
+      </li>
+      <li id="gcg-campo-r7-popup-op-4" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">0442</span>
+      </li>
+      <li id="gcg-campo-r7-popup-op-5" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">0518</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-3">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 566px; left: 842.266px; width: 120px;">
+    <ul id="gcg-campo-rk-popup" role="listbox" aria-label="Exercício" class="gcg-select-menu">
+      <li id="gcg-campo-rk-popup-op-0" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">2024</span>
+      </li>
+      <li id="gcg-campo-rk-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">2025</span>
+      </li>
+      <li id="gcg-campo-rk-popup-op-2" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">2026</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-4">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 566px; left: 1254.98px; width: 136px;">
+    <ul id="gcg-campo-rm-popup" role="listbox" aria-label="Vencem em" class="gcg-select-menu">
+      <li id="gcg-campo-rm-popup-op-0" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">Até 60 dias</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-campo-rm-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">61 a 90 dias</span>
+      </li>
+      <li id="gcg-campo-rm-popup-op-2" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">91 a 120 dias</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<script src="../../biblioteca/js/gcg-icons.js"></script>
+<script src="../../biblioteca/js/gcg-motion.js"></script>
+<script src="../../biblioteca/js/gcg-behavior.js"></script>
+</body>
+</html>

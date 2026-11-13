@@ -1,0 +1,22 @@
+/* gcg-type-chip.css — composição de tela (HU-014 · Painel do Procurador Setorial), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* TypeChip (HU-014) — Figma: página 11, HU-014, TypeChip · Aditivo · Apostilamento · Dúvida / comunicação.
+   22 de altura (Text/XS/Medium de 16 + 2 · 2 + a borda), 8 dos lados, raio total. */
+.gcg-type-chip {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--gcg-space-half) var(--gcg-space-2);
+  border: var(--gcg-border-width-thin) solid;
+  border-radius: var(--gcg-radius-full);
+  font: var(--gcg-font-text-xs-medium);
+  letter-spacing: var(--gcg-tracking-text-xs-medium);
+  white-space: nowrap;
+}
+.gcg-type-chip--cyan { border-color: var(--gcg-color-cyan-200); background: var(--gcg-color-cyan-50); color: var(--gcg-color-cyan-800); }
+.gcg-type-chip--violet { border-color: var(--gcg-color-violet-200); background: var(--gcg-color-violet-50); color: var(--gcg-color-violet-700); }
+.gcg-type-chip--yellow { border-color: var(--gcg-color-yellow-200); background: var(--gcg-color-yellow-50); color: var(--gcg-color-yellow-800); }
+
+/* Alto contraste (barra eMAG): o chip vira contorno branco, o tipo se lê pelo nome */
+html[data-gcg-contrast='high'] .gcg-type-chip { border-color: var(--gcg-border-strong); background: var(--gcg-surface-base); color: var(--gcg-text-default); }

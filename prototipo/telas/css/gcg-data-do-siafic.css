@@ -1,0 +1,19 @@
+/* gcg-data-do-siafic.css — composição de tela (HU-015 · Painel do Analista Financeiro), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Data do SIAFIC (HU-015, Cenário 01, RN04): quando os números foram trazidos do SIAFIC.
+   Composição local (snowflake): só esta tela usa; vira componente da biblioteca no terceiro uso. */
+
+.gcg-siafic {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  padding: var(--gcg-space-1) var(--gcg-space-3);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-surface-base);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  white-space: nowrap;
+}
+.gcg-siafic .gcg-icon { color: var(--gcg-text-secondary); }
+.gcg-siafic strong { color: var(--gcg-text-strong); font-weight: 600; }

@@ -1,0 +1,192 @@
+/* gcg-topbar.css — Topbar · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Topbar e Topbar/Action — Figma 35:2795 e 35:2658 (página 05 › Estrutura e navegação › Linha · Topbar). */
+
+.gcg-topbar {
+  --gcg-topbar-user-max-w: 240px; /* sem token: teto do bloco nome/perfil (perfis longos truncam com title) */
+
+  display: flex;
+  flex-wrap: wrap;               /* com a fonte a 200% o grupo da direita desce para uma segunda linha */
+  align-items: center;
+  justify-content: space-between;
+  column-gap: var(--gcg-space-4);
+  row-gap: 0;
+  box-sizing: border-box;
+  min-height: var(--gcg-size-topbar);
+  padding: var(--gcg-space-2) var(--gcg-space-4);
+  background: var(--gcg-surface-brand);
+  color: var(--gcg-text-on-action);
+}
+
+.gcg-topbar__left,
+.gcg-topbar__right {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.gcg-topbar__left { gap: var(--gcg-space-3); }
+.gcg-topbar__right { gap: var(--gcg-space-4); }
+
+.gcg-topbar__system {
+  font: var(--gcg-font-text-lg-semibold);
+  letter-spacing: var(--gcg-tracking-text-lg-semibold);
+  white-space: nowrap;
+}
+.gcg-topbar__module {
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  white-space: nowrap;
+}
+.gcg-topbar__unit {
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  white-space: nowrap;
+}
+
+/* Divisor: border-width/thin × size/icon-md, text/on-action a 30% */
+.gcg-topbar__divider {
+  flex: none;
+  width: var(--gcg-border-width-thin);
+  height: var(--gcg-size-icon-md);
+  background: var(--gcg-text-on-action);
+  opacity: 0.3;
+}
+
+/* Barra eMAG: 7 × 32, gap space/1 */
+.gcg-topbar__emag {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-1);
+}
+
+/* Usuário: avatar 32 + nome e perfil, gap space/2 */
+.gcg-topbar__user {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  min-width: 0;
+}
+.gcg-topbar__avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--gcg-size-control-sm);
+  height: var(--gcg-size-control-sm);
+  border-radius: var(--gcg-radius-full);
+  background: var(--gcg-surface-brand-hover);
+  color: var(--gcg-text-on-action);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+.gcg-topbar__user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: var(--gcg-topbar-user-max-w);
+}
+.gcg-topbar__user-name,
+.gcg-topbar__user-profile {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gcg-topbar__user-name { font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold); }
+.gcg-topbar__user-profile { font: var(--gcg-font-text-xs-regular); letter-spacing: var(--gcg-tracking-text-xs-regular); }
+
+/* ---------- Topbar/Action ---------- */
+.gcg-topbar-action {
+  --gcg-topbar-action-size: var(--gcg-size-control-sm);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--gcg-topbar-action-size);
+  height: var(--gcg-topbar-action-size);
+  margin: 0;
+  padding: 0;
+  border: var(--gcg-border-width-thin) solid transparent; /* pressed acende a borda; o tamanho não muda */
+  border-radius: var(--gcg-radius-md);
+  outline: none;
+  background-color: transparent;
+  color: var(--gcg-text-on-action);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  /* contorno (ver abaixo) e aparece na hora: contorno transparente parado viraria traço nas cores
+     forçadas do sistema. */
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    border-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    transform var(--gcg-motion-instant) var(--gcg-ease-standard);
+}
+.gcg-topbar-action:not([aria-disabled='true']):active { transform: scale(var(--gcg-motion-press-icon)); }
+.gcg-topbar-action--sm { --gcg-topbar-action-size: var(--gcg-size-control-sm); }
+.gcg-topbar-action--md { --gcg-topbar-action-size: var(--gcg-size-control-md); }
+
+/* hover: fundo surface/brand-hover */
+.gcg-topbar-action:hover { background-color: var(--gcg-surface-brand-hover); }
+
+/* pressed (alternância eMAG ligada): fundo surface/brand-hover + borda interna 1px text/on-action */
+.gcg-topbar-action[aria-pressed='true'] {
+  background-color: var(--gcg-surface-brand-hover);
+  border-color: var(--gcg-text-on-action);
+}
+
+/* focus: anel branco de 2px afastado 2px pelo próprio verde (DD-004, caso sobre verde).
+   No Figma são duas sombras (surface/brand de space/half por cima de surface/base de space/1);
+   aqui o mesmo desenho sai de um contorno surface/base afastado space/half — o vão mostra o verde
+   da barra. Com box-shadow, o Chromium deixa um fio branco serrilhado no canto de dentro (as duas
+   sombras recortadas pela mesma borda arredondada); o contorno não tem esse defeito e aparece
+   também nos modos de cor forçada. */
+.gcg-topbar-action:focus-visible {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-surface-base);
+  outline-offset: var(--gcg-space-half);
+}
+
+/* No limite (100% ou 200%) o botão continua focável e não faz nada. Visual igual ao Figma. */
+.gcg-topbar-action[aria-disabled='true'] { cursor: default; }
+.gcg-topbar-action[aria-disabled='true']:hover { background-color: transparent; }
+
+/* ---------- alto contraste (barra eMAG) ----------
+   Topbar preta com borda inferior branca; ícones e texto brancos; hover com contorno branco;
+   alternância ligada em bloco branco com ícone preto; foco no contorno amarelo global. */
+html[data-gcg-contrast='high'] .gcg-topbar {
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  background: var(--gcg-surface-base);
+  color: var(--gcg-text-strong);
+}
+html[data-gcg-contrast='high'] .gcg-topbar__divider { background: var(--gcg-text-strong); opacity: 1; }
+html[data-gcg-contrast='high'] .gcg-topbar-action { color: var(--gcg-text-strong); }
+html[data-gcg-contrast='high'] .gcg-topbar-action:hover {
+  background-color: transparent;
+  border-color: var(--gcg-border-default);
+}
+html[data-gcg-contrast='high'] .gcg-topbar-action[aria-pressed='true'] {
+  background-color: var(--gcg-text-strong);
+  border-color: var(--gcg-text-strong);
+  color: var(--gcg-surface-base);
+}
+
+.gcg-topbar__user { position: relative; }
+.gcg-topbar__user-info { align-items: flex-end; text-align: right; }
+.gcg-topbar__menu-perfil {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 2px;
+  padding: 2px var(--gcg-space-1) 2px 2px;
+  border: 0;
+  border-radius: var(--gcg-radius-full);
+  background: transparent;
+  color: var(--gcg-text-on-action);
+  cursor: pointer;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-topbar__menu-perfil:hover,
+.gcg-topbar__menu-perfil[data-gcg-open] { background: var(--gcg-color-green-800); }
+.gcg-topbar__menu-perfil:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-text-on-action); outline-offset: 2px; }
+.gcg-topbar__menu-seta { color: var(--gcg-text-on-action); }
+.gcg-topbar__menu { position: absolute; top: calc(100% + var(--gcg-space-1)); right: 0; z-index: 40; color: var(--gcg-text-default); }

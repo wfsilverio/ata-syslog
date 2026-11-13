@@ -1,0 +1,181 @@
+/* gcg-term-timeline.css — composição de tela (HU-003 · Consultar aditivos; HU-004 · Consultar apostilamentos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* term-timeline — a linha do tempo dos termos das abas Aditivos (HU-003) e Apostilamentos (HU-004),
+   apostilamentos" das telas de histórico (L1 · 4): composição local, só tokens.
+   - painel: filtros (Data inicial e Data final, 280 cada) · contagem · linha do tempo, 16 entre eles;
+   - registro: trilho de 16 e o cartão, 16 entre eles; 16 abaixo de cada registro, menos o último;
+   - trilho: marcador de 12 a 27 do topo (alinhado ao meio do cabeçalho do cartão) e o traço de 2,
+     do marcador até o fim do cartão; o marcador tem a cor do tipo (aditivo state/info-text, apostilamento
+     color/neutral/500);
+   - cartão: surface/base, borda border/default, radius/md, 16 × 20 por dentro, 12 entre os blocos;
+   - cabeçalho (36, a altura do ⋮): ficha · Nº (Text/MD/Semibold text/strong) · data (Text/SM/Regular
+     text/secondary) · espaço · Visualizar · ⋮, 12 entre eles;
+   - Descrição em Text/MD/Regular text/default; os campos lado a lado, 40 entre eles.
+   As regras do painel sobem de especificidade (.term-timeline-panel …): não dependem da ordem em que o
+   CSS de FiltroPeriodo e o do EmptyState carregam. */
+
+.gcg-term-timeline-panel {
+  --gcg-term-timeline-date-field-w: 17.5rem; /* 280: DatePicker · Data inicial / Data final no Figma — sem token */
+}
+.gcg-term-timeline-panel .gcg-filtro-periodo { margin-bottom: 0; }
+.gcg-term-timeline-panel .gcg-filtro-periodo__campo { width: var(--gcg-term-timeline-date-field-w); max-width: 100%; }
+
+.gcg-term-timeline-panel .gcg-term-timeline-panel__count {
+  margin: 0;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+/* ---------- a lista ---------- */
+.gcg-term-timeline {
+  --gcg-term-timeline-rail-w: var(--gcg-space-4);         /* 16 */
+  --gcg-term-timeline-dot: var(--gcg-space-3);            /* 12 */
+  --gcg-term-timeline-dot-top: 1.6875rem;             /* 27: o meio do cabeçalho do cartão (16 + 36/2 − 6) — sem token */
+  --gcg-term-timeline-line-w: var(--gcg-border-width-thick); /* 2 */
+  --gcg-term-timeline-skeleton-title-w: 10rem;        /* 160 — sem token */
+  --gcg-term-timeline-skeleton-fields-w: 17.5rem;     /* 280 — sem token */
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gcg-term-timeline__record {
+  display: flex;
+  gap: var(--gcg-space-4);
+  min-width: 0;
+  padding-bottom: var(--gcg-space-4);
+  animation: gcg-motion-rise-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+.gcg-term-timeline__record--last { padding-bottom: 0; }
+.gcg-term-timeline__record:nth-child(2) { animation-delay: calc(1 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(3) { animation-delay: calc(2 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(4) { animation-delay: calc(3 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(5) { animation-delay: calc(4 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(6) { animation-delay: calc(5 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(7) { animation-delay: calc(6 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(8) { animation-delay: calc(7 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(9) { animation-delay: calc(8 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline__record:nth-child(n + 10) { animation-delay: calc(9 * var(--gcg-motion-stagger)); }
+.gcg-term-timeline--loading .gcg-term-timeline__record { animation: gcg-motion-fade-in var(--gcg-motion-fast) var(--gcg-ease-standard) backwards; }
+
+/* ---------- o trilho ---------- */
+.gcg-term-timeline__rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  width: var(--gcg-term-timeline-rail-w);
+  padding-top: var(--gcg-term-timeline-dot-top);
+}
+.gcg-term-timeline__dot {
+  flex: none;
+  width: var(--gcg-term-timeline-dot);
+  height: var(--gcg-term-timeline-dot);
+  border-radius: var(--gcg-radius-full);
+  background-color: var(--gcg-color-neutral-300);
+}
+.gcg-term-timeline__record--amendment .gcg-term-timeline__dot { background-color: var(--gcg-state-info-text); }
+.gcg-term-timeline__record--apostille .gcg-term-timeline__dot { background-color: var(--gcg-color-neutral-500); }
+.gcg-term-timeline__line {
+  flex: 1 1 auto;
+  width: var(--gcg-term-timeline-line-w);
+  background-color: var(--gcg-border-default);
+}
+
+/* ---------- o cartão ---------- */
+.gcg-term-timeline__card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+  min-width: 0;
+  padding: var(--gcg-space-4) var(--gcg-space-5);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-default);
+  border-radius: var(--gcg-radius-md);
+  background-color: var(--gcg-surface-base);
+  transition: border-color var(--gcg-motion-fast) var(--gcg-ease-standard), box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+/* O item da demanda que o painel do Procurador abriu: moldura verde de 2 (o contorno a mais não mexe no layout) */
+.gcg-term-timeline__record--highlight .gcg-term-timeline__card {
+  border-color: var(--gcg-border-focus);
+  box-shadow: 0 0 0 var(--gcg-border-width-thin) var(--gcg-border-focus);
+}
+
+.gcg-term-timeline__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gcg-space-3);
+  min-height: var(--gcg-size-control-md);
+}
+.gcg-term-timeline__title {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-3);
+  margin: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-term-timeline__number { white-space: nowrap; }
+.gcg-term-timeline__date {
+  margin: 0;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+.gcg-term-timeline__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-3);
+  margin-left: auto;
+}
+
+.gcg-term-timeline__description {
+  margin: 0;
+  color: var(--gcg-text-default);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  overflow-wrap: break-word;
+}
+
+.gcg-term-timeline__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gcg-space-4) var(--gcg-space-10);
+  margin: 0;
+}
+/* O DataField estica no contêiner; aqui cada campo tem a largura do texto, como no Figma */
+.gcg-term-timeline .gcg-term-timeline__field { flex: none; }
+
+/* ---------- carregando ---------- */
+.gcg-term-timeline__skeleton {
+  display: block;
+  max-width: 100%;
+  height: var(--gcg-size-skeleton-bar);
+  border-radius: var(--gcg-radius-sm);
+  background-color: var(--gcg-surface-skeleton);
+  animation: gcg-term-timeline-pulse var(--gcg-motion-pulse) ease-in-out infinite;
+}
+.gcg-term-timeline__skeleton--title { width: var(--gcg-term-timeline-skeleton-title-w); margin: var(--gcg-space-3) 0; }
+.gcg-term-timeline__skeleton--text { width: 60%; }
+.gcg-term-timeline__skeleton--fields { width: var(--gcg-term-timeline-skeleton-fields-w); }
+@keyframes gcg-term-timeline-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gcg-term-timeline__skeleton { animation: none; }
+}
+
+/* ---------- alto contraste (barra eMAG): o destaque sem sombra, com a borda grossa ---------- */
+html[data-gcg-contrast='high'] .gcg-term-timeline__record--highlight .gcg-term-timeline__card {
+  box-shadow: none;
+  border-width: var(--gcg-border-width-thick);
+}
+html[data-gcg-contrast='high'] .gcg-term-timeline__dot { outline: var(--gcg-border-width-thin) solid var(--gcg-border-default); }

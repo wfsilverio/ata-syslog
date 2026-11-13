@@ -1,0 +1,5 @@
+/* gcg-filtro-periodo.css — composição de tela (HU-003 · Consultar aditivos; HU-004 · Consultar apostilamentos; HU-006 · Consultar documentos; HU-007 · Consultar tramitações; HU-008 · Consultar ocorrências; HU-011 · Enviar avisos/comunicação), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+.gcg-filtro-periodo { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--gcg-space-4); margin-bottom: var(--gcg-space-4); }
+.gcg-filtro-periodo__campo { width: 11.25rem; }            /* 180: cabe DD/MM/AAAA com o ícone */
+.gcg-filtro-periodo__campo--ordem { width: 13.75rem; }     /* 220: "Mais recente primeiro" */

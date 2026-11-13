@@ -1,0 +1,77 @@
+/* gcg-aba-documentos.css — composição de tela (HU-006 · Consultar documentos), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Aba Documentação — HU-006 · Consultar Documentos (Figma, página 09, seção HU-006 · Consultar
+   documentos, nó 89:72817: o frame "painel · Documentação", com o "filtro · Status Atual dos Documentos
+   (fieldset)" e os "resultados"). Só tokens. A moldura do painel (8 em cima, 16 entre os blocos) está */
+
+/* O painel ocupa a altura que sobra na tela e o cartão da tabela termina na margem de baixo: com mais
+   documentos que a altura, as linhas rolam por dentro do cartão e o cabeçalho da tabela e o filtro
+   ficam à vista (Figma, L1 · 4: cartão de 272,401 a 1000). Com pouco conteúdo, o cartão tem a altura
+   dele (L3 · 1, carregando, vazio, falha) — como a lista da HU-001 (ConsultarContratos.css).
+   O painel não encolhe abaixo de 15rem (o filtro e o cartão com o cabeçalho e umas duas linhas, em rem
+   para acompanhar a fonte da barra eMAG): numa janela baixa ou com a fonte grande, a página rola em vez
+   de o cartão sumir. Abaixo de 540 de altura, a página rola inteira (AppShell.css). */
+.gcg-detalhe__painel.gcg-aba-documentos {
+  --gcg-aba-documentos-min-h: 15rem;
+  flex: 0 1 auto;
+  min-height: var(--gcg-aba-documentos-min-h);
+}
+.gcg-aba-documentos__tabela.gcg-data-table__card--stretch {
+  flex: 0 1 auto;
+}
+
+/* O filtro: o grupo de caixas com título (fieldset e legend, RNF008), sem moldura. Legenda Text/MD/
+   Semibold text/strong; 4 abaixo, as quatro caixas em linha, 24 entre elas (Figma: "opcoes", gap 24). */
+.gcg-aba-documentos__filtro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* float tira a legenda do lugar especial do fieldset: vira item do flex, com o gap (como no MoneyRangeField) */
+.gcg-aba-documentos__legenda {
+  float: left;
+  width: 100%;
+  padding: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-md-semibold);
+  letter-spacing: var(--gcg-tracking-text-md-semibold);
+}
+.gcg-aba-documentos__opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gcg-space-1) var(--gcg-space-6);
+}
+
+/* A árvore na célula Código (composição local — Cartão · HU-006): o botão de anexos (IconButton sm, 32)
+   a 4 da borda da célula e o código a 8 dele. Sem anexos, um espaço de 32 no lugar do botão, para os
+   códigos alinharem; no anexo, 32 + 24 de recuo. A célula tem 8 de margem: -4 devolve o botão aos 4 do
+   Figma (td · Código: padding-left 4). */
+.gcg-aba-documentos__codigo {
+  display: flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  min-width: 0;
+  margin-left: calc(-1 * var(--gcg-space-1));
+}
+.gcg-aba-documentos__recuo {
+  flex: none;
+  width: var(--gcg-size-control-sm);
+  height: var(--gcg-size-control-sm);
+}
+.gcg-aba-documentos__codigo--anexo .gcg-aba-documentos__recuo {
+  width: calc(var(--gcg-size-control-sm) + var(--gcg-space-6));
+}
+/* o código: Table/Cell weight=strong (Text/SM/Semibold, text/strong), numa linha só */
+.gcg-aba-documentos__codigo-texto {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

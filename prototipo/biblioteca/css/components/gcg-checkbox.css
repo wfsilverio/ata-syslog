@@ -1,0 +1,123 @@
+/* gcg-checkbox.css — Checkbox · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Checkbox — Figma 89:72674 (página 05 › Formulário › Seleção › Linha · Checkbox).
+   componente: horizontal, gap space/2, padding vertical space/half (altura 24) · caixa 16 × 16 (size/icon-sm),
+   radius/sm, borda border-width/thick · rótulo Text/MD/Regular text/default.
+   Desmarcada: fundo surface/base, borda border/strong (hover action/neutral).
+   Marcada: fundo e borda action/primary (hover action/primary-hover), check Icon/check 16 em text/on-action.
+   Disabled: desmarcada surface/subtle + border/default · marcada border/default + check surface/base · rótulo text/disabled.
+   Foco: anel na caixa, 2 px surface/base + 2 px border/focus (DD-004). */
+
+.gcg-checkbox {
+  --gcg-checkbox-bg: var(--gcg-surface-base);
+  --gcg-checkbox-border: var(--gcg-border-strong);
+  --gcg-checkbox-check: var(--gcg-text-on-action);
+  --gcg-checkbox-label: var(--gcg-text-default);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  box-sizing: border-box;
+  padding: var(--gcg-space-half) 0;
+  color: var(--gcg-checkbox-label);
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.gcg-checkbox[data-gcg-checked] {
+  --gcg-checkbox-bg: var(--gcg-action-primary);
+  --gcg-checkbox-border: var(--gcg-action-primary);
+}
+
+/* o input nativo, invisível, fica sobre a caixa com um alvo de 24 × 24 (WCAG 2.5.8): é ele que recebe
+   foco e teclado; o clique no texto marca pelo <label> */
+.gcg-checkbox__input {
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--gcg-space-1));
+  width: calc(var(--gcg-size-icon-sm) + 2 * var(--gcg-space-1));
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+/* sem rótulo o componente tem 20 de altura (Figma: 16 × 20): o alvo passa 2 px para cima e para baixo */
+.gcg-checkbox--no-label .gcg-checkbox__input {
+  top: calc(-1 * var(--gcg-space-half));
+  height: calc(100% + 2 * var(--gcg-space-half));
+}
+
+.gcg-checkbox__box {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--gcg-size-icon-sm);
+  height: var(--gcg-size-icon-sm);
+  border: var(--gcg-border-width-thick) solid var(--gcg-checkbox-border);
+  border-radius: var(--gcg-radius-sm);
+  background: var(--gcg-checkbox-bg);
+  pointer-events: none;
+
+  transition:
+    background-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    border-color var(--gcg-motion-fast) var(--gcg-ease-standard),
+    box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard),
+    transform var(--gcg-motion-instant) var(--gcg-ease-standard);
+}
+.gcg-checkbox:where(:not([data-gcg-disabled])):active .gcg-checkbox__box { transform: scale(var(--gcg-motion-press-icon)); }
+/* o check tem 16, o tamanho da caixa: fica por cima da borda, como no Figma (a caixa recorta o conteúdo).
+   --motion-base, na ordem do traço: a perna curta, depois a longa); ao desmarcar, some com fade
+   rápido e o recorte volta fechado sem ser visto. */
+.gcg-checkbox__check {
+  position: absolute;
+  inset: calc(-1 * var(--gcg-border-width-thick));
+  color: var(--gcg-checkbox-check);
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition:
+    opacity var(--gcg-motion-fast) var(--gcg-ease-exit),
+    clip-path 0s linear var(--gcg-motion-fast);
+}
+.gcg-checkbox[data-gcg-checked] .gcg-checkbox__check {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition:
+    opacity 0s,
+    clip-path var(--gcg-motion-base) var(--gcg-ease-standard);
+}
+
+/* ---------- estados ---------- */
+/* hover (na caixa ou no rótulo): a borda e a caixa escurecem um passo */
+.gcg-checkbox:where(:not([data-gcg-disabled])):hover { --gcg-checkbox-border: var(--gcg-action-neutral); }
+.gcg-checkbox[data-gcg-checked]:where(:not([data-gcg-disabled])):hover {
+  --gcg-checkbox-bg: var(--gcg-action-primary-hover);
+  --gcg-checkbox-border: var(--gcg-action-primary-hover);
+}
+
+/* focus: o anel fica na caixa, só no foco de teclado */
+.gcg-checkbox__input:focus-visible + .gcg-checkbox__box {
+  outline: var(--gcg-border-width-thick) solid transparent;
+  outline-offset: var(--gcg-space-half);
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+
+/* disabled */
+.gcg-checkbox[data-gcg-disabled] {
+  --gcg-checkbox-bg: var(--gcg-surface-subtle);
+  --gcg-checkbox-border: var(--gcg-border-default);
+  --gcg-checkbox-label: var(--gcg-text-disabled);
+  cursor: not-allowed;
+}
+.gcg-checkbox[data-gcg-disabled][data-gcg-checked] {
+  --gcg-checkbox-bg: var(--gcg-border-default);
+  --gcg-checkbox-check: var(--gcg-surface-base);
+}
+
+/* ---------- alto contraste (barra eMAG): sem sombras, o foco vira contorno amarelo na caixa ---------- */
+html[data-gcg-contrast='high'] .gcg-checkbox__input:focus-visible + .gcg-checkbox__box {
+  outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus);
+  outline-offset: var(--gcg-space-half);
+}

@@ -1,0 +1,12 @@
+/* gcg-layers.css — a ordem de empilhamento (z-index) de barra, gaveta, Modal, menus e toast. Gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+:root {
+  --gcg-z-topbar: 20;
+  --gcg-z-sidebar-flutuante: 30;   /* Sidebar aberta por cima do conteúdo, abaixo de 1440 */
+  --gcg-z-scrim: 40;
+  --gcg-z-drawer: 50;
+  --gcg-z-modal: 60;
+  --gcg-z-popover: 65;             /* menus do Select e da SearchField, calendário — acima da gaveta e do Modal */
+  --gcg-z-toast: 70;
+
+}

@@ -1,0 +1,274 @@
+/* gcg-osof-ordem.css — composição de tela (HU019 · Emitir Ordem de Serviço; HU020 · Emitir Ordem de Fornecimento; HU022 · Documentos OS/OF; HU024 · Editar Ordem de Serviço e Ordem de Fornecimento; HU026 · Cancelar Ordem de Serviço e Ordem de Fornecimento; HU027 · Consultar Ordem de Serviço e Fornecimento; HU028 · Consultar Saldo de Ordem de Serviço e Ordem de Fornecimento; HU030 · Tramitar Ordem de Serviço e Ordem de Fornecimento), não é componente da biblioteca. Gerado do protótipo em 10/11/2026. */
+
+/* A moldura dos blocos (16 entre eles) é a do AppShell; o painel da aba usa .detalhe__painel (Detalhe.css: 8 em cima e
+   16 entre os blocos). Componentes da biblioteca sem mudança; aqui só a composição, dentro de .osof-ordem / .osof-*.
+   Só tokens; medida sem token vira variável local com a origem no Figma. */
+
+/* ---------- o cabeçalho ---------- */
+/* o Voltar fica em cima, à direita, na altura da trilha (Figma: Button ghost neutral sm, 8 acima da trilha); as ações
+   ficam na linha do título. A trilha não passa por baixo do Voltar. */
+.gcg-osof-ordem__cabecalho { position: relative; }
+.gcg-osof-ordem__cabecalho .gcg-page-header__breadcrumb { padding-right: 15rem; }
+.gcg-osof-ordem__acoes { display: flex; flex: none; align-items: center; gap: var(--gcg-space-2); }
+.gcg-osof-ordem__voltar {
+  position: absolute;
+  top: calc(var(--gcg-space-2) * -1);
+  right: 0;
+}
+.gcg-osof-ordem__botoes { display: flex; align-items: center; gap: var(--gcg-space-2); }
+.gcg-osof-ordem__selos { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--gcg-space-2); margin-left: var(--gcg-space-2); }
+
+/* os rótulos das seções ("Dados do Contrato da OS/OF", "Dados da OS/OF", "Indicadores da OS/OF"):
+   Figma, 14 SemiBold em text/secondary */
+.gcg-osof-ordem__rotulo {
+  margin: 0;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-semibold);
+  letter-spacing: var(--gcg-tracking-text-sm-semibold);
+}
+.gcg-osof-ordem__contrato { display: flex; flex: none; flex-direction: column; gap: var(--gcg-space-2); min-width: 0; }
+
+/* ---------- Dados gerais ---------- */
+.gcg-osof-ordem__painel { container-type: inline-size; position: relative; }
+/* a grade de quatro colunas de 273 (Figma: sem espaço entre as colunas; o campo guarda 16 à direita), 16 entre as linhas */
+.gcg-osof-ordem__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gcg-space-4) 0;
+  margin: 0;
+}
+@container (min-width: 30rem) {
+  .gcg-osof-ordem__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: 56rem) {
+  .gcg-osof-ordem__grade { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.gcg-osof-ordem__campo { align-self: start; padding-right: var(--gcg-space-4); }
+.gcg-osof-ordem__campo--largo { grid-column: 1 / -1; }
+.gcg-osof-ordem__linha { display: block; }
+
+/* os itens: a tabela e, 24 abaixo, o Valor Total da OS/OF (R$) em Heading/MD */
+.gcg-osof-ordem__itens .gcg-section-card__content { gap: var(--gcg-space-6); }
+.gcg-osof-ordem__total .gcg-data-field__value {
+  font: var(--gcg-font-heading-md);
+  letter-spacing: var(--gcg-tracking-heading-md);
+}
+
+/* ---------- estados da página (sem permissão, falha, não encontrada) ---------- */
+.gcg-osof-ordem__negado { display: flex; flex: none; flex-direction: column; align-items: flex-start; gap: var(--gcg-space-4); }
+.gcg-osof-ordem__negado > .gcg-alert { align-self: stretch; }
+.gcg-osof-ordem__estado { flex: none; }
+.gcg-osof-ordem__carregando {
+  margin: 0;
+  padding: var(--gcg-space-12) var(--gcg-space-6);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-base);
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  text-align: center;
+}
+
+/* o botão com cara de link (Ver como tabela): Figma, 14 Regular sublinhado em text/link */
+.gcg-osof-ordem__link {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  border-radius: var(--gcg-radius-sm);
+  background: none;
+  color: var(--gcg-text-link);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+  text-decoration: underline;
+  text-underline-offset: var(--gcg-space-half);
+  cursor: pointer;
+}
+.gcg-osof-ordem__link:hover { color: var(--gcg-action-primary-hover); }
+.gcg-osof-ordem__link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus);
+}
+.gcg-osof-ordem__tabela-simples { width: 100%; border-collapse: collapse; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }
+.gcg-osof-ordem__tabela-simples th,
+.gcg-osof-ordem__tabela-simples td { padding: var(--gcg-space-2) var(--gcg-space-3); border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); text-align: left; }
+.gcg-osof-ordem__tabela-simples td { text-align: right; font-variant-numeric: tabular-nums; }
+.gcg-osof-ordem__tabela-simples thead th { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-semibold); }
+.gcg-osof-ordem__tabela-simples thead th + th { text-align: right; }
+
+/* Mensal · Anual (Figma: PeriodToggle) */
+.gcg-osof-ordem__alternador {
+  display: inline-flex;
+  padding: var(--gcg-space-half);
+  border: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+  border-radius: var(--gcg-radius-md);
+  background: var(--gcg-surface-subtle);
+}
+.gcg-osof-ordem__alternador button {
+  padding: var(--gcg-space-1) var(--gcg-space-3);
+  border: 0;
+  border-radius: var(--gcg-radius-sm);
+  background: transparent;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-semibold);
+  cursor: pointer;
+  transition: background-color var(--gcg-motion-fast) var(--gcg-ease-standard), color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-osof-ordem__alternador button.gcg-is-on { background: var(--gcg-surface-base); color: var(--gcg-text-strong); box-shadow: var(--gcg-elevation-1); }
+.gcg-osof-ordem__alternador button:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 1px; }
+
+/* ---------- Saldos ---------- */
+.gcg-osof-saldos__indicadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--gcg-space-4);
+}
+.gcg-osof-saldos__controles { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--gcg-space-2); }
+.gcg-osof-saldos__periodo { display: flex; align-items: flex-start; gap: var(--gcg-space-2); }
+.gcg-osof-saldos__periodo-rotulo {
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-sm-regular);
+  line-height: var(--gcg-size-control-md);
+}
+.gcg-osof-saldos__mes { width: 7.25rem; } /* 116 do Figma (De e Até) */
+/* no erro do período, só o ícone embaixo de cada mês (Figma: o texto vai no Alert do cartão) */
+.gcg-osof-saldos__mes .gcg-field__error { min-height: var(--gcg-size-icon-sm); }
+.gcg-osof-saldos__valores .gcg-section-card__header { align-items: flex-start; }
+
+/* o gráfico (Figma: 368 de área das barras, o "R$ mil" em cima, o mês embaixo) */
+.gcg-osof-grafico {
+  --gcg-osof-grafico-rotulo: 2rem; /* a linha do mês embaixo das barras */
+  --gcg-osof-grafico-barra: 2rem; /* 32 do Figma */
+
+  display: flex;
+  height: calc(23rem + var(--gcg-osof-grafico-rotulo));
+  margin-top: var(--gcg-space-6);
+}
+.gcg-osof-grafico__eixo {
+  position: relative;
+  flex: none;
+  width: 3rem;
+  margin-bottom: var(--gcg-osof-grafico-rotulo);
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-xs-regular);
+}
+.gcg-osof-grafico__eixo-titulo { position: absolute; top: calc(var(--gcg-space-6) * -1); left: 0; }
+.gcg-osof-grafico__marca { position: absolute; right: var(--gcg-space-2); transform: translateY(50%); font-variant-numeric: tabular-nums; }
+.gcg-osof-grafico__area { position: relative; flex: 1; min-width: 0; }
+.gcg-osof-grafico__plano { position: absolute; inset: 0 0 var(--gcg-osof-grafico-rotulo) 0; }
+.gcg-osof-grafico__grade { position: absolute; right: 0; left: 0; height: 0; border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); }
+.gcg-osof-grafico__grupos { position: absolute; inset: 0; display: flex; margin: 0; padding: 0; list-style: none; }
+.gcg-osof-grafico__grupo { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.gcg-osof-grafico__barras { display: flex; flex: 1; align-items: flex-end; justify-content: center; gap: var(--gcg-space-1); min-height: 0; }
+.gcg-osof-grafico__barra,
+.gcg-osof-grafico__vaga { width: var(--gcg-osof-grafico-barra); flex: none; }
+/* a dica (Tooltip) envolve a barra: ocupa a altura toda do grupo, e a barra cresce de baixo dentro dela */
+.gcg-osof-grafico .gcg-osof-grafico__dica { display: flex; flex: none; align-items: flex-end; align-self: stretch; width: var(--gcg-osof-grafico-barra); }
+.gcg-osof-grafico__barra {
+  display: block;
+  border-radius: var(--gcg-radius-sm) var(--gcg-radius-sm) 0 0;
+  transform-origin: bottom;
+  animation: gcg-osof-barra-sobe var(--gcg-motion-data) var(--gcg-ease-standard) backwards;
+}
+.gcg-osof-grafico__barra:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: var(--gcg-space-half); }
+.gcg-osof-grafico__barra--liquido,
+.gcg-osof-grafico__amostra--liquido { background: var(--gcg-action-primary); }
+.gcg-osof-grafico__barra--glosa,
+.gcg-osof-grafico__amostra--glosa { background: var(--gcg-state-warning); }
+/* Figma: o Saldo Final num cinza azulado sem token; aqui color/neutral/400 */
+.gcg-osof-grafico__barra--saldoFinal,
+.gcg-osof-grafico__amostra--saldoFinal { background: var(--gcg-color-neutral-400); }
+.gcg-osof-grafico__rotulo {
+  flex: none;
+  height: var(--gcg-osof-grafico-rotulo);
+  padding-top: var(--gcg-space-2);
+  box-sizing: border-box;
+  color: var(--gcg-text-secondary);
+  font: var(--gcg-font-text-xs-regular);
+  text-align: center;
+}
+.gcg-osof-grafico__legenda { display: flex; flex-wrap: wrap; gap: var(--gcg-space-2) var(--gcg-space-6); margin: 0; padding: 0; list-style: none; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }
+.gcg-osof-grafico__legenda li { display: inline-flex; align-items: center; gap: var(--gcg-space-2); }
+.gcg-osof-grafico__amostra { display: inline-block; flex: none; width: 0.75rem; height: 0.75rem; border-radius: var(--gcg-radius-sm); }
+.gcg-osof-grafico__tabela { display: flex; flex-direction: column; gap: var(--gcg-space-3); margin-top: var(--gcg-space-2); }
+@keyframes gcg-osof-barra-sobe {
+  from { transform: scaleY(0); }
+}
+/* alto contraste: as barras e as amostras com borda (a cor não é o único sinal: a legenda e o nome acessível dizem a série) */
+html[data-gcg-contrast='high'] .gcg-osof-grafico__barra,
+html[data-gcg-contrast='high'] .gcg-osof-grafico__amostra { outline: var(--gcg-border-width-thin) solid var(--gcg-text-strong); }
+
+/* a rosca (Figma: 200 de diâmetro, a legenda 48 à direita, 32 entre as linhas) */
+.gcg-osof-rosca { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gcg-space-4) var(--gcg-space-12); }
+.gcg-osof-rosca__grafico { position: relative; flex: none; width: 12.5rem; height: 12.5rem; }
+.gcg-osof-rosca__svg { display: block; width: 100%; height: 100%; animation: gcg-osof-rosca-entra var(--gcg-motion-data) var(--gcg-ease-standard) backwards; }
+.gcg-osof-rosca__trilho { stroke: var(--gcg-surface-subtle); }
+.gcg-osof-rosca__fatia--liquido { stroke: var(--gcg-action-primary); }
+.gcg-osof-rosca__fatia--glosa { stroke: var(--gcg-state-warning); }
+.gcg-osof-rosca__fatia--saldo { stroke: var(--gcg-color-neutral-400); }
+.gcg-osof-rosca__centro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gcg-space-half);
+  text-align: center;
+}
+.gcg-osof-rosca__total { color: var(--gcg-text-strong); font: var(--gcg-font-text-md-semibold); letter-spacing: var(--gcg-tracking-text-md-semibold); }
+.gcg-osof-rosca__rotulo { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+.gcg-osof-rosca__legenda { display: flex; flex-direction: column; gap: var(--gcg-space-3); margin: 0; }
+.gcg-osof-rosca__item { display: grid; grid-template-columns: 10rem auto; align-items: center; gap: var(--gcg-space-2); }
+.gcg-osof-rosca__item dt { display: inline-flex; align-items: center; gap: var(--gcg-space-2); color: var(--gcg-text-default); font: var(--gcg-font-text-sm-regular); }
+.gcg-osof-rosca__item dd { display: inline-flex; align-items: baseline; gap: var(--gcg-space-2); margin: 0; }
+.gcg-osof-rosca__valor { color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); font-variant-numeric: tabular-nums; }
+.gcg-osof-rosca__percentual { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); font-variant-numeric: tabular-nums; }
+@keyframes gcg-osof-rosca-entra {
+  from { opacity: 0; transform: rotate(-12deg) scale(0.96); }
+}
+
+/* ---------- Status/Trâmites ---------- */
+.gcg-osof-tramites__filtros { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--gcg-space-4); }
+.gcg-osof-tramites__data { width: 11.25rem; } /* 180 do Figma */
+.gcg-osof-tramites__ordem { width: 15rem; } /* 240 do Figma */
+/* os botões na altura dos campos (o rótulo de 20 e 8 de espaço em cima) */
+.gcg-osof-tramites__botoes { display: flex; align-items: center; gap: var(--gcg-space-2); padding-top: calc(1.25rem + var(--gcg-space-1)); }
+
+/* ---------- Documentação ---------- */
+.gcg-osof-docs__categorias { display: flex; flex-direction: column; gap: var(--gcg-space-4); }
+.gcg-osof-docs__categoria .gcg-field__label { color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); }
+.gcg-osof-docs__rodape { display: flex; justify-content: flex-end; gap: var(--gcg-space-2); }
+.gcg-osof-docs__ficha { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gcg-space-4) var(--gcg-space-6); margin: 0; }
+
+/* ---------- a janela do Enviar Fornecedor (Figma, HU019 · L1 · 5: 1040 de largura) ---------- */
+.gcg-modal.gcg-osof-envio { --gcg-modal-w: 1040px; }
+.gcg-osof-envio__conteudo {
+  /* Figma: Signatário 410 · E-mail 290 · Obrigatoriedade 220 · o × 32, 12 entre eles */
+  --gcg-osof-envio-pessoa: 25.625rem;
+  --gcg-osof-envio-email: 18.125rem;
+  --gcg-osof-envio-obrig: 13.75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+}
+.gcg-osof-envio__cabeca { display: flex; align-items: center; gap: var(--gcg-space-2); }
+.gcg-osof-envio__titulo { margin: 0; color: var(--gcg-text-strong); font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold); }
+.gcg-osof-envio__linhas { display: flex; flex-direction: column; gap: var(--gcg-space-3); margin: 0; padding: 0; list-style: none; }
+.gcg-osof-envio__linha {
+  display: grid;
+  grid-template-columns: minmax(0, var(--gcg-osof-envio-pessoa)) minmax(0, var(--gcg-osof-envio-email)) minmax(0, var(--gcg-osof-envio-obrig)) var(--gcg-size-control-sm);
+  align-items: end;
+  gap: var(--gcg-space-3);
+}
+.gcg-osof-envio__remover { margin-bottom: var(--gcg-space-half); }
+.gcg-osof-envio__linha:has([aria-invalid='true']) { align-items: start; }
+.gcg-osof-envio__linha:has([aria-invalid='true']) .gcg-osof-envio__remover { align-self: center; }
+.gcg-osof-envio__nota { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gcg-space-2); margin: 0; color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+.gcg-osof-envio__adicionar { display: flex; }
+
+/* ---------- movimento: tudo desliga com prefers-reduced-motion (motion.css zera duração e atraso; aqui por garantia) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .gcg-osof-grafico__barra,
+  .gcg-osof-rosca__svg { animation: none; }
+}

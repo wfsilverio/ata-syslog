@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GCG · protótipo em HTML + CSS — versão 1.6</title>
+<link rel="stylesheet" href="biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="biblioteca/css/gcg-base.css">
+<style>
+  main { max-width: 860px; margin: 0 auto; padding: var(--gcg-space-10) var(--gcg-space-4); }
+  h1 { margin-bottom: var(--gcg-space-2); color: var(--gcg-text-strong); }
+  h2 { margin: var(--gcg-space-8) 0 var(--gcg-space-3); color: var(--gcg-text-strong); font-size: 1.125rem; }
+  p { margin-bottom: var(--gcg-space-6); color: var(--gcg-text-secondary); }
+  ul { margin: 0; padding-left: var(--gcg-space-5); }
+  li { margin-bottom: var(--gcg-space-1); }
+  li span { color: var(--gcg-text-muted); font-size: 0.875rem; }
+  a { color: var(--gcg-text-link); }
+</style>
+</head>
+<body>
+  <main>
+    <h1>GCG · Gestão de Contratos</h1>
+    <p>Protótipo em HTML + CSS, versão 1.6 (10/11/2026). 448 telas. Dados fictícios. Comece pelo LEIA-ME.md.</p>
+    <h2>Assinatura HU001 · Realizar assinatura documento</h2>
+    <ul>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l1-1-ordem-de-servico-fechada-nao-enviada.html">L1 · 1 · Ordem de Serviço fechada, não enviada</a> <span>L1 · Enviar p/ o AssinaGO — fluxo básico, parte 1</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l1-2-menu-de-acoes-da-linha.html">L1 · 2 · Menu de ações da linha</a> <span>L1 · Enviar p/ o AssinaGO — fluxo básico, parte 1</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l1-3-confirmar-o-envio.html">L1 · 3 · Confirmar o envio</a> <span>L1 · Enviar p/ o AssinaGO — fluxo básico, parte 1</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l1-4-documento-integrado.html">L1 · 4 · Documento integrado</a> <span>L1 · Enviar p/ o AssinaGO — fluxo básico, parte 1</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l2-1-acao-liberada-apos-a-integracao.html">L2 · 1 · Ação liberada após a integração</a> <span>L2 · Enviar p/ Assinatura AssinaGO — fluxo básico, parte 2</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l2-2-indicar-os-signatarios.html">L2 · 2 · Indicar os signatários</a> <span>L2 · Enviar p/ Assinatura AssinaGO — fluxo básico, parte 2</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l2-3-signatarios-preenchidos.html">L2 · 3 · Signatários preenchidos</a> <span>L2 · Enviar p/ Assinatura AssinaGO — fluxo básico, parte 2</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l2-4-confirmar-o-encaminhamento.html">L2 · 4 · Confirmar o encaminhamento</a> <span>L2 · Enviar p/ Assinatura AssinaGO — fluxo básico, parte 2</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l2-5-encaminhado-em-andamento.html">L2 · 5 · Encaminhado: em andamento</a> <span>L2 · Enviar p/ Assinatura AssinaGO — fluxo básico, parte 2</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l3-1-ainda-em-andamento.html">L3 · 1 · Ainda em andamento</a> <span>L3 · Verificar Assinaturas AssinaGO</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l3-2-concluido.html">L3 · 2 · Concluído</a> <span>L3 · Verificar Assinaturas AssinaGO</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l4-1-os-assinada-na-lista.html">L4 · 1 · OS assinada na lista</a> <span>L4 · Documento assinado disponível</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l5-1-acao-desabilitada-com-o-motivo.html">L5 · 1 · Ação desabilitada com o motivo</a> <span>L5 · FE001 · Sem permissão</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l6-1-os-em-digitacao.html">L6 · 1 · OS em digitação</a> <span>L6 · FE008 · Documento não está fechado</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l7-1-arquivo-acima-do-limite.html">L7 · 1 · Arquivo acima do limite</a> <span>L7 · FE002 · Fora dos requisitos de integração</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l8-1-cancelar-na-confirmacao.html">L8 · 1 · Cancelar na confirmação</a> <span>L8 · FE007 · Cancela a confirmação</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l8-2-nada-mudou.html">L8 · 2 · Nada mudou</a> <span>L8 · FE007 · Cancela a confirmação</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l9-1-integracao-nao-confirmada.html">L9 · 1 · Integração não confirmada</a> <span>L9 · FE003 · Falha na comunicação com o AssinaGO</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l10-1-encaminhar-antes-de-integrar.html">L10 · 1 · Encaminhar antes de integrar</a> <span>L10 · FE009 · Documento não integrado</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l11-1-signatario-sem-e-mail.html">L11 · 1 · Signatário sem e-mail</a> <span>L11 · Signatários incompletos</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l12-1-recusada-por-um-signatario.html">L12 · 1 · Recusada por um signatário</a> <span>L12 · FE004 · Assinatura recusada</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l13-1-prazo-expirado.html">L13 · 1 · Prazo expirado</a> <span>L13 · FE005 · Prazo de assinatura expirado</span></li>
+      <li><a href="telas/assinatura-hu001-realizar-assinatura/l14-1-situacao-nao-atualizada.html">L14 · 1 · Situação não atualizada</a> <span>L14 · FE006 · Falha ao verificar as assinaturas</span></li>
+    </ul>
+    <h2>Assinatura HU002 · Visualizar documento assinado</h2>
+    <ul>
+      <li><a href="telas/assinatura-hu002-visualizar-documento-assinado/l1-1-visualizar-no-assinago-no-menu.html">L1 · 1 · Visualizar no AssinaGO no menu</a> <span>L1 · Visualizar no AssinaGO — fluxo básico</span></li>
+      <li><a href="telas/assinatura-hu002-visualizar-documento-assinado/l1-2-proposta-conferir-sem-sair-do-sistema.html">L1 · 2 · Proposta: conferir sem sair do sistema</a> <span>L1 · Visualizar no AssinaGO — fluxo básico</span></li>
+      <li><a href="telas/assinatura-hu002-visualizar-documento-assinado/l2-1-sem-permissao-para-visualizar.html">L2 · 1 · Sem permissão para visualizar</a> <span>L2 · FE001 · Sem permissão</span></li>
+      <li><a href="telas/assinatura-hu002-visualizar-documento-assinado/l3-1-os-nao-enviada-ao-assinago.html">L3 · 1 · OS não enviada ao AssinaGO</a> <span>L3 · FE002 · Documento não integrado</span></li>
+      <li><a href="telas/assinatura-hu002-visualizar-documento-assinado/l4-1-ainda-em-andamento.html">L4 · 1 · Ainda em andamento</a> <span>L4 · FE003 · Assinado ainda não disponível</span></li>
+      <li><a href="telas/assinatura-hu002-visualizar-documento-assinado/l5-1-assinago-fora-do-ar.html">L5 · 1 · AssinaGO fora do ar</a> <span>L5 · FE004 · Falha ao acessar o AssinaGO</span></li>
+    </ul>
+    <h2>Cancelar HU034 · Cancelar documentos</h2>
+    <ul>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l1-1-menu-da-linha-com-cancelar-documento.html">L1 · 1 · Menu da linha com Cancelar documento</a> <span>L1 · Cancelar documento · fluxo básico</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l1-2-gaveta-aberta.html">L1 · 2 · Gaveta aberta</a> <span>L1 · Cancelar documento · fluxo básico</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l1-3-motivo-preenchido.html">L1 · 3 · Motivo preenchido</a> <span>L1 · Cancelar documento · fluxo básico</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l1-4-documento-cancelado.html">L1 · 4 · Documento cancelado</a> <span>L1 · Cancelar documento · fluxo básico</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l2-1-confirmar-sem-motivo.html">L2 · 1 · Confirmar sem motivo</a> <span>L2 · Motivo não informado</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l2-2-motivo-informado.html">L2 · 2 · Motivo informado</a> <span>L2 · Motivo não informado</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l3-1-voltar.html">L3 · 1 · Voltar</a> <span>L3 · Desistir do cancelamento</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l3-2-lista-sem-mudanca.html">L3 · 2 · Lista sem mudança</a> <span>L3 · Desistir do cancelamento</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l4-1-menu-do-documento-cancelado.html">L4 · 1 · Menu do documento cancelado</a> <span>L4 · Documento cancelado</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l4-2-documento-cancelado-aberto.html">L4 · 2 · Documento cancelado aberto</a> <span>L4 · Documento cancelado</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l5-1-erro-gaveta-mantida.html">L5 · 1 · Erro, gaveta mantida</a> <span>L5 · Falha no cancelamento</span></li>
+      <li><a href="telas/cancelar-hu034-cancelar-documentos/l6-1-menu-sem-cancelar-documento.html">L6 · 1 · Menu sem Cancelar documento</a> <span>L6 · Sem permissão para cancelar</span></li>
+    </ul>
+    <h2>Exportar HU033 · Exportar documentos</h2>
+    <ul>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l1-1-menu-da-linha-com-baixar.html">L1 · 1 · Menu da linha com Baixar</a> <span>L1 · Baixar um documento</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l2-1-um-documento-marcado-a-barra-aparece.html">L2 · 1 · Um documento marcado, a barra aparece</a> <span>L2 · Baixar vários documentos</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l2-2-tres-marcados-o-sigiloso-de-fora.html">L2 · 2 · Três marcados, o sigiloso de fora</a> <span>L2 · Baixar vários documentos</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l2-3-zip-baixado.html">L2 · 3 · ZIP baixado</a> <span>L2 · Baixar vários documentos</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l3-1-documento-sigiloso.html">L3 · 1 · Documento sigiloso</a> <span>L3 · Sem permissão para baixar</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l3-2-documento-cancelado.html">L3 · 2 · Documento cancelado</a> <span>L3 · Sem permissão para baixar</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l4-1-erro-lista-preservada.html">L4 · 1 · Erro, lista preservada</a> <span>L4 · Falha ao obter o arquivo</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l5-1-formatos-da-exportacao.html">L5 · 1 · Formatos da exportação</a> <span>L5 · Exportar a lista</span></li>
+      <li><a href="telas/exportar-hu033-exportar-documentos/l5-2-lista-exportada.html">L5 · 2 · Lista exportada</a> <span>L5 · Exportar a lista</span></li>
+    </ul>
+    <h2>HU-001 · Listar contratos</h2>
+    <ul>
+      <li><a href="telas/hu001-listar-contratos/l1-1-primeiro-acesso.html">L1 · 1 · Primeiro acesso</a> <span>L1 · Consultar contratos — fluxo básico</span></li>
+      <li><a href="telas/hu001-listar-contratos/l1-2-gaveta-aberta-filtros-preenchidos.html">L1 · 2 · Gaveta aberta, filtros preenchidos</a> <span>L1 · Consultar contratos — fluxo básico</span></li>
+      <li><a href="telas/hu001-listar-contratos/l1-3-carregando.html">L1 · 3 · Carregando</a> <span>L1 · Consultar contratos — fluxo básico</span></li>
+      <li><a href="telas/hu001-listar-contratos/l1-4-resultados.html">L1 · 4 · Resultados</a> <span>L1 · Consultar contratos — fluxo básico</span></li>
+      <li><a href="telas/hu001-listar-contratos/l2-1-fornecedor-do-contrato-por-cpf.html">L2 · 1 · Fornecedor do Contrato por CPF</a> <span>L2 · Campos da gaveta — máscara, pesquisa dinâmica e calendário</span></li>
+      <li><a href="telas/hu001-listar-contratos/l2-2-fornecedor-do-contrato-por-cnpj.html">L2 · 2 · Fornecedor do Contrato por CNPJ</a> <span>L2 · Campos da gaveta — máscara, pesquisa dinâmica e calendário</span></li>
+      <li><a href="telas/hu001-listar-contratos/l2-3-gestor-do-contrato-por-nome.html">L2 · 3 · Gestor do Contrato por nome</a> <span>L2 · Campos da gaveta — máscara, pesquisa dinâmica e calendário</span></li>
+      <li><a href="telas/hu001-listar-contratos/l2-4-calendario-aberto.html">L2 · 4 · Calendário aberto</a> <span>L2 · Campos da gaveta — máscara, pesquisa dinâmica e calendário</span></li>
+      <li><a href="telas/hu001-listar-contratos/l3-1-inicio-vigencia-depois-de-fim-vigencia.html">L3 · 1 · Início Vigência depois de Fim Vigência</a> <span>L3 · FE02 · Dado de pesquisa inválido</span></li>
+      <li><a href="telas/hu001-listar-contratos/l3-2-campo-corrigido.html">L3 · 2 · Campo corrigido</a> <span>L3 · FE02 · Dado de pesquisa inválido</span></li>
+      <li><a href="telas/hu001-listar-contratos/l3-3-resultados.html">L3 · 3 · Resultados</a> <span>L3 · FE02 · Dado de pesquisa inválido</span></li>
+      <li><a href="telas/hu001-listar-contratos/l4-1-gaveta-com-os-filtros.html">L4 · 1 · Gaveta com os filtros</a> <span>L4 · FE01 · Nenhum contrato encontrado</span></li>
+      <li><a href="telas/hu001-listar-contratos/l4-2-sem-registros-encontrados.html">L4 · 2 · Sem registros encontrados</a> <span>L4 · FE01 · Nenhum contrato encontrado</span></li>
+      <li><a href="telas/hu001-listar-contratos/l5-1-gaveta-preenchida.html">L5 · 1 · Gaveta preenchida</a> <span>L5 · Salvar filtro</span></li>
+      <li><a href="telas/hu001-listar-contratos/l5-2-nome-do-filtro.html">L5 · 2 · Nome do filtro</a> <span>L5 · Salvar filtro</span></li>
+      <li><a href="telas/hu001-listar-contratos/l5-3-filtro-salvo.html">L5 · 3 · Filtro salvo</a> <span>L5 · Salvar filtro</span></li>
+      <li><a href="telas/hu001-listar-contratos/l6-1-nome-nao-informado.html">L6 · 1 · Nome não informado</a> <span>L6 · FE03 · FE04 · Nome do filtro</span></li>
+      <li><a href="telas/hu001-listar-contratos/l6-2-nome-ja-existente.html">L6 · 2 · Nome já existente</a> <span>L6 · FE03 · FE04 · Nome do filtro</span></li>
+      <li><a href="telas/hu001-listar-contratos/l7-1-lista-dos-filtros-salvos.html">L7 · 1 · Lista dos filtros salvos</a> <span>L7 · Filtros salvos — selecionar ou excluir</span></li>
+      <li><a href="telas/hu001-listar-contratos/l7-2-filtro-selecionado.html">L7 · 2 · Filtro selecionado</a> <span>L7 · Filtros salvos — selecionar ou excluir</span></li>
+      <li><a href="telas/hu001-listar-contratos/l7-3-confirmar-exclusao.html">L7 · 3 · Confirmar exclusão</a> <span>L7 · Filtros salvos — selecionar ou excluir</span></li>
+      <li><a href="telas/hu001-listar-contratos/l7-4-filtro-excluido.html">L7 · 4 · Filtro excluído</a> <span>L7 · Filtros salvos — selecionar ou excluir</span></li>
+      <li><a href="telas/hu001-listar-contratos/l8-1-em-sim.html">L8 · 1 · Em Sim</a> <span>L8 · Filtro Automático?</span></li>
+      <li><a href="telas/hu001-listar-contratos/l8-2-sai-e-volta-campos-preenchidos.html">L8 · 2 · Sai e volta: campos preenchidos</a> <span>L8 · Filtro Automático?</span></li>
+      <li><a href="telas/hu001-listar-contratos/l8-3-em-nao-campos-vazios.html">L8 · 3 · Em Não: campos vazios</a> <span>L8 · Filtro Automático?</span></li>
+      <li><a href="telas/hu001-listar-contratos/l9-1-ordenar-pela-coluna.html">L9 · 1 · Ordenar pela coluna</a> <span>L9 · Trabalhar os resultados</span></li>
+      <li><a href="telas/hu001-listar-contratos/l9-2-remover-um-criterio.html">L9 · 2 · Remover um critério</a> <span>L9 · Trabalhar os resultados</span></li>
+      <li><a href="telas/hu001-listar-contratos/l9-3-outra-pagina-e-quantidade-por-pagina.html">L9 · 3 · Outra página e quantidade por página</a> <span>L9 · Trabalhar os resultados</span></li>
+      <li><a href="telas/hu001-listar-contratos/l9-4-agrupar-por-coluna.html">L9 · 4 · Agrupar por coluna</a> <span>L9 · Trabalhar os resultados</span></li>
+      <li><a href="telas/hu001-listar-contratos/l10-1-linha-selecionada.html">L10 · 1 · Linha selecionada</a> <span>L10 · Abrir um contrato</span></li>
+      <li><a href="telas/hu001-listar-contratos/l10-2-erro-ao-acessar-o-contrato.html">L10 · 2 · Erro ao acessar o contrato</a> <span>L10 · Abrir um contrato</span></li>
+      <li><a href="telas/hu001-listar-contratos/l11-1-consulta-com-erro.html">L11 · 1 · Consulta com erro</a> <span>L11 · Erro ao consultar</span></li>
+      <li><a href="telas/hu001-listar-contratos/l11-2-tentar-novamente.html">L11 · 2 · Tentar novamente</a> <span>L11 · Erro ao consultar</span></li>
+      <li><a href="telas/hu001-listar-contratos/l11-3-resultados.html">L11 · 3 · Resultados</a> <span>L11 · Erro ao consultar</span></li>
+      <li><a href="telas/hu001-listar-contratos/l12-1-vence-em-escolher-as-faixas.html">L12 · 1 · Vence em: escolher as faixas</a> <span>L12 · Vence em — faixa de vencimento (melhoria de UX)</span></li>
+    </ul>
+    <h2>HU-002 · Consultar saldos</h2>
+    <ul>
+      <li><a href="telas/hu002-consultar-saldos/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar saldos — fluxo básico</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Consultar saldos — fluxo básico</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l1-3-clique-em-saldos-carregando.html">L1 · 3 · Clique em Saldos: carregando</a> <span>L1 · Consultar saldos — fluxo básico</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l1-4-saldos-e-percentual-de-consumo.html">L1 · 4 · Saldos e Percentual de Consumo</a> <span>L1 · Consultar saldos — fluxo básico</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l2-1-contrato-escolhido-na-lista.html">L2 · 1 · Contrato escolhido na lista</a> <span>L2 · FE01 · Contrato sem informações de saldo</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l2-2-detalhe-aberto-em-dados-gerais.html">L2 · 2 · Detalhe aberto em Dados gerais</a> <span>L2 · FE01 · Contrato sem informações de saldo</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l2-3-clique-em-saldos-carregando.html">L2 · 3 · Clique em Saldos: carregando</a> <span>L2 · FE01 · Contrato sem informações de saldo</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l2-4-sem-informacoes-de-saldo.html">L2 · 4 · Sem informações de saldo</a> <span>L2 · FE01 · Contrato sem informações de saldo</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l3-1-aba-saldos-carregando.html">L3 · 1 · Aba Saldos carregando</a> <span>L3 · FE04 · Falha na recuperação dos saldos</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l3-2-falha-na-recuperacao.html">L3 · 2 · Falha na recuperação</a> <span>L3 · FE04 · Falha na recuperação dos saldos</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l3-3-tentar-novamente-carregando.html">L3 · 3 · Tentar novamente: carregando</a> <span>L3 · FE04 · Falha na recuperação dos saldos</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l3-4-saldos-apresentados.html">L3 · 4 · Saldos apresentados</a> <span>L3 · FE04 · Falha na recuperação dos saldos</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l4-1-mensal-o-consumido-contra-o-esperado-de-cada-mes.html">L4 · 1 · Mensal: o consumido contra o esperado de cada mês</a> <span>L4 · Consumo do Contrato</span></li>
+      <li><a href="telas/hu002-consultar-saldos/l4-2-anual-a-soma-de-cada-ano-da-vigencia.html">L4 · 2 · Anual: a soma de cada ano da vigência</a> <span>L4 · Consumo do Contrato</span></li>
+    </ul>
+    <h2>HU-003 · Consultar aditivos</h2>
+    <ul>
+      <li><a href="telas/hu003-consultar-aditivos/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar aditivos — fluxo básico</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Consultar aditivos — fluxo básico</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l1-3-clique-em-aditivos-carregando.html">L1 · 3 · Clique em Aditivos: carregando</a> <span>L1 · Consultar aditivos — fluxo básico</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l1-4-historico-dos-aditivos.html">L1 · 4 · Histórico dos aditivos</a> <span>L1 · Consultar aditivos — fluxo básico</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l2-1-visualizar-do-aditivo-1-com-a-dica.html">L2 · 1 · Visualizar do aditivo 1 com a dica</a> <span>L2 · Visualizar no PNCP</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l3-1-menu-de-acoes-aberto-no-aditivo-1.html">L3 · 1 · Menu de ações aberto no aditivo 1</a> <span>L3 · Ações do aditivo</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l4-1-clique-em-aditivos-carregando.html">L4 · 1 · Clique em Aditivos: carregando</a> <span>L4 · FE01 · Contrato sem aditivos</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l4-2-listagem-sem-registros.html">L4 · 2 · Listagem sem registros</a> <span>L4 · FE01 · Contrato sem aditivos</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l5-1-aba-aditivos-carregando.html">L5 · 1 · Aba Aditivos carregando</a> <span>L5 · FE02 · Falha ao consultar os aditivos</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l5-2-falha-ao-consultar.html">L5 · 2 · Falha ao consultar</a> <span>L5 · FE02 · Falha ao consultar os aditivos</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l5-3-tentar-novamente-historico-apresentado.html">L5 · 3 · Tentar novamente: histórico apresentado</a> <span>L5 · FE02 · Falha ao consultar os aditivos</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l6-1-visualizar-acionado-no-aditivo-1.html">L6 · 1 · Visualizar acionado no aditivo 1</a> <span>L6 · FE03 · Falha ao acessar o PNCP</span></li>
+      <li><a href="telas/hu003-consultar-aditivos/l6-2-falha-ao-acessar-o-pncp.html">L6 · 2 · Falha ao acessar o PNCP</a> <span>L6 · FE03 · Falha ao acessar o PNCP</span></li>
+    </ul>
+    <h2>HU-004 · Consultar apostilamentos</h2>
+    <ul>
+      <li><a href="telas/hu004-consultar-apostilamentos/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar apostilamentos — fluxo básico</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Consultar apostilamentos — fluxo básico</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l1-3-clique-em-apostilamentos-carregando.html">L1 · 3 · Clique em Apostilamentos: carregando</a> <span>L1 · Consultar apostilamentos — fluxo básico</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l1-4-historico-dos-apostilamentos.html">L1 · 4 · Histórico dos apostilamentos</a> <span>L1 · Consultar apostilamentos — fluxo básico</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l2-1-visualizar-do-apostilamento-1-com-a-dica.html">L2 · 1 · Visualizar do apostilamento 1 com a dica</a> <span>L2 · Visualizar no PNCP</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l3-1-menu-de-acoes-aberto-no-apostilamento-1.html">L3 · 1 · Menu de ações aberto no apostilamento 1</a> <span>L3 · Ações do apostilamento</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l4-1-clique-em-apostilamentos-carregando.html">L4 · 1 · Clique em Apostilamentos: carregando</a> <span>L4 · FE01 · Contrato sem apostilamentos</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l4-2-listagem-sem-registros.html">L4 · 2 · Listagem sem registros</a> <span>L4 · FE01 · Contrato sem apostilamentos</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l5-1-aba-apostilamentos-carregando.html">L5 · 1 · Aba Apostilamentos carregando</a> <span>L5 · FE02 · Falha ao consultar os apostilamentos</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l5-2-falha-ao-consultar.html">L5 · 2 · Falha ao consultar</a> <span>L5 · FE02 · Falha ao consultar os apostilamentos</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l5-3-tentar-novamente-historico-apresentado.html">L5 · 3 · Tentar novamente: histórico apresentado</a> <span>L5 · FE02 · Falha ao consultar os apostilamentos</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l6-1-visualizar-acionado-no-apostilamento-1.html">L6 · 1 · Visualizar acionado no apostilamento 1</a> <span>L6 · FE03 · Falha ao acessar o PNCP</span></li>
+      <li><a href="telas/hu004-consultar-apostilamentos/l6-2-falha-ao-acessar-o-pncp.html">L6 · 2 · Falha ao acessar o PNCP</a> <span>L6 · FE03 · Falha ao acessar o PNCP</span></li>
+    </ul>
+    <h2>HU-005 · Consultar equipe</h2>
+    <ul>
+      <li><a href="telas/hu005-consultar-equipe/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar equipe — fluxo básico</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Consultar equipe — fluxo básico</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l1-3-clique-em-equipe-carregando.html">L1 · 3 · Clique em Equipe: carregando</a> <span>L1 · Consultar equipe — fluxo básico</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l1-4-aba-equipe-a-equipe-do-contrato.html">L1 · 4 · Aba Equipe: a equipe do contrato</a> <span>L1 · Consultar equipe — fluxo básico</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l2-1-lista-de-funcoes-aberta.html">L2 · 1 · Lista de funções aberta</a> <span>L2 · Filtrar por função</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l2-2-so-os-fiscais.html">L2 · 2 · Só os fiscais</a> <span>L2 · Filtrar por função</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l2-3-funcao-limpa-no-todos-de-novo.html">L2 · 3 · Função limpa no ×: todos de novo</a> <span>L2 · Filtrar por função</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l4-1-clique-em-equipe-carregando.html">L4 · 1 · Clique em Equipe: carregando</a> <span>L4 · FE01 · Contrato sem equipe</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l4-2-sem-integrantes.html">L4 · 2 · Sem integrantes</a> <span>L4 · FE01 · Contrato sem equipe</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l5-1-interveniente-escolhido-na-lista.html">L5 · 1 · Interveniente escolhido na lista</a> <span>L5 · FE02 · Nenhum integrante para a função</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l5-2-nenhum-integrante-para-a-funcao.html">L5 · 2 · Nenhum integrante para a função</a> <span>L5 · FE02 · Nenhum integrante para a função</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l6-1-clique-em-equipe-carregando.html">L6 · 1 · Clique em Equipe: carregando</a> <span>L6 · FE03 · Falha ao consultar a equipe</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l6-2-falha.html">L6 · 2 · Falha</a> <span>L6 · FE03 · Falha ao consultar a equipe</span></li>
+      <li><a href="telas/hu005-consultar-equipe/l6-3-tentar-novamente-equipe-apresentada.html">L6 · 3 · Tentar novamente: equipe apresentada</a> <span>L6 · FE03 · Falha ao consultar a equipe</span></li>
+    </ul>
+    <h2>HU-006 · Consultar documentos</h2>
+    <ul>
+      <li><a href="telas/hu006-consultar-documentos/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar documentos — fluxo básico</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Consultar documentos — fluxo básico</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l1-3-clique-em-documentacao-carregando.html">L1 · 3 · Clique em Documentação: carregando</a> <span>L1 · Consultar documentos — fluxo básico</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l1-4-documentos-por-tipo.html">L1 · 4 · Documentos por tipo</a> <span>L1 · Consultar documentos — fluxo básico</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l2-1-anexos-do-contrato-abertos.html">L2 · 1 · Anexos do contrato abertos</a> <span>L2 · Expandir e recolher a árvore</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l2-2-grupo-recolhido.html">L2 · 2 · Grupo recolhido</a> <span>L2 · Expandir e recolher a árvore</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l3-1-cancelado-no-sei-marcado.html">L3 · 1 · Cancelado no SEI marcado</a> <span>L3 · Consultar por status</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l3-2-mostrar-todos-de-novo.html">L3 · 2 · Mostrar Todos de novo</a> <span>L3 · Consultar por status</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l4-1-visualizar-em-hover-com-a-dica.html">L4 · 1 · Visualizar em hover, com a dica</a> <span>L4 · Visualizar</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l5-1-carregando.html">L5 · 1 · Carregando</a> <span>L5 · FE01 · Contrato sem documentos</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l5-2-sem-documentos.html">L5 · 2 · Sem documentos</a> <span>L5 · FE01 · Contrato sem documentos</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l6-1-arquivo-excluido-no-sei-marcado.html">L6 · 1 · Arquivo Excluído no SEI marcado</a> <span>L6 · FE02 · Nenhum documento para o status</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l7-1-carregando.html">L7 · 1 · Carregando</a> <span>L7 · FE03 · Falha ao consultar os documentos</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l7-2-falha.html">L7 · 2 · Falha</a> <span>L7 · FE03 · Falha ao consultar os documentos</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l7-3-tentar-novamente-documentos-apresentados.html">L7 · 3 · Tentar novamente: documentos apresentados</a> <span>L7 · FE03 · Falha ao consultar os documentos</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l8-1-visualizar-acionado.html">L8 · 1 · Visualizar acionado</a> <span>L8 · FE04 · Falha ao visualizar</span></li>
+      <li><a href="telas/hu006-consultar-documentos/l8-2-falha-ao-visualizar.html">L8 · 2 · Falha ao visualizar</a> <span>L8 · FE04 · Falha ao visualizar</span></li>
+    </ul>
+    <h2>HU-007 · Consultar tramitações</h2>
+    <ul>
+      <li><a href="telas/hu007-consultar-tramitacoes/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar tramitações — fluxo básico</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Consultar tramitações — fluxo básico</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l1-3-clique-em-status-tramites-carregando.html">L1 · 3 · Clique em Status/Trâmites: carregando</a> <span>L1 · Consultar tramitações — fluxo básico</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l1-4-historico-de-tramitacoes.html">L1 · 4 · Histórico de tramitações</a> <span>L1 · Consultar tramitações — fluxo básico</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l2-1-o-historico-com-as-partes-que-faltam.html">L2 · 1 · O histórico com as partes que faltam</a> <span>L2 · FE03 · Informação complementar não disponível</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l3-1-carregando.html">L3 · 1 · Carregando</a> <span>L3 · FE01 · Contrato sem tramitações</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l3-2-sem-tramitacoes.html">L3 · 2 · Sem tramitações</a> <span>L3 · FE01 · Contrato sem tramitações</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l4-1-carregando.html">L4 · 1 · Carregando</a> <span>L4 · FE02 · Falha ao consultar as tramitações</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l4-2-falha.html">L4 · 2 · Falha</a> <span>L4 · FE02 · Falha ao consultar as tramitações</span></li>
+      <li><a href="telas/hu007-consultar-tramitacoes/l4-3-tentar-novamente-historico-apresentado.html">L4 · 3 · Tentar novamente: histórico apresentado</a> <span>L4 · FE02 · Falha ao consultar as tramitações</span></li>
+    </ul>
+    <h2>HU-008 · Consultar ocorrências</h2>
+    <ul>
+      <li><a href="telas/hu008-consultar-ocorrencias/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar ocorrências — fluxo básico</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Consultar ocorrências — fluxo básico</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l1-3-clique-em-ocorrencias-carregando.html">L1 · 3 · Clique em Ocorrências: carregando</a> <span>L1 · Consultar ocorrências — fluxo básico</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l1-4-historico-de-ocorrencias.html">L1 · 4 · Histórico de ocorrências</a> <span>L1 · Consultar ocorrências — fluxo básico</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l2-1-o-historico-com-a-anotacao-no-registro-3.html">L2 · 1 · O histórico com a anotação no registro 3</a> <span>L2 · FE03 · Ocorrência sem descrição</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l3-1-carregando.html">L3 · 1 · Carregando</a> <span>L3 · FE01 · Contrato sem ocorrências</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l3-2-sem-registros.html">L3 · 2 · Sem registros</a> <span>L3 · FE01 · Contrato sem ocorrências</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l4-1-carregando.html">L4 · 1 · Carregando</a> <span>L4 · FE02 · Falha ao consultar as ocorrências</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l4-2-falha.html">L4 · 2 · Falha</a> <span>L4 · FE02 · Falha ao consultar as ocorrências</span></li>
+      <li><a href="telas/hu008-consultar-ocorrencias/l4-3-tentar-novamente-historico-apresentado.html">L4 · 3 · Tentar novamente: histórico apresentado</a> <span>L4 · FE02 · Falha ao consultar as ocorrências</span></li>
+    </ul>
+    <h2>HU-009 · Consultar dados gerais</h2>
+    <ul>
+      <li><a href="telas/hu009-consultar-dados-gerais/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Consultar dados gerais — fluxo básico</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l1-2-dados-gerais-carregando.html">L1 · 2 · Dados gerais carregando</a> <span>L1 · Consultar dados gerais — fluxo básico</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l1-3-dados-do-contrato-topo-da-aba.html">L1 · 3 · Dados do Contrato (topo da aba)</a> <span>L1 · Consultar dados gerais — fluxo básico</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l1-4-scrollada-dados-da-contratacao.html">L1 · 4 · Scrollada: Dados da Contratação</a> <span>L1 · Consultar dados gerais — fluxo básico</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l1-5-scrollada-produto-contratado-e-pncp.html">L1 · 5 · Scrollada: Produto Contratado e PNCP</a> <span>L1 · Consultar dados gerais — fluxo básico</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l2-1-link-pncp-em-hover-com-a-dica.html">L2 · 1 · Link PNCP em hover, com a dica</a> <span>L2 · Link do PNCP</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l3-1-mensal-do-contrato-e-prazo-para-pagamento-dias-em-branco.html">L3 · 1 · Mensal do Contrato e Prazo para Pagamento (dias) em branco</a> <span>L3 · FE02 · Informação não disponível</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l3-2-scrollada-pncp-sem-integracao.html">L3 · 2 · Scrollada: PNCP sem integração</a> <span>L3 · FE02 · Informação não disponível</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l4-1-produto-contratado-sem-registros.html">L4 · 1 · Produto Contratado sem registros</a> <span>L4 · FE03 · Contrato sem produtos</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l5-1-carregando.html">L5 · 1 · Carregando</a> <span>L5 · FE01 · Falha ao consultar os dados</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l5-2-falha.html">L5 · 2 · Falha</a> <span>L5 · FE01 · Falha ao consultar os dados</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l5-3-tentar-novamente-dados-apresentados.html">L5 · 3 · Tentar novamente: dados apresentados</a> <span>L5 · FE01 · Falha ao consultar os dados</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l6-1-link-pncp-acionado.html">L6 · 1 · Link PNCP acionado</a> <span>L6 · FE04 · Falha ao acessar o PNCP</span></li>
+      <li><a href="telas/hu009-consultar-dados-gerais/l6-2-toast-de-erro-com-a-msg003.html">L6 · 2 · Toast de erro com a MSG003</a> <span>L6 · FE04 · Falha ao acessar o PNCP</span></li>
+    </ul>
+    <h2>HU-010 · Exportar lista de contratos</h2>
+    <ul>
+      <li><a href="telas/hu010-exportar-lista/l1-1-lista-com-resultado-e-filtros-aplicados.html">L1 · 1 · Lista com resultado e filtros aplicados</a> <span>L1 · Exportar a lista — fluxo básico</span></li>
+      <li><a href="telas/hu010-exportar-lista/l1-2-menu-de-formatos-aberto.html">L1 · 2 · Menu de formatos aberto</a> <span>L1 · Exportar a lista — fluxo básico</span></li>
+      <li><a href="telas/hu010-exportar-lista/l1-3-exportando.html">L1 · 3 · Exportando</a> <span>L1 · Exportar a lista — fluxo básico</span></li>
+      <li><a href="telas/hu010-exportar-lista/l1-4-arquivo-pronto-toast-com-o-nome-do-arquivo.html">L1 · 4 · Arquivo pronto: toast com o nome do arquivo</a> <span>L1 · Exportar a lista — fluxo básico</span></li>
+      <li><a href="telas/hu010-exportar-lista/l2-1-sem-registros-encontrados.html">L2 · 1 · Sem registros encontrados</a> <span>L2 · FE01 · Consulta sem registros</span></li>
+      <li><a href="telas/hu010-exportar-lista/l3-1-formato-escolhido-csv.html">L3 · 1 · Formato escolhido (CSV)</a> <span>L3 · FE02 · Falha na recuperação dos dados</span></li>
+      <li><a href="telas/hu010-exportar-lista/l3-2-toast-com-a-msg002-lista-e-filtros-mantidos.html">L3 · 2 · Toast com a MSG002; lista e filtros mantidos</a> <span>L3 · FE02 · Falha na recuperação dos dados</span></li>
+      <li><a href="telas/hu010-exportar-lista/l4-1-exportando.html">L4 · 1 · Exportando</a> <span>L4 · FE03 · Falha na geração do arquivo</span></li>
+      <li><a href="telas/hu010-exportar-lista/l4-2-toast-com-a-msg003.html">L4 · 2 · Toast com a MSG003</a> <span>L4 · FE03 · Falha na geração do arquivo</span></li>
+      <li><a href="telas/hu010-exportar-lista/l5-1-toast-com-a-msg004.html">L5 · 1 · Toast com a MSG004</a> <span>L5 · FE04 · Falha na disponibilização</span></li>
+    </ul>
+    <h2>HU-011 · Enviar avisos/comunicação</h2>
+    <ul>
+      <li><a href="telas/hu011-enviar-avisos/l1-1-contrato-escolhido-na-lista.html">L1 · 1 · Contrato escolhido na lista</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l1-2-detalhe-aberto-em-dados-gerais.html">L1 · 2 · Detalhe aberto em Dados gerais</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l1-3-clique-em-avisos-carregando.html">L1 · 3 · Clique em Avisos: carregando</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l1-4-aba-avisos-nova-comunicacao-recolhida-e-o-historico.html">L1 · 4 · Aba Avisos: Nova comunicação recolhida e o histórico</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l1-5-nova-comunicacao-aberta.html">L1 · 5 · Nova comunicação aberta</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l1-6-formulario-preenchido.html">L1 · 6 · Formulário preenchido</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l1-7-confirmacao-com-a-msg007.html">L1 · 7 · Confirmação com a MSG007</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l1-8-comunicacao-enviada.html">L1 · 8 · Comunicação enviada</a> <span>L1 · Enviar comunicação — fluxo básico</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l2-1-visualizar-em-hover-com-a-dica.html">L2 · 1 · Visualizar em hover, com a dica</a> <span>L2 · Visualizar uma comunicação</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l2-2-modal-somente-leitura-com-a-mensagem-completa-e-o-anexo.html">L2 · 2 · Modal somente leitura com a mensagem completa e o anexo</a> <span>L2 · Visualizar uma comunicação</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l3-1-enviar-com-os-obrigatorios-em-branco-msg008.html">L3 · 1 · Enviar com os obrigatórios em branco → MSG008</a> <span>L3 · Campos obrigatórios</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l4-1-arquivo-fora-das-regras-msg006.html">L4 · 1 · Arquivo fora das regras → MSG006</a> <span>L4 · FE04 · Anexo inválido</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l4-2-arquivo-trocado-por-um-valido.html">L4 · 2 · Arquivo trocado por um válido</a> <span>L4 · FE04 · Anexo inválido</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l5-1-modal-da-msg007-com-cancelar-em-foco.html">L5 · 1 · Modal da MSG007 com Cancelar em foco</a> <span>L5 · FE05 · Envio não confirmado</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l5-2-modal-fechado-a-secao-continua-aberta-com-os-dados.html">L5 · 2 · Modal fechado: a seção continua aberta, com os dados</a> <span>L5 · FE05 · Envio não confirmado</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l6-1-aba-com-a-secao-recolhida-e-o-historico-vazio.html">L6 · 1 · Aba com a seção recolhida e o histórico vazio</a> <span>L6 · FE01 · Nenhum destinatário disponível</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l6-2-secao-aberta-msg002-enviar-desabilitado.html">L6 · 2 · Seção aberta: MSG002, Enviar desabilitado</a> <span>L6 · FE01 · Nenhum destinatário disponível</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l7-1-sem-permissao-para-enviar-msg004.html">L7 · 1 · Sem permissão para enviar → MSG004</a> <span>L7 · FE02 · Usuário sem permissão para envio</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l8-1-secao-aberta-carregando-os-destinatarios.html">L8 · 1 · Seção aberta: carregando os destinatários</a> <span>L8 · FE03 · Falha ao recuperar os destinatários</span></li>
+      <li><a href="telas/hu011-enviar-avisos/l8-2-falha-msg005-e-tentar-novamente.html">L8 · 2 · Falha → MSG005 e Tentar novamente</a> <span>L8 · FE03 · Falha ao recuperar os destinatários</span></li>
+    </ul>
+    <h2>HU-012 · Painel do Gestor e do Fiscal</h2>
+    <ul>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l1-1-abrir-o-painel.html">L1 · 1 · Abrir o painel</a> <span>L1 · Abrir o painel</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l1-2-pagina-2-os-contratos-em-dia.html">L1 · 2 · Página 2: os contratos em dia</a> <span>L1 · Abrir o painel</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l1-3-exibir-20-a-relacao-inteira.html">L1 · 3 · Exibir 20: a relação inteira</a> <span>L1 · Abrir o painel</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l2-1-escolher-a-ordenacao.html">L2 · 1 · Escolher a ordenação</a> <span>L2 · Ordenar a relação</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l2-2-ordenado-pelo-saldo-mais-critico.html">L2 · 2 · Ordenado pelo saldo mais crítico</a> <span>L2 · Ordenar a relação</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l2-3-ordenado-por-mais-assinaturas-pendentes.html">L2 · 3 · Ordenado por mais assinaturas pendentes</a> <span>L2 · Ordenar a relação</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l3-1-filtrar-por-uma-faixa-de-vencimento.html">L3 · 1 · Filtrar por uma faixa de vencimento</a> <span>L3 · Filtrar pelos indicadores</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l3-2-filtrar-por-assinatura-pendente.html">L3 · 2 · Filtrar por Assinatura pendente</a> <span>L3 · Filtrar pelos indicadores</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l3-3-filtrar-por-saldo-critico.html">L3 · 3 · Filtrar por Saldo crítico</a> <span>L3 · Filtrar pelos indicadores</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l4-1-pesquisar-pelo-numero.html">L4 · 1 · Pesquisar pelo número</a> <span>L4 · Pesquisar por número ou fornecedor</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l4-2-pesquisar-pelo-fornecedor.html">L4 · 2 · Pesquisar pelo fornecedor</a> <span>L4 · Pesquisar por número ou fornecedor</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l4-3-nenhum-contrato-encontrado.html">L4 · 3 · Nenhum contrato encontrado</a> <span>L4 · Pesquisar por número ou fornecedor</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l5-1-passar-o-mouse-na-linha.html">L5 · 1 · Passar o mouse na linha</a> <span>L5 · Do painel ao contrato</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l5-2-o-contrato-abre-em-saldos.html">L5 · 2 · O contrato abre em Saldos</a> <span>L5 · Do painel ao contrato</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l6-1-painel-do-paulo-fiscal.html">L6 · 1 · Painel do Paulo, fiscal</a> <span>L6 · Painel do Fiscal</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l6-2-recolher-os-contratos-em-dia.html">L6 · 2 · Recolher os contratos em dia</a> <span>L6 · Painel do Fiscal</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l7-1-tudo-em-dia.html">L7 · 1 · Tudo em dia</a> <span>L7 · Sem contratos que demandam atenção</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l8-1-carregando.html">L8 · 1 · Carregando</a> <span>L8 · Carregando e falha ao carregar</span></li>
+      <li><a href="telas/hu012-painel-gestor-e-fiscal/l8-2-falha-ao-carregar.html">L8 · 2 · Falha ao carregar</a> <span>L8 · Carregando e falha ao carregar</span></li>
+    </ul>
+    <h2>HU-013 · Painel do Fornecedor</h2>
+    <ul>
+      <li><a href="telas/hu013-painel-fornecedor/l1-1-abrir-o-painel.html">L1 · 1 · Abrir o painel</a> <span>L1 · Abrir o painel</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l2-1-filtrar-pela-faixa-de-ate-30-dias.html">L2 · 1 · Filtrar pela faixa de até 30 dias</a> <span>L2 · Filtrar pela faixa de vencimento</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l3-1-orgao-contratante-ses.html">L3 · 1 · Órgão contratante: SES</a> <span>L3 · Filtrar por órgão e por número</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l3-2-nenhum-contrato-encontrado.html">L3 · 2 · Nenhum contrato encontrado</a> <span>L3 · Filtrar por órgão e por número</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l4-1-passar-o-mouse-na-linha.html">L4 · 1 · Passar o mouse na linha</a> <span>L4 · Do painel ao contrato</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l4-2-o-contrato-abre-em-dados-gerais.html">L4 · 2 · O contrato abre em Dados gerais</a> <span>L4 · Do painel ao contrato</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l5-1-ordenado-por-maior-consumo.html">L5 · 1 · Ordenado por maior consumo</a> <span>L5 · Ordenar por maior consumo</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l5-2-o-contrato-abre-em-saldos.html">L5 · 2 · O contrato abre em Saldos</a> <span>L5 · Ordenar por maior consumo</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l6-1-sem-contratos-em-execucao.html">L6 · 1 · Sem contratos em execução</a> <span>L6 · Sem contratos em execução</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l7-1-carregando.html">L7 · 1 · Carregando</a> <span>L7 · Carregando e falha ao carregar</span></li>
+      <li><a href="telas/hu013-painel-fornecedor/l7-2-falha-ao-carregar.html">L7 · 2 · Falha ao carregar</a> <span>L7 · Carregando e falha ao carregar</span></li>
+    </ul>
+    <h2>HU-014 · Painel do Procurador Setorial</h2>
+    <ul>
+      <li><a href="telas/hu014-painel-procurador-setorial/l1-1-abrir-o-painel.html">L1 · 1 · Abrir o painel</a> <span>L1 · Abrir o painel</span></li>
+      <li><a href="telas/hu014-painel-procurador-setorial/l2-1-as-3-demandas-do-347-2026.html">L2 · 1 · As 3 demandas do 347/2026</a> <span>L2 · Ver as demandas de um contrato</span></li>
+      <li><a href="telas/hu014-painel-procurador-setorial/l3-1-filtrar-por-aditivos-pendentes-de-analise.html">L3 · 1 · Filtrar por Aditivos pendentes de análise</a> <span>L3 · Filtrar pelo tipo de demanda</span></li>
+      <li><a href="telas/hu014-painel-procurador-setorial/l4-1-passar-o-mouse-na-demanda.html">L4 · 1 · Passar o mouse na demanda</a> <span>L4 · Do painel ao item</span></li>
+      <li><a href="telas/hu014-painel-procurador-setorial/l5-1-sem-demandas-pendentes.html">L5 · 1 · Sem demandas pendentes</a> <span>L5 · Sem demandas pendentes</span></li>
+      <li><a href="telas/hu014-painel-procurador-setorial/l6-1-carregando.html">L6 · 1 · Carregando</a> <span>L6 · Carregando e falha ao carregar</span></li>
+      <li><a href="telas/hu014-painel-procurador-setorial/l6-2-falha-ao-carregar.html">L6 · 2 · Falha ao carregar</a> <span>L6 · Carregando e falha ao carregar</span></li>
+    </ul>
+    <h2>HU-015 · Painel do Analista Financeiro</h2>
+    <ul>
+      <li><a href="telas/hu015-painel-analista-financeiro/l1-1-painel-consolidado-do-orgao.html">L1 · 1 · Painel consolidado do órgão</a> <span>L1 · Abrir o painel</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l2-1-natureza-de-despesa-aberta.html">L2 · 1 · Natureza de Despesa aberta</a> <span>L2 · Filtrar por Natureza de Despesa</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l2-2-resultado-com-a-ficha.html">L2 · 2 · Resultado com a ficha</a> <span>L2 · Filtrar por Natureza de Despesa</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l3-1-foco-no-cartao-saldo-a-liquidar.html">L3 · 1 · Foco no cartão Saldo a Liquidar</a> <span>L3 · Do indicador para Gerir contratos</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l3-2-gerir-contratos-com-a-ficha-do-dashboard.html">L3 · 2 · Gerir contratos com a ficha do Dashboard</a> <span>L3 · Do indicador para Gerir contratos</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l4-1-filtros-sem-resultado.html">L4 · 1 · Filtros sem resultado</a> <span>L4 · Nenhum contrato encontrado</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l5-1-menu-do-perfil-aberto.html">L5 · 1 · Menu do perfil aberto</a> <span>L5 · Configurar tela inicial</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l5-2-dialogo-tela-inicial.html">L5 · 2 · Diálogo Tela inicial</a> <span>L5 · Configurar tela inicial</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l6-1-mouse-em-valor-pago-liquidado.html">L6 · 1 · Mouse em Valor Pago/Liquidado</a> <span>L6 · Régua interativa</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l6-2-mouse-na-chave-saldo-empenhado.html">L6 · 2 · Mouse na chave Saldo Empenhado</a> <span>L6 · Régua interativa</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l8-1-carregando.html">L8 · 1 · Carregando</a> <span>L8 · Carregando e falha ao carregar</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l8-2-falha-ao-carregar.html">L8 · 2 · Falha ao carregar</a> <span>L8 · Carregando e falha ao carregar</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l9-1-visao-anual.html">L9 · 1 · Visão Anual</a> <span>L9 · Evolução anual</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l10-1-lista-aberta.html">L10 · 1 · Lista aberta</a> <span>L10 · Vigência dos Contratos em intervalos</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l10-2-61-a-90-dias.html">L10 · 2 · 61 a 90 dias</a> <span>L10 · Vigência dos Contratos em intervalos</span></li>
+      <li><a href="telas/hu015-painel-analista-financeiro/l11-1-dica-do-saldo-de-anulacao.html">L11 · 1 · Dica do Saldo de Anulação</a> <span>L11 · O que é o Saldo de Anulação</span></li>
+    </ul>
+    <h2>HU-016 · Painel do Coordenador de Contratos</h2>
+    <ul>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l1-1-painel-do-orgao.html">L1 · 1 · Painel do órgão</a> <span>L1 · Abrir o painel</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l2-1-unidade-gestora-aberta.html">L2 · 1 · Unidade gestora aberta</a> <span>L2 · Filtrar por Unidade gestora</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l2-2-resultado-com-a-ficha.html">L2 · 2 · Resultado com a ficha</a> <span>L2 · Filtrar por Unidade gestora</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l3-1-dica-na-faixa-61-a-90-dias.html">L3 · 1 · Dica na faixa 61 a 90 dias</a> <span>L3 · Próximos do vencimento</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l3-2-gerir-contratos-vencem-em-61-a-90-dias.html">L3 · 2 · Gerir contratos: vencem em 61 a 90 dias</a> <span>L3 · Próximos do vencimento</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l4-1-nenhum-contrato-encontrado.html">L4 · 1 · Nenhum contrato encontrado</a> <span>L4 · Nenhum contrato encontrado</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l5-1-menu-do-perfil-aberto.html">L5 · 1 · Menu do perfil aberto</a> <span>L5 · Configurar tela inicial</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l5-2-dialogo-tela-inicial.html">L5 · 2 · Diálogo Tela inicial</a> <span>L5 · Configurar tela inicial</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l5-3-tela-inicial-salva.html">L5 · 3 · Tela inicial salva</a> <span>L5 · Configurar tela inicial</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l6-1-ver-na-equipe-sem-suplente.html">L6 · 1 · Ver na equipe: sem suplente</a> <span>L6 · Equipe de gestão e fiscalização</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l6-2-equipe-todos-os-contratos-vigentes.html">L6 · 2 · Equipe: todos os contratos vigentes</a> <span>L6 · Equipe de gestão e fiscalização</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l7-1-dashboard-esta-e-a-tela-inicial.html">L7 · 1 · Dashboard: esta é a tela inicial</a> <span>L7 · Tela inicial pela casinha</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l7-2-gerir-contratos-definir-como-tela-inicial.html">L7 · 2 · Gerir contratos: definir como tela inicial</a> <span>L7 · Tela inicial pela casinha</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l7-3-tela-inicial-definida.html">L7 · 3 · Tela inicial definida</a> <span>L7 · Tela inicial pela casinha</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l8-1-carregando.html">L8 · 1 · Carregando</a> <span>L8 · Carregando e falha ao carregar</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l8-2-falha-ao-carregar.html">L8 · 2 · Falha ao carregar</a> <span>L8 · Carregando e falha ao carregar</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l9-1-buscar-chave-mestra.html">L9 · 1 · Buscar "Chave Mestra"</a> <span>L9 · Buscar enquanto digita</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l10-1-dica-na-coluna-de-mai-27.html">L10 · 1 · Dica na coluna de mai/27</a> <span>L10 · Vencimentos por mês</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l10-2-ver-como-tabela.html">L10 · 2 · Ver como tabela</a> <span>L10 · Vencimentos por mês</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l11-1-aba-avisos.html">L11 · 1 · Aba Avisos</a> <span>L11 · Últimos 15 dias: avisos e lista vazia</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l11-2-sem-ocorrencias-nos-ultimos-15-dias.html">L11 · 2 · Sem ocorrências nos últimos 15 dias</a> <span>L11 · Últimos 15 dias: avisos e lista vazia</span></li>
+      <li><a href="telas/hu016-painel-coordenador-de-contratos/l12-1-panorama-recolhido.html">L12 · 1 · Panorama recolhido</a> <span>L12 · Panorama recolhido</span></li>
+    </ul>
+    <h2>HU019 · Emitir Ordem de Serviço</h2>
+    <ul>
+      <li><a href="telas/hu019-emitir-os/l1-1-aba-os-of-do-contrato.html">L1 · 1 · Aba OS/OF do contrato</a> <span>L1 · Emitir pela aba OS/OF do contrato</span></li>
+      <li><a href="telas/hu019-emitir-os/l1-2-nova-ordem-de-servico.html">L1 · 2 · Nova Ordem de Serviço</a> <span>L1 · Emitir pela aba OS/OF do contrato</span></li>
+      <li><a href="telas/hu019-emitir-os/l1-3-preenchida-com-os-calculos.html">L1 · 3 · Preenchida, com os cálculos</a> <span>L1 · Emitir pela aba OS/OF do contrato</span></li>
+      <li><a href="telas/hu019-emitir-os/l1-4-salva-com-o-numero-gerado.html">L1 · 4 · Salva, com o número gerado</a> <span>L1 · Emitir pela aba OS/OF do contrato</span></li>
+      <li><a href="telas/hu019-emitir-os/l1-5-enviar-fornecedor.html">L1 · 5 · Enviar Fornecedor</a> <span>L1 · Emitir pela aba OS/OF do contrato</span></li>
+      <li><a href="telas/hu019-emitir-os/l2-1-encaminhada-para-assinatura.html">L2 · 1 · Encaminhada para assinatura</a> <span>L2 · Depois do envio ao fornecedor</span></li>
+      <li><a href="telas/hu019-emitir-os/l3-1-escolher-o-contrato.html">L3 · 1 · Escolher o contrato</a> <span>L3 · Emitir pela Gerir OS/OF</span></li>
+      <li><a href="telas/hu019-emitir-os/l4-1-obrigatorios-sem-preencher.html">L4 · 1 · Obrigatórios sem preencher</a> <span>L4 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu019-emitir-os/l4-2-inicio-antes-da-emissao.html">L4 · 2 · Início antes da emissão</a> <span>L4 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu019-emitir-os/l4-3-valor-acima-do-saldo-do-empenho.html">L4 · 3 · Valor acima do saldo do empenho</a> <span>L4 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu019-emitir-os/l5-1-sem-permissao-de-emissao.html">L5 · 1 · Sem permissão de emissão</a> <span>L5 · Quando não se pode emitir</span></li>
+      <li><a href="telas/hu019-emitir-os/l5-2-contrato-com-vigencia-encerrada.html">L5 · 2 · Contrato com vigência encerrada</a> <span>L5 · Quando não se pode emitir</span></li>
+      <li><a href="telas/hu019-emitir-os/l5-3-dados-do-contrato-indisponiveis.html">L5 · 3 · Dados do contrato indisponíveis</a> <span>L5 · Quando não se pode emitir</span></li>
+      <li><a href="telas/hu019-emitir-os/l5-4-erro-ao-salvar-ou-enviar.html">L5 · 4 · Erro ao salvar ou enviar</a> <span>L5 · Quando não se pode emitir</span></li>
+    </ul>
+    <h2>HU020 · Emitir Ordem de Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu020-emitir-of/l1-1-aba-os-of-do-contrato-de-aquisicao.html">L1 · 1 · Aba OS/OF do contrato de aquisição</a> <span>L1 · Emitir pela aba OS/OF do contrato de aquisição</span></li>
+      <li><a href="telas/hu020-emitir-of/l1-2-nova-ordem-de-fornecimento.html">L1 · 2 · Nova Ordem de Fornecimento</a> <span>L1 · Emitir pela aba OS/OF do contrato de aquisição</span></li>
+      <li><a href="telas/hu020-emitir-of/l1-3-preenchida-com-os-calculos.html">L1 · 3 · Preenchida, com os cálculos</a> <span>L1 · Emitir pela aba OS/OF do contrato de aquisição</span></li>
+      <li><a href="telas/hu020-emitir-of/l1-4-salva-com-o-numero-gerado.html">L1 · 4 · Salva, com o número gerado</a> <span>L1 · Emitir pela aba OS/OF do contrato de aquisição</span></li>
+      <li><a href="telas/hu020-emitir-of/l2-1-enviar-fornecedor.html">L2 · 1 · Enviar Fornecedor</a> <span>L2 · Depois do envio ao fornecedor</span></li>
+      <li><a href="telas/hu020-emitir-of/l2-2-of-enviada-so-para-visualizacao.html">L2 · 2 · OF enviada, só para visualização</a> <span>L2 · Depois do envio ao fornecedor</span></li>
+      <li><a href="telas/hu020-emitir-of/l3-1-obrigatorios-sem-preencher.html">L3 · 1 · Obrigatórios sem preencher</a> <span>L3 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu020-emitir-of/l3-2-sem-itens.html">L3 · 2 · Sem itens</a> <span>L3 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu020-emitir-of/l3-3-prazo-de-entrega-invalido.html">L3 · 3 · Prazo de entrega inválido</a> <span>L3 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu020-emitir-of/l3-4-cep-ou-e-mail-invalidos.html">L3 · 4 · CEP ou e-mail inválidos</a> <span>L3 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu020-emitir-of/l3-5-item-com-valor-invalido.html">L3 · 5 · Item com valor inválido</a> <span>L3 · Quando os dados não fecham</span></li>
+      <li><a href="telas/hu020-emitir-of/l4-1-sem-permissao-de-emissao.html">L4 · 1 · Sem permissão de emissão</a> <span>L4 · Quando não se pode emitir</span></li>
+      <li><a href="telas/hu020-emitir-of/l4-2-dados-vinculados-indisponiveis.html">L4 · 2 · Dados vinculados indisponíveis</a> <span>L4 · Quando não se pode emitir</span></li>
+      <li><a href="telas/hu020-emitir-of/l4-3-falha-ao-salvar-ou-enviar.html">L4 · 3 · Falha ao salvar ou enviar</a> <span>L4 · Quando não se pode emitir</span></li>
+    </ul>
+    <h2>HU021 · Emitir Termo de Recebimento Definitivo da OS/OF</h2>
+    <ul>
+      <li><a href="telas/hu021-emitir-trd/l1-1-ordens-marcadas-na-aba-os-of.html">L1 · 1 · Ordens marcadas na aba OS/OF</a> <span>L1 · Emitir o termo a partir das ordens concluídas</span></li>
+      <li><a href="telas/hu021-emitir-trd/l1-2-termo-de-recebimento-definitivo.html">L1 · 2 · Termo de Recebimento Definitivo</a> <span>L1 · Emitir o termo a partir das ordens concluídas</span></li>
+      <li><a href="telas/hu021-emitir-trd/l1-3-termo-salvo.html">L1 · 3 · Termo salvo</a> <span>L1 · Emitir o termo a partir das ordens concluídas</span></li>
+      <li><a href="telas/hu021-emitir-trd/l2-1-sem-ordem-e-sem-descricao.html">L2 · 1 · Sem ordem e sem descrição</a> <span>L2 · Quando o termo não fecha</span></li>
+      <li><a href="telas/hu021-emitir-trd/l2-2-periodo-invalido.html">L2 · 2 · Período inválido</a> <span>L2 · Quando o termo não fecha</span></li>
+      <li><a href="telas/hu021-emitir-trd/l2-3-nenhum-registro-encontrado.html">L2 · 3 · Nenhum registro encontrado</a> <span>L2 · Quando o termo não fecha</span></li>
+      <li><a href="telas/hu021-emitir-trd/l2-4-falha-ao-salvar.html">L2 · 4 · Falha ao salvar</a> <span>L2 · Quando o termo não fecha</span></li>
+      <li><a href="telas/hu021-emitir-trd/l2-5-sem-permissao.html">L2 · 5 · Sem permissão</a> <span>L2 · Quando o termo não fecha</span></li>
+    </ul>
+    <h2>HU022 · Documentos OS/OF</h2>
+    <ul>
+      <li><a href="telas/hu022-documentos-os-of/l1-1-documentacao-da-ordem.html">L1 · 1 · Documentação da ordem</a> <span>L1 · Consultar e anexar os documentos da ordem</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l1-2-incluir-aberto-com-as-cinco-categorias.html">L1 · 2 · Incluir aberto, com as cinco categorias</a> <span>L1 · Consultar e anexar os documentos da ordem</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l1-3-arquivos-escolhidos-antes-de-salvar.html">L1 · 3 · Arquivos escolhidos, antes de salvar</a> <span>L1 · Consultar e anexar os documentos da ordem</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l1-4-documentos-salvos.html">L1 · 4 · Documentos salvos</a> <span>L1 · Consultar e anexar os documentos da ordem</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l2-1-nenhum-arquivo-selecionado.html">L2 · 1 · Nenhum arquivo selecionado</a> <span>L2 · Quando o arquivo não entra</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l2-2-formato-nao-permitido.html">L2 · 2 · Formato não permitido</a> <span>L2 · Quando o arquivo não entra</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l2-3-arquivo-acima-do-limite.html">L2 · 3 · Arquivo acima do limite</a> <span>L2 · Quando o arquivo não entra</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l2-4-limite-por-categoria.html">L2 · 4 · Limite por categoria</a> <span>L2 · Quando o arquivo não entra</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l2-5-falha-ao-salvar.html">L2 · 5 · Falha ao salvar</a> <span>L2 · Quando o arquivo não entra</span></li>
+      <li><a href="telas/hu022-documentos-os-of/l3-1-sem-permissao.html">L3 · 1 · Sem permissão</a> <span>L3 · Sem permissão para anexar</span></li>
+    </ul>
+    <h2>HU023 · Emitir Despacho de Ordem de Pagamento</h2>
+    <ul>
+      <li><a href="telas/hu023-despacho-pagamento/l1-1-emitir-documento.html">L1 · 1 · Emitir documento</a> <span>L1 · Emitir o despacho a partir do contrato</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l1-2-despacho-de-pagamento.html">L1 · 2 · Despacho de Pagamento</a> <span>L1 · Emitir o despacho a partir do contrato</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l1-3-despacho-gerado-so-para-consulta.html">L1 · 3 · Despacho gerado, só para consulta</a> <span>L1 · Emitir o despacho a partir do contrato</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l2-1-sem-nota-atestada-no-periodo.html">L2 · 1 · Sem nota atestada no período</a> <span>L2 · Quando o despacho não pode ser gerado</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l2-2-certidao-ausente-ou-vencida.html">L2 · 2 · Certidão ausente ou vencida</a> <span>L2 · Quando o despacho não pode ser gerado</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l2-3-nota-sem-ateste.html">L2 · 3 · Nota sem ateste</a> <span>L2 · Quando o despacho não pode ser gerado</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l2-4-divergencia-nos-totais.html">L2 · 4 · Divergência nos totais</a> <span>L2 · Quando o despacho não pode ser gerado</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l2-5-documento-indisponivel.html">L2 · 5 · Documento indisponível</a> <span>L2 · Quando o despacho não pode ser gerado</span></li>
+      <li><a href="telas/hu023-despacho-pagamento/l3-1-falha-na-geracao.html">L3 · 1 · Falha na geração</a> <span>L3 · Falha ao gerar</span></li>
+    </ul>
+    <h2>HU024 · Editar Ordem de Serviço e Ordem de Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu024-editar-os-of/l1-1-mais-acoes-da-linha.html">L1 · 1 · Mais ações da linha</a> <span>L1 · Editar a ordem pela lista</span></li>
+      <li><a href="telas/hu024-editar-os-of/l1-2-editar-ordem-de-servico.html">L1 · 2 · Editar Ordem de Serviço</a> <span>L1 · Editar a ordem pela lista</span></li>
+      <li><a href="telas/hu024-editar-os-of/l1-3-alteracao-salva.html">L1 · 3 · Alteração salva</a> <span>L1 · Editar a ordem pela lista</span></li>
+      <li><a href="telas/hu024-editar-os-of/l1-4-registro-da-alteracao.html">L1 · 4 · Registro da alteração</a> <span>L1 · Editar a ordem pela lista</span></li>
+      <li><a href="telas/hu024-editar-os-of/l2-1-editar-ordem-de-fornecimento.html">L2 · 1 · Editar Ordem de Fornecimento</a> <span>L2 · Editar a Ordem de Fornecimento</span></li>
+      <li><a href="telas/hu024-editar-os-of/l3-1-ordem-que-nao-pode-ser-editada.html">L3 · 1 · Ordem que não pode ser editada</a> <span>L3 · Quando a edição não acontece</span></li>
+      <li><a href="telas/hu024-editar-os-of/l3-2-obrigatorios-ausentes.html">L3 · 2 · Obrigatórios ausentes</a> <span>L3 · Quando a edição não acontece</span></li>
+      <li><a href="telas/hu024-editar-os-of/l3-3-valor-acima-do-saldo.html">L3 · 3 · Valor acima do saldo</a> <span>L3 · Quando a edição não acontece</span></li>
+      <li><a href="telas/hu024-editar-os-of/l3-4-falha-ao-salvar.html">L3 · 4 · Falha ao salvar</a> <span>L3 · Quando a edição não acontece</span></li>
+      <li><a href="telas/hu024-editar-os-of/l3-5-sem-permissao-de-edicao.html">L3 · 5 · Sem permissão de edição</a> <span>L3 · Quando a edição não acontece</span></li>
+    </ul>
+    <h2>HU025 · Excluir Ordem de Serviço e Ordem de Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu025-excluir-os-of/l1-1-confirmar-a-exclusao.html">L1 · 1 · Confirmar a exclusão</a> <span>L1 · Excluir a ordem emitida por engano</span></li>
+      <li><a href="telas/hu025-excluir-os-of/l1-2-justificativa-sem-preencher.html">L1 · 2 · Justificativa sem preencher</a> <span>L1 · Excluir a ordem emitida por engano</span></li>
+      <li><a href="telas/hu025-excluir-os-of/l1-3-ordem-excluida.html">L1 · 3 · Ordem excluída</a> <span>L1 · Excluir a ordem emitida por engano</span></li>
+      <li><a href="telas/hu025-excluir-os-of/l2-1-ordem-com-ateste-ou-despacho.html">L2 · 1 · Ordem com ateste ou despacho</a> <span>L2 · Quando não se pode excluir</span></li>
+      <li><a href="telas/hu025-excluir-os-of/l2-2-excluir-a-ordem-de-fornecimento.html">L2 · 2 · Excluir a Ordem de Fornecimento</a> <span>L2 · Quando não se pode excluir</span></li>
+      <li><a href="telas/hu025-excluir-os-of/l2-3-falha-de-gravacao.html">L2 · 3 · Falha de gravação</a> <span>L2 · Quando não se pode excluir</span></li>
+      <li><a href="telas/hu025-excluir-os-of/l2-4-sem-permissao-de-exclusao.html">L2 · 4 · Sem permissão de exclusão</a> <span>L2 · Quando não se pode excluir</span></li>
+    </ul>
+    <h2>HU026 · Cancelar Ordem de Serviço e Ordem de Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu026-cancelar-os-of/l1-1-confirmar-o-cancelamento.html">L1 · 1 · Confirmar o cancelamento</a> <span>L1 · Cancelar a ordem que não será executada</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l1-2-justificativa-sem-preencher.html">L1 · 2 · Justificativa sem preencher</a> <span>L1 · Cancelar a ordem que não será executada</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l1-3-ordem-cancelada-na-lista.html">L1 · 3 · Ordem cancelada na lista</a> <span>L1 · Cancelar a ordem que não será executada</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l1-4-cancelar-a-ordem-de-fornecimento.html">L1 · 4 · Cancelar a Ordem de Fornecimento</a> <span>L1 · Cancelar a ordem que não será executada</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l2-1-ordem-cancelada-por-dentro.html">L2 · 1 · Ordem cancelada por dentro</a> <span>L2 · Depois do cancelamento e quando não se pode cancelar</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l2-2-acao-desabilitada.html">L2 · 2 · Ação desabilitada</a> <span>L2 · Depois do cancelamento e quando não se pode cancelar</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l2-3-ordem-ja-cancelada-ao-confirmar.html">L2 · 3 · Ordem já cancelada ao confirmar</a> <span>L2 · Depois do cancelamento e quando não se pode cancelar</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l2-4-falha-de-gravacao.html">L2 · 4 · Falha de gravação</a> <span>L2 · Depois do cancelamento e quando não se pode cancelar</span></li>
+      <li><a href="telas/hu026-cancelar-os-of/l2-5-sem-permissao-de-cancelamento.html">L2 · 5 · Sem permissão de cancelamento</a> <span>L2 · Depois do cancelamento e quando não se pode cancelar</span></li>
+    </ul>
+    <h2>HU027 · Consultar Ordem de Serviço e Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu027-consultar-os-of/l1-1-gerir-os-of.html">L1 · 1 · Gerir OS/OF</a> <span>L1 · Achar a ordem no órgão</span></li>
+      <li><a href="telas/hu027-consultar-os-of/l1-2-filtros-aplicados.html">L1 · 2 · Filtros aplicados</a> <span>L1 · Achar a ordem no órgão</span></li>
+      <li><a href="telas/hu027-consultar-os-of/l1-3-vigencia-em-ordem-decrescente.html">L1 · 3 · Vigência em ordem decrescente</a> <span>L1 · Achar a ordem no órgão</span></li>
+      <li><a href="telas/hu027-consultar-os-of/l2-1-nenhum-registro-encontrado.html">L2 · 1 · Nenhum registro encontrado</a> <span>L2 · Grade sem resultados</span></li>
+      <li><a href="telas/hu027-consultar-os-of/l3-1-ordem-em-dados-gerais.html">L3 · 1 · Ordem em Dados gerais</a> <span>L3 · Abrir a ordem</span></li>
+      <li><a href="telas/hu027-consultar-os-of/l4-1-sem-permissao.html">L4 · 1 · Sem permissão</a> <span>L4 · Quando a consulta não acontece</span></li>
+      <li><a href="telas/hu027-consultar-os-of/l4-2-ordem-nao-encontrada.html">L4 · 2 · Ordem não encontrada</a> <span>L4 · Quando a consulta não acontece</span></li>
+      <li><a href="telas/hu027-consultar-os-of/l4-3-falha-no-carregamento.html">L4 · 3 · Falha no carregamento</a> <span>L4 · Quando a consulta não acontece</span></li>
+    </ul>
+    <h2>HU028 · Consultar Saldo de Ordem de Serviço e Ordem de Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu028-consultar-saldo-os-of/l1-1-aba-saldos-da-ordem.html">L1 · 1 · Aba Saldos da ordem</a> <span>L1 · Consultar os saldos da ordem</span></li>
+      <li><a href="telas/hu028-consultar-saldo-os-of/l2-1-periodo-invalido.html">L2 · 1 · Período inválido</a> <span>L2 · Quando os saldos não aparecem</span></li>
+      <li><a href="telas/hu028-consultar-saldo-os-of/l2-2-periodo-sem-registros.html">L2 · 2 · Período sem registros</a> <span>L2 · Quando os saldos não aparecem</span></li>
+      <li><a href="telas/hu028-consultar-saldo-os-of/l2-3-indicadores-indisponiveis.html">L2 · 3 · Indicadores indisponíveis</a> <span>L2 · Quando os saldos não aparecem</span></li>
+      <li><a href="telas/hu028-consultar-saldo-os-of/l2-4-falha-ao-carregar-os-itens.html">L2 · 4 · Falha ao carregar os itens</a> <span>L2 · Quando os saldos não aparecem</span></li>
+      <li><a href="telas/hu028-consultar-saldo-os-of/l2-5-sem-permissao.html">L2 · 5 · Sem permissão</a> <span>L2 · Quando os saldos não aparecem</span></li>
+    </ul>
+    <h2>HU029 · Ateste de Ordem de Serviço e Ordem de Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu029-ateste-os-of/l1-1-emitir-documento.html">L1 · 1 · Emitir documento</a> <span>L1 · Atestar a nota fiscal</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l1-2-ateste-preenchido-pelo-fiscal.html">L1 · 2 · Ateste preenchido pelo fiscal</a> <span>L1 · Atestar a nota fiscal</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l1-3-ratificacao-do-gestor.html">L1 · 3 · Ratificação do gestor</a> <span>L1 · Atestar a nota fiscal</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l1-4-ateste-salvo.html">L1 · 4 · Ateste salvo</a> <span>L1 · Atestar a nota fiscal</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l2-1-valor-da-nota-diferente-das-ordens.html">L2 · 1 · Valor da nota diferente das ordens</a> <span>L2 · Quando o ateste não fecha</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l2-2-falta-o-termo-de-recebimento.html">L2 · 2 · Falta o termo de recebimento</a> <span>L2 · Quando o ateste não fecha</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l2-3-campo-obrigatorio-vazio.html">L2 · 3 · Campo obrigatório vazio</a> <span>L2 · Quando o ateste não fecha</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l2-4-texto-no-limite.html">L2 · 4 · Texto no limite</a> <span>L2 · Quando o ateste não fecha</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l2-5-falha-ao-salvar.html">L2 · 5 · Falha ao salvar</a> <span>L2 · Quando o ateste não fecha</span></li>
+      <li><a href="telas/hu029-ateste-os-of/l3-1-dados-indisponiveis.html">L3 · 1 · Dados indisponíveis</a> <span>L3 · Dados vinculados indisponíveis</span></li>
+    </ul>
+    <h2>HU030 · Tramitar Ordem de Serviço e Ordem de Fornecimento</h2>
+    <ul>
+      <li><a href="telas/hu030-tramitar-os-of/l1-1-status-tramites.html">L1 · 1 · Status/Trâmites</a> <span>L1 · Acompanhar a ordem pela linha do tempo</span></li>
+      <li><a href="telas/hu030-tramitar-os-of/l1-2-periodo-e-ordem-invertida.html">L1 · 2 · Período e ordem invertida</a> <span>L1 · Acompanhar a ordem pela linha do tempo</span></li>
+      <li><a href="telas/hu030-tramitar-os-of/l1-3-ordem-com-todas-as-etapas.html">L1 · 3 · Ordem com todas as etapas</a> <span>L1 · Acompanhar a ordem pela linha do tempo</span></li>
+      <li><a href="telas/hu030-tramitar-os-of/l2-1-data-invertida.html">L2 · 1 · Data invertida</a> <span>L2 · Quando não há trâmite para mostrar</span></li>
+      <li><a href="telas/hu030-tramitar-os-of/l2-2-sem-tramitacoes.html">L2 · 2 · Sem tramitações</a> <span>L2 · Quando não há trâmite para mostrar</span></li>
+      <li><a href="telas/hu030-tramitar-os-of/l2-3-falha-na-consulta.html">L2 · 3 · Falha na consulta</a> <span>L2 · Quando não há trâmite para mostrar</span></li>
+      <li><a href="telas/hu030-tramitar-os-of/l2-4-acesso-nao-autorizado.html">L2 · 4 · Acesso não autorizado</a> <span>L2 · Quando não há trâmite para mostrar</span></li>
+      <li><a href="telas/hu030-tramitar-os-of/l3-1-etapa-pendente.html">L3 · 1 · Etapa pendente</a> <span>L3 · Sequência das etapas</span></li>
+    </ul>
+    <h2>Importar HU032 · Importar documentos</h2>
+    <ul>
+      <li><a href="telas/importar-hu032-importar-documentos/l1-1-aba-documentacao-com-novo-documento.html">L1 · 1 · Aba Documentação com Novo documento</a> <span>L1 · Anexar documento externo · fluxo básico</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l1-2-gaveta-aberta-ainda-vazia.html">L1 · 2 · Gaveta aberta, ainda vazia</a> <span>L1 · Anexar documento externo · fluxo básico</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l1-3-documento-externo-tipo-e-descricao.html">L1 · 3 · Documento Externo, tipo e descrição</a> <span>L1 · Anexar documento externo · fluxo básico</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l1-4-arquivo-na-lista-pronto-para-salvar.html">L1 · 4 · Arquivo na lista, pronto para salvar</a> <span>L1 · Anexar documento externo · fluxo básico</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l1-5-documento-salvo-na-lista.html">L1 · 5 · Documento salvo na lista</a> <span>L1 · Anexar documento externo · fluxo básico</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l2-1-tipo-emitido-em-tela-especifica.html">L2 · 1 · Tipo emitido em tela específica</a> <span>L2 · Documento interno: encaminhar para a tela que emite</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l2-2-tipo-dos-documentos-padrao.html">L2 · 2 · Tipo dos documentos padrão</a> <span>L2 · Documento interno: encaminhar para a tela que emite</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l3-1-salvar-sem-tipo-e-descricao.html">L3 · 1 · Salvar sem tipo e descrição</a> <span>L3 · Campos obrigatórios</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l3-2-campos-corrigidos.html">L3 · 2 · Campos corrigidos</a> <span>L3 · Campos obrigatórios</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l4-1-extensao-nao-permitida.html">L4 · 1 · Extensão não permitida</a> <span>L4 · Arquivo recusado</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l4-2-arquivo-acima-de-15-000-kb.html">L4 · 2 · Arquivo acima de 15.000 KB</a> <span>L4 · Arquivo recusado</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l4-3-nome-com-caractere-especial.html">L4 · 3 · Nome com caractere especial</a> <span>L4 · Arquivo recusado</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l4-4-arquivo-corrompido.html">L4 · 4 · Arquivo corrompido</a> <span>L4 · Arquivo recusado</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l4-5-arquivo-trocado-por-um-valido.html">L4 · 5 · Arquivo trocado por um válido</a> <span>L4 · Arquivo recusado</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l5-1-dois-arquivos-na-lista.html">L5 · 1 · Dois arquivos na lista</a> <span>L5 · Remover arquivo antes de salvar</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l5-2-lista-vazia-salvar-arquivo-desabilitado.html">L5 · 2 · Lista vazia, Salvar arquivo desabilitado</a> <span>L5 · Remover arquivo antes de salvar</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l6-1-salvando.html">L6 · 1 · Salvando</a> <span>L6 · Falha ao salvar</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l6-2-erro-dados-mantidos.html">L6 · 2 · Erro, dados mantidos</a> <span>L6 · Falha ao salvar</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l7-1-aba-sem-novo-documento.html">L7 · 1 · Aba sem Novo documento</a> <span>L7 · Sem permissão de inclusão</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l7-2-acesso-pela-url.html">L7 · 2 · Acesso pela URL</a> <span>L7 · Sem permissão de inclusão</span></li>
+      <li><a href="telas/importar-hu032-importar-documentos/l8-1-arquivo-aceito-com-o-nome-ajustado.html">L8 · 1 · Arquivo aceito com o nome ajustado</a> <span>L8 · Melhoria de UX: nome ajustado sozinho</span></li>
+    </ul>
+    <h2>Templates · Consumir templates · Documentos do contrato</h2>
+    <ul>
+      <li><a href="telas/templates-consumir-documentos/l1-1-aba-documentacao-carregando.html">L1 · 1 · Aba Documentação carregando</a> <span>L1 · Consultar os documentos — fluxo básico</span></li>
+      <li><a href="telas/templates-consumir-documentos/l1-2-documentos-agrupados-por-tipo.html">L1 · 2 · Documentos agrupados por tipo</a> <span>L1 · Consultar os documentos — fluxo básico</span></li>
+      <li><a href="telas/templates-consumir-documentos/l1-3-grupos-recolhidos-um-aberto.html">L1 · 3 · Grupos recolhidos, um aberto</a> <span>L1 · Consultar os documentos — fluxo básico</span></li>
+      <li><a href="telas/templates-consumir-documentos/l2-1-filtros-preenchidos.html">L2 · 1 · Filtros preenchidos</a> <span>L2 · Pesquisar pelos filtros gerais</span></li>
+      <li><a href="telas/templates-consumir-documentos/l2-2-resultado-com-os-criterios-aplicados.html">L2 · 2 · Resultado com os critérios aplicados</a> <span>L2 · Pesquisar pelos filtros gerais</span></li>
+      <li><a href="telas/templates-consumir-documentos/l3-1-tipo-ateste-de-nota-fiscal.html">L3 · 1 · Tipo Ateste de Nota Fiscal</a> <span>L3 · Filtros específicos por tipo de documento</span></li>
+      <li><a href="telas/templates-consumir-documentos/l3-2-tipo-termo-de-recebimento.html">L3 · 2 · Tipo Termo de Recebimento</a> <span>L3 · Filtros específicos por tipo de documento</span></li>
+      <li><a href="telas/templates-consumir-documentos/l3-3-tipo-ordem-de-servico.html">L3 · 3 · Tipo Ordem de Serviço</a> <span>L3 · Filtros específicos por tipo de documento</span></li>
+      <li><a href="telas/templates-consumir-documentos/l4-1-ateste-sem-dados-de-nota-fiscal.html">L4 · 1 · Ateste sem dados de nota fiscal</a> <span>L4 · Documento sem dados específicos</span></li>
+      <li><a href="telas/templates-consumir-documentos/l5-1-preview-do-parecer-tecnico-03-2026.html">L5 · 1 · Preview do Parecer Técnico 03/2026</a> <span>L5 · Visualizar o documento (preview)</span></li>
+      <li><a href="telas/templates-consumir-documentos/l6-1-menu-exportar-aberto.html">L6 · 1 · Menu Exportar aberto</a> <span>L6 · Exportar</span></li>
+      <li><a href="telas/templates-consumir-documentos/l6-2-documento-exportado.html">L6 · 2 · Documento exportado</a> <span>L6 · Exportar</span></li>
+      <li><a href="telas/templates-consumir-documentos/l7-1-contrato-sem-documentos.html">L7 · 1 · Contrato sem documentos</a> <span>L7 · FE01 · Nenhum documento</span></li>
+      <li><a href="telas/templates-consumir-documentos/l7-2-tipo-sem-documentos.html">L7 · 2 · Tipo sem documentos</a> <span>L7 · FE01 · Nenhum documento</span></li>
+      <li><a href="telas/templates-consumir-documentos/l8-1-data-final-antes-da-inicial.html">L8 · 1 · Data final antes da inicial</a> <span>L8 · FE02 · Filtros inválidos</span></li>
+      <li><a href="telas/templates-consumir-documentos/l8-2-corrigido-e-pesquisado.html">L8 · 2 · Corrigido e pesquisado</a> <span>L8 · FE02 · Filtros inválidos</span></li>
+      <li><a href="telas/templates-consumir-documentos/l9-1-falha-ao-consultar.html">L9 · 1 · Falha ao consultar</a> <span>L9 · FE03 · Falha de dependência ou exportação</span></li>
+      <li><a href="telas/templates-consumir-documentos/l9-2-falha-ao-exportar.html">L9 · 2 · Falha ao exportar</a> <span>L9 · FE03 · Falha de dependência ou exportação</span></li>
+      <li><a href="telas/templates-consumir-documentos/l10-1-parecer-sigiloso-para-quem-nao-tem-acesso.html">L10 · 1 · Parecer sigiloso para quem não tem acesso</a> <span>L10 · Documento sigiloso sem permissão</span></li>
+    </ul>
+  </main>
+</body>
+</html>

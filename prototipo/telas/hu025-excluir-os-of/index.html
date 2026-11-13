@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>HU025 · Excluir Ordem de Serviço e Ordem de Fornecimento — todos os modelos</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;padding:24px 32px;background:#f4f5f7;color:#1d2433}
+h1{margin:0 0 4px;font-size:22px} p.sub{margin:0 0 24px;color:#5b6475}
+h2{font-size:16px;margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid #d8dce3}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px}
+.card{display:block;background:#fff;border:1px solid #d8dce3;border-radius:8px;overflow:hidden;text-decoration:none;color:inherit;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.15);border-color:#1a5fb4}
+.thumb{position:relative;height:225px;overflow:hidden;background:#fff;border-bottom:1px solid #eceef2}
+.thumb iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform:scale(.25);transform-origin:0 0;pointer-events:none}
+.nome{padding:10px 12px;font-size:13px;font-weight:600}
+</style></head><body>
+<p class="sub"><a href="../index.html">← todas as HUs</a></p>
+<h1>HU025 · Excluir Ordem de Serviço e Ordem de Fornecimento</h1><p class="sub">7 modelos · clique em um para abrir em tela cheia</p>
+<section><h2>L1 · Excluir a ordem emitida por engano</h2><div class="grade"><a class="card" href="l1-1-confirmar-a-exclusao.html" target="_blank"><div class="thumb"><iframe src="l1-1-confirmar-a-exclusao.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L1 · 1 · Confirmar a exclusão</div></a><a class="card" href="l1-2-justificativa-sem-preencher.html" target="_blank"><div class="thumb"><iframe src="l1-2-justificativa-sem-preencher.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L1 · 2 · Justificativa sem preencher</div></a><a class="card" href="l1-3-ordem-excluida.html" target="_blank"><div class="thumb"><iframe src="l1-3-ordem-excluida.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L1 · 3 · Ordem excluída</div></a></div></section><section><h2>L2 · Quando não se pode excluir</h2><div class="grade"><a class="card" href="l2-1-ordem-com-ateste-ou-despacho.html" target="_blank"><div class="thumb"><iframe src="l2-1-ordem-com-ateste-ou-despacho.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 1 · Ordem com ateste ou despacho</div></a><a class="card" href="l2-2-excluir-a-ordem-de-fornecimento.html" target="_blank"><div class="thumb"><iframe src="l2-2-excluir-a-ordem-de-fornecimento.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 2 · Excluir a Ordem de Fornecimento</div></a><a class="card" href="l2-3-falha-de-gravacao.html" target="_blank"><div class="thumb"><iframe src="l2-3-falha-de-gravacao.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 3 · Falha de gravação</div></a><a class="card" href="l2-4-sem-permissao-de-exclusao.html" target="_blank"><div class="thumb"><iframe src="l2-4-sem-permissao-de-exclusao.html" loading="lazy" tabindex="-1" scrolling="no"></iframe></div><div class="nome">L2 · 4 · Sem permissão de exclusão</div></a></div></section>
+<script>
+// ajusta a escala das miniaturas à largura do card
+function ajusta(){document.querySelectorAll('.thumb').forEach(d=>{const s=d.clientWidth/1440;const f=d.querySelector('iframe');f.style.transform='scale('+s+')';d.style.height=(900*s)+'px';})}
+addEventListener('resize',ajusta);ajusta();
+</script></body></html>

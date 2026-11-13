@@ -1,0 +1,43 @@
+/* gcg-execucao-financeira.css — composição de tela (HU-015 · Painel do Analista Financeiro), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Execução financeira (HU-015, Cenários 02 a 04 · Figma L1 · 1): os três valores do topo, o consumo, a régua
+   e a grade dos cinco saldos, com o destaque cruzado entre a régua e os cartões.
+   Composição local (snowflake): só esta tela usa; vira componente da biblioteca no terceiro uso. */
+
+.gcg-exec .gcg-section-card__content { display: flex; flex-direction: column; gap: var(--gcg-space-5); }
+.gcg-exec__topo {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+  padding-bottom: var(--gcg-space-5);
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+}
+.gcg-exec__bloco { display: flex; flex-direction: column; gap: var(--gcg-space-1); min-width: 0; padding: 0 var(--gcg-space-5); }
+.gcg-exec__bloco:first-child { padding-left: 0; }
+.gcg-exec__bloco + .gcg-exec__bloco { border-left: var(--gcg-border-width-thin) solid var(--gcg-border-subtle); }
+.gcg-exec__bloco .gcg-panel-link { margin-top: auto; padding-top: var(--gcg-space-2); }
+.gcg-exec__rotulo { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+/* os três valores no mesmo tamanho e na mesma linha (sem ajuste óptico), com algarismos proporcionais */
+.gcg-exec__valor {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-lg);
+  letter-spacing: var(--gcg-tracking-heading-lg);
+  white-space: nowrap;
+}
+.gcg-exec__nota { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); }
+.gcg-exec__nota strong { color: var(--gcg-text-default); font-weight: 600; }
+.gcg-exec__consumo { color: var(--gcg-text-secondary); font: var(--gcg-font-text-sm-regular); }
+
+/* Os cinco saldos. A dica envolve o cartão num <span class="tooltip">: o cartão ocupa a célula inteira da
+   grade, e os nomes em duas linhas não empurram o valor */
+.gcg-exec__saldos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gcg-space-3); }
+.gcg-exec__saldos > .gcg-tooltip { display: flex; min-width: 0; }
+.gcg-exec__saldos > .gcg-tooltip > .gcg-saldo { flex: 1; width: 100%; }
+/* Destaque cruzado: o saldo em foco fica pleno; o resto esmaece */
+.gcg-exec__saldos--com-destaque .gcg-saldo { opacity: 0.45; }
+.gcg-exec__saldos--com-destaque .gcg-saldo.gcg-is-destacado { opacity: 1; outline-color: var(--gcg-action-primary); box-shadow: var(--gcg-elevation-2); transform: translateY(-2px); }
+
+@media (max-width: 1180px) {
+  .gcg-exec__topo { grid-template-columns: minmax(0, 1fr); row-gap: var(--gcg-space-4); }
+  .gcg-exec__bloco { padding: 0; border: 0 !important; }
+  .gcg-exec__saldos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

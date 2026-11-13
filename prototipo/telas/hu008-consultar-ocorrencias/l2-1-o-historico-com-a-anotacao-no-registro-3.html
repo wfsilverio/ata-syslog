@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HU-008 · Consultar ocorrências — L2 · 1 · O histórico com a anotação no registro 3</title>
+<!--
+  Tela:    HU-008 · Consultar ocorrências
+  Linha:   L2 · FE03 · Ocorrência sem descrição
+  Estado:  L2 · 1 · O histórico com a anotação no registro 3 — Figma: Página 09 · seção HU-008 · Consultar ocorrências, frame "L2 · 1 · O histórico com a anotação no registro 3"
+  Componentes (biblioteca/css/components/):
+    gcg-action-menu, gcg-alert, gcg-app-shell, gcg-badge, gcg-button, gcg-contract-header,
+    gcg-data-field, gcg-date-picker, gcg-field, gcg-icon, gcg-icon-button, gcg-input, gcg-modal,
+    gcg-page-header, gcg-popover, gcg-scrim, gcg-section-card, gcg-select, gcg-sidebar,
+    gcg-start-screen-dialog, gcg-tabs, gcg-timeline, gcg-toast, gcg-tooltip, gcg-topbar
+  Composição de tela (telas/css/): gcg-detalhe, gcg-filtro-periodo
+  Gerado do protótipo em 27/10/2026. Dados fictícios.
+-->
+<link rel="stylesheet" href="../../biblioteca/css/gcg-bootstrap3.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-fonts.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-tokens.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-layers.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-motion.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-base.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-action-menu.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-alert.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-app-shell.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-badge.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-contract-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-data-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-date-picker.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-field.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-icon-button.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-input.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-modal.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-page-header.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-popover.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-scrim.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-section-card.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-select.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-sidebar.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-start-screen-dialog.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tabs.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-timeline.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-toast.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-tooltip.css">
+<link rel="stylesheet" href="../../biblioteca/css/components/gcg-topbar.css">
+<link rel="stylesheet" href="../css/gcg-detalhe.css">
+<link rel="stylesheet" href="../css/gcg-filtro-periodo.css">
+<link rel="stylesheet" href="../../biblioteca/css/gcg-emag.css">
+</head>
+<body>
+<div class="gcg-app-shell" data-gcg-layout="wide" data-gcg-sidebar="expanded">
+  <a class="gcg-app-shell__skip" href="#gcg-conteudo">Ir para o conteúdo</a>
+  <header class="gcg-topbar gcg-app-shell__topbar">
+    <div class="gcg-topbar__left">
+      <button aria-expanded="true" aria-controls="gcg-app-sidebar" type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Menu" title="Menu">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-menu"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__system">SISLOG</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <span class="gcg-topbar__module">Gestão de Contratos</span>
+    </div>
+    <div class="gcg-topbar__right">
+      <div class="gcg-topbar__emag" role="toolbar" aria-label="Acessibilidade">
+        <button tabindex="0" aria-disabled="true" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Diminuir fonte" title="Diminuir fonte" data-gcg-emag="decrease">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_decrease"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Fonte padrão" title="Fonte padrão" data-gcg-emag="reset">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_size"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar fonte" title="Aumentar fonte" data-gcg-emag="increase">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-text_increase"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Negrito" aria-pressed="false" title="Negrito" data-gcg-emag="bold">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-format_bold"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar relevo" aria-pressed="false" title="Aumentar relevo" data-gcg-emag="relief">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-shadow"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Aumentar contraste" aria-pressed="false" title="Aumentar contraste" data-gcg-emag="contrast">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contrast"></use></svg>
+          </span>
+        </button>
+        <button tabindex="-1" type="button" class="gcg-topbar-action gcg-topbar-action--sm" aria-label="Inverter cores" aria-pressed="false" title="Inverter cores" data-gcg-emag="invert">
+          <span class="gcg-icon gcg-icon--sm">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-invert_colors"></use></svg>
+          </span>
+        </button>
+      </div>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <button type="button" class="gcg-topbar-action gcg-topbar-action--md" aria-label="Ajuda" title="Ajuda">
+        <span class="gcg-icon gcg-icon--md">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-help"></use></svg>
+        </span>
+      </button>
+      <span class="gcg-topbar__unit">SEAD · Unidade 90001</span>
+      <span class="gcg-topbar__divider" aria-hidden="true"></span>
+      <div class="gcg-topbar__user">
+        <span class="gcg-topbar__user-info">
+          <span class="gcg-topbar__user-name" title="Ana Souza">Ana Souza</span>
+          <span class="gcg-topbar__user-profile" title="Gestor de Contrato">Gestor de Contrato</span>
+        </span>
+        <button type="button" class="gcg-topbar__menu-perfil" aria-haspopup="menu" aria-expanded="false" aria-label="Menu do perfil de Ana Souza" data-gcg-popup="gcg-molde-0">
+          <span class="gcg-topbar__avatar" aria-hidden="true">A</span>
+          <span class="gcg-icon gcg-icon--sm gcg-topbar__menu-seta">
+            <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="gcg-app-shell__nav">
+    <nav id="gcg-app-sidebar" class="gcg-sidebar" aria-label="Menu principal">
+      <ul class="gcg-sidebar__list">
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--link" href="/" data-gcg-discover="true">
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-dashboard"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Dashboard</span>
+          </a>
+        </li>
+        <li class="gcg-sidebar__entry">
+          <a class="gcg-sidebar-item gcg-sidebar-item--level-1 gcg-sidebar-item--active gcg-sidebar-item--link" aria-current="true" href="/contratos" data-gcg-discover="true">
+            <span class="gcg-sidebar-item__indicator" aria-hidden="true"></span>
+            <span class="gcg-icon gcg-icon--md gcg-sidebar-item__icon">
+              <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-contract"></use></svg>
+            </span>
+            <span class="gcg-sidebar-item__label">Gerir contratos</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main id="gcg-conteudo" class="gcg-app-shell__main" tabindex="-1" style="--gcg-app-shell-gutter: 15px;">
+    <div class="gcg-page-header gcg-detalhe__bloco">
+      <nav class="gcg-page-header__breadcrumb" aria-label="Você está em">
+        <ol class="gcg-page-header__trail">
+          <li class="gcg-page-header__level">
+            <a class="gcg-page-header__crumb-link" href="/" data-gcg-discover="true">Dashboard</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <a class="gcg-page-header__crumb-link" href="/contratos" data-gcg-discover="true">Gerir contratos</a>
+          </li>
+          <li class="gcg-page-header__level">
+            <span class="gcg-page-header__separator" aria-hidden="true">/</span>
+            <span class="gcg-page-header__crumb gcg-page-header__crumb--current" aria-current="page">Contrato 704451</span>
+          </li>
+        </ol>
+      </nav>
+      <div class="gcg-page-header__main">
+        <div class="gcg-page-header__heading">
+          <h1 id="gcg-detalhe-titulo" class="gcg-page-header__title">Contrato 704451</h1>
+        </div>
+      </div>
+    </div>
+    <section class="gcg-contract-header gcg-detalhe__bloco" aria-label="Identificação do contrato">
+      <dl class="gcg-contract-header__fields">
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--situation">
+          <dt class="gcg-data-field__label">Situação</dt>
+          <dd class="gcg-data-field__value">
+            <span class="gcg-contract-header__situacao">
+              <span class="gcg-badge gcg-badge--success">Publicado</span>
+              <span class="gcg-badge gcg-badge--neutral">Vigente até 15/03/2027</span>
+            </span>
+          </dd>
+        </div>
+        <div class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--number">
+          <dt class="gcg-data-field__label">Número do Contrato</dt>
+          <dd class="gcg-data-field__value">449/2026</dd>
+        </div>
+        <div title="Serra Dourada Serviços S.A." class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--supplier gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Fornecedor</dt>
+          <dd class="gcg-data-field__value">Serra Dourada Serviços S.A.</dd>
+        </div>
+        <div title="Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD" class="gcg-data-field gcg-data-field--default gcg-contract-header__field gcg-contract-header__field--object gcg-contract-header__field--clamp">
+          <dt class="gcg-data-field__label">Objeto</dt>
+          <dd class="gcg-data-field__value">Serviço de vigilância patrimonial armada e desarmada nas unidades da SEAD</dd>
+        </div>
+      </dl>
+    </section>
+    <div class="gcg-tabs gcg-detalhe__bloco">
+      <div class="gcg-tabs__list" role="tablist" aria-label="Seções do contrato" aria-orientation="horizontal">
+        <button type="button" role="tab" id="gcg-detalhe-tab-balances" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Saldos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-general" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Dados gerais</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-documents" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Documentação</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-occurrences" class="gcg-tabs__tab gcg-tabs__tab--selected" aria-selected="true" tabindex="0" aria-controls="gcg-detalhe-panel-occurrences">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Ocorrências</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-notices" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Avisos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-status-history" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Status/Trâmites</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-amendments" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Aditivos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-apostilles" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Apostilamentos</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" role="tab" id="gcg-detalhe-tab-team" class="gcg-tabs__tab" aria-selected="false" tabindex="-1">
+          <span class="gcg-tabs__content"><span class="gcg-tabs__label">Equipe</span></span>
+          <span class="gcg-tabs__indicator" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <div role="tabpanel" id="gcg-detalhe-panel-occurrences" aria-labelledby="gcg-detalhe-tab-occurrences" tabindex="0" class="gcg-tabs-panel gcg-detalhe__painel gcg-aba-historico gcg-aba-ocorrencias">
+      <section id="gcg-historico-ocorrencias" class="gcg-section-card gcg-section-card--expanded" aria-labelledby="gcg-historico-ocorrencias-title" aria-describedby="gcg-historico-ocorrencias-description">
+        <div class="gcg-section-card__header">
+          <div class="gcg-section-card__heading">
+            <h2 class="gcg-section-card__title"><span id="gcg-historico-ocorrencias-title">Histórico de ocorrências</span></h2>
+            <p class="gcg-section-card__description" id="gcg-historico-ocorrencias-description">Do mais recente para o mais antigo</p>
+          </div>
+        </div>
+        <div class="gcg-section-card__collapse">
+          <div class="gcg-section-card__content" id="gcg-historico-ocorrencias-content">
+            <div class="gcg-filtro-periodo" role="group" aria-label="Filtrar por período (data do registro)">
+              <div class="gcg-filtro-periodo__campo">
+                <div class="gcg-field gcg-field--date">
+                  <label id="gcg-campo-r9-rotulo" class="gcg-field__label" for="gcg-campo-r9">Data inicial</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-campo-r9" class="gcg-field__native" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" autocomplete="off" spellcheck="false" type="text">
+                    <button type="button" class="gcg-field__trigger gcg-datepicker__trigger" aria-label="Abrir calendário" title="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" aria-controls="gcg-campo-r9-popup" tabindex="0">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-filtro-periodo__campo">
+                <div class="gcg-field gcg-field--date">
+                  <label id="gcg-campo-ra-rotulo" class="gcg-field__label" for="gcg-campo-ra">Data final</label>
+                  <div class="gcg-field__control">
+                    <input id="gcg-campo-ra" class="gcg-field__native" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" autocomplete="off" spellcheck="false" type="text">
+                    <button type="button" class="gcg-field__trigger gcg-datepicker__trigger" aria-label="Abrir calendário" title="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" aria-controls="gcg-campo-ra-popup" tabindex="0">
+                      <span class="gcg-icon gcg-icon--sm">
+                        <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="gcg-filtro-periodo__campo gcg-filtro-periodo__campo--ordem">
+                <div class="gcg-field gcg-field--select">
+                  <span id="gcg-campo-rb-rotulo" class="gcg-field__label">Ordenar</span>
+                  <div class="gcg-field__control">
+                    <div id="gcg-campo-rb" role="combobox" tabindex="0" class="gcg-field__native gcg-select__trigger" aria-labelledby="gcg-campo-rb-rotulo" aria-haspopup="listbox" aria-expanded="false" aria-controls="gcg-campo-rb-popup" data-gcg-popup="gcg-molde-1">
+                      <span class="gcg-select__value">Mais recente primeiro</span>
+                    </div>
+                    <span class="gcg-icon gcg-icon--sm gcg-field__icon gcg-select__chevron">
+                      <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-expand_more"></use></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ol aria-labelledby="gcg-historico-ocorrencias-title" aria-describedby="gcg-historico-ocorrencias-description" class="gcg-timeline">
+              <li class="gcg-timeline-item gcg-timeline-item--first">
+                <div class="gcg-timeline-item__rail" aria-hidden="true">
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--top"></span>
+                  <span class="gcg-timeline-item__marker"><span class="gcg-timeline-item__dot"></span></span>
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--bottom"></span>
+                </div>
+                <div class="gcg-timeline-item__body">
+                  <div class="gcg-timeline-item__header">
+                    <p class="gcg-timeline-item__title"><span class="gcg-sr-only">Tipo Ocorrência: </span>Vencimento de Prazos</p>
+                  </div>
+                  <dl class="gcg-timeline-item__meta">
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Data</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                        </span>
+                        <time datetime="2026-09-04T17:22:41">04/09/2026 17:22:41</time>
+                      </dd>
+                    </div>
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Usuário</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-person"></use></svg>
+                        </span>
+                        <span>Marcos Antônio Ribeiro</span>
+                      </dd>
+                    </div>
+                  </dl>
+                  <dl class="gcg-timeline-item__description">
+                    <dt class="gcg-timeline-item__pair-label">Descrição da Ocorrência</dt>
+                    <dd class="gcg-timeline-item__description-text">Relatório mensal de agosto entregue depois do prazo contratual</dd>
+                  </dl>
+                </div>
+              </li>
+              <li class="gcg-timeline-item gcg-timeline-item--middle">
+                <div class="gcg-timeline-item__rail" aria-hidden="true">
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--top"></span>
+                  <span class="gcg-timeline-item__marker"><span class="gcg-timeline-item__dot"></span></span>
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--bottom"></span>
+                </div>
+                <div class="gcg-timeline-item__body">
+                  <div class="gcg-timeline-item__header">
+                    <p class="gcg-timeline-item__title"><span class="gcg-sr-only">Tipo Ocorrência: </span>Solicitações à Contratada não Atendidas</p>
+                  </div>
+                  <dl class="gcg-timeline-item__meta">
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Data</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                        </span>
+                        <time datetime="2026-08-21T10:05:13">21/08/2026 10:05:13</time>
+                      </dd>
+                    </div>
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Usuário</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-person"></use></svg>
+                        </span>
+                        <span>Camila Rodrigues Teles</span>
+                      </dd>
+                    </div>
+                  </dl>
+                  <dl class="gcg-timeline-item__description">
+                    <dt class="gcg-timeline-item__pair-label">Descrição da Ocorrência</dt>
+                    <dd class="gcg-timeline-item__description-text">Troca dos uniformes dos vigilantes pedida em 07/08 e não atendida</dd>
+                  </dl>
+                </div>
+              </li>
+              <li class="gcg-timeline-item gcg-timeline-item--middle">
+                <div class="gcg-timeline-item__rail" aria-hidden="true">
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--top"></span>
+                  <span class="gcg-timeline-item__marker"><span class="gcg-timeline-item__dot"></span></span>
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--bottom"></span>
+                </div>
+                <div class="gcg-timeline-item__body">
+                  <div class="gcg-timeline-item__header">
+                    <p class="gcg-timeline-item__title"><span class="gcg-sr-only">Tipo Ocorrência: </span>Entregas Incompletas</p>
+                  </div>
+                  <dl class="gcg-timeline-item__meta">
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Data</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                        </span>
+                        <time datetime="2026-07-30T14:48:02">30/07/2026 14:48:02</time>
+                      </dd>
+                    </div>
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Usuário</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-person"></use></svg>
+                        </span>
+                        <span>Paulo Henrique Vasconcelos</span>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </li>
+              <li class="gcg-timeline-item gcg-timeline-item--middle">
+                <div class="gcg-timeline-item__rail" aria-hidden="true">
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--top"></span>
+                  <span class="gcg-timeline-item__marker"><span class="gcg-timeline-item__dot"></span></span>
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--bottom"></span>
+                </div>
+                <div class="gcg-timeline-item__body">
+                  <div class="gcg-timeline-item__header">
+                    <p class="gcg-timeline-item__title"><span class="gcg-sr-only">Tipo Ocorrência: </span>Ausência de Terceirizado em Posto de Trabalho</p>
+                  </div>
+                  <dl class="gcg-timeline-item__meta">
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Data</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                        </span>
+                        <time datetime="2026-06-12T07:31:56">12/06/2026 07:31:56</time>
+                      </dd>
+                    </div>
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Usuário</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-person"></use></svg>
+                        </span>
+                        <span>Camila Rodrigues Teles</span>
+                      </dd>
+                    </div>
+                  </dl>
+                  <dl class="gcg-timeline-item__description">
+                    <dt class="gcg-timeline-item__pair-label">Descrição da Ocorrência</dt>
+                    <dd class="gcg-timeline-item__description-text">Posto da portaria principal descoberto das 6h às 7h30</dd>
+                  </dl>
+                </div>
+              </li>
+              <li class="gcg-timeline-item gcg-timeline-item--last">
+                <div class="gcg-timeline-item__rail" aria-hidden="true">
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--top"></span>
+                  <span class="gcg-timeline-item__marker"><span class="gcg-timeline-item__dot"></span></span>
+                  <span class="gcg-timeline-item__line gcg-timeline-item__line--bottom"></span>
+                </div>
+                <div class="gcg-timeline-item__body">
+                  <div class="gcg-timeline-item__header">
+                    <p class="gcg-timeline-item__title"><span class="gcg-sr-only">Tipo Ocorrência: </span>Pedido de Suporte ou Ajuste Realizado Fora do Prazo</p>
+                  </div>
+                  <dl class="gcg-timeline-item__meta">
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Data</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-calendar_month"></use></svg>
+                        </span>
+                        <time datetime="2026-04-22T09:12:30">22/04/2026 09:12:30</time>
+                      </dd>
+                    </div>
+                    <div class="gcg-timeline-item__meta-item">
+                      <dt class="gcg-sr-only">Usuário</dt>
+                      <dd class="gcg-timeline-item__meta-value">
+                        <span class="gcg-icon gcg-icon--sm gcg-timeline-item__meta-icon">
+                          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-person"></use></svg>
+                        </span>
+                        <span>Paulo Henrique Vasconcelos</span>
+                      </dd>
+                    </div>
+                  </dl>
+                  <dl class="gcg-timeline-item__description">
+                    <dt class="gcg-timeline-item__pair-label">Descrição da Ocorrência</dt>
+                    <dd class="gcg-timeline-item__description-text">Ajuste do circuito de câmeras concluído cinco dias depois do prazo</dd>
+                  </dl>
+                </div>
+              </li>
+            </ol>
+            <p class="gcg-sr-only" role="status"></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="gcg-toaster" data-gcg-count="0"></div>
+<div class="gcg-sr-only" role="status" aria-live="polite"></div>
+<div class="gcg-sr-only" role="alert" aria-live="assertive"></div>
+<div id="gcg-emag-status" class="gcg-sr-only" role="status" aria-live="polite"></div>
+<!-- Moldes do gcg-behavior.js: a parte que abre de cada menu, lista, janela e grupo recolhido desta tela
+     (o gatilho aponta com data-gcg-popup). Não aparecem: o script copia para a página ao abrir e tira ao
+     fechar. Na aplicação, o servidor pode imprimir a mesma marcação assim. Ver o LEIA-ME, "Comportamento". -->
+<template id="gcg-molde-0">
+<div data-gcg-part data-gcg-mount="up:1" data-gcg-index="2">
+  <div class="gcg-topbar__menu gcg-action-menu__surface">
+    <div role="menu" id="gcg-menu-perfil-r4" class="gcg-action-menu__list" aria-label="Menu do perfil">
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-home"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Configurar tela inicial</span>
+      </button>
+      <div role="separator" class="gcg-action-menu__divider"></div>
+      <button type="button" role="menuitem" tabindex="-1" class="gcg-action-menu-item gcg-action-menu-item--neutral">
+        <span class="gcg-icon gcg-icon--sm gcg-action-menu-item__icon">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-logout"></use></svg>
+        </span>
+        <span class="gcg-action-menu-item__label">Sair</span>
+      </button>
+    </div>
+  </div>
+</div>
+</template>
+<template id="gcg-molde-1">
+<div data-gcg-part data-gcg-mount="body">
+  <div class="gcg-popover gcg-popover--bottom" style="top: 494px; left: 689px; width: 220px;">
+    <ul id="gcg-campo-rb-popup" role="listbox" aria-labelledby="gcg-campo-rb-rotulo" class="gcg-select-menu">
+      <li id="gcg-campo-rb-popup-op-0" role="option" aria-selected="true" class="gcg-select-option" data-gcg-selected="true">
+        <span class="gcg-select-option__label">Mais recente primeiro</span>
+        <span class="gcg-icon gcg-icon--sm gcg-select-option__check">
+          <svg aria-hidden="true" focusable="false" fill="currentColor"><use href="#gcg-icon-check"></use></svg>
+        </span>
+      </li>
+      <li id="gcg-campo-rb-popup-op-1" role="option" aria-selected="false" class="gcg-select-option">
+        <span class="gcg-select-option__label">Mais antigo primeiro</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
+<script src="../../biblioteca/js/gcg-icons.js"></script>
+<script src="../../biblioteca/js/gcg-motion.js"></script>
+<script src="../../biblioteca/js/gcg-behavior.js"></script>
+</body>
+</html>

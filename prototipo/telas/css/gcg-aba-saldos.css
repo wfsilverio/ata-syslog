@@ -1,0 +1,34 @@
+/* gcg-aba-saldos.css — composição de tela (HU-002 · Consultar saldos; HU-012 · Painel do Gestor e do Fiscal; HU-013 · Painel do Fornecedor), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Aba Saldos — HU-002 · Consultar Saldos (Figma, página 09, seção HU-002 · Consultar saldos, nó
+   43:47696: o frame "painel · Saldos", com o ConsumptionMeter e o frame "saldos"). Só tokens.
+   A moldura do painel (8 em cima, 16 entre os blocos) está em Detalhe.css (.detalhe__painel). */
+
+/* O painel da aba é o contêiner dos cartões: quantos cabem por linha depende da largura dele e do
+   tamanho do texto (a barra eMAG aumenta a fonte, e a largura da janela não muda). */
+.gcg-aba-saldos {
+  container-type: inline-size;
+}
+
+/* Os cinco ValueTile (Figma: frame "saldos", 216 × 96 cada em 1440, gap space/4).
+   Um cartão precisa de 10.875rem de conteúdo (174 px com a fonte padrão: a área útil do cartão do
+   Figma, onde cabe o maior valor da massa, "R$ 8.742.300,00", com algarismos tabulares) + 42 px
+   (padding space/5 e borda border-width/thin dos dois lados). As larguras abaixo são essa conta
+   para 5, 3 e 2 cartões por linha, com o gap de 16 entre eles; em rem, acompanham o aumento de fonte.
+   Com a fonte padrão, 5 por linha a partir de 1144 px — a área de conteúdo de 1440, como no Figma.
+   Em painel mais estreito (janela menor, zoom ou fonte aumentada), 3 + 2, depois 2 + 2 + 1, depois
+   um por linha: o valor nunca quebra no meio do número nem vaza do cartão. */
+.gcg-aba-saldos__saldos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gcg-space-4);
+}
+@container (min-width: calc(21.75rem + 100px)) {
+  .gcg-aba-saldos__saldos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: calc(32.625rem + 158px)) {
+  .gcg-aba-saldos__saldos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@container (min-width: calc(54.375rem + 274px)) {
+  .gcg-aba-saldos__saldos { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}

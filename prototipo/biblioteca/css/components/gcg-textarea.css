@@ -1,0 +1,56 @@
+/* gcg-textarea.css — Textarea · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Textarea — Figma 116:112341 (página 05 › Formulário › Texto › Linha · Textarea).
+   O corpo (rótulo, borda, estados, anel de foco, ajuda, erro, alto contraste) é o do Input, em Field.css.
+   Aqui só o que muda: o controle tem várias linhas (padding space/2 × space/3, texto no topo, altura 120
+   no padrão), o rodapé tem o contador à direita (Text/XS/Regular, text/muted) e a altura pode vir da
+   instância (height) ou de rows. */
+
+.gcg-field--textarea {
+  /* Figma: componente de 360 × 164, controle de 120 que preenche a altura que sobra */
+  --gcg-textarea-control-h: 120px;
+}
+
+.gcg-field--textarea .gcg-field__control {
+  align-items: stretch;
+  height: var(--gcg-textarea-control-h);
+  padding: 0;
+  cursor: text;
+  /* a barra de rolagem do texto longo fica dentro dos cantos arredondados (o anel é box-shadow: não corta) */
+  overflow: hidden;
+}
+
+/* o <textarea> ocupa o controle inteiro: o clique em qualquer ponto cai nele */
+.gcg-field__native--textarea {
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+  padding: var(--gcg-space-2) var(--gcg-space-3);
+  resize: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  white-space: pre-wrap;
+  text-overflow: clip;
+}
+
+/* rows: a altura do controle vem das linhas do elemento nativo */
+.gcg-field--textarea.gcg-field--rows .gcg-field__control { height: auto; }
+.gcg-field--textarea.gcg-field--rows .gcg-field__native--textarea { height: auto; }
+
+/* height (altura da instância): rótulo e rodapé ficam, o controle preenche o que sobra */
+.gcg-field--textarea.gcg-field--fixed-height .gcg-field__control {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: var(--gcg-size-control-md);
+}
+
+/* contador "usados/limite", à direita do rodapé */
+.gcg-field__counter {
+  flex: none;
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-xs-regular);
+  letter-spacing: var(--gcg-tracking-text-xs-regular);
+  text-align: right;
+  white-space: nowrap;
+}
+.gcg-field[data-gcg-disabled] .gcg-field__counter { color: var(--gcg-text-disabled); }

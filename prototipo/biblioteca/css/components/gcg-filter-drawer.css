@@ -1,0 +1,176 @@
+/* gcg-filter-drawer.css — FilterDrawer · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* FilterDrawer — Figma 35:4531 (página 05 › Estrutura e navegação › Linha · FilterDrawer).
+   Tudo por token. */
+
+.gcg-filter-drawer {
+  --gcg-filter-drawer-w: 480px;       /* Figma: FilterDrawer 480 × 900 — não escala em telas largas */
+  --gcg-filter-drawer-veil-min: 64px;
+}
+
+/* ---------- overlay: fixa na janela, véu atrás ---------- */
+.gcg-filter-drawer--overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--gcg-z-drawer);
+}
+/* O véu é o Scrim (grupo D): fade de entrada em --motion-slow e de saída em --motion-base,
+   pelo próprio componente (open). Aqui ele só fica abaixo do painel. */
+.gcg-filter-drawer--overlay .gcg-filter-drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--gcg-z-drawer); /* acima do véu, qualquer que seja o z-index do Scrim */
+  width: min(var(--gcg-filter-drawer-w), calc(100vw - var(--gcg-filter-drawer-veil-min)));
+
+  animation: gcg-filter-drawer-slide-in var(--gcg-motion-slow) var(--gcg-ease-standard) backwards;
+}
+
+.gcg-filter-drawer[data-gcg-state='closing'] .gcg-filter-drawer__panel {
+  animation: gcg-filter-drawer-slide-out var(--gcg-motion-base) var(--gcg-ease-exit) both;
+}
+
+@keyframes gcg-filter-drawer-slide-in { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes gcg-filter-drawer-slide-out { from { transform: translateX(0); } to { transform: translateX(100%); } }
+
+.gcg-filter-drawer--inline {
+  position: relative;
+  height: 100%;
+}
+.gcg-filter-drawer--inline .gcg-filter-drawer__panel {
+  position: relative;
+  width: var(--gcg-filter-drawer-w);
+  max-width: 100%;
+  height: 100%;
+}
+
+/* ---------- painel: fundo surface/base, Elevation/2, radius/xl só à esquerda ---------- */
+.gcg-filter-drawer__panel {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: var(--gcg-radius-xl) 0 0 var(--gcg-radius-xl);
+  outline: none;
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-2);
+  color: var(--gcg-text-default);
+}
+
+/* O <form> dentro do painel: mesma coluna (cabeçalho, aviso, corpo que rola, rodapé), na altura toda */
+.gcg-filter-drawer__form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0;
+}
+
+/* Cabeçalho fixo: padding space/6 · space/6 · space/4, gap space/4, borda inferior border/subtle */
+.gcg-filter-drawer__header {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  padding: var(--gcg-space-6) var(--gcg-space-6) var(--gcg-space-4);
+  border-bottom: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+}
+.gcg-filter-drawer__title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gcg-space-4);
+}
+.gcg-filter-drawer__titles {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gcg-space-half);
+  min-width: 0;
+}
+.gcg-filter-drawer__title {
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-md);
+  letter-spacing: var(--gcg-tracking-heading-md);
+}
+.gcg-filter-drawer__subtitle {
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-text-sm-regular);
+  letter-spacing: var(--gcg-tracking-text-sm-regular);
+}
+
+/* Linha Filtros salvos: o Select ocupa a sobra e o Salvar filtro fica à direita, alinhados pela base */
+.gcg-filter-drawer__saved {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gcg-space-2);
+}
+.gcg-filter-drawer__saved > :first-child { flex: 1; min-width: 0; }
+.gcg-filter-drawer__saved > :not(:first-child) { flex: none; }
+
+/* Aviso de validação: space/5 em cima, space/6 dos lados */
+.gcg-filter-drawer__alert {
+  flex: none;
+  padding: var(--gcg-space-5) var(--gcg-space-6) 0;
+}
+
+/* Corpo: o único que rola. padding space/5 · space/6, gap space/5 entre grupos */
+.gcg-filter-drawer__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gcg-space-5);
+  min-height: 0;
+  padding: var(--gcg-space-5) var(--gcg-space-6);
+  /* Barra de rolagem clássica (Windows, 15 px): fica dentro da margem direita de space/6, e os
+     campos continuam com 432 e terminam alinhados ao cabeçalho, ao Alert e ao rodapé, como no
+     Figma. --filter-drawer-scrollbar é a largura medida da barra (0 com barra que se sobrepõe). */
+  padding-right: max(0px, calc(var(--gcg-space-6) - var(--gcg-filter-drawer-scrollbar, 0px)));
+  scrollbar-gutter: stable;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Grupo: rótulo Label text/muted e as linhas de campos, gap space/3 */
+.gcg-filter-drawer__group {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--gcg-space-3);
+}
+.gcg-filter-drawer__group-label {
+  color: var(--gcg-text-muted);
+  font: var(--gcg-font-label);
+  letter-spacing: var(--gcg-tracking-label);
+  text-transform: uppercase;
+}
+.gcg-filter-drawer__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gcg-space-4);
+}
+.gcg-filter-drawer__row > * { flex: 1 1 0; min-width: 0; }
+
+/* Rodapé fixo: borda superior border/subtle, padding space/4 · space/6 · space/5 */
+.gcg-filter-drawer__footer {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gcg-space-4);
+  padding: var(--gcg-space-4) var(--gcg-space-6) var(--gcg-space-5);
+  border-top: var(--gcg-border-width-thin) solid var(--gcg-border-subtle);
+}
+.gcg-filter-drawer__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-2);
+  margin-left: auto;
+}
+
+/* ---------- alto contraste (barra eMAG) ---------- */
+html[data-gcg-contrast='high'] .gcg-filter-drawer__panel {
+  border-left: var(--gcg-border-width-thick) solid var(--gcg-border-default);
+}

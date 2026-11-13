@@ -1,0 +1,143 @@
+/* gcg-bootstrap3.css — convivência com o Bootstrap 3 (3.3.1) que o layout do SISLOG carrega.
+
+   O prefixo gcg- evita choque de CLASSE. Mas o Bootstrap também estiliza TAGS soltas (label,
+   ul, h1, th, a:hover…), e isso pega os nossos componentes. Este arquivo devolve essas tags ao
+   padrão do navegador, só dentro dos componentes gcg- — fora deles, o Bootstrap segue valendo.
+
+   Ordem de carga: Bootstrap → gcg-bootstrap3.css → gcg-fonts.css, gcg-tokens.css… → gcg-base.css
+   → componentes. Os seletores têm a especificidade de tag (:where não conta), então:
+     - ganham do Bootstrap porque vêm depois dele;
+     - perdem para o gcg-base.css (vem depois) e para as classes dos componentes (mais fortes).
+   Sem o Bootstrap, este arquivo não muda nada: pode ficar de fora.
+   Mantido à mão (não é gerado). Conferido com o Bootstrap 3.3.1 em 02/10/2026. */
+
+/* Rótulo: o Bootstrap põe inline-block, margem de 5px embaixo e negrito */
+:where([class*="gcg-"]) label,
+label:where([class*="gcg-"]) {
+  display: revert;
+  max-width: revert;
+  margin-bottom: revert;
+  font-weight: revert;
+}
+
+/* Listas: margem de 10px embaixo */
+:where([class*="gcg-"]) :is(ul, ol),
+:is(ul, ol):where([class*="gcg-"]) {
+  margin-top: revert;
+  margin-bottom: revert;
+}
+
+/* Títulos: fonte, peso 500, entrelinha 1.1, margens e tamanhos fixos em px */
+:where([class*="gcg-"]) :is(h1, h2, h3, h4, h5, h6),
+:is(h1, h2, h3, h4, h5, h6):where([class*="gcg-"]) {
+  font-family: revert;
+  font-size: revert;
+  font-weight: revert;
+  line-height: revert;
+  color: revert;
+  margin-top: revert;
+  margin-bottom: revert;
+}
+
+/* Parágrafo, texto miúdo, definição e citação */
+:where([class*="gcg-"]) :is(p, small, dl, dt, dd, blockquote, address),
+:is(p, small, dl, dt, dd, blockquote, address):where([class*="gcg-"]) {
+  margin: revert;
+  padding: revert;
+  font-size: revert;
+  font-weight: revert;
+  line-height: revert;
+  border: revert;
+}
+
+/* Tabela: cabeçalho alinhado à esquerda e legenda com espaçamento */
+:where([class*="gcg-"]) :is(th, caption),
+:is(th, caption):where([class*="gcg-"]) {
+  text-align: revert;
+  padding-top: revert;
+  padding-bottom: revert;
+  color: revert;
+}
+
+/* Grupo de campos e legenda: margem, borda e fonte de 21px */
+:where([class*="gcg-"]) :is(fieldset, legend),
+:is(fieldset, legend):where([class*="gcg-"]) {
+  display: revert;
+  width: revert;
+  min-width: revert;
+  margin: revert;
+  padding: revert;
+  border: revert;
+  font-size: revert;
+  line-height: revert;
+  color: revert;
+}
+
+/* Campos: caixa de seleção com margem de 4px; busca com aparência e caixa trocadas; data com
+   entrelinha de 34px */
+:where([class*="gcg-"]) input:is([type="checkbox"], [type="radio"]),
+input:is([type="checkbox"], [type="radio"]):where([class*="gcg-"]) {
+  margin: revert;
+  line-height: revert;
+}
+:where([class*="gcg-"]) input[type="search"],
+input[type="search"]:where([class*="gcg-"]) {
+  box-sizing: border-box;
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+/* Elemento com o atributo hidden fica escondido. O Bootstrap põe input[type="file"] como
+   display: block, com especificidade (0,1,1), que venceria o display: none do componente (o campo
+   nativo de arquivo fica escondido atrás do botão "Anexar arquivo"). */
+:where([class*="gcg-"]) [hidden],
+[hidden]:where([class*="gcg-"]) {
+  display: none !important;
+}
+:where([class*="gcg-"]) input:is([type="date"], [type="time"], [type="datetime-local"], [type="month"]),
+input:is([type="date"], [type="time"], [type="datetime-local"], [type="month"]):where([class*="gcg-"]) {
+  line-height: revert;
+}
+
+/* Imagem e linha divisória */
+:where([class*="gcg-"]) img,
+img:where([class*="gcg-"]) {
+  vertical-align: revert;
+}
+:where([class*="gcg-"]) hr,
+hr:where([class*="gcg-"]) {
+  margin: revert;
+  border: revert;
+}
+
+/* ---------- Links e foco ----------
+   O Bootstrap tem a:hover, a:focus { color: #23527c; text-decoration: underline } e
+   a:focus { outline: 5px auto }, com especificidade (0,1,1): maior que a de uma classe, então
+   vence o estado parado dos componentes. As regras abaixo têm a mesma especificidade (0,1,1) e
+   vencem por vir depois; os estados que o componente define (.gcg-x:hover, .gcg-x:focus-visible,
+   que são 0,2,0) continuam valendo.
+   Nos componentes gcg-, o sublinhado de link é desenhado pelo próprio componente (o traço que
+   cresce no hover), e o foco é o anel do sistema (DD-004): o sublinhado e o contorno do Bootstrap
+   saem. A cor do foco volta à do componente — uma linha por componente com link. */
+a:where([class*="gcg-"]):is(:hover, :focus) {
+  text-decoration: none;
+}
+a:where([class*="gcg-"]):focus {
+  outline: none;
+  outline-offset: 0;
+}
+a:where(.gcg-app-shell__skip):is(:hover, :focus) {
+  color: var(--gcg-text-link);
+  text-decoration: underline;
+}
+a:where(.gcg-page-header__crumb-link):focus { color: var(--gcg-text-secondary); }
+a:where(.gcg-sidebar-item):focus { color: var(--gcg-text-default); }
+a:where(.gcg-sidebar-item--active):focus { color: var(--gcg-text-strong); }
+a:where(.gcg-link):focus { color: var(--gcg-text-link); }
+
+/* Caixa de seleção, opção e arquivo: o Bootstrap põe contorno no foco com (0,2,1). O campo
+   nativo fica escondido sob o desenho do componente; o anel é do componente. */
+input:where([class*="gcg-"]):is([type="checkbox"], [type="radio"], [type="file"]):focus,
+:where([class*="gcg-"]) input:is([type="checkbox"], [type="radio"], [type="file"]):focus {
+  outline: revert;
+  outline-offset: revert;
+}

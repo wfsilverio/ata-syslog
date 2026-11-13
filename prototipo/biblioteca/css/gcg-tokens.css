@@ -1,0 +1,208 @@
+/* gcg-tokens.css — os tokens do Figma (página 04 · Fundações), com o mesmo nome: color/green/600 é --gcg-color-green-600. Inclui as classes de text style. Gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* GERADO por scripts/gerar-tokens.mjs a partir do Figma — não editar à mão. */
+:root {
+  /* Primitive */
+  --gcg-color-green-50: #ECFFF4;
+  --gcg-color-green-100: #D6FAE5;
+  --gcg-color-green-200: #AFEECC;
+  --gcg-color-green-300: #7DDAAB;
+  --gcg-color-green-400: #47C18A;
+  --gcg-color-green-500: #00A76F;
+  --gcg-color-green-600: #0D8659;
+  --gcg-color-green-700: #106B47;
+  --gcg-color-green-800: #015235;
+  --gcg-color-green-900: #023722;
+  --gcg-color-cyan-50: #F0FAFD;
+  --gcg-color-cyan-100: #DCF3FA;
+  --gcg-color-cyan-200: #C4EFFE;
+  --gcg-color-cyan-300: #8CDAF4;
+  --gcg-color-cyan-400: #5DBFDD;
+  --gcg-color-cyan-500: #49B6D6;
+  --gcg-color-cyan-600: #1487A3;
+  --gcg-color-cyan-700: #056E86;
+  --gcg-color-cyan-800: #085568;
+  --gcg-color-cyan-900: #013B4A;
+  --gcg-color-orange-50: #FFF8EF;
+  --gcg-color-orange-100: #FDEED8;
+  --gcg-color-orange-200: #FFE7CE;
+  --gcg-color-orange-300: #FDC58A;
+  --gcg-color-orange-400: #F3A032;
+  --gcg-color-orange-500: #F59C1A;
+  --gcg-color-orange-600: #AE6D0A;
+  --gcg-color-orange-700: #8F5800;
+  --gcg-color-orange-800: #704505;
+  --gcg-color-orange-900: #513001;
+  --gcg-color-red-50: #FFF8F8;
+  --gcg-color-red-100: #FFF1F0;
+  --gcg-color-red-200: #FFD8D4;
+  --gcg-color-red-300: #FEB2AB;
+  --gcg-color-red-400: #FB847C;
+  --gcg-color-red-500: #FF5B57;
+  --gcg-color-red-600: #D22D31;
+  --gcg-color-red-700: #B1111F;
+  --gcg-color-red-800: #890E17;
+  --gcg-color-red-900: #62030B;
+  --gcg-color-yellow-50: #FEFBE4;
+  --gcg-color-yellow-100: #FCF5C7;
+  --gcg-color-yellow-200: #FAEB9C;
+  --gcg-color-yellow-300: #F7DF69;
+  --gcg-color-yellow-400: #F3D337;
+  --gcg-color-yellow-500: #EECA0E;
+  --gcg-color-yellow-600: #B88F05;
+  --gcg-color-yellow-700: #977004;
+  --gcg-color-yellow-800: #775301;
+  --gcg-color-yellow-900: #573901;
+  --gcg-color-violet-50: #F9F7FE;
+  --gcg-color-violet-100: #F1EEFE;
+  --gcg-color-violet-200: #E1DAFE;
+  --gcg-color-violet-300: #CBBCFE;
+  --gcg-color-violet-400: #AB8EFE;
+  --gcg-color-violet-500: #895EED;
+  --gcg-color-violet-600: #7046CF;
+  --gcg-color-violet-700: #5C37AD;
+  --gcg-color-violet-800: #462B89;
+  --gcg-color-violet-900: #301C63;
+  --gcg-color-neutral-0: #FFFFFF;
+  --gcg-color-neutral-25: #F9F9F9;
+  --gcg-color-neutral-50: #F4F6F8;
+  --gcg-color-neutral-100: #F0F2F5;
+  --gcg-color-neutral-200: #E2E7EB;
+  --gcg-color-neutral-300: #CCD0D4;
+  --gcg-color-neutral-400: #9DA1A4;
+  --gcg-color-neutral-500: #707478;
+  --gcg-color-neutral-600: #616567;
+  --gcg-color-neutral-700: #555555;
+  --gcg-color-neutral-800: #3A3F43;
+  --gcg-color-neutral-900: #242A30;
+  --gcg-space-half: 2px;
+  --gcg-space-1: 4px;
+  --gcg-space-2: 8px;
+  --gcg-space-3: 12px;
+  --gcg-space-4: 16px;
+  --gcg-space-5: 20px;
+  --gcg-space-6: 24px;
+  --gcg-space-8: 32px;
+  --gcg-space-10: 40px;
+  --gcg-space-12: 48px;
+  --gcg-radius-sm: 4px;
+  --gcg-radius-md: 8px;
+  --gcg-radius-lg: 12px;
+  --gcg-radius-xl: 16px;
+  --gcg-radius-full: 999px;
+  --gcg-size-control-sm: 32px;
+  --gcg-size-control-md: 36px;
+  --gcg-size-control-lg: 40px;
+  --gcg-size-icon-sm: 16px;
+  --gcg-size-icon-md: 20px;
+  --gcg-size-topbar: 56px;
+  --gcg-size-row-md: 64px;
+  --gcg-size-badge: 20px;
+  --gcg-size-skeleton-bar: 12px;
+  --gcg-size-medallion: 48px;
+  --gcg-size-meter: 8px;
+  --gcg-border-width-thin: 1px;
+  --gcg-border-width-thick: 2px;
+  /* Semantic */
+  --gcg-action-primary: var(--gcg-color-green-600);
+  --gcg-action-primary-hover: var(--gcg-color-green-700);
+  --gcg-action-primary-subtle: var(--gcg-color-green-50);
+  --gcg-action-secondary: var(--gcg-color-cyan-700);
+  --gcg-action-secondary-hover: var(--gcg-color-cyan-800);
+  --gcg-action-secondary-subtle: var(--gcg-color-cyan-100);
+  --gcg-action-destructive: var(--gcg-color-red-600);
+  --gcg-action-destructive-hover: var(--gcg-color-red-700);
+  --gcg-action-destructive-subtle: var(--gcg-color-red-100);
+  --gcg-action-neutral: var(--gcg-color-neutral-700);
+  --gcg-action-neutral-hover: var(--gcg-color-neutral-800);
+  --gcg-action-neutral-subtle: var(--gcg-color-neutral-100);
+  --gcg-brand-green: var(--gcg-color-green-500);
+  --gcg-text-strong: var(--gcg-color-neutral-900);
+  --gcg-text-default: var(--gcg-color-neutral-700);
+  --gcg-text-secondary: var(--gcg-color-neutral-600);
+  --gcg-text-muted: var(--gcg-color-neutral-500);
+  --gcg-text-disabled: var(--gcg-color-neutral-400);
+  --gcg-text-inverse: var(--gcg-color-neutral-0);
+  --gcg-text-on-action: var(--gcg-color-neutral-0);
+  --gcg-text-link: var(--gcg-color-green-600);
+  --gcg-surface-base: var(--gcg-color-neutral-0);
+  --gcg-surface-app: var(--gcg-color-neutral-100);
+  --gcg-surface-subtle: var(--gcg-color-neutral-50);
+  --gcg-surface-zebra: var(--gcg-color-neutral-25);
+  --gcg-surface-hover: var(--gcg-color-neutral-200);
+  --gcg-surface-skeleton: var(--gcg-color-neutral-200);
+  --gcg-surface-brand: var(--gcg-color-green-700);
+  --gcg-surface-brand-hover: var(--gcg-color-green-600);
+  --gcg-overlay-scrim: rgba(36, 42, 48, 0.5);
+  --gcg-border-default: var(--gcg-color-neutral-300);
+  --gcg-border-subtle: var(--gcg-color-neutral-200);
+  --gcg-border-strong: var(--gcg-color-neutral-500);
+  --gcg-border-focus: var(--gcg-color-green-600);
+  --gcg-border-error: var(--gcg-color-red-600);
+  --gcg-state-success: var(--gcg-color-green-600);
+  --gcg-state-success-bg: var(--gcg-color-green-100);
+  --gcg-state-success-text: var(--gcg-color-green-700);
+  --gcg-state-warning: var(--gcg-color-orange-500);
+  --gcg-state-warning-bg: var(--gcg-color-orange-100);
+  --gcg-state-warning-text: var(--gcg-color-orange-700);
+  --gcg-state-warning-border: var(--gcg-color-orange-600);
+  --gcg-state-error: var(--gcg-color-red-600);
+  --gcg-state-error-bg: var(--gcg-color-red-100);
+  --gcg-state-error-text: var(--gcg-color-red-700);
+  --gcg-state-info: var(--gcg-color-cyan-700);
+  --gcg-state-info-bg: var(--gcg-color-cyan-100);
+  --gcg-state-info-text: var(--gcg-color-cyan-800);
+  --gcg-state-neutral: var(--gcg-color-neutral-500);
+  --gcg-state-neutral-bg: var(--gcg-color-neutral-50);
+  --gcg-state-neutral-text: var(--gcg-color-neutral-700);
+  /* Tipografia — Public Sans */
+  --gcg-font-family: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --gcg-font-label: 600 0.6875rem/1rem var(--gcg-font-family);
+  --gcg-tracking-label: 0.060em;
+  --gcg-font-display: 700 2rem/2.5rem var(--gcg-font-family);
+  --gcg-tracking-display: -0.020em;
+  --gcg-font-heading-lg: 700 1.5rem/2rem var(--gcg-font-family);
+  --gcg-tracking-heading-lg: -0.015em;
+  --gcg-font-heading-md: 600 1.25rem/1.75rem var(--gcg-font-family);
+  --gcg-tracking-heading-md: -0.010em;
+  --gcg-font-heading-sm: 600 1.125rem/1.5rem var(--gcg-font-family);
+  --gcg-tracking-heading-sm: -0.005em;
+  --gcg-font-text-lg-regular: 400 1rem/1.5rem var(--gcg-font-family);
+  --gcg-tracking-text-lg-regular: 0;
+  --gcg-font-text-lg-semibold: 600 1rem/1.5rem var(--gcg-font-family);
+  --gcg-tracking-text-lg-semibold: 0;
+  --gcg-font-text-md-regular: 400 0.875rem/1.25rem var(--gcg-font-family);
+  --gcg-tracking-text-md-regular: 0;
+  --gcg-font-text-md-medium: 500 0.875rem/1.25rem var(--gcg-font-family);
+  --gcg-tracking-text-md-medium: 0;
+  --gcg-font-text-md-semibold: 600 0.875rem/1.25rem var(--gcg-font-family);
+  --gcg-tracking-text-md-semibold: 0;
+  --gcg-font-text-sm-regular: 400 0.8125rem/1.125rem var(--gcg-font-family);
+  --gcg-tracking-text-sm-regular: 0;
+  --gcg-font-text-sm-semibold: 600 0.8125rem/1.125rem var(--gcg-font-family);
+  --gcg-tracking-text-sm-semibold: 0;
+  --gcg-font-text-xs-regular: 400 0.75rem/1rem var(--gcg-font-family);
+  --gcg-tracking-text-xs-regular: 0;
+  --gcg-font-text-xs-medium: 500 0.75rem/1rem var(--gcg-font-family);
+  --gcg-tracking-text-xs-medium: 0;
+  /* Elevação */
+  --gcg-elevation-0: none;
+  --gcg-elevation-1: 0px 4px 12px 0px rgba(0, 0, 0, 0.12);
+  --gcg-elevation-2: 0px 12px 32px 0px rgba(0, 0, 0, 0.18);
+}
+
+/* Classes de text style — o mesmo nome do Figma: Text/MD/Regular → .text-md-regular */
+.gcg-label { font: var(--gcg-font-label); letter-spacing: var(--gcg-tracking-label); text-transform: uppercase; }
+.gcg-display { font: var(--gcg-font-display); letter-spacing: var(--gcg-tracking-display); }
+.gcg-heading-lg { font: var(--gcg-font-heading-lg); letter-spacing: var(--gcg-tracking-heading-lg); }
+.gcg-heading-md { font: var(--gcg-font-heading-md); letter-spacing: var(--gcg-tracking-heading-md); }
+.gcg-heading-sm { font: var(--gcg-font-heading-sm); letter-spacing: var(--gcg-tracking-heading-sm); }
+.gcg-text-lg-regular { font: var(--gcg-font-text-lg-regular); letter-spacing: var(--gcg-tracking-text-lg-regular); }
+.gcg-text-lg-semibold { font: var(--gcg-font-text-lg-semibold); letter-spacing: var(--gcg-tracking-text-lg-semibold); }
+.gcg-text-md-regular { font: var(--gcg-font-text-md-regular); letter-spacing: var(--gcg-tracking-text-md-regular); }
+.gcg-text-md-medium { font: var(--gcg-font-text-md-medium); letter-spacing: var(--gcg-tracking-text-md-medium); }
+.gcg-text-md-semibold { font: var(--gcg-font-text-md-semibold); letter-spacing: var(--gcg-tracking-text-md-semibold); }
+.gcg-text-sm-regular { font: var(--gcg-font-text-sm-regular); letter-spacing: var(--gcg-tracking-text-sm-regular); }
+.gcg-text-sm-semibold { font: var(--gcg-font-text-sm-semibold); letter-spacing: var(--gcg-tracking-text-sm-semibold); }
+.gcg-text-xs-regular { font: var(--gcg-font-text-xs-regular); letter-spacing: var(--gcg-tracking-text-xs-regular); }
+.gcg-text-xs-medium { font: var(--gcg-font-text-xs-medium); letter-spacing: var(--gcg-tracking-text-xs-medium); }

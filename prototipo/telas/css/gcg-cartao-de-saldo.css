@@ -1,0 +1,86 @@
+/* gcg-cartao-de-saldo.css — composição de tela (HU-015 · Painel do Analista Financeiro), não é componente da biblioteca. Gerado do protótipo em 27/10/2026. */
+
+/* Cartão de saldo (HU-015, Cenários 03 e 04): cartão cinza com a amostra da parte da régua a que se refere.
+   Com valor, o cartão inteiro é o caminho para Gerir contratos (<button>), com a seta ao lado do nome.
+   Composição local (snowflake): só esta tela usa (cinco vezes); vira componente da biblioteca no terceiro painel. */
+
+.gcg-saldo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-1);
+  min-width: 0;
+  padding: var(--gcg-space-4) var(--gcg-space-3);
+  border: 0;
+  border-radius: var(--gcg-radius-lg);
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  background: var(--gcg-surface-subtle);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  transition: opacity var(--gcg-motion-fast) var(--gcg-ease-standard), box-shadow var(--gcg-motion-base) var(--gcg-ease-standard), transform var(--gcg-motion-base) var(--gcg-ease-standard), outline-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+button.gcg-saldo { cursor: pointer; }
+button.gcg-saldo:hover { background: var(--gcg-surface-hover); }
+button.gcg-saldo:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); outline-offset: 2px; }
+
+.gcg-saldo__amostra { display: block; width: 22px; height: 8px; margin-bottom: var(--gcg-space-2); border-radius: var(--gcg-radius-full); }
+.gcg-saldo--empenhado .gcg-saldo__amostra { background: linear-gradient(to right, var(--gcg-action-primary) 0 55%, var(--gcg-color-green-300) 55%); }
+.gcg-saldo--anulacao .gcg-saldo__amostra { border: 1px dashed var(--gcg-color-neutral-500); background: none; }
+.gcg-saldo--liquidado .gcg-saldo__amostra { background: var(--gcg-action-primary); }
+.gcg-saldo--a-liquidar .gcg-saldo__amostra { background: var(--gcg-color-green-300); }
+.gcg-saldo--disponivel .gcg-saldo__amostra { background: linear-gradient(to right, var(--gcg-color-green-300) 0 35%, var(--gcg-color-neutral-200) 35%); border: 1px solid var(--gcg-border-subtle); }
+
+/* o nome em até duas linhas, com a seta ao lado: os valores dos cinco cartões alinham */
+.gcg-saldo__rotulo { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--gcg-space-1); min-height: 2.25rem; color: var(--gcg-text-default); font: var(--gcg-font-text-sm-semibold); }
+.gcg-saldo__seta { flex: none; color: var(--gcg-text-secondary); }
+.gcg-saldo__valor { margin-top: var(--gcg-space-2); color: var(--gcg-text-strong); font: var(--gcg-font-heading-md); letter-spacing: var(--gcg-tracking-heading-md); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gcg-saldo__nota { color: var(--gcg-text-secondary); font: var(--gcg-font-text-xs-regular); white-space: pre-line; }
+.gcg-saldo.gcg-is-zero .gcg-saldo__valor { color: var(--gcg-text-muted); }
+
+/* O cartão é um contêiner; o botão do cartão (saldo__alvo) cobre o cartão inteiro e o botão de ajuda fica por cima
+   dele, logo depois do rótulo: um botão não fica dentro do outro. A seta continua na ponta, com o espaço no meio.
+   As regras sobem de especificidade (.saldo--com-ajuda …): não dependem da ordem em que o CSS do Tooltip carrega. */
+.gcg-saldo.gcg-saldo--com-ajuda { position: relative; }
+/* o cartão acende no hover, menos com o mouse no ícone de ajuda: o ícone não aciona o cartão (Figma, L11 · 1, o cartão
+   parado com a dica aberta) */
+.gcg-saldo.gcg-saldo--com-ajuda:has(> .gcg-saldo__alvo-dica):hover:not(:has(.gcg-saldo__ajuda:hover)) { background: var(--gcg-surface-hover); }
+.gcg-saldo--com-ajuda .gcg-saldo__alvo-dica { position: absolute; inset: 0; display: block; }
+.gcg-saldo--com-ajuda .gcg-saldo__alvo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--gcg-radius-lg);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  background: transparent;
+  cursor: pointer;
+  transition: outline-color var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-saldo--com-ajuda .gcg-saldo__alvo:focus-visible { outline: var(--gcg-border-width-thick) solid var(--gcg-border-focus); }
+.gcg-saldo--com-ajuda .gcg-saldo__rotulo { justify-content: flex-start; }
+.gcg-saldo--com-ajuda .gcg-saldo__espaco { flex: 1 1 auto; }
+/* o ícone help (16, text/secondary) num alvo de 24: a margem negativa deixa o ícone onde o Figma o põe (4 depois do rótulo) */
+.gcg-saldo--com-ajuda .gcg-saldo__ajuda-dica { position: relative; z-index: 1; flex: none; }
+.gcg-saldo--com-ajuda .gcg-saldo__ajuda {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: -3px -4px -5px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--gcg-radius-full);
+  background: transparent;
+  color: var(--gcg-text-secondary);
+  cursor: pointer;
+  transition: color var(--gcg-motion-fast) var(--gcg-ease-standard), box-shadow var(--gcg-motion-fast) var(--gcg-ease-standard);
+}
+.gcg-saldo--com-ajuda .gcg-saldo__ajuda:hover { color: var(--gcg-text-default); }
+.gcg-saldo--com-ajuda .gcg-saldo__ajuda:focus-visible { outline: none; box-shadow: 0 0 0 var(--gcg-space-half) var(--gcg-surface-base), 0 0 0 var(--gcg-space-1) var(--gcg-border-focus); }
+/* o valor e a nota, juntos (escondidos do leitor de tela, que ouve o nome do botão do cartão), na mesma coluna */
+.gcg-saldo--com-ajuda .gcg-saldo__corpo { display: flex; flex-direction: column; gap: var(--gcg-space-1); min-width: 0; }

@@ -1,0 +1,110 @@
+/* gcg-modal.css — Modal · gerado do protótipo em 27/10/2026. Não editar à mão: regerar. */
+
+/* Modal — Figma 35:5846 (página 05 › Feedback › Linha · Modal).
+   440 de largura (188 de altura com o corpo em 2 linhas) · padding space/6 · gap space/4 ·
+   surface/base · radius/lg · Elevation/2.
+   Cabeçalho: título Heading/SM text/strong (ocupa a largura) + IconButton ghost neutral sm, centralizados, gap space/4.
+   Corpo: Text/MD/Regular text/default. Campo (show-field): Input na largura toda.
+   Rodapé à direita, gap space/3: Button outline neutral (cancel) + Button solid primary|destructive (confirm). */
+
+/* ---------- camada: véu + janela centralizada ---------- */
+.gcg-modal-layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--gcg-z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gcg-space-6);
+}
+/* No Modal o véu entra no tempo da janela (--motion-base), não no da gaveta, e sai junto com ela,
+   mais rápido (--motion-fast) */
+.gcg-modal-layer .gcg-scrim { --gcg-scrim-in-duration: var(--gcg-motion-base); }
+.gcg-modal-layer--leaving { pointer-events: none; }
+.gcg-modal-layer--leaving .gcg-scrim { animation: gcg-motion-fade-out var(--gcg-motion-fast) var(--gcg-ease-exit) forwards; }
+
+/* ---------- janela ---------- */
+.gcg-modal {
+  --gcg-modal-w: 440px; /* Figma: Modal com largura fixa de 440 */
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  box-sizing: border-box;
+  width: min(var(--gcg-modal-w), 100%);
+  max-height: calc(100vh - 2 * var(--gcg-space-6));
+  padding: var(--gcg-space-6);
+  border-radius: var(--gcg-radius-lg);
+  background: var(--gcg-surface-base);
+  box-shadow: var(--gcg-elevation-2);
+  color: var(--gcg-text-default);
+  outline: none;
+  animation: gcg-motion-scale-in var(--gcg-motion-base) var(--gcg-ease-standard) backwards;
+}
+
+.gcg-modal-layer--leaving .gcg-modal { animation: gcg-motion-scale-out var(--gcg-motion-fast) var(--gcg-ease-exit) forwards; }
+
+.gcg-modal--inline {
+  width: var(--gcg-modal-w);
+  max-height: none;
+  animation: none;
+}
+
+.gcg-modal__header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--gcg-space-4);
+}
+.gcg-modal__title {
+  flex: 1;
+  min-width: 0;
+  color: var(--gcg-text-strong);
+  font: var(--gcg-font-heading-sm);
+  letter-spacing: var(--gcg-tracking-heading-sm);
+  overflow-wrap: anywhere;
+}
+
+/* Miolo: rola quando a janela bate no max-height. O respiro de space/1 (compensado pela margem
+   negativa) dá lugar ao anel de foco do campo sem mudar o layout. */
+.gcg-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  min-height: 0;
+  margin: calc(-1 * var(--gcg-space-1));
+  padding: var(--gcg-space-1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.gcg-modal__body {
+  font: var(--gcg-font-text-md-regular);
+  letter-spacing: var(--gcg-tracking-text-md-regular);
+  overflow-wrap: anywhere;
+}
+.gcg-modal__field { display: flex; flex-direction: column; }
+.gcg-modal__field > * { width: 100%; }
+/* show-content (Figma: slot content): os campos um embaixo do outro, na largura toda, gap space/4 —
+   na ordem de preenchimento (ex.: Servidor e Função). */
+.gcg-modal__slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gcg-space-4);
+  min-width: 0;
+}
+
+.gcg-modal__footer {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gcg-space-3);
+}
+
+/* ---------- alto contraste (barra eMAG): borda de 2px na cor de borda do modo, sem sombra ---------- */
+html[data-gcg-contrast='high'] .gcg-modal {
+  border: var(--gcg-border-width-thick) solid var(--gcg-border-default);
+  box-shadow: none;
+}
