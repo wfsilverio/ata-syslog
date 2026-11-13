@@ -100,7 +100,7 @@
       <h2>Leitura em uma frase</h2>
       <div class="sub">O que a comparação mostra</div>
       <div class="callout b"><b>A maior parte do que reprovou não é código mal feito.</b> São HUs que pedem dados que nenhuma fonte tem (pendência de análise, dúvidas, nota fiscal, assinatura somada no painel, unidade e categoria). A reunião de 09/11 mostrou isso, e a análise não foi ajustada.</div>
-      <div class="callout"><b>Mas há gaps reais no desenvolvimento.</b> O mais grave: <b>o mesmo contrato mostra números diferentes em telas diferentes</b>. As regras comuns criadas na HU015 só são usadas nos painéis 15 e 16. A aba Saldos (HU002) e o painel do fornecedor (HU013) não usam nenhuma delas.</div>
+      <div class="callout"><b>Mas há gaps reais no desenvolvimento.</b> O mais grave: <b>o mesmo contrato mostra números diferentes em telas diferentes</b>. As regras comuns criadas na HU015 só são usadas nos painéis 15 e 16. A aba Saldos (HU002) e o painel do fornecedor (HU013) não usam nenhuma delas. <b>Mas a origem é a falta da fórmula:</b> o saldo disponível, o liquidado e a base do consumo precisam ser definidos pela análise (Marcella). Sem isso, cada tela ficou com uma conta provisória diferente.</div>
       <div class="callout" style="border-color:#8f1d16;background:#fbefee"><b>Urgente, mas de outra HU:</b> o fornecedor consegue abrir contrato de outra empresa, e a listagem mostra a ele os 795 contratos da SEAD (HU001, Tiago).</div>
     </div>
     <div class="card">
@@ -150,14 +150,14 @@ const ORIG = {
   F:{nome:"Ambiente / infra", quem:"SIOFI · gateway · máquina", nota:"produção e testes"}
 };
 const G = [
- {id:"A1",o:"A",hu:["HU002","HU013","HU012"],sev:"alta",t:"Números diferentes para o mesmo contrato entre telas",p:"As regras <code>RegrasEmpenhoSiofi</code>, <code>CalculadoraValorAtualizado</code>, <code>RegrasSaldoDisponivel</code> e <code>RegrasConsumoContrato</code> só são usadas nos painéis 15 e 16. A aba Saldos (<code>ServicoIntegracaoSaldos</code>) e o fornecedor não usam nenhuma: somam o processo inteiro, calculam o consumo sobre o valor original e mostram o disponível como “Fórmula a definir”."},
- {id:"A2",o:"A",hu:["HU015"],sev:"media",t:"Dois “liquidados” no mesmo painel",p:"“Saldo a liquidar” usa <code>saldoLiquidado</code>; o bloco “Valor liquidado” e o <code>PCT_LIQUIDADO</code> usam <code>valorLiquidado</code>."},
- {id:"A3",o:"A",hu:["HU015"],sev:"media",t:"% empenhado calculado sobre o saldo, não sobre o total",p:"<code>Fatia(\"PCT_EMPENHADO\", …, soma.SaldoEmpenho, atualizado)</code> (<code>:267</code>). Cenário 04 RN01 pede o empenhado. No processo de prova: R$ 7.529,51 (<code>saldoEmpenho</code>) × R$ 27.150,23 (<code>valorEmpenho</code>)."},
+ {id:"A1",o:"A",q:"<b>1º Marcella</b> define as fórmulas (B8, B9) → <b>2º Wellington</b> aplica a mesma regra em todas as telas",hu:["HU002","HU013","HU012"],sev:"alta",t:"Números diferentes para o mesmo contrato entre telas",p:"<b>A fórmula não é do desenvolvimento:</b> quem precisa escrever o saldo disponível, o liquidado e a base do consumo é a análise (Marcella). A conta veio da reunião (28:43–29:02), mas não foi formalizada. A parte do desenvolvimento é usar <b>a mesma regra</b> em todas as telas, mesmo provisória. Hoje: As regras <code>RegrasEmpenhoSiofi</code>, <code>CalculadoraValorAtualizado</code>, <code>RegrasSaldoDisponivel</code> e <code>RegrasConsumoContrato</code> só são usadas nos painéis 15 e 16. A aba Saldos (<code>ServicoIntegracaoSaldos</code>) e o fornecedor não usam nenhuma: somam o processo inteiro, calculam o consumo sobre o valor original e mostram o disponível como “Fórmula a definir”."},
+ {id:"A2",o:"A",q:"<b>1º Marcella</b> escolhe o campo (B9) → <b>2º Wellington</b> usa um só no painel",hu:["HU015"],sev:"media",t:"Dois “liquidados” no mesmo painel",p:"“Saldo a liquidar” usa <code>saldoLiquidado</code>; o bloco “Valor liquidado” e o <code>PCT_LIQUIDADO</code> usam <code>valorLiquidado</code>."},
+ {id:"A3",o:"A",q:"<b>1º Marcella</b> confirma a base do % empenhado → <b>2º Wellington</b> ajusta",hu:["HU015"],sev:"media",t:"% empenhado calculado sobre o saldo, não sobre o total",p:"<code>Fatia(\"PCT_EMPENHADO\", …, soma.SaldoEmpenho, atualizado)</code> (<code>:267</code>). Cenário 04 RN01 pede o empenhado. No processo de prova: R$ 7.529,51 (<code>saldoEmpenho</code>) × R$ 27.150,23 (<code>valorEmpenho</code>)."},
  {id:"A4",o:"A",hu:["HU012","HU013","HU015","HU016"],sev:"media",t:"Aditivo de prazo não aplicado, embora o campo exista",p:"<code>prorrogacao</code> vem em <code>/aditivos</code> (<code>SislogAditivos.cs:32</code>, commit <code>910713c</code>) e está em <code>DtoAditivo.Prorrogacao</code>. As faixas dos 4 painéis usam só o <code>fimVigencia</code>. Os débitos dizem que o nome é “suposição”, e não é."},
  {id:"A5",o:"A",hu:["HU013"],sev:"alta",t:"Número do contrato errado no fornecedor",p:"<code>Numero()</code> cai no <code>NumeroProcesso</code> (<code>:230-241</code>). No reteste, “25/2025” não acha nada. Não está nos débitos."},
  {id:"A6",o:"A",hu:["HU013"],sev:"media",t:"Layout da relação do fornecedor quebrado",p:"O <code>.gcg-fila__titulo</code> fica com 4 px de largura. Nenhuma alteração de CSS no fornecedor (o commit <code>34e0793</code> só mexeu no CSS do procurador). Não está nos débitos."},
  {id:"A7",o:"A",hu:["HU014"],sev:"baixa",t:"O cartão do procurador não desmarca",p:"O handler só faz <code>indicador = …</code> (<code>Inicio.cshtml:197-199</code>). Cenário 05 RN02 pede “remover a seleção”. Não está nos débitos."},
- {id:"A8",o:"A",hu:["HU013"],sev:"media",t:"Saldo disponível existe na HU015 e não foi usado no fornecedor",p:"O cartão mostra “A análise ainda não define…”, mas a conta saiu da reunião (28:43–29:02) e está em <code>RegrasSaldoDisponivel</code>. O débito §14 admite que o fornecedor não chama o método."},
+ {id:"A8",o:"A",q:"<b>1º Marcella</b> confirma a fórmula (B8) → <b>2º Wellington</b> liga no fornecedor",hu:["HU013"],sev:"media",t:"Saldo disponível existe na HU015 e não foi usado no fornecedor",p:"O cartão mostra “A análise ainda não define…”, mas a conta saiu da reunião (28:43–29:02) e está em <code>RegrasSaldoDisponivel</code>. O débito §14 admite que o fornecedor não chama o método."},
  {id:"A9",o:"A",hu:["HU016"],sev:"media",t:"Equipe real e tempo de carga não verificados",p:"O débito §15 admite: a resposta real de <code>/equipe</code> de 3 contratos e o tempo de carga da SEAD não foram lidos. O fiscal vazio nos 49 contratos segue sem diagnóstico."},
  {id:"A10",o:"A",hu:["HU012"],sev:"alta",t:"Id de pessoa Portal × SISLOG não resolvido",p:"<code>PessoaDaSessao</code> manda <code>IdPessoaFisica</code> (do Portal) como <code>idGestor</code>. Se os ids forem diferentes, o painel vem vazio em produção para todo gestor e fiscal. O <code>gestor-real</code> só contorna no Localhost."},
  {id:"A11",o:"A",hu:["HU012","HU013","HU015"],sev:"media",t:"Débitos técnicos com afirmações falsas ou imprecisas",p:"“<code>prorrogacao</code> é suposição” (§11, §12); “SIOFI ligado” no saldo crítico (§11; ele não é chamado); “a reunião não deu a conta” (§12); % empenhado como fato (§14). As correções do confronto não foram aplicadas."},
@@ -204,9 +204,9 @@ const G = [
 const CMP = {
  "HU002":[
   ["Saldo previsto","Valor total do contrato","SISLOG tem o valor; o valor atualizado é cálculo do GCG (28:43)","<code>valorTotalContrato</code>, sem aditivos","par","Wellington (A1)"],
-  ["Empenhado / liquidado","Do SIAFIC","SIAFIC pelo processo, buscado pelo GCG (22:42)","SIOFI por processo, processo inteiro, sem recorte","par","Wellington (A1) · Marcella (B9)"],
-  ["Saldo disponível","Valor ainda não executado","Valor do contrato − empenhos/pagamentos (28:43–29:02)","“Fórmula a definir”; a HU015 já calcula","no","Wellington (A1) · Marcella (B8)"],
-  ["Consumo %","Liquidado ÷ previsto","—","Sobre o valor original; os painéis 15 e 16 usam o atualizado","no","Wellington (A1)"]
+  ["Empenhado / liquidado","Do SIAFIC","SIAFIC pelo processo, buscado pelo GCG (22:42)","SIOFI por processo, processo inteiro, sem recorte","par","Marcella define o campo (B9) → Wellington aplica (A1)"],
+  ["Saldo disponível","Valor ainda não executado","Valor do contrato − empenhos/pagamentos (28:43–29:02)","“Fórmula a definir”; a HU015 já calcula","no","Marcella define (B8) → Wellington aplica (A1)"],
+  ["Consumo %","Liquidado ÷ previsto","—","Sobre o valor original; os painéis 15 e 16 usam o atualizado","no","Marcella define a base → Wellington aplica (A1)"]
  ],
  "HU012":[
   ["Lista gestor/fiscal","Contratos do usuário","API já existe (08:00–09:19)","<code>consultaContratos</code> idGestor/idFiscal","ok","—"],
@@ -223,7 +223,7 @@ const CMP = {
   ["Número do contrato","Filtro por número","—","Mostra o processo","no","Wellington (A5) · SISLOG (D2)"],
   ["Layout da relação","—","—","Título com 4 px","no","Wellington (A6)"],
   ["Nota fiscal","Total de notas emitidas","É da gestão do GCG (57:27–1:00:54)","Traço com legenda","blk","Marcella (B3)"],
-  ["Saldo disponível","Métrica","Conta dada em 28:43","Traço (não usa a regra da HU015)","no","Wellington (A8)"],
+  ["Saldo disponível","Métrica","Conta dada em 28:43","Traço (não usa a regra da HU015)","no","Marcella confirma (B8) → Wellington liga (A8)"],
   ["Abrir contrato","Detalhe do contrato","—","De outra empresa abre; “Em Execução” não abre","no","Tiago (E1, E2)"]
  ],
  "HU014":[
@@ -239,8 +239,8 @@ const CMP = {
   ["Recorte pela vigência","Cenário 03 RN03","—","<code>RegrasEmpenhoSiofi</code>","ok","—"],
   ["Valor atualizado","Com aditivos publicados","Aditivo só se publicado (39:40)","<code>CalculadoraValorAtualizado</code>","ok","—"],
   ["Saldo disponível","Valor não executado","Conta em 28:43–29:02","Atualizado − pago (a confirmar)","par","Marcella (B8)"],
-  ["Liquidado","Glossário: SALDO_LIQUIDADO","—","Dois campos no mesmo painel","no","Wellington (A2) · Marcella (B9)"],
-  ["% empenhado","Sobre o valor total","—","Usa o <code>saldoEmpenho</code>","no","Wellington (A3)"],
+  ["Liquidado","Glossário: SALDO_LIQUIDADO","—","Dois campos no mesmo painel","no","Marcella escolhe (B9) → Wellington unifica (A2)"],
+  ["% empenhado","Sobre o valor total","—","Usa o <code>saldoEmpenho</code>","no","Marcella confirma → Wellington ajusta (A3)"],
   ["Anual / reajuste / mensal","Cenário 02","Valor mensal existe no SISLOG (28:43)","Traço","blk","SISLOG (D3)"],
   ["IPOF / anulação","Contratação − IPOF","—","Traço com aviso","blk","Gateway (F2)"],
   ["Evolução","Cenário 06","—","Traço; fora da entrega","par","Wellington (débito)"]
@@ -267,10 +267,10 @@ const ST = {ok:"Atende",par:"Parcial",no:"Gap",blk:"Bloqueado"};
 const HUS = ["HU002","HU012","HU013","HU014","HU015","HU016","Templates"];
 
 const PLAN = [
- {o:"A",t:"Você (Wellington), hoje",l:["A1: aplicar as regras comuns na HU002 e na HU013 — mesmo contrato, mesmo número em todas as telas","A2/A3: um único liquidado no painel 15; % empenhado sobre o <code>valorEmpenho</code> (provisório)","A4: ler <code>/aditivos</code> de 3 contratos e ligar <code>Prorrogacao</code> + <code>linkPncp</code>","A5–A7: número e layout do fornecedor; desmarcar o cartão do procurador","A9: equipe real de 3 contratos e tempo de carga da SEAD","A11: aplicar as correções do confronto nos débitos","A12: rodar o <code>dotnet test</code> no CI e anexar o resultado"]},
+ {o:"A",t:"Você (Wellington), hoje",l:["A1: quando a Marcella definir as fórmulas, aplicar a mesma regra na HU002 e na HU013 (até lá, a mesma regra provisória em todas as telas)","A2/A3: um único liquidado no painel 15; % empenhado sobre o <code>valorEmpenho</code> (provisório)","A4: ler <code>/aditivos</code> de 3 contratos e ligar <code>Prorrogacao</code> + <code>linkPncp</code>","A5–A7: número e layout do fornecedor; desmarcar o cartão do procurador","A9: equipe real de 3 contratos e tempo de carga da SEAD","A11: aplicar as correções do confronto nos débitos","A12: rodar o <code>dotnet test</code> no CI e anexar o resultado"]},
  {o:"E",t:"Tiago (urgente)",l:["E1: fornecedor abre contrato de outra empresa (segurança)","E2: “Em Execução” não abre","E3: Cancelado, ordem e linhas em branco na Listagem","A10: os ids do Portal e do SISLOG são os mesmos?"]},
  {o:"C",t:"Wanessa",l:["C2: enviar o pedido de campos ao SISLOG (destrava D2, D3 e D6)","C3: registrar o corte de escopo da HU014","C4: designar quem integra a API “retornar assinaturas” do SEI","C1/C5: responder a linha do link e o destino das dúvidas","E5: tirar a 24784 do impediment para a listagem"]},
- {o:"B",t:"Marcella / Brenda",l:["B8: escrever a fórmula do disponível (pago × empenhado)","B9: escolher o campo do liquidado","B5: corte do saldo crítico","B6/B7: vigente e as contradições das HUs","B11: reenviar o PDF completo (HU015 e HU016)"]},
+ {o:"B",t:"Marcella / Brenda — primeiro: destrava A1, A2, A3 e A8",l:["B8: escrever a fórmula do disponível (pago × empenhado)","B9: escolher o campo do liquidado","B5: corte do saldo crítico","B6/B7: vigente e as contradições das HUs","B11: reenviar o PDF completo (HU015 e HU016)"]},
  {o:"D",t:"SISLOG (Alexandre / Carlos Wallace)",l:["D1/D2: corrigir <code>SomenteVigente</code> e trazer o número do contrato na API da empresa","D3: unidade, categoria e valor mensal","D4/D5: prazo da API de template e do “Emitido por”","D6: lista geral de aditivos por órgão"]},
  {o:"F",t:"Infra / SIOFI / gateway",l:["F1: URL do SIOFI em produção","F2: liberar o GCG no gateway (900909)","F4: ambiente com libssl para o .NET 5"]}
 ];
@@ -299,9 +299,9 @@ function renderFilters(){
 }
 function renderGaps(){
   const sevTxt={critica:"Crítica",alta:"Alta",media:"Média",baixa:"Baixa"};
-  const list=G.filter(g=>(!fOrig||g.o===fOrig)&&(!fHu||g.hu.includes(fHu)||g.hu.includes("Todas"))&&(!q||(g.id+g.t+g.p+g.hu.join(" ")+ORIG[g.o].quem).toLowerCase().includes(q)));
+  const list=G.filter(g=>(!fOrig||g.o===fOrig)&&(!fHu||g.hu.includes(fHu)||g.hu.includes("Todas"))&&(!q||(g.id+g.t+g.p+g.hu.join(" ")+ORIG[g.o].quem+(g.q||"")).toLowerCase().includes(q)));
   $("#count").textContent=`${list.length} de ${G.length} gaps`;
-  $("#gaps").innerHTML=list.map(g=>`<div class="gap" style="--c:var(--${g.o})"><div class="top"><span class="id">${g.id}</span><span class="sev ${g.sev}">${sevTxt[g.sev]}</span>${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who"><b>Quem age:</b> ${ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div></div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
+  $("#gaps").innerHTML=list.map(g=>`<div class="gap" style="--c:var(--${g.o})"><div class="top"><span class="id">${g.id}</span><span class="sev ${g.sev}">${sevTxt[g.sev]}</span>${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who"><b>Quem age:</b> ${g.q||ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div></div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
 }
 let huCmp="HU002";
 function renderCmp(){
