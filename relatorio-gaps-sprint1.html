@@ -60,6 +60,7 @@
   .sev{font-size:11.5px;padding:2px 8px;border-radius:999px;color:#fff}
   .sev.alta{background:var(--bad)}.sev.media{background:var(--warn)}.sev.baixa{background:var(--muted)}.sev.critica{background:#8f1d16}
   .gap h3{margin:8px 0 6px;font-size:15px}
+  .gap.resolvido h3{text-decoration:line-through;color:var(--muted)}
   .gap .who{font-size:12.5px;color:var(--ink2);margin-bottom:6px}
   .gap .proof{font-size:12.5px;color:var(--ink2);background:#f7f8fa;border-radius:8px;padding:8px 10px}
   .gap .proof code{font-size:11.5px}
@@ -154,12 +155,12 @@ const G = [
  {id:"A2",o:"A",q:"<b>1º Marcella</b> escolhe o campo (B9) → <b>2º Wellington</b> usa um só no painel",hu:["HU015"],sev:"media",t:"Dois “liquidados” no mesmo painel",p:"“Saldo a liquidar” usa <code>saldoLiquidado</code>; o bloco “Valor liquidado” e o <code>PCT_LIQUIDADO</code> usam <code>valorLiquidado</code>."},
  {id:"A3",o:"A",q:"<b>1º Marcella</b> confirma a base do % empenhado → <b>2º Wellington</b> ajusta",hu:["HU015"],sev:"media",t:"% empenhado calculado sobre o saldo, não sobre o total",p:"<code>Fatia(\"PCT_EMPENHADO\", …, soma.SaldoEmpenho, atualizado)</code> (<code>:267</code>). Cenário 04 RN01 pede o empenhado. No processo de prova: R$ 7.529,51 (<code>saldoEmpenho</code>) × R$ 27.150,23 (<code>valorEmpenho</code>)."},
  {id:"A4",o:"A",hu:["HU012","HU013","HU015","HU016"],sev:"media",t:"Aditivo de prazo não aplicado, embora o campo exista",p:"<code>prorrogacao</code> vem em <code>/aditivos</code> (<code>SislogAditivos.cs:32</code>, commit <code>910713c</code>) e está em <code>DtoAditivo.Prorrogacao</code>. As faixas dos 4 painéis usam só o <code>fimVigencia</code>. Os débitos dizem que o nome é “suposição”, e não é."},
- {id:"A5",o:"A",hu:["HU013"],sev:"alta",t:"Número do contrato errado no fornecedor",p:"<code>Numero()</code> cai no <code>NumeroProcesso</code> (<code>:230-241</code>). No reteste, “25/2025” não acha nada. Não está nos débitos."},
+ {id:"A5",o:"A",res:"Resolvido no código em 13/11 (ainda sem commit): quando o número da API da empresa é o próprio processo, o painel busca o <code>N/AAAA</code> na ficha (<code>GET /api/Contrato/{id}/dados-gerais</code>). Ressalva: o campo de busca aceita no máximo 9 caracteres, então “50182430/2023” não cabe.",hu:["HU013"],sev:"alta",t:"Número do contrato errado no fornecedor",p:"<code>Numero()</code> cai no <code>NumeroProcesso</code> (<code>:230-241</code>). No reteste, “25/2025” não acha nada. Não está nos débitos."},
  {id:"A6",o:"A",hu:["HU013"],sev:"media",t:"Layout da relação do fornecedor quebrado",p:"O <code>.gcg-fila__titulo</code> fica com 4 px de largura. Nenhuma alteração de CSS no fornecedor (o commit <code>34e0793</code> só mexeu no CSS do procurador). Não está nos débitos."},
  {id:"A7",o:"A",hu:["HU014"],sev:"baixa",t:"O cartão do procurador não desmarca",p:"O handler só faz <code>indicador = …</code> (<code>Inicio.cshtml:197-199</code>). Cenário 05 RN02 pede “remover a seleção”. Não está nos débitos."},
  {id:"A8",o:"A",q:"<b>1º Marcella</b> confirma a fórmula (B8) → <b>2º Wellington</b> liga no fornecedor",hu:["HU013"],sev:"media",t:"Saldo disponível existe na HU015 e não foi usado no fornecedor",p:"O cartão mostra “A análise ainda não define…”, mas a conta saiu da reunião (28:43–29:02) e está em <code>RegrasSaldoDisponivel</code>. O débito §14 admite que o fornecedor não chama o método."},
  {id:"A9",o:"A",hu:["HU016"],sev:"media",t:"Equipe real e tempo de carga não verificados",p:"O débito §15 admite: a resposta real de <code>/equipe</code> de 3 contratos e o tempo de carga da SEAD não foram lidos. O fiscal vazio nos 49 contratos segue sem diagnóstico."},
- {id:"A10",o:"A",hu:["HU012"],sev:"alta",t:"Id de pessoa Portal × SISLOG não resolvido",p:"<code>PessoaDaSessao</code> manda <code>IdPessoaFisica</code> (do Portal) como <code>idGestor</code>. Se os ids forem diferentes, o painel vem vazio em produção para todo gestor e fiscal. O <code>gestor-real</code> só contorna no Localhost."},
+ {id:"A10",o:"A",res:"Resolvido no código em 13/11 (ainda sem commit): <code>IdParaSessao</code> grava o id do SISLOG; o do Portal só entra quando a entrada não traz id. O login não sobrescreve mais o id. Testes em <code>TesteIdPessoaEntradaSislog</code>. A diferença entre o id do Portal e o do SISLOG agora só gera aviso no log; a entrada continua conferindo login, CPF e o carimbo de tempo.",hu:["HU012"],sev:"alta",t:"Id de pessoa Portal × SISLOG não resolvido",p:"<code>PessoaDaSessao</code> manda <code>IdPessoaFisica</code> (do Portal) como <code>idGestor</code>. Se os ids forem diferentes, o painel vem vazio em produção para todo gestor e fiscal. O <code>gestor-real</code> só contorna no Localhost."},
  {id:"A11",o:"A",hu:["HU012","HU013","HU015"],sev:"media",t:"Débitos técnicos com afirmações falsas ou imprecisas",p:"“<code>prorrogacao</code> é suposição” (§11, §12); “SIOFI ligado” no saldo crítico (§11; ele não é chamado); “a reunião não deu a conta” (§12); % empenhado como fato (§14). As correções do confronto não foram aplicadas."},
  {id:"A12",o:"A",hu:["Todas"],sev:"media",t:"Evidência automatizada fraca",p:"Os testes <code>TestePainel*</code> existem, mas não rodam nesta máquina (libssl). Rodar o <code>dotnet test</code> no CI antes de mover para Done."},
 
@@ -210,7 +211,7 @@ const CMP = {
  ],
  "HU012":[
   ["Lista gestor/fiscal","Contratos do usuário","API já existe (08:00–09:19)","<code>consultaContratos</code> idGestor/idFiscal","ok","—"],
-  ["Id do usuário","—","—","Id do Portal; pode não ser o do SISLOG","par","Wellington + Tiago (A10)"],
+  ["Id do usuário","—","—","Usa o id enviado pelo SISLOG (<code>IdParaSessao</code>), ainda sem commit","ok","Resolvido (A10)"],
   ["Vencimento","Faixas com aditivo de prazo","Aditivo vale se publicado (39:40)","Só <code>fimVigencia</code>; o <code>prorrogacao</code> existe e não é usado","par","Wellington (A4)"],
   ["Assinatura pendente","Docs sem todas as assinaturas","SEI por documento (51:32); GCG usa o SEI direto (1:08:17)","Traço","blk","Wanessa (C4) · Marcella (B4)"],
   ["Saldo crítico","Saldo contratual e de empenho","Fonte SIAFIC; corte não definido","Traço; SIOFI pronto, mas não é chamado","blk","Marcella (B5)"],
@@ -220,7 +221,7 @@ const CMP = {
  "HU013":[
   ["Contratos da empresa","Em execução, da empresa","—","Sem duplicata e sem vencido (<code>Preparar</code>)","ok","SISLOG (D1) por trás"],
   ["Empresa do usuário","Empresa representada","Não tratado","CPF do usuário; preposto de CNPJ vê vazio","no","Wanessa + SISLOG (C2)"],
-  ["Número do contrato","Filtro por número","—","Mostra o processo","no","Wellington (A5) · SISLOG (D2)"],
+  ["Número do contrato","Filtro por número","—","Busca o <code>N/AAAA</code> na ficha quando a API da empresa repete o processo, ainda sem commit","ok","Resolvido (A5) · SISLOG (D2) segue"],
   ["Layout da relação","—","—","Título com 4 px","no","Wellington (A6)"],
   ["Nota fiscal","Total de notas emitidas","É da gestão do GCG (57:27–1:00:54)","Traço com legenda","blk","Marcella (B3)"],
   ["Saldo disponível","Métrica","Conta dada em 28:43","Traço (não usa a regra da HU015)","no","Marcella confirma (B8) → Wellington liga (A8)"],
@@ -267,8 +268,8 @@ const ST = {ok:"Atende",par:"Parcial",no:"Gap",blk:"Bloqueado"};
 const HUS = ["HU002","HU012","HU013","HU014","HU015","HU016","Templates"];
 
 const PLAN = [
- {o:"A",t:"Você (Wellington), hoje",l:["A1: quando a Marcella definir as fórmulas, aplicar a mesma regra na HU002 e na HU013 (até lá, a mesma regra provisória em todas as telas)","A2/A3: um único liquidado no painel 15; % empenhado sobre o <code>valorEmpenho</code> (provisório)","A4: ler <code>/aditivos</code> de 3 contratos e ligar <code>Prorrogacao</code> + <code>linkPncp</code>","A5–A7: número e layout do fornecedor; desmarcar o cartão do procurador","A9: equipe real de 3 contratos e tempo de carga da SEAD","A11: aplicar as correções do confronto nos débitos","A12: rodar o <code>dotnet test</code> no CI e anexar o resultado"]},
- {o:"E",t:"Tiago (urgente)",l:["E1: fornecedor abre contrato de outra empresa (segurança)","E2: “Em Execução” não abre","E3: Cancelado, ordem e linhas em branco na Listagem","A10: os ids do Portal e do SISLOG são os mesmos?"]},
+ {o:"A",t:"Você (Wellington), hoje",l:["A1: quando a Marcella definir as fórmulas, aplicar a mesma regra na HU002 e na HU013 (até lá, a mesma regra provisória em todas as telas)","A2/A3: um único liquidado no painel 15; % empenhado sobre o <code>valorEmpenho</code> (provisório)","A4: ler <code>/aditivos</code> de 3 contratos e ligar <code>Prorrogacao</code> + <code>linkPncp</code>","A6–A7: layout do fornecedor; desmarcar o cartão do procurador (A5 já resolvido)","A9: equipe real de 3 contratos e tempo de carga da SEAD","A11: aplicar as correções do confronto nos débitos","A12: rodar o <code>dotnet test</code> no CI e anexar o resultado"]},
+ {o:"E",t:"Tiago (urgente)",l:["E1: fornecedor abre contrato de outra empresa (segurança)","E2: “Em Execução” não abre","E3: Cancelado, ordem e linhas em branco na Listagem","A10 resolvido no código: só avisar o Tiago da mudança na entrada"]},
  {o:"C",t:"Wanessa",l:["C2: enviar o pedido de campos ao SISLOG (destrava D2, D3 e D6)","C3: registrar o corte de escopo da HU014","C4: designar quem integra a API “retornar assinaturas” do SEI","C1/C5: responder a linha do link e o destino das dúvidas","E5: tirar a 24784 do impediment para a listagem"]},
  {o:"B",t:"Marcella / Brenda — primeiro: destrava A1, A2, A3 e A8",l:["B8: escrever a fórmula do disponível (pago × empenhado)","B9: escolher o campo do liquidado","B5: corte do saldo crítico","B6/B7: vigente e as contradições das HUs","B11: reenviar o PDF completo (HU015 e HU016)"]},
  {o:"D",t:"SISLOG (Alexandre / Carlos Wallace)",l:["D1/D2: corrigir <code>SomenteVigente</code> e trazer o número do contrato na API da empresa","D3: unidade, categoria e valor mensal","D4/D5: prazo da API de template e do “Emitido por”","D6: lista geral de aditivos por órgão"]},
@@ -278,10 +279,11 @@ const PLAN = [
 const $ = s=>document.querySelector(s);
 let fOrig=null, fHu=null, q="";
 
-function counts(){const c={};Object.keys(ORIG).forEach(k=>c[k]=G.filter(g=>g.o===k).length);return c}
+function counts(){const c={};Object.keys(ORIG).forEach(k=>c[k]=G.filter(g=>g.o===k&&!g.res).length);return c}
+function resolvidos(k){return G.filter(g=>g.o===k&&g.res).length}
 function renderKpis(){
   const c=counts();
-  $("#kpis").innerHTML=Object.entries(ORIG).map(([k,v])=>`<div class="kpi ${fOrig===k?'sel':''}" style="--c:var(--${k})" data-o="${k}"><div class="n">${c[k]}</div><div class="t">${k} · ${v.nome}</div><div class="w">${v.quem}</div></div>`).join("");
+  $("#kpis").innerHTML=Object.entries(ORIG).map(([k,v])=>`<div class="kpi ${fOrig===k?'sel':''}" style="--c:var(--${k})" data-o="${k}"><div class="n">${c[k]}</div><div class="t">${k} · ${v.nome}</div><div class="w">${v.quem}</div>${resolvidos(k)?`<div class="w" style="color:var(--ok);font-weight:600">+ ${resolvidos(k)} resolvido${resolvidos(k)>1?'s':''}</div>`:""}</div>`).join("");
   document.querySelectorAll(".kpi").forEach(e=>e.onclick=()=>{fOrig=fOrig===e.dataset.o?null:e.dataset.o;go("gaps");renderAll()});
 }
 function renderBars(){
@@ -300,8 +302,8 @@ function renderFilters(){
 function renderGaps(){
   const sevTxt={critica:"Crítica",alta:"Alta",media:"Média",baixa:"Baixa"};
   const list=G.filter(g=>(!fOrig||g.o===fOrig)&&(!fHu||g.hu.includes(fHu)||g.hu.includes("Todas"))&&(!q||(g.id+g.t+g.p+g.hu.join(" ")+ORIG[g.o].quem+(g.q||"")).toLowerCase().includes(q)));
-  $("#count").textContent=`${list.length} de ${G.length} gaps`;
-  $("#gaps").innerHTML=list.map(g=>`<div class="gap" style="--c:var(--${g.o})"><div class="top"><span class="id">${g.id}</span><span class="sev ${g.sev}">${sevTxt[g.sev]}</span>${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who"><b>Quem age:</b> ${g.q||ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div></div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
+  $("#count").textContent=`${list.length} de ${G.length} gaps · ${G.filter(g=>g.res).length} resolvidos`;
+  $("#gaps").innerHTML=list.map(g=>`<div class="gap${g.res?' resolvido':''}" style="--c:var(--${g.res?'ok':g.o})"><div class="top"><span class="id">${g.id}</span>${g.res?'<span class="sev" style="background:var(--ok)">✓ Resolvido</span>':`<span class="sev ${g.sev}">${sevTxt[g.sev]}</span>`}${g.hu.map(h=>`<span class="tag">${h}</span>`).join("")}</div><h3>${g.t}</h3><div class="who"><b>Quem age:</b> ${g.q||ORIG[g.o].quem} · <span style="color:var(--muted)">${ORIG[g.o].nome}</span></div><div class="proof">${g.p}</div>${g.res?`<div class="proof" style="margin-top:8px;background:#eaf6f0;color:#1d6b49"><b>Resolvido:</b> ${g.res}</div>`:""}</div>`).join("")||`<p style="color:var(--muted)">Nenhum gap com esses filtros.</p>`;
 }
 let huCmp="HU002";
 function renderCmp(){
