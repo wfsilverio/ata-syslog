@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro de Testes — HU013 · Aba Templates (débitos técnicos, seção 16) — 17/11/2026 · HU013 · 13 casos</title>
+<style>
+:root { --fundo:#f5f4f1; --cartao:#fff; --tinta:#1b1a18; --suave:#5f5b55; --fraco:#8a857d; --linha:#e6e2da;
+  --verde:#1f6b4a; --verde-claro:#e6f3ec; --azul:#2458a6; --azul-claro:#e8eff9; --ambar:#9a6410; --ambar-claro:#fbf1dc;
+  --vermelho:#9b2f2f; --vermelho-claro:#fbe7e5; --cinza-claro:#eeece7; --raio:10px; --sombra:0 1px 2px rgba(27,26,24,.05),0 1px 1px rgba(27,26,24,.03); }
+* { box-sizing:border-box; }
+html { scroll-padding-top:16px; }
+body { margin:0; background:var(--fundo); color:var(--tinta); font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+code { font:12.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; background:var(--cinza-claro); padding:1px 5px; border-radius:4px; word-break:break-word; }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
+.lateral { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-right:1px solid var(--linha); padding:22px 18px 28px; display:flex; flex-direction:column; gap:20px; }
+.principal { padding:28px 36px 80px; max-width:1040px; width:100%; }
+main { display:grid; gap:18px; }
+.marca h1 { margin:0; font-size:18px; line-height:1.25; }
+.marca p { margin:4px 0 0; color:var(--suave); font-size:13px; }
+.rotulo { margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.barra { display:flex; height:8px; background:var(--linha); border-radius:99px; overflow:hidden; }
+.barra span { display:block; }
+.b-ok { background:var(--verde); } .b-falha { background:var(--vermelho); } .b-parcial { background:#e3b45c; } .b-nexec { background:#b9b3a8; }
+.legenda { list-style:none; margin:8px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12.5px; color:var(--suave); }
+.legenda strong { color:var(--tinta); }
+.ponto { display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px; flex:none; }
+.ponto.ok { background:var(--verde); } .ponto.falha { background:var(--vermelho); } .ponto.parcial { background:#e3b45c; } .ponto.nexec { background:#b9b3a8; }
+nav { display:grid; gap:1px; }
+.nav-ct { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:2px 6px; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; }
+.nav-ct:hover { background:var(--fundo); }
+.nav-ct span:nth-child(2) { font-weight:600; white-space:nowrap; }
+.nav-sub { color:var(--suave); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-top { display:block; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; font-weight:600; }
+.nav-top:hover { background:var(--fundo); }
+.topo { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 24px; }
+.topo h2 { margin:0 0 4px; font-size:22px; letter-spacing:-.01em; }
+.topo .sub { margin:0 0 14px; color:var(--suave); }
+.meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 18px; margin:0; }
+.meta dt { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.meta dd { margin:2px 0 0; font-size:14px; }
+.veredito { display:inline-block; margin-top:14px; font-weight:700; padding:4px 12px; border-radius:99px; }
+.veredito.falha { color:var(--vermelho); background:var(--vermelho-claro); } .veredito.ok { color:var(--verde); background:var(--verde-claro); } .veredito.parcial { color:var(--ambar); background:var(--ambar-claro); }
+.numeros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.num { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra); }
+.num b { display:block; font-size:26px; line-height:1.1; }
+.num span { font-size:12.5px; color:var(--suave); }
+.num.ok b { color:var(--verde); } .num.falha b { color:var(--vermelho); } .num.parcial b { color:var(--ambar); } .num.nexec b { color:var(--fraco); }
+.bloco { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px; }
+.bloco > h2 { margin:0 0 10px; font-size:17px; }
+.bloco p { margin:0 0 10px; }
+.bloco ul { margin:0; padding-left:20px; } .bloco li { margin:3px 0; }
+.cartao { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); overflow:hidden; }
+.cartao summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 18px; }
+.cartao summary::-webkit-details-marker { display:none; }
+.cartao summary::after { content:"▸"; margin-left:auto; color:var(--fraco); transition:transform .15s; }
+.cartao[open] summary::after { transform:rotate(90deg); }
+.cartao summary h3 { margin:0; font-size:15px; }
+.qtd { font-size:12.5px; color:var(--fraco); }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.selo.ok { color:var(--verde); background:var(--verde-claro); } .selo.falha { color:var(--vermelho); background:var(--vermelho-claro); }
+.selo.parcial { color:var(--ambar); background:var(--ambar-claro); } .selo.nexec { color:var(--suave); background:var(--cinza-claro); }
+table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--linha); }
+.passos td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--linha); font-size:14px; }
+.passos tr:last-child td { border-bottom:0; }
+.evid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.evid a { display:grid; gap:2px; width:168px; text-decoration:none; color:var(--suave); font-size:11.5px; }
+.evid img { width:168px; height:110px; object-fit:cover; object-position:top left; border:1px solid var(--linha); border-radius:6px; background:var(--fundo); }
+.evid a:hover img { border-color:var(--verde); }
+.passos td.n { width:52px; color:var(--fraco); font-weight:700; text-align:right; }
+.passos td.st { width:150px; text-align:right; }
+.esp, .obt { margin-top:6px; color:var(--suave); }
+.esp span, .obt span { display:inline-block; min-width:68px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--fraco); }
+.obt { color:var(--tinta); }
+.falhas { display:grid; gap:12px; }
+.achado { border:1px solid var(--linha); border-left:4px solid var(--fraco); border-radius:8px; padding:12px 16px; }
+.achado header { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.achado h3 { margin:0; font-size:15px; }
+.achado ul { margin:0; padding-left:18px; } .achado li { margin:2px 0; font-size:14px; }
+.achado p { margin:4px 0; font-size:14px; }
+.sev { font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.sev-crítica { border-left-color:#6d1313; } .sev-crítica .sev { color:#fff; background:#7d1a1a; }
+.sev-alta { border-left-color:var(--vermelho); } .sev-alta .sev { color:var(--vermelho); background:var(--vermelho-claro); }
+.sev-média { border-left-color:#e3b45c; } .sev-média .sev { color:var(--ambar); background:var(--ambar-claro); }
+.sev-baixa { border-left-color:var(--azul); } .sev-baixa .sev { color:var(--azul); background:var(--azul-claro); }
+table.msgs { width:100%; border-collapse:collapse; margin:6px 0 4px; font-size:13.5px; }
+table.msgs th, table.msgs td { text-align:left; vertical-align:top; padding:6px 8px; border:1px solid var(--linha); }
+table.msgs th { background:var(--fundo); font-size:12px; }
+.galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
+figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.antes { display:block; font-size:11.5px; color:var(--fraco); margin-bottom:3px; }
+.mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
+.tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
+.rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+.app.com-usuarios { grid-template-columns:290px minmax(0,1fr) 330px; grid-template-areas:"lat princ usu"; }
+.app.com-usuarios .lateral { grid-area:lat; } .app.com-usuarios .principal { grid-area:princ; }
+.usuarios { grid-area:usu; position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-left:1px solid var(--linha); padding:22px 18px 28px; }
+.u-lista { display:grid; gap:10px; }
+.usuario { border:1px solid var(--linha); border-radius:8px; padding:10px 12px; background:var(--cartao); }
+.u-topo { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin-bottom:6px; font-size:14px; }
+.u-origem { font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.u-origem.mock { color:var(--ambar); background:var(--ambar-claro); } .u-origem.real { color:var(--verde); background:var(--verde-claro); } .u-origem.misto { color:var(--azul); background:var(--azul-claro); }
+.usuario dl { display:grid; grid-template-columns:auto 1fr; gap:2px 8px; margin:0; font-size:12.5px; }
+.usuario dt { color:var(--fraco); font-weight:600; } .usuario dd { margin:0; word-break:break-word; }
+.u-nota { margin-top:10px; font-size:12.5px; color:var(--suave); } .u-nota p { margin:0 0 6px; } .u-nota ul { margin:0; padding-left:18px; }
+@media (max-width:1500px) { .app.com-usuarios { grid-template-columns:290px minmax(0,1fr); grid-template-areas:"lat usu" "lat princ"; grid-template-rows:auto 1fr; }
+  .app.com-usuarios .lateral { grid-row:1 / span 2; }
+  .usuarios { position:static; height:auto; border-left:0; background:transparent; padding:28px 36px 0; max-width:1040px; }
+  .u-lista { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); } }
+@media (max-width:900px) { .app.com-usuarios { grid-template-columns:1fr; grid-template-areas:"lat" "usu" "princ"; grid-template-rows:auto; } .usuarios { padding:20px 16px 0; } }
+@media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
+@media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="app com-usuarios">
+<aside class="lateral" aria-label="Navegação do relatório">
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>HU013 · Templates</h1><p>17/11/2026 · HU013 · 13 casos</p></div>
+  <div>
+    <p class="rotulo">Resultado dos 13 casos</p>
+    <div class="barra" role="img" aria-label="3 passaram, 1 falharam, 6 parciais, 3 não executados">
+      <span class="b-ok" style="width:23.08%"></span><span class="b-falha" style="width:7.69%"></span><span class="b-parcial" style="width:46.15%"></span><span class="b-nexec" style="width:23.08%"></span>
+    </div>
+    <ul class="legenda">
+      <li><span class="ponto ok"></span><strong>3</strong> passaram</li><li><span class="ponto falha"></span><strong>1</strong> falharam</li>
+      <li><span class="ponto parcial"></span><strong>6</strong> parciais</li><li><span class="ponto nexec"></span><strong>3</strong> não executados</li>
+    </ul>
+  </div>
+  <div>
+    <p class="rotulo">Seções</p>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#comparacao">Comparação com a anterior</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a><a class="nav-top" href="#usuarios">Usuários do teste</a>
+  </div>
+  <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Fonte-e-agrupamento"><span class="ponto ok"></span><span>Fonte e agrupamento</span><span class="nav-sub">CT001 a CT002 · lista real do contrato e tipos</span></a><a class="nav-ct" href="#g-Campos-que-a-API-n-o-traz"><span class="ponto parcial"></span><span>Campos que a API não traz</span><span class="nav-sub"></span></a><a class="nav-ct" href="#g-Assinatura"><span class="ponto parcial"></span><span>Assinatura</span><span class="nav-sub">CT005 · coluna AssinaGO</span></a><a class="nav-ct" href="#g-Exporta-o"><span class="ponto falha"></span><span>Exportação</span><span class="nav-sub">CT006 a CT008 · PDF, HTML e formatos sem tela</span></a><a class="nav-ct" href="#g-Preview"><span class="ponto nexec"></span><span>Preview</span><span class="nav-sub"></span></a><a class="nav-ct" href="#g-Sigilo"><span class="ponto ok"></span><span>Sigilo</span><span class="nav-sub"></span></a><a class="nav-ct" href="#g-Erros"><span class="ponto parcial"></span><span>Erros</span><span class="nav-sub"></span></a><a class="nav-ct" href="#g-Vazio"><span class="ponto nexec"></span><span>Vazio</span><span class="nav-sub"></span></a></nav></div>
+</aside>
+<div class="principal">
+<main>
+  <section class="topo" id="resumo">
+    <span class="tipo">Execução</span>
+    <h2>Roteiro de Testes — HU013 · Aba Templates (débitos técnicos, seção 16)</h2>
+    <p class="sub">Testes da aba Templates contra os débitos técnicos da seção 16 do GCG, no contrato 159182.</p>
+    <dl class="meta">
+      <div><dt>Data e hora</dt><dd>17/11/2026, execução no navegador embutido do app desktop e chamadas diretas ao endpoint (horário de Brasília)</dd></div>
+      <div><dt>Perfil</dt><dd>login 04934988181, Gestor de Contrato (101), Secretaria da Administração (SEAD), cenário <code>gestor</code> da simulação do SISLOG</dd></div>
+      <div><dt>Ambiente</dt><dd>GCG em <code>http://localhost:5000</code> (Localhost), branch <code>well-sprint1-front</code>, commit <code>8f69bde</code> (Ajuste Templates), processo dotnet pid=38835, dados do SISLOG de homologação</dd></div>
+      
+      <div><dt>Executado por</dt><dd>Skill testar-roteiro-gcg, criada por Wellington Silvério</dd></div>
+    </dl>
+    <span class="veredito falha">❌ Reprovado (CT008: a exportação entrega arquivos em vez de falhar, e o débito 16 não corresponde ao que a tela mostra)</span>
+  </section>
+  <section class="numeros" aria-label="Contagem">
+    <div class="num"><b>13</b><span>casos</span></div><div class="num ok"><b>3</b><span>passaram</span></div>
+    <div class="num falha"><b>1</b><span>falharam</span></div><div class="num parcial"><b>6</b><span>parciais</span></div>
+    <div class="num nexec"><b>3</b><span>não executados</span></div>
+  </section>
+  <section class="bloco" id="comparacao"><h2>Comparação com a execução anterior</h2><p>Não se aplica: primeira execução deste roteiro (o registro não tem execução anterior).</p></section>
+  <section class="bloco"><h2>Principal achado</h2><p>Contrato 159182, aba Templates: 9 documentos em 7 tipos, todos dos nove tipos do card. <strong>Os débitos da seção 16 não batem com a tela atual:</strong> a tela já mostra data de emissão, emitente, status e AssinaGO (com mais do que sim/não), há filtro por tipo e os filtros de nota, ateste, ordem e termo aparecem. A exportação também não falha para Excel, XML, CSV e JSON: retorna arquivos, e o XML traz <code>exemplo=&quot;true&quot;</code>. Os principais achados:</p><ul><li><strong>CT008:</strong> Excel, XML, CSV e JSON devolvem HTTP 200 com arquivo, quando o débito diz que falham. A aba só oferece Baixar (PDF); esses formatos só respondem pela chamada direta.</li><li><strong>CT004:</strong> o filtro &quot;Número da Nota Fiscal&quot; com <code>4471</code> encontrou o documento &quot;Ateste da NF 4471&quot;. Ele casa pelo nome do documento, não pelo número da nota, que a API não traz.</li><li><strong>CT005:</strong> a coluna AssinaGO mostra &quot;Não enviado&quot; e &quot;Concluído&quot;, não só sim ou não.</li><li><strong>CT011:</strong> a falha da consulta aparece na resposta direta (<code>cenario=falha</code>), mas a aba não refaz a consulta ao reabrir, então não reproduzi a mensagem na tela.</li></ul></section>
+  <section class="bloco" id="falhas"><h2>Falhas encontradas</h2><div class="falhas"><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>1. Exportação de Excel, XML, CSV e JSON não falha</h3></header><ul><li><strong>Passo:</strong> CT008</li><li><strong>Esperado:</strong> falha de exportação, por decisão de escopo (débito 4)</li><li><strong>Obtido:</strong> HTTP 200 com arquivo nos quatro formatos. O XML do documento 3187 traz <code>exemplo=&quot;true&quot;</code>, o que sugere conteúdo de exemplo</li><li><strong>Evidência:</strong> chamadas diretas a <code>/Contratos/ExportarDocumentacaoTemplate?codigo=159182&amp;documento=3187&amp;formato=…</code></li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>2. Débito 16 desatualizado em relação à tela</h3></header><ul><li><strong>Passo:</strong> CT002, CT003, CT004, CT005</li><li><strong>Esperado:</strong> o que o débito 16 descreve (sem data, emitente, status completo, sem filtro por tipo, AssinaGO só sim ou não)</li><li><strong>Obtido:</strong> a tela mostra data, emitente, status, filtro por tipo, filtros específicos e AssinaGO com status</li><li><strong>Evidência:</strong> capturas CT001 (lista) e as respostas da API</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>3. Filtro de nota fiscal casa pelo nome do documento</h3></header><ul><li><strong>Passo:</strong> CT004</li><li><strong>Esperado:</strong> filtro por número da nota fiscal</li><li><strong>Obtido:</strong> &quot;4471&quot; encontrou &quot;Ateste da NF 4471&quot;. A API não traz o número da nota</li></ul></article><article class="achado sev-média"><header><span class="sev">Média</span><h3>4. Consulta sem documentos devolve falha, não vazio</h3></header><ul><li><strong>Passo:</strong> CT013</li><li><strong>Esperado:</strong> mensagem de vazio</li><li><strong>Obtido:</strong> contratos 150653, 141942, 153609, 149623, 148596, 157719, 142964, 149117 e 151299 devolvem &quot;Não foi possível consultar os documentos do contrato. Tente novamente mais tarde.&quot; (<code>Possui: false</code>). Não é possível dizer se é falta de consulta ou falta de documento sem uma conferência do código</li></ul></article></div></section>
+  <h2 style="margin:10px 0 0;font-size:17px">Casos e evidências</h2>
+  <details class="cartao" id="g-Fonte-e-agrupamento" >
+<summary><span class="selo ok">✅ Passou</span><h3>Fonte e agrupamento — CT001 a CT002 · lista real do contrato e tipos</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">001</td><td><strong>Abrir a aba Templates do contrato 159182</strong><div class="esp"><span>Esperado</span> Lista de documentos do contrato, agrupada pelo tipo</div><div class="obt"><span>Obtido</span> 9 documentos em 7 grupos (Parecer Técnico 2, Parecer Jurídico 1, Notificação 1, Solicitação de diligência 1, Ordem de Serviço 1, TRP 1, Ateste de Nota Fiscal 2)</div></td><td class="st"><span class="selo ok">✅ Passou</span></td></tr><tr><td class="n">002</td><td><strong>Tipos listados</strong><div class="esp"><span>Esperado</span> Registrar se aparecem só os nove tipos do card</div><div class="obt"><span>Obtido</span> Todos dos nove tipos do card. Não há OF nem TRD neste contrato. O filtro &quot;Tipo de Documento&quot; existe e lista os nove tipos, contra o &quot;Hoje não há filtro por tipo&quot; do débito 1</div></td><td class="st"><span class="selo ok">✅ Passou</span></td></tr></tbody></table></details><details class="cartao" id="g-Campos-que-a-API-n-o-traz" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Campos que a API não traz</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">003</td><td><strong>Data, emitente e status</strong><div class="esp"><span>Esperado</span> Colunas vazias ou com traço</div><div class="obt"><span>Obtido</span> Data de emissão, emitido por e status preenchidos em todas as linhas (ex.: 3187, 02/10/2026, Rita Moraes Lins, Assinado 03/10/2026 09:12). Colunas de ateste, ordem e termo não aparecem na tabela</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">004</td><td><strong>Filtros de ateste, ordem e termo</strong><div class="esp"><span>Esperado</span> Filtros não encontram documentos</div><div class="obt"><span>Obtido</span> Com Tipo = Ateste de Nota Fiscal aparecem os filtros &quot;Número da Nota Fiscal&quot; e &quot;Número ou identificador do ateste&quot;. &quot;4471&quot; retornou só o 3228 (Ateste da NF 4471), casando pelo nome, não por número de nota. Filtro de ordem e termo fica oculto neste tipo</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details><details class="cartao" id="g-Assinatura" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Assinatura — CT005 · coluna AssinaGO</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">005</td><td><strong>Coluna AssinaGO</strong><div class="esp"><span>Esperado</span> Só sim ou não</div><div class="obt"><span>Obtido</span> &quot;Não enviado&quot; (maioria) e &quot;Concluído&quot; (3196). Não é só sim ou não</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr></tbody></table></details><details class="cartao" id="g-Exporta-o" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Exportação — CT006 a CT008 · PDF, HTML e formatos sem tela</h3><span class="qtd">3 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">006</td><td><strong>PDF do documento 3187 (chamada direta, formato=pdf)</strong><div class="esp"><span>Esperado</span> Arquivo PDF gerado e aberto</div><div class="obt"><span>Obtido</span> HTTP 200, <code>application/pdf</code>, 620 bytes. O arquivo não foi aberto para conferir o conteúdo. A aba só oferece Baixar, que gera PDF</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">007</td><td><strong>HTML do documento 3187 (chamada direta, formato=html)</strong><div class="esp"><span>Esperado</span> Arquivo HTML gerado</div><div class="obt"><span>Obtido</span> HTTP 200, <code>text/html</code>, 860 bytes, título &quot;Parecer Técnico 03/2026&quot;. A tela não oferece HTML; é só pela chamada direta</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">008</td><td><strong>Excel, XML, CSV e JSON (chamada direta)</strong><div class="esp"><span>Esperado</span> Falha de exportação</div><div class="obt"><span>Obtido</span> Excel: HTTP 200, xlsx de 1720 bytes. XML: HTTP 200, <code>&lt;documento exemplo=&quot;true&quot;&gt;</code>. CSV: HTTP 200, 198 bytes. JSON: HTTP 200, 731 bytes. Nenhum falhou</div></td><td class="st"><span class="selo falha">❌ Falhou</span></td></tr></tbody></table></details><details class="cartao" id="g-Preview" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Preview</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">009</td><td><strong>Documento que não é HTML</strong><div class="esp"><span>Esperado</span> Mensagem &quot;Use Baixar&quot;</div><div class="obt"><span>Obtido</span> Não executado: todos os documentos do 159182 têm preview HTML (campo <code>Html</code> preenchido em 3187, 3196, 3231 e demais)</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Sigilo" >
+<summary><span class="selo ok">✅ Passou</span><h3>Sigilo</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">010</td><td><strong>Documento 3201 (Sigiloso = Sim) sem permissão</strong><div class="esp"><span>Esperado</span> Link nulo; tela trata como restrito</div><div class="obt"><span>Obtido</span> Toast &quot;Documento sigiloso: o seu perfil não tem acesso.&quot; na tela; API devolve <code>Sucesso: false</code> com a mesma mensagem</div></td><td class="st"><span class="selo ok">✅ Passou</span></td></tr></tbody></table></details><details class="cartao" id="g-Erros" open>
+<summary><span class="selo parcial">⚠️ Parcial</span><h3>Erros</h3><span class="qtd">2 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">011</td><td><strong>Falha na consulta de documentos</strong><div class="esp"><span>Esperado</span> Mensagem genérica de falha</div><div class="obt"><span>Obtido</span> Resposta direta com <code>cenario=falha</code>: &quot;Não foi possível consultar os documentos do contrato. Tente novamente mais tarde.&quot; Na tela, a aba não refez a consulta ao reabrir (bloqueio do XHR não disparou), então a falha não foi reproduzida visualmente</div></td><td class="st"><span class="selo parcial">⚠️ Parcial</span></td></tr><tr><td class="n">012</td><td><strong>Falha na exportação</strong><div class="esp"><span>Esperado</span> Mensagem de falha de exportação</div><div class="obt"><span>Obtido</span> Não executado: a falha de exportação não foi simulada na tela nesta execução</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details><details class="cartao" id="g-Vazio" open>
+<summary><span class="selo nexec">⏭️ Não executado</span><h3>Vazio</h3><span class="qtd">1 caso</span></summary>
+<table class="passos"><tbody><tr><td class="n">013</td><td><strong>Contrato sem documentos</strong><div class="esp"><span>Esperado</span> Mensagem de vazio, sem erro</div><div class="obt"><span>Obtido</span> Não executado: não foi encontrado contrato sem documentos. Os contratos testados sem documentos devolvem a mensagem de falha, não a de vazio</div></td><td class="st"><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details>
+  <section class="bloco"><h2>Erros de console e rede</h2><ul><li><code>GET /Contratos/VisualizarDocumentacaoTemplate?codigo=159182&amp;documento=3201</code>: HTTP 200 com <code>Sucesso: false</code> (sigilo)</li><li><code>GET /Contratos/ExportarDocumentacaoTemplate</code> (excel, xml, csv, json, pdf, html para o 3187): todos HTTP 200</li></ul></section>
+  <section class="bloco"><h2>Observações e sugestões</h2><ul><li>O débito 16 precisa ser revisado antes de servir de roteiro: a tela e a API já entregam mais do que ele descreve.</li><li>Os formatos de exportação estão ativos no endpoint, mas não na tela. Vale decidir se o endpoint deve recusar Excel, XML, CSV e JSON, como o débito diz.</li><li>Não há PNG de evidência para CT002 a CT008 além da captura da lista (CT001) e do preview (CT007). As demais provas são as respostas da API.</li></ul></section>
+  <section class="bloco" id="condicoes"><h2>Condições do teste</h2><ul><li>GCG no ar em <code>localhost:5000</code>, sem reinício nesta execução.</li><li>Contrato com documentos: 159182 (Publicado, vigência encerrada em 30/09/2026).</li><li>Contrato sem documentos: não encontrado. Os contratos 150653, 141942, 153609, 149623, 148596, 157719, 142964, 149117 e 151299 devolvem a mensagem de falha da consulta (não de vazio). Os contratos 159173, 159184 e 159143 têm documentos.</li></ul></section>
+  <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
+</main>
+</div>
+<aside class="usuarios" id="usuarios" aria-label="Usuários do teste"><p class="rotulo">Usuários do teste</p><div class="u-lista"><div class="usuario"><div class="u-topo"><strong>Servidor de Homologação</strong><span class="u-origem mock">Simulado (mock)</span></div><dl><dt>Cenário</dt><dd><code>gestor</code></dd><dt>Login</dt><dd>04934988181</dd><dt>CPF/CNPJ</dt><dd>04934988181</dd><dt>IdPessoa</dt><dd>1001 (fictício)</dd><dt>Perfil</dt><dd>Gestor de Contrato (101)</dd><dt>Órgão</dt><dd>5 · SEAD</dd><dt>Uso no teste</dt><dd>Todos os casos</dd></dl></div></div><div class="u-nota"><p>Entrada pela página &quot;Simular entrada do SISLOG&quot; (Localhost). A consulta de documentos e as exportações usam o SISLOG de homologação. As chamadas diretas usaram a sessão do mesmo navegador.</p></div></aside>
+</div>
+<script>
+document.querySelectorAll('figure img').forEach(function (img) {
+  img.addEventListener('click', function () { window.open(img.src, '_blank'); });
+});
+</script>
+</body>
+</html>
