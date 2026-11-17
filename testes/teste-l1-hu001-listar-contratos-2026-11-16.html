@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HU001 · Listar Contratos — L1-4 Resultados (execução) — 16/11/2026 · PBI 20629 · Sprint 1</title>
+<style>
+:root { --fundo:#f5f4f1; --cartao:#fff; --tinta:#1b1a18; --suave:#5f5b55; --fraco:#8a857d; --linha:#e6e2da;
+  --verde:#1f6b4a; --verde-claro:#e6f3ec; --azul:#2458a6; --azul-claro:#e8eff9; --ambar:#9a6410; --ambar-claro:#fbf1dc;
+  --vermelho:#9b2f2f; --vermelho-claro:#fbe7e5; --cinza-claro:#eeece7; --raio:10px; --sombra:0 1px 2px rgba(27,26,24,.05),0 1px 1px rgba(27,26,24,.03); }
+* { box-sizing:border-box; }
+html { scroll-padding-top:16px; }
+body { margin:0; background:var(--fundo); color:var(--tinta); font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+code { font:12.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; background:var(--cinza-claro); padding:1px 5px; border-radius:4px; word-break:break-word; }
+.app { display:grid; grid-template-columns:290px minmax(0,1fr); min-height:100vh; }
+.lateral { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-right:1px solid var(--linha); padding:22px 18px 28px; display:flex; flex-direction:column; gap:20px; }
+.principal { padding:28px 36px 80px; max-width:1040px; width:100%; }
+main { display:grid; gap:18px; }
+.marca h1 { margin:0; font-size:18px; line-height:1.25; }
+.marca p { margin:4px 0 0; color:var(--suave); font-size:13px; }
+.rotulo { margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.barra { display:flex; height:8px; background:var(--linha); border-radius:99px; overflow:hidden; }
+.barra span { display:block; }
+.b-ok { background:var(--verde); } .b-falha { background:var(--vermelho); } .b-parcial { background:#e3b45c; } .b-nexec { background:#b9b3a8; }
+.legenda { list-style:none; margin:8px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12.5px; color:var(--suave); }
+.legenda strong { color:var(--tinta); }
+.ponto { display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px; flex:none; }
+.ponto.ok { background:var(--verde); } .ponto.falha { background:var(--vermelho); } .ponto.parcial { background:#e3b45c; } .ponto.nexec { background:#b9b3a8; }
+nav { display:grid; gap:1px; }
+.nav-ct { display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:2px 6px; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; }
+.nav-ct:hover { background:var(--fundo); }
+.nav-ct span:nth-child(2) { font-weight:600; white-space:nowrap; }
+.nav-sub { color:var(--suave); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-top { display:block; padding:6px 8px; border-radius:8px; color:var(--tinta); text-decoration:none; font-size:13px; font-weight:600; }
+.nav-top:hover { background:var(--fundo); }
+.topo { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 24px; }
+.topo h2 { margin:0 0 4px; font-size:22px; letter-spacing:-.01em; }
+.topo .sub { margin:0 0 14px; color:var(--suave); }
+.meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 18px; margin:0; }
+.meta dt { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--fraco); }
+.meta dd { margin:2px 0 0; font-size:14px; }
+.veredito { display:inline-block; margin-top:14px; font-weight:700; padding:4px 12px; border-radius:99px; }
+.veredito.falha { color:var(--vermelho); background:var(--vermelho-claro); } .veredito.ok { color:var(--verde); background:var(--verde-claro); } .veredito.parcial { color:var(--ambar); background:var(--ambar-claro); }
+.numeros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.num { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra); }
+.num b { display:block; font-size:26px; line-height:1.1; }
+.num span { font-size:12.5px; color:var(--suave); }
+.num.ok b { color:var(--verde); } .num.falha b { color:var(--vermelho); } .num.parcial b { color:var(--ambar); } .num.nexec b { color:var(--fraco); }
+.bloco { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px; }
+.bloco > h2 { margin:0 0 10px; font-size:17px; }
+.bloco p { margin:0 0 10px; }
+.bloco ul { margin:0; padding-left:20px; } .bloco li { margin:3px 0; }
+.cartao { background:var(--cartao); border:1px solid var(--linha); border-radius:var(--raio); box-shadow:var(--sombra); overflow:hidden; }
+.cartao summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 18px; }
+.cartao summary::-webkit-details-marker { display:none; }
+.cartao summary::after { content:"▸"; margin-left:auto; color:var(--fraco); transition:transform .15s; }
+.cartao[open] summary::after { transform:rotate(90deg); }
+.cartao summary h3 { margin:0; font-size:15px; }
+.qtd { font-size:12.5px; color:var(--fraco); }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:99px; white-space:nowrap; }
+.selo.ok { color:var(--verde); background:var(--verde-claro); } .selo.falha { color:var(--vermelho); background:var(--vermelho-claro); }
+.selo.parcial { color:var(--ambar); background:var(--ambar-claro); } .selo.nexec { color:var(--suave); background:var(--cinza-claro); }
+table.passos { width:100%; border-collapse:collapse; border-top:1px solid var(--linha); }
+.passos td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--linha); font-size:14px; }
+.passos tr:last-child td { border-bottom:0; }
+.evid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.evid a { display:grid; gap:2px; width:168px; text-decoration:none; color:var(--suave); font-size:11.5px; }
+.evid img { width:168px; height:110px; object-fit:cover; object-position:top left; border:1px solid var(--linha); border-radius:6px; background:var(--fundo); }
+.evid a:hover img { border-color:var(--verde); }
+.passos td.n { width:52px; color:var(--fraco); font-weight:700; text-align:right; }
+.passos td.st { width:150px; text-align:right; }
+.esp, .obt { margin-top:6px; color:var(--suave); }
+.esp span, .obt span { display:inline-block; min-width:68px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--fraco); }
+.obt { color:var(--tinta); }
+.falhas { display:grid; gap:12px; }
+.achado { border:1px solid var(--linha); border-left:4px solid var(--fraco); border-radius:8px; padding:12px 16px; }
+.achado header { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.achado h3 { margin:0; font-size:15px; }
+.achado ul { margin:0; padding-left:18px; } .achado li { margin:2px 0; font-size:14px; }
+.achado p { margin:4px 0; font-size:14px; }
+.sev { font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.sev-crítica { border-left-color:#6d1313; } .sev-crítica .sev { color:#fff; background:#7d1a1a; }
+.sev-alta { border-left-color:var(--vermelho); } .sev-alta .sev { color:var(--vermelho); background:var(--vermelho-claro); }
+.sev-média { border-left-color:#e3b45c; } .sev-média .sev { color:var(--ambar); background:var(--ambar-claro); }
+.sev-baixa { border-left-color:var(--azul); } .sev-baixa .sev { color:var(--azul); background:var(--azul-claro); }
+table.msgs { width:100%; border-collapse:collapse; margin:6px 0 4px; font-size:13.5px; }
+table.msgs th, table.msgs td { text-align:left; vertical-align:top; padding:6px 8px; border:1px solid var(--linha); }
+table.msgs th { background:var(--fundo); font-size:12px; }
+.galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+figure { margin:0; border:1px solid var(--linha); border-radius:8px; overflow:hidden; background:var(--fundo); }
+figure img { display:block; width:100%; height:auto; cursor:zoom-in; }
+figcaption { padding:8px 12px; font-size:13px; color:var(--suave); background:var(--cartao); }
+.antes { display:block; font-size:11.5px; color:var(--fraco); margin-bottom:3px; }
+.mud { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.mud.corrigido { color:var(--verde); } .mud.regrediu { color:var(--vermelho); } .mud.igual { color:var(--fraco); } .mud.mudou { color:var(--ambar); }
+.tipo { display:inline-block; margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); background:var(--azul-claro); padding:2px 10px; border-radius:99px; }
+.voltar { display:inline-block; margin-bottom:10px; font-size:13px; font-weight:600; color:var(--verde); text-decoration:none; } .voltar:hover { text-decoration:underline; }
+.rodape { color:var(--fraco); font-size:12.5px; text-align:center; margin-top:8px; }
+.app.com-usuarios { grid-template-columns:290px minmax(0,1fr) 330px; grid-template-areas:"lat princ usu"; }
+.app.com-usuarios .lateral { grid-area:lat; } .app.com-usuarios .principal { grid-area:princ; }
+.usuarios { grid-area:usu; position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--cartao); border-left:1px solid var(--linha); padding:22px 18px 28px; }
+.u-lista { display:grid; gap:10px; }
+.usuario { border:1px solid var(--linha); border-radius:8px; padding:10px 12px; background:var(--cartao); }
+.u-topo { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin-bottom:6px; font-size:14px; }
+.u-origem { font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:1px 8px; border-radius:99px; }
+.u-origem.mock { color:var(--ambar); background:var(--ambar-claro); } .u-origem.real { color:var(--verde); background:var(--verde-claro); } .u-origem.misto { color:var(--azul); background:var(--azul-claro); }
+.usuario dl { display:grid; grid-template-columns:auto 1fr; gap:2px 8px; margin:0; font-size:12.5px; }
+.usuario dt { color:var(--fraco); font-weight:600; } .usuario dd { margin:0; word-break:break-word; }
+.u-nota { margin-top:10px; font-size:12.5px; color:var(--suave); } .u-nota p { margin:0 0 6px; } .u-nota ul { margin:0; padding-left:18px; }
+@media (max-width:1500px) { .app.com-usuarios { grid-template-columns:290px minmax(0,1fr); grid-template-areas:"lat usu" "lat princ"; grid-template-rows:auto 1fr; }
+  .app.com-usuarios .lateral { grid-row:1 / span 2; }
+  .usuarios { position:static; height:auto; border-left:0; background:transparent; padding:28px 36px 0; max-width:1040px; }
+  .u-lista { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); } }
+@media (max-width:900px) { .app.com-usuarios { grid-template-columns:1fr; grid-template-areas:"lat" "usu" "princ"; grid-template-rows:auto; } .usuarios { padding:20px 16px 0; } }
+@media (max-width:900px) { .app { grid-template-columns:1fr; } .lateral { position:static; height:auto; } .principal { padding:20px 16px 60px; } .numeros { grid-template-columns:repeat(3,1fr); } .passos td.st { width:auto; } }
+@media print { .lateral { display:none; } .app { display:block; } details { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="app com-usuarios">
+<aside class="lateral" aria-label="Navegação do relatório">
+  <div class="marca"><a class="voltar" href="index.html">← Todos os relatórios</a><h1>HU001 · L1-4</h1><p>16/11/2026 · PBI 20629 · Sprint 1</p></div>
+  <div>
+    <p class="rotulo">Resultado dos 5 casos</p>
+    <div class="barra" role="img" aria-label="2 passaram, 2 falharam, 0 parciais, 1 não executados">
+      <span class="b-ok" style="width:40.00%"></span><span class="b-falha" style="width:40.00%"></span><span class="b-parcial" style="width:0.00%"></span><span class="b-nexec" style="width:20.00%"></span>
+    </div>
+    <ul class="legenda">
+      <li><span class="ponto ok"></span><strong>2</strong> passaram</li><li><span class="ponto falha"></span><strong>2</strong> falharam</li>
+      <li><span class="ponto parcial"></span><strong>0</strong> parciais</li><li><span class="ponto nexec"></span><strong>1</strong> não executados</li>
+    </ul>
+  </div>
+  <div>
+    <p class="rotulo">Seções</p>
+    <a class="nav-top" href="#resumo">Resumo</a><a class="nav-top" href="#comparacao">Comparação com a anterior</a><a class="nav-top" href="#falhas">Falhas encontradas</a><a class="nav-top" href="#condicoes">Condições do teste</a><a class="nav-top" href="#usuarios">Usuários do teste</a>
+  </div>
+  <div><p class="rotulo">Grupos</p><nav><a class="nav-ct" href="#g-Casos"><span class="ponto falha"></span><span>Casos</span><span class="nav-sub"></span></a></nav></div>
+</aside>
+<div class="principal">
+<main>
+  <section class="topo" id="resumo">
+    <span class="tipo">Execução (primeira rodada de 16/11/2026), escopo somente L1-4 (Resultados)</span>
+    <h2>HU001 · Listar Contratos — L1-4 Resultados (execução)</h2>
+    <p class="sub">Escopo somente L1-4: resultados da listagem</p>
+    <dl class="meta">
+      <div><dt>Data e hora</dt><dd>16/11/2026 (horário de Brasília), execução única no navegador embutido do app desktop</dd></div>
+      <div><dt>Perfil</dt><dd>login 04934988181, Gestor de Contrato (101), Secretaria da Administração (órgão 5 · SEAD), entrada simulada <code>/Login/SimularEntradaSislog?cenario=gestor</code></dd></div>
+      <div><dt>Ambiente</dt><dd>GCG em <code>http://localhost:5000</code> (Localhost), commit <code>2bea201</code> (&quot;HU-001 Consolidado&quot;), branch <code>well-sprint1</code>, com 40 arquivos alterados e não commitados. PID do servidor: 402944.</dd></div>
+      
+      <div><dt>Executado por</dt><dd>Skill testar-roteiro-gcg, criada por Wellington Silvério</dd></div>
+    </dl>
+    <span class="veredito falha">❌ Reprovado</span>
+  </section>
+  <section class="numeros" aria-label="Contagem">
+    <div class="num"><b>5</b><span>casos</span></div><div class="num ok"><b>2</b><span>passaram</span></div>
+    <div class="num falha"><b>2</b><span>falharam</span></div><div class="num parcial"><b>0</b><span>parciais</span></div>
+    <div class="num nexec"><b>1</b><span>não executados</span></div>
+  </section>
+  <section class="bloco" id="comparacao"><h2>Comparação com a execução anterior</h2><p>Não há execução anterior do L1-4 neste formato.</p></section>
+  <section class="bloco"><h2>Principal achado</h2><p>O resultado mostra 24 contratos Publicados, com 10 linhas completas. Sem filtro de status, o contrato Cancelado 159138 aparece na lista, e a paginação traz linhas em branco.</p></section>
+  <section class="bloco" id="falhas"><h2>Falhas encontradas</h2><div class="falhas"><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>1. Contrato Cancelado aparece na lista sem filtro de status</h3></header><ul><li><strong>Passos:</strong> L1-4 · 3</li><li><strong>Esperado:</strong> nenhum contrato Cancelado na listagem</li><li><strong>Obtido:</strong> 159138 com status Cancelado aparece na consulta sem filtro de status (<code>ListarPaginado</code>, 153 contratos).</li><li><strong>Evidência:</strong> resposta de <code>ListarPaginado</code> (JSON), campo <code>StatusContrato = &quot;Cancelado&quot;</code>, código 159138</li></ul></article><article class="achado sev-alta"><header><span class="sev">Alta</span><h3>2. Linhas em branco na paginação (regressão)</h3></header><ul><li><strong>Passos:</strong> L1-4 · 4</li><li><strong>Esperado:</strong> cada página com a quantidade de contratos da página</li><li><strong>Obtido:</strong> página de 10 com 5 contratos e 5 linhas vazias. Com 50 por página, 26 contratos e 24 linhas vazias.</li><li><strong>Evidência:</strong> <code>ListarPaginado</code> com <code>TamanhoPagina=10</code> (TotalRows 153, 5 Codigo únicos + 5 sem Codigo)</li></ul></article></div></section>
+  <h2 style="margin:10px 0 0;font-size:17px">Casos</h2>
+  <details class="cartao" id="g-Casos" open>
+<summary><span class="selo falha">❌ Falhou</span><h3>Casos</h3><span class="qtd">5 casos</span></summary>
+<table class="passos"><tbody><tr><td class="n">L1-4 · 1</td><td><strong>Resultado com filtro Publicado, SEAD, 01/01/2024</strong><div class="esp"><span>Esperado</span> Chips, contador, Exportar habilitado, 10 linhas completas, total = rodapé</div><div class="obt"><span>Obtido</span> Chips Publicado, SEAD e 01/01/2024; &quot;Filtros, 3 ativos&quot;; <code>ListarPaginado</code> 200 com TotalRows 24; &quot;Mostrando 1–10 de 24 contratos&quot;; 10 linhas, 10 códigos distintos</div></td><td class="st"><span class="antes">antes: —</span><span class="selo ok">✅ Passou</span></td></tr><tr><td class="n">L1-4 · 2</td><td><strong>Status das linhas</strong><div class="esp"><span>Esperado</span> Todas Publicado</div><div class="obt"><span>Obtido</span> 10/10 Publicado, órgão SEAD</div></td><td class="st"><span class="antes">antes: —</span><span class="selo ok">✅ Passou</span></td></tr><tr><td class="n">L1-4 · 3</td><td><strong>Sem filtro de status</strong><div class="esp"><span>Esperado</span> Nenhum contrato Cancelado na lista</div><div class="obt"><span>Obtido</span> Sem o chip de status: 153 contratos. O 159138 com status Cancelado aparece</div></td><td class="st"><span class="antes">antes: —</span><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">L1-4 · 4</td><td><strong>Paginação sem status</strong><div class="esp"><span>Esperado</span> Cada página com N contratos, sem linhas em branco</div><div class="obt"><span>Obtido</span> Página de 10: 5 contratos e 5 linhas em branco (TotalRows 153). Com 50 por página, a API devolve 26, 44, 50 e 33 contratos, e a grade completa com linhas em branco</div></td><td class="st"><span class="antes">antes: —</span><span class="selo falha">❌ Falhou</span></td></tr><tr><td class="n">L1-4 · 5</td><td><strong>Escopo de órgão</strong><div class="esp"><span>Esperado</span> Gestor da SEAD vê só contratos da SEAD</div><div class="obt"><span>Obtido</span> Não reexecutado nesta rodada</div></td><td class="st"><span class="antes">antes: —</span><span class="selo nexec">⏭️ Não executado</span></td></tr></tbody></table></details>
+  <section class="bloco"><h2>Erros de console e rede</h2><ul></ul></section>
+  <section class="bloco"><h2>Observações e sugestões</h2><ul><li>Não há PNG de evidência. As provas são as leituras da grade e as respostas da API.</li></ul></section>
+  <section class="bloco" id="condicoes"><h2>Condições do teste</h2><ul><li>Servidor no ar, não reiniciado por esta execução.</li><li>Entrada por <code>/Login/SimularEntradaSislog?cenario=gestor</code>, sem alterar dados.</li><li>Interceptador de XHR instalado na listagem. Nenhuma falha foi simulada.</li></ul></section>
+  <p class="rodape">Relatório gerado com a skill testar-roteiro-gcg, criada por Wellington Silvério.</p>
+</main>
+</div>
+<aside class="usuarios" id="usuarios" aria-label="Usuários do teste"><p class="rotulo">Usuários do teste</p><div class="u-lista"><div class="usuario"><div class="u-topo"><strong>Servidor de Homologação</strong><span class="u-origem mock">Simulado (mock)</span></div><dl><dt>Cenário</dt><dd><code>gestor</code></dd><dt>Login</dt><dd>04934988181</dd><dt>CPF/CNPJ</dt><dd>04934988181</dd><dt>IdPessoa</dt><dd>1001 (fictício)</dd><dt>Perfil</dt><dd>Gestor de Contrato (101)</dd><dt>Órgão</dt><dd>5 · SEAD</dd><dt>Uso no teste</dt><dd>Todos os casos</dd></dl></div></div><div class="u-nota"><p>Entrada pela página &quot;Simular entrada do SISLOG&quot; (Localhost). Os CPFs e os <code>IdPessoa</code> do mock são fictícios.</p></div></aside>
+</div>
+<script>
+document.querySelectorAll('figure img').forEach(function (img) {
+  img.addEventListener('click', function () { window.open(img.src, '_blank'); });
+});
+</script>
+</body>
+</html>
